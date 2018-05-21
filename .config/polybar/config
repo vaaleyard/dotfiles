@@ -1,0 +1,518 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+background = ${xrdb:background}
+background-alt = #3c3836
+foreground = ${xrdb:foreground}
+foreground-alt = #555
+primary = #458588
+orange = #d65d0e
+secondary = #689d6a
+alert = ${xrdb:color1}
+
+[bar/example]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 21
+;offset-x = 3%
+;offset-y = 0
+radius = 1.0
+fixed-center = true
+border-top-size = 10
+border-left-size = 10
+border-right-size = 10
+border-bottom-size = 6
+
+monitor = LVDS
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+;line-size = 2
+;line-color = #FF00FF
+
+;border-size = 0
+border-color = #282828
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 0
+
+font-0 = curie:pixelsize=10;1
+font-1 = Font Awesome 5 Free:pixelsize=10;3
+font-2 = Font Awesome 5 Free:style=Solid:pixelsize=10;2
+font-3 = Font Awesome 5 Brands:pixelsize=10;3
+font-4 = siji:pixelsize=9;2
+
+modules-left = i3 cmus
+modules-center = date
+modules-right = memory cpu updates-available wlan volume battery-notify usb redshift-info battery
+
+tray-position = right
+tray-padding = 2
+;tray-transparent = true
+;tray-background = #0063ff
+
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;========================================
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+;========================================
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.foreground-alt}
+
+label-layout = " %layout% "
+label-layout-foreground = ${colors.foreground}
+label-layout-background = ${colors.primary}
+
+label-indicator-padding = 1
+label-indicator-margin = 0
+label-indicator-background = ${colors.orange}
+
+;=========================================
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+;=========================================
+;				i3
+;========================================
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar (default = false)
+pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.foreground-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${colors.alert}
+label-visible-underline = ${colors.alert}
+label-visible-padding = 2
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${colors.orange}
+label-urgent-padding = 2
+
+fuzzy-match = true
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 0;
+
+;==========================================
+;				MPD
+;========================================
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+;==========================================
+;				XBACKLIGHT
+;========================================
+
+[module/xbacklight]
+type = internal/xbacklight
+
+output = LVDS
+
+format = <label>
+label = Brightness: %percentage%%
+
+bar-width = 10
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─
+
+;==========================================
+;				BACKLIGHT
+;========================================
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+;==========================================
+;				CPU
+;========================================
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "  "
+format-prefix-font = 2
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.foreground-alt}
+label = " %percentage:2%% "
+label-background = ${colors.primary}
+
+;==========================================
+;				MEMORY
+;========================================
+
+[module/memory]
+type     = internal/memory
+interval = 3
+
+format           = <label>
+label            = "%percentage_used%%"
+label-background = ${colors.primary}
+label-foreground = ${colors.foreground}
+label-padding    = 1
+
+format-prefix = 
+
+format-prefix-padding    = 1
+format-prefix-background = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.foreground}
+
+;========================================
+;				WLAN
+;========================================
+
+[module/wlan]
+type = internal/network
+interface = wlp6s0
+interval = 1
+label-maxlen = 30
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
+
+;format-connected = <ramp-signal><label-connected>
+;ramp-signal-0 = " ▁"
+;ramp-signal-1 = " ▂"
+;ramp-signal-2 = " ▃"
+;ramp-signal-3 = " ▄"
+;ramp-signal-4 = " ▅"
+;ramp-signal-5 = " ▆"
+;ramp-signal-background = ${colors.foreground-alt}
+;ramp-signal-foreground = ${colors.foreground}
+
+label-connected  = " %essid% "
+label-connected-background = ${colors.primary}
+format-connected-prefix = "  "
+format-connected-prefix-font = 2
+format-connected-prefix-background    = ${colors.foreground-alt}
+format-connected-background    = ${colors.primary}
+
+format-packetloss = <animation-packetloss> <label-connected>
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+
+format-disconnected = <label-disconnected>
+label-disconnected  = " no wifi "
+format-disconnected-prefix = "  "
+format-disconnected-prefix-font = 2
+format-disconnected-prefix-background = ${colors.foreground-alt}
+format-disconnected-prefix-foreground = ${colors.foreground}
+format-disconnected-background = ${colors.alert}
+format-disconnected-foreground = ${colors.foreground-alt}
+
+;========================================
+;				ETH
+;========================================
+
+[module/eth]
+type = internal/network
+interface = wlp6s0
+interval = 3.0
+
+format-connected-font = 0
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+;========================================
+;				DATE
+;========================================
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %a, %b %d,"
+date-alt = " %d-%m-%Y |"
+format-background = ${colors.primary}
+format-foreground = ${colors.foreground}
+
+time = "%H:%M "
+time-alt = "%H:%M:%S "
+format-prefix-font = 4
+format-prefix-background = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.foreground}
+format-prefix = "  "
+
+label = %date% %time%
+
+;========================================
+;				VOLUME
+;========================================
+
+[module/volume]
+type = internal/volume
+
+; The line below is to fix an error with the sound (alsamixer), the error is: error: Disabling module "volume" (reason: Cannot find simple element)
+; Ref: https://github.com/jaagr/polybar/issues/491 and https://github.com/jaagr/polybar/wiki/Module:-volume
+master-soundcard=hw:1
+
+format-volume = <ramp-volume><label-volume>
+label-volume = " %percentage%% "
+label-volume-background = ${colors.primary}
+label-volume-foreground = ${colors.foreground}
+label-muted = "  muted "
+label-muted-foreground = ${colors.foreground-alt}
+label-muted-background = ${colors.alert}
+ramp-volume-background = ${colors.foreground-alt}
+ramp-volume-0 = "  "
+ramp-volume-1 = "  "
+ramp-headphones = 
+
+;========================================
+;			  BATTERY
+;========================================
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+label-full = " %percentage%% "
+format-full-prefix = "  "
+format-full-background = ${colors.primary}
+format-full-foreground = ${colors.foreground}
+format-full-prefix-foreground = ${colors.foreground}
+format-full-prefix-background = ${colors.orange}
+
+format-discharging = <ramp-capacity><label-discharging>
+label-discharging = " %percentage%% "
+label-discharging-foreground = ${colors.foreground}
+label-discharging-background = ${colors.primary}
+
+; power symbol
+;ramp-capacity-0 = "  "
+
+ramp-capacity-0 = "  "
+ramp-capacity-0-background = ${colors.alert}
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
+ramp-capacity-3 = "  "
+ramp-capacity-4 = "  "
+ramp-capacity-foreground = ${colors.foreground}
+ramp-capacity-background = ${colors.foreground-alt}
+
+format-charging = <animation-charging><label-charging>
+label-charging = " %percentage%% "
+label-charging-foreground = ${colors.foreground}
+label-charging-background = ${colors.primary}
+
+animation-charging-0 = "  "
+animation-charging-1 = "  "
+animation-charging-2 = "  "
+animation-charging-3 = "  "
+animation-charging-4 = "  "
+animation-charging-foreground = ${colors.foreground}
+animation-charging-background = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+;========================================
+;			  TEMP
+;========================================
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+
+warn-temperature = 60
+format-warn = <ramp><label-warn>
+label-warn = " %temperature% "
+label-warn-foreground = ${colors.foreground}
+label-warn-background = ${colors.primary}
+
+format = <ramp><label>
+label = " %temperature% "
+
+ramp-font = 2
+ramp-0 = "  "
+ramp-1 = "  "
+ramp-2 = "  "
+ramp-foreground = ${colors.foreground}
+ramp-background = ${colors.foreground-alt}
+
+;========================================
+;			POWERMENU
+;========================================
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = "  "
+label-open-font = 2
+label-open-foreground = ${colors.foreground}
+label-open-background = ${colors.foreground-alt}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 =  reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 =  power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+;=========================================
+;			VOID UPDATES
+;=========================================
+[module/updates-available]
+type = custom/script
+exec = $HOME/.config/polybar/updates.sh
+click-left = urxvt -e sudo xbps-install -Su
+format = <label>
+format-background = ${colors.primary}
+format-foreground = ${colors.foreground-alt}
+format-padding = 1
+interval = 300
+
+;=========================================
+;			REDSHIFT-STATUS
+;=========================================
+[module/redshift-info]
+type = custom/script
+format = <label>
+format-background = ${colors.primary}
+format-foreground = ${colors.foreground-alt}
+format-padding = 1
+#exec = $HOME/.config/polybar/redshift.sh
+exec = $HOME/bin/redshift-status
+interval = 5
+
+;=========================================
+;			BATTERY-NOTIFY
+;=========================================
+[module/battery-notify]
+type = custom/script
+exec = ~/.config/polybar/battery-notify
+interval = 10
+
+;========================================
+;			CMUS
+;========================================
+[module/cmus]
+type = custom/script
+
+exec = bash ~/.config/polybar/cmus.sh
+exec-if = pgrep -x cmus
+format-prefix = ""
+
+interval = 1
+
+click-left = cmus-remote --pause
+click-right = cmus-remote --stop
+
+format = <label>
+format-underline = ${colors.primary}
+label = %output%
+
+;=======================================
+;			USB Drivers
+;=======================================
+[module/usb]
+type = custom/script
+
+exec = bash ~/.config/polybar/system-usb-udev.sh
+interval = 1
