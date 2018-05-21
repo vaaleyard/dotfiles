@@ -1,0 +1,17 @@
+[2018-05-20 21:52:05] WeeChat 2.1 (compiled on Mar 19 2018 03:51:48)
+[2018-05-20 21:52:05] Reading configuration file sec.conf
+[2018-05-20 21:52:05] Reading configuration file weechat.conf
+[2018-05-20 21:52:06] Reading configuration file plugins.conf
+[2018-05-20 21:52:06] Reading configuration file charset.conf
+[2018-05-20 21:52:06] Reading configuration file logger.conf
+[2018-05-20 21:52:06] Reading configuration file exec.conf
+[2018-05-20 21:52:06] Reading configuration file trigger.conf
+[2018-05-20 21:52:06] Reading configuration file alias.conf
+[2018-05-20 21:52:06] Reading configuration file buflist.conf
+[2018-05-20 21:52:06] Reading configuration file fifo.conf
+[2018-05-20 21:52:06] Reading configuration file xfer.conf
+[2018-05-20 21:52:06] Reading configuration file irc.conf
+[2018-05-20 21:52:06] Reading configuration file relay.conf
+[2018-05-20 21:52:06] Reading configuration file script.conf
+[2018-05-20 21:52:06] Reading configuration file fset.conf
+[2018-05-20 21:52:06] irc: connecting to server chat.freenode.net/6667...
