@@ -1,0 +1,15 @@
+#!/bin/bash
+
+TODAY=$(expr `date +'%d'` + 0)
+MONTH=`date +'%m'`
+YEAR=`date +'%Y'`
+LINES=$(cal -m | wc -l)
+LINES=$((LINES + 2))
+
+(
+(
+date +'^bg(#2E2E2C) '
+date +''
+cal -m | sed -r -e "1,2 s/.*/^fg(#d6ccdc)&^fg()/"  -e "s/(^| )($TODAY)($| )/\1^bg(#aaa5ad)^fg(#130f1c)\2^fg()^bg()\3/") | dzen2 -fn "-artwiz-drift-medium-r-normal--10-100-75-75-n-60-iso8859-1*" -x 1280 -y 25 -w 150 -h 18 -l $LINES -sa c -p 2 -e 'onstart=uncollapse,hide;button3=exit;' -tw 6
+)
+

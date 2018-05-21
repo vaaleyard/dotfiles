@@ -1,0 +1,103 @@
+#!/bin/bash
+
+# CONSTANTS
+
+SP_VERSION="0.1"
+SP_DEST="org.mpris.MediaPlayer2.spotify"
+SP_PATH="/org/mpris/MediaPlayer2"
+SP_MEMB="org.mpris.MediaPlayer2.Player"
+CHAR_LENGTH=30
+
+# SHELL OPTIONS
+
+shopt -s expand_aliases
+
+# UTILITY FUNCTIONS
+
+function sp-metadata {
+  # Prints the currently playing track in a parseable format.
+
+  dbus-send                                                                   \
+  --print-reply                                  `# We need the reply.`       \
+  --dest=$SP_DEST                                                             \
+  $SP_PATH                                                                    \
+  org.freedesktop.DBus.Properties.Get                                         \
+  string:"$SP_MEMB" string:'Metadata'                                         \
+  | grep -Ev "^method"                           `# Ignore the first line.`   \
+  | grep -Eo '("(.*)")|(\b[0-9][a-zA-Z0-9.]*\b)' `# Filter interesting fiels.`\
+  | sed -E '2~2 a|'                              `# Mark odd fields.`         \
+  | tr -d '\n'                                   `# Remove all newlines.`     \
+  | sed -E 's/\|/\n/g'                           `# Restore newlines.`        \
+  | sed -E 's/(xesam:)|(mpris:)//'               `# Remove ns prefixes.`      \
+  | sed -E 's/^"//'                              `# Strip leading...`         \
+  | sed -E 's/"$//'                              `# ...and trailing quotes.`  \
+  | sed -E 's/"+/|/'                             `# Regard "" as seperator.`  \
+  | sed -E 's/ +/ /g'                            `# Merge consecutive spaces.`
+}
+
+# Get the artist of the song playing
+#
+# string Artist name
+function sp-artist {
+    sp-metadata \
+    | grep --color=never -E "(artist)" \
+    | sed 's/^\(.\)/\U\1/' \
+    | cut -c 8-
+}
+
+# Get the title of the song playing
+#
+# string Title
+function sp-title {
+  sp-metadata \
+    | grep --color=never -E "(title)" \
+    | sed 's/^\(.\)/\U\1/' \
+    | cut -c 7-
+}
+
+# Get the artist and the title of the song playing
+#
+# string Artist and Title
+function sp-both {
+	title=`eval "sp-title"`
+	artist=`eval "sp-artist"`
+
+	# If song title is too long, truncate it
+	if [ ${#title} -gt $CHAR_LENGTH ]; then
+		ntitle=$(echo $title | cut -c1-$CHAR_LENGTH)
+		title=$ntitle'...'
+	fi
+
+	echo '♫' $artist '-' $title
+}
+
+SPOTIFY_PID="$(pidof -s spotify)"
+
+if [[ -z "$SPOTIFY_PID" ]]; then
+  echo ""
+  exit 1
+fi
+
+QUERY_ENVIRON="$(cat /proc/${SPOTIFY_PID}/environ | tr '\0' '\n' | grep "DBUS_SESSION_BUS_ADDRESS" | cut -d "=" -f 2-)"
+if [[ "${QUERY_ENVIRON}" != "" ]]; then
+  export DBUS_SESSION_BUS_ADDRESS="${QUERY_ENVIRON}"
+fi
+
+# Then we dispatch the command.
+
+subcommand="$1"
+
+if [[ -z "$subcommand" ]]; then
+  # No arguments given, print help.
+  sp-help
+else
+  # Arguments given, check if it's a command.
+  if $(type sp-$subcommand > /dev/null 2> /dev/null); then
+    # It is. Run it.
+    shift
+
+		eval "sp-$subcommand $@"
+  else
+		echo ""
+  fi
+fi
