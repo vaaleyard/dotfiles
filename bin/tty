@@ -1,0 +1,32 @@
+#!/bin/bash
+# used in .zshrc
+
+if [ "$TERM" = "screen-256color" ]; then
+    # Black
+    echo -en "\e]P0000000"
+    echo -en "\e]P817181A"
+    # Red
+    echo -en "\e]P1B73440"
+    echo -en "\e]P9DC5E6D"
+    # Green
+    echo -en "\e]P268A026"
+    echo -en "\e]PA98D54F"
+    # Yellow
+    echo -en "\e]P3AB6D2A"
+    echo -en "\e]PBD4995B"
+    # Blue
+    echo -en "\e]P45534AC"
+    echo -en "\e]PC8161DC"
+    # Magenta
+    echo -en "\e]P5AC337D"
+    echo -en "\e]PDD963B3"
+    # Cyan
+    echo -en "\e]P6268F6B"
+    echo -en "\e]PE55D5A9"
+    # White
+    echo -en "\e]P7AAABAD"
+    echo -en "\e]PFCECFD1"
+
+    clear
+    echo -e "\nWelcome back Twily!\n"
+fi

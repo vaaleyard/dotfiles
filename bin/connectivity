@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Scirpt for displaying network connectivity
+
+if ping -q -c 1 -W 1 google.com >/dev/null; then
+    echo "  on"
+else
+    echo "  off"
+fi

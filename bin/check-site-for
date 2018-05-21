@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Usage: ./checkit <url> <interval>
+#
+
+GET=""
+while true; do
+    echo -ne "Checking \033[0;33m\"$1\"\033[0m ... "
+    GET=$(curl -Is "$1" | head -1)
+
+    if [[ "$GET" = *200* || "$GET" = *301* || "$GET" = *302* ]]; then
+        echo -ne "[\033[1;32mONLINE\033[0m]."
+        notify-send "\"$1\" is now ONLINE."
+    else
+        echo -ne "[\033[1;31mOFFLINE\033[0m]."
+    fi
+
+    echo -e "\033[1;30m (Checking again in $2 seconds)\033[0m"
+    sleep $2
+done
+
+exit 0
