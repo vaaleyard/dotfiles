@@ -1,0 +1,377 @@
+2018-05-20 16:44:01	 ◥ 	Valeyard juntou-se a ##linux
+2018-05-20 16:44:01	 - 	O tópico de ##linux é "Channel website: https://freenode.linux.community | Pastebin: https://paste.linux.community | Spammers or trolls? use !ops <troll's nick> <reason>". | For op assistance, join ##linux-ops | Set /umode +R if you're getting tons of nonsensical PMs | Feel at home and enjoy your stay!"
+2018-05-20 16:44:01	 - 	Tópico definido por bocaneri em dom, 04 dez 2016 05:21:22
+2018-05-20 16:44:04	 - 	Canal ##linux: 2255 apelidos (0 operado, 0 vozes, 2255 normais)
+2018-05-20 16:44:05	 - 	PvNotice(ChanServ): Please see https://freenode.linux.community/how-to-connect/ on how to register or identify your nick. By joining this channel you agree to abide by the channel rules and guidelines laid out at https://freenode.linux.community/channel-rules/.
+2018-05-20 16:44:05	 - 	URL para ##linux: http://linux.chat
+2018-05-20 16:44:08	 - 	Canal criado em sex, 09 fev 2001 21:16:24
+2018-05-20 16:44:13	 ◣ 	Immune_ saiu (Ping timeout: 260 seconds)
+2018-05-20 16:44:21	 ◣ 	firas saiu (Quit: firas)
+2018-05-20 16:44:35	 ◣ 	saustin saiu (Client Quit)
+2018-05-20 16:44:38	 ◥ 	firas juntou-se a ##linux
+2018-05-20 16:44:42	 ◥ 	shantorn juntou-se a ##linux
+2018-05-20 16:44:42	 ◣ 	shantorn saiu (Client Quit)
+2018-05-20 16:45:25	 ◣ 	Immune__ saiu (Ping timeout: 252 seconds)
+2018-05-20 16:46:47	 ◥ 	cyrn juntou-se a ##linux
+2018-05-20 16:46:50	 ◥ 	wootehfoot juntou-se a ##linux
+2018-05-20 16:46:52	 ◣ 	Saad_ saiu (Max SendQ exceeded)
+2018-05-20 16:46:52	 ◣ 	BCMM saiu (Read error: Connection reset by peer)
+2018-05-20 16:47:00	 ◣ 	mrlemon saiu (Ping timeout: 264 seconds)
+2018-05-20 16:47:28	 ◥ 	Saad_ juntou-se a ##linux
+2018-05-20 16:47:37	thadtheman	If I have an existing shell, I add the user of that shell to a group, how do I update the shell to show that I am in that group?
+2018-05-20 16:47:41	 ◥ 	shantorn juntou-se a ##linux
+2018-05-20 16:47:41	 ◣ 	shantorn saiu (Client Quit)
+2018-05-20 16:47:52	 ◥ 	SysGhost juntou-se a ##linux
+2018-05-20 16:48:06	 ◣ 	Mercury_Vapor saiu (Ping timeout: 240 seconds)
+2018-05-20 16:48:09	 ◥ 	W4RD juntou-se a ##linux
+2018-05-20 16:48:23	revel	Restart.
+2018-05-20 16:48:28	 ◥ 	Immune juntou-se a ##linux
+2018-05-20 16:48:39	 ◥ 	Maxdamantus juntou-se a ##linux
+2018-05-20 16:48:40	revel	If I'm understanding you correctly.
+2018-05-20 16:49:15	 ◣ 	z]bandito saiu (Read error: Connection reset by peer)
+2018-05-20 16:49:28	 ◣ 	W4RD_ saiu (Ping timeout: 260 seconds)
+2018-05-20 16:49:42	 ◥ 	dendazen juntou-se a ##linux
+2018-05-20 16:49:42	 ◥ 	z]bandito juntou-se a ##linux
+2018-05-20 16:50:16	 ◥ 	AsciiWolf_ juntou-se a ##linux
+2018-05-20 16:50:36	 ◣ 	manjaro-user__ saiu (Quit: Konversation terminated!)
+2018-05-20 16:50:37	 ◣ 	AsciiWolf_ saiu (Remote host closed the connection)
+2018-05-20 16:50:52	 ◥ 	ericklan juntou-se a ##linux
+2018-05-20 16:51:15	 ◣ 	Immune___ saiu (Ping timeout: 245 seconds)
+2018-05-20 16:51:22	 ◥ 	collins juntou-se a ##linux
+2018-05-20 16:51:25	well_laid_lawn	to update groups the user must logout and login
+2018-05-20 16:52:15	 ◥ 	marijnfs juntou-se a ##linux
+2018-05-20 16:52:29	 ◣ 	Saad_ saiu (Max SendQ exceeded)
+2018-05-20 16:53:08	 ◥ 	walnut_burl juntou-se a ##linux
+2018-05-20 16:53:13	 ◥ 	Saad_ juntou-se a ##linux
+2018-05-20 16:53:21	quul	aparrently theres a newgrp command, not sure how standard that is, i don't have it so it's not in coreutils
+2018-05-20 16:53:22	 ◣ 	Vapez saiu (Remote host closed the connection)
+2018-05-20 16:53:23	 ◥ 	Anthaas_ juntou-se a ##linux
+2018-05-20 16:53:59	 ◥ 	barneygale juntou-se a ##linux
+2018-05-20 16:54:04	 ◣ 	amrfrsh saiu (Quit: amrfrsh)
+2018-05-20 16:54:09	 ◣ 	mrig_ saiu (Quit: o/)
+2018-05-20 16:54:59	 ◣ 	lalaa saiu (Quit: Leaving)
+2018-05-20 16:55:09	 ◥ 	W4RD_ juntou-se a ##linux
+2018-05-20 16:55:13	 ◥ 	jonan juntou-se a ##linux
+2018-05-20 16:55:46	 ◣ 	j7k6 saiu (Remote host closed the connection)
+2018-05-20 16:55:47	 ◣ 	||JD|| saiu (Remote host closed the connection)
+2018-05-20 16:55:58	 ◥ 	j7k6 juntou-se a ##linux
+2018-05-20 16:55:58	 ◣ 	jungsubk saiu (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2018-05-20 16:56:11	 ◥ 	||JD|| juntou-se a ##linux
+2018-05-20 16:56:25	 ◣ 	cyrn saiu (Quit: cyrn)
+2018-05-20 16:56:27	 ◥ 	Immune_ juntou-se a ##linux
+2018-05-20 16:56:39	 ◣ 	mjudeikis saiu (Ping timeout: 256 seconds)
+2018-05-20 16:56:41	 ◣ 	W4RD saiu (Ping timeout: 245 seconds)
+2018-05-20 16:56:43	 ◥ 	cyrn juntou-se a ##linux
+2018-05-20 16:56:59	 ◥ 	talonz juntou-se a ##linux
+2018-05-20 16:57:01	Dagmar	There's sh
+2018-05-20 16:57:02	 ◥ 	Immune__ juntou-se a ##linux
+2018-05-20 16:57:02	 ◥ 	iiaann juntou-se a ##linux
+2018-05-20 16:57:03	Dagmar	er sg
+2018-05-20 16:57:25	 ◣ 	jonan saiu (Client Quit)
+2018-05-20 16:58:06	 ◥ 	Immune___ juntou-se a ##linux
+2018-05-20 16:58:10	 ◥ 	AllFiend juntou-se a ##linux
+2018-05-20 16:58:13	 ◣ 	Saad_ saiu (Max SendQ exceeded)
+2018-05-20 16:58:20	 ◣ 	RonaldsMazitis saiu (Quit: http://quassel-irc.org - Chat comfortably. Anywhere.)
+2018-05-20 16:58:49	 ◥ 	Saad_ juntou-se a ##linux
+2018-05-20 16:59:06	thadtheman	Why can't I just start a new shell?
+2018-05-20 16:59:09	 ◣ 	Eloy saiu (Quit: Leaving)
+2018-05-20 16:59:40	sklv	thadtheman: the group check happens independently of the shell and you shouldn't need to do anything
+2018-05-20 16:59:40	 ◣ 	Immune saiu (Ping timeout: 260 seconds)
+2018-05-20 16:59:43	 ◣ 	BrianBlaze saiu (Ping timeout: 256 seconds)
+2018-05-20 16:59:53	 ◥ 	enterprisey juntou-se a ##linux
+2018-05-20 16:59:59	sklv	run cat /etc/group before and after making your group membership change and look the file change
+2018-05-20 17:00:37	 ◥ 	Immune juntou-se a ##linux
+2018-05-20 17:00:49	 ◣ 	Immune_ saiu (Ping timeout: 252 seconds)
+2018-05-20 17:00:52	 ◥ 	dastier_ juntou-se a ##linux
+2018-05-20 17:00:53	quul	you have to --enable-newgrp for util-linux when you compile, it's not enabled by default i guess
+2018-05-20 17:00:56	sklv	you may need to spawn a new shell for your shell's environment to be able to account for the new group membership though
+2018-05-20 17:01:24	 ◥ 	Smootimus juntou-se a ##linux
+2018-05-20 17:01:27	 ◣ 	iiaann saiu (Client Quit)
+2018-05-20 17:01:41	 ◣ 	Immune__ saiu (Ping timeout: 245 seconds)
+2018-05-20 17:01:48	 ◣ 	AllFiend saiu (Client Quit)
+2018-05-20 17:02:01	 ◥ 	adhi juntou-se a ##linux
+2018-05-20 17:02:03	 ◥ 	BrianBlaze juntou-se a ##linux
+2018-05-20 17:02:13	Dagmar	You can start a new shell.  New sessions will have hte group permissions relevant to the account when they're created
+2018-05-20 17:02:18	 ◣ 	caecias saiu (Ping timeout: 260 seconds)
+2018-05-20 17:02:32	 ◥ 	nelek juntou-se a ##linux
+2018-05-20 17:02:36	 ◣ 	Chojuan saiu (Remote host closed the connection)
+2018-05-20 17:02:40	 - 	irc: desconectado do servidor
+2018-05-20 21:52:23	 ◥ 	Valeyard has joined ##linux
+2018-05-20 21:52:23	 - 	Topic for ##linux is "Channel website: https://freenode.linux.community | Pastebin: https://paste.linux.community | Spammers or trolls? use !ops <troll's nick> <reason>". | For op assistance, join ##linux-ops | Set /umode +R if you're getting tons of nonsensical PMs | Feel at home and enjoy your stay!"
+2018-05-20 21:52:23	 - 	Topic set by bocaneri on Sun, 04 Dec 2016 05:21:22
+2018-05-20 21:52:25	 - 	Channel ##linux: 2190 nicks (0 ops, 0 voices, 2190 normals)
+2018-05-20 21:52:25	 - 	PvNotice(ChanServ): Please see https://freenode.linux.community/how-to-connect/ on how to register or identify your nick. By joining this channel you agree to abide by the channel rules and guidelines laid out at https://freenode.linux.community/channel-rules/.
+2018-05-20 21:52:25	 - 	URL for ##linux: http://linux.chat
+2018-05-20 21:52:33	 - 	Channel created on Fri, 09 Feb 2001 21:16:24
+2018-05-20 21:52:56	pankaj	I am getting error in section 6.16 i.e. binutils installation. Test suite is reporting error.
+2018-05-20 21:52:56	Pentode	interesting. i'm not a cpu guru but i'd wonder if there were some kind of support option that hadn't been included in the xen kernel maybe?
+2018-05-20 21:52:59	 ◥ 	noobineer has joined ##linux
+2018-05-20 21:53:25	ArchNemesis	i wonder that as well but its in the Xen4Centos repo thingie
+2018-05-20 21:53:36	Pentode	have you tried google yet?
+2018-05-20 21:53:43	Pentode	someone else is bound to have a similar problem
+2018-05-20 21:53:50	ArchNemesis	i've been on the big G for hours
+2018-05-20 21:53:55	Pentode	lol
+2018-05-20 21:54:14	Sveta	ArchNemesis: it would perhaps help if you described what you have found or tried so far
+2018-05-20 21:54:28	Sveta	ArchNemesis: so that people do not suggest you exactly the same things that you already tried
+2018-05-20 21:55:14	Pentode	ArchNemesis, what is it about the xen kernel that makes it any different than any other, if anything?
+2018-05-20 21:55:21	ArchNemesis	the closest thing i found on google was a refrence to a bug in kernel 4.9.x  on redhads bugtracker  but i have a identical server running the same kernel in another location that doesn't exhibit the problem
+2018-05-20 21:55:21	Pentode	maybe just stick with a different kernel that works
+2018-05-20 21:55:22	 ◣ 	haykuro has quit (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2018-05-20 21:56:05	ArchNemesis	Well,  you have to load the xen kernel to activate the Xen system  without it the backend tools do not work  and without them you dont get any VMs to start
+2018-05-20 21:56:15	 ◣ 	Pseudocrat has quit (Remote host closed the connection)
+2018-05-20 21:56:18	Pentode	i see
+2018-05-20 21:56:20	 ◣ 	heym0e has quit (Ping timeout: 252 seconds)
+2018-05-20 21:56:37	 ◥ 	kurahaupo_ has joined ##linux
+2018-05-20 21:56:49	Pentode	have you tried compiling a fresh xen kernel yet?
+2018-05-20 21:57:15	 ◥ 	g- has joined ##linux
+2018-05-20 21:57:21	 ◥ 	superguest has joined ##linux
+2018-05-20 21:57:30	ArchNemesis	not yet it was going to be my last resort since i have a nearly identical system running the same kernel correctly
+2018-05-20 21:57:50	 ◣ 	sysrage has quit (Quit: Textual IRC Client: www.textualapp.com)
+2018-05-20 21:58:00	 ◥ 	lukey_ has joined ##linux
+2018-05-20 21:58:03	 ◣ 	haarolean has quit (Ping timeout: 248 seconds)
+2018-05-20 21:58:27	Pentode	weird
+2018-05-20 21:58:35	 ◥ 	Hasimir has joined ##linux
+2018-05-20 21:58:41	Pentode	could it be a setting in the bios or something?
+2018-05-20 21:58:46	superguest	I am not to familiar with the runlevel concept, for example the files under /etc/grub.d/ are prefixed with a two-digit number
+2018-05-20 21:58:48	Pentode	shooting in the dark here, lol
+2018-05-20 21:58:56	 ◥ 	andrewSC has joined ##linux
+2018-05-20 21:58:59	superguest	e.g. 40_custom and 41_custom
+2018-05-20 21:59:06	ArchNemesis	i've set up two systems in the last 24 hours  same exact procedure on both one works fine one only detects one core out of  8
+2018-05-20 21:59:07	 ◣ 	kzimmermann has quit (Ping timeout: 248 seconds)
+2018-05-20 21:59:45	superguest	how is 41_custom different to 40_custom ?
+2018-05-20 22:00:06	ArchNemesis	isn't the number the order in which it reads/loads it?
+2018-05-20 22:00:17	 ◣ 	Ashex has quit (Ping timeout: 268 seconds)
+2018-05-20 22:00:29	 ◣ 	preview has quit (Remote host closed the connection)
+2018-05-20 22:00:40	 ◣ 	boombatower has quit (Quit: Konversation terminated!)
+2018-05-20 22:00:43	 ◣ 	kurahaupo has quit (Ping timeout: 276 seconds)
+2018-05-20 22:01:07	quul	anyone know off-hand what version of linux was current in 2008 ?
+2018-05-20 22:01:13	 ◣ 	lukey has quit (Ping timeout: 240 seconds)
+2018-05-20 22:01:14	 ◥ 	Ashex has joined ##linux
+2018-05-20 22:01:24	 ◥ 	solidfox has joined ##linux
+2018-05-20 22:01:26	 ◥ 	wendigo has joined ##linux
+2018-05-20 22:02:01	 ◥ 	Irbis has joined ##linux
+2018-05-20 22:02:30	 ◥ 	haarolean has joined ##linux
+2018-05-20 22:02:58	 ◣ 	Hasimir has quit (Ping timeout: 240 seconds)
+2018-05-20 22:04:05	 ◣ 	s0k_iT has quit (Ping timeout: 240 seconds)
+2018-05-20 22:06:49	 ◥ 	d1z has joined ##linux
+2018-05-20 22:06:57	 ◣ 	mnemonic has quit (Quit: WeeChat 2.1)
+2018-05-20 22:07:02	d1z	I just fudged up my harddrive somehow....
+2018-05-20 22:07:14	phinxy	Trying to compile a module, following Arch Wiki.  Why doesnt make M=drivers/hid compile the driver I want?
+2018-05-20 22:08:32	d1z	opened laptop to clean fan, when I set it back again I get a bunch of messages like this in the journal: http://termbin.com/mplp
+2018-05-20 22:08:48	 ◣ 	nickolag has quit (Ping timeout: 252 seconds)
+2018-05-20 22:09:17	 ◣ 	tpanarch1st has quit (Read error: Connection reset by peer)
+2018-05-20 22:09:18	d1z	I'm from the command line atm in rescue mode. can anyone help me googling that and giving me an estimate of the magnitude of the damage?
+2018-05-20 22:09:49	 ◣ 	JonathanD has quit (Read error: Connection reset by peer)
+2018-05-20 22:09:58	 ◥ 	JonathanD has joined ##linux
+2018-05-20 22:10:06	d1z	I mounted my 1tb usb in order to backup that partition. It seems the files are still there and the errors have to do with the bus, so perhaps the data is intact
+2018-05-20 22:10:28	 ◣ 	jini has quit (Ping timeout: 260 seconds)
+2018-05-20 22:10:38	 ◥ 	MrDul has joined ##linux
+2018-05-20 22:10:58	d1z	I'm doing a tar of that disk
+2018-05-20 22:11:30	d1z	the io is good, around 90MB/s, but from time to time these messages keep appearing
+2018-05-20 22:11:41	 ◣ 	Chojuan has quit (Ping timeout: 250 seconds)
+2018-05-20 22:11:47	Pentode	d1z, did you double check the cable connection?
+2018-05-20 22:12:18	 ◣ 	MrDul has left ##linux
+2018-05-20 22:12:25	d1z	Pentode yes, I opened it, unplugged it, sprayed some contact cleaner onto it, replugged it and the messages still appear
+2018-05-20 22:12:48	 ◥ 	jini has joined ##linux
+2018-05-20 22:12:57	d1z	it may still be the cable, but I made sure it was plugged in right
+2018-05-20 22:13:07	Pentode	and a fsck didn't help?
+2018-05-20 22:13:27	Pentode	if not then perhaps it may be the controller/cable
+2018-05-20 22:13:38	 ◥ 	zx has joined ##linux
+2018-05-20 22:13:46	d1z	the fsck ended succesfully, it prompted for some fixes, but along the way I got a couple of these errors as well pop into the screen
+2018-05-20 22:13:53	 ◣ 	freswa has quit (Quit: freswa)
+2018-05-20 22:13:55	Pentode	i'd test an alternate drive. or put the laptops drive in something else to try and narrow it down.
+2018-05-20 22:13:58	d1z	in fact the fudge up my output
+2018-05-20 22:14:26	d1z	I have to keep switching tmux windows so it redraws my screen. Since it's beeing garbled by the kernel messages
+2018-05-20 22:14:36	 ◥ 	nickolag has joined ##linux
+2018-05-20 22:15:22	Pentode	i'd imagine it's one of the controllers. either on the drive or the laptop, unless the cable is culprit but it doesn't seem to be...
+2018-05-20 22:15:32	Pentode	your best bet would be to try what i suggested above
+2018-05-20 22:15:38	 ◥ 	SoItBegins has joined ##linux
+2018-05-20 22:15:40	Pentode	swap some drives and see what you can learn
+2018-05-20 22:16:22	Pentode	udma/33? how old is this thing?
+2018-05-20 22:16:42	 ◣ 	almostdvs has quit (Ping timeout: 260 seconds)
+2018-05-20 22:16:54	 ◥ 	jose555 has joined ##linux
+2018-05-20 22:17:03	 ◥ 	Pidgeotto has joined ##linux
+2018-05-20 22:17:11	d1z	I also have a windows installation, I tried booting it and it did, but at one point the system crashed due to an i/o error. Of course windows would probably crash even if you blow some wind onto but still... makes me worry
+2018-05-20 22:17:25	d1z	uhm, I don't know, probably 5 years
+2018-05-20 22:17:45	 ◥ 	sysrage has joined ##linux
+2018-05-20 22:17:54	 ◣ 	kus_ has quit (Remote host closed the connection)
+2018-05-20 22:18:05	 ◣ 	fightthewalrus has quit (Quit: leaving)
+2018-05-20 22:18:21	d1z	probably less, it came with a dell vostro
+2018-05-20 22:18:45	 ◣ 	mrbinaer has quit (Ping timeout: 256 seconds)
+2018-05-20 22:19:22	d1z	anyway the drive was most definitely fine and sharp before the cleanup
+2018-05-20 22:19:32	 ◥ 	A_L8_1 has joined ##linux
+2018-05-20 22:19:35	d1z	I'll have to wait to swap drives, as I'm doing a backup first
+2018-05-20 22:19:36	Pentode	it may have been all it needed to tip it over the edge
+2018-05-20 22:19:45	Pentode	i mean the log indicates an ata device with udma33
+2018-05-20 22:19:53	Pentode	this is _very_ old technology
+2018-05-20 22:20:08	Pentode	older than five years...
+2018-05-20 22:20:13	 ◥ 	Bashing-om has joined ##linux
+2018-05-20 22:20:36	 ◣ 	wyseguy has quit (Quit: My Mac Pro has gone to sleep. ZZZzzz…)
+2018-05-20 22:20:43	Pentode	yeah, swap the drives and see
+2018-05-20 22:20:48	 ◣ 	desti has quit (Quit: Leaving)
+2018-05-20 22:21:05	Pentode	im betting the drive has just given up after all these years and working on the machine was just a coincidence
+2018-05-20 22:21:15	 ◣ 	well_laid_lawn has quit (Ping timeout: 245 seconds)
+2018-05-20 22:21:17	 ◣ 	phinxy has quit (Quit: leaving)
+2018-05-20 22:21:29	 - 	Pidgeotto is now known as Pidgeot
+2018-05-20 22:21:45	 - 	Pidgeot is now known as Pidgey
+2018-05-20 22:22:06	 ◣ 	jini has quit (Read error: No route to host)
+2018-05-20 22:22:10	 ◣ 	Pidgey has quit (Quit: EliteBNC free bnc service - http://elitebnc.org - be a part of the Elite!)
+2018-05-20 22:22:23	 ◥ 	client_test_01 has joined ##linux
+2018-05-20 22:23:35	 ◣ 	dt3k has quit (Read error: Connection reset by peer)
+2018-05-20 22:23:44	 ◥ 	sbdchd has joined ##linux
+2018-05-20 22:23:47	 ◥ 	popnfloss has joined ##linux
+2018-05-20 22:24:16	 ◥ 	phinxy has joined ##linux
+2018-05-20 22:24:28	 ◣ 	Bonjourm8 has quit (Quit: Leaving)
+2018-05-20 22:24:36	 ◣ 	client_test_01 has quit (Client Quit)
+2018-05-20 22:24:38	 ◥ 	obiwan90 has joined ##linux
+2018-05-20 22:24:50	 ◥ 	jini has joined ##linux
+2018-05-20 22:25:17	 ◣ 	`Cam has quit (Quit: ZZZ)
+2018-05-20 22:25:18	 ◥ 	dropkick500 has joined ##linux
+2018-05-20 22:26:09	 ◥ 	d0048 has joined ##linux
+2018-05-20 22:26:13	 ◥ 	dysfigured has joined ##linux
+2018-05-20 22:26:16	d1z	Pentode I don't think it's that old.... here's my lshw -c storage output fwiw: https://termbin.com/1p9s
+2018-05-20 22:26:46	d1z	I currently have an SSD of 32 GB, a usb toshiba of 1TB, and the infamous harddrive of 512GB
+2018-05-20 22:26:55	 ◥ 	milp_2 has joined ##linux
+2018-05-20 22:26:57	 ◥ 	AppleTor has joined ##linux
+2018-05-20 22:27:05	 ◣ 	v01t has quit (Ping timeout: 245 seconds)
+2018-05-20 22:27:15	 ◥ 	n0a110w has joined ##linux
+2018-05-20 22:27:36	 ◥ 	dt3k has joined ##linux
+2018-05-20 22:27:59	 ◣ 	wendigo has left ##linux ("WeeChat 1.6")
+2018-05-20 22:28:02	 ◣ 	TSPenguin has quit (Ping timeout: 268 seconds)
+2018-05-20 22:28:35	ayecee	infamous eh
+2018-05-20 22:28:36	 ◣ 	yggdrasil has quit (Ping timeout: 252 seconds)
+2018-05-20 22:29:09	 ◣ 	cdown has quit (Ping timeout: 245 seconds)
+2018-05-20 22:29:12	 ◣ 	vsync has quit (Quit: ZNC - http://znc.sourceforge.net)
+2018-05-20 22:29:13	 ◣ 	noobineer has quit (Ping timeout: 245 seconds)
+2018-05-20 22:29:13	 ◥ 	kzimmermann has joined ##linux
+2018-05-20 22:29:16	 ◥ 	the_document has joined ##linux
+2018-05-20 22:29:47	 ◥ 	VegetarianFalcon has joined ##linux
+2018-05-20 22:29:47	 ◥ 	TSPenguin has joined ##linux
+2018-05-20 22:29:48	 ◣ 	BPL has quit (Read error: Connection reset by peer)
+2018-05-20 22:29:49	 ◥ 	self has joined ##linux
+2018-05-20 22:29:55	Pentode	infamous like the quantum bigfoot?
+2018-05-20 22:29:56	Pentode	lol
+2018-05-20 22:30:25	 ◥ 	vsync has joined ##linux
+2018-05-20 22:30:34	 ◣ 	chomwitt has quit (Ping timeout: 260 seconds)
+2018-05-20 22:30:35	 ◣ 	d0048 has quit (Ping timeout: 248 seconds)
+2018-05-20 22:30:36	 ◥ 	desti has joined ##linux
+2018-05-20 22:31:00	 ◣ 	milp has quit (Ping timeout: 260 seconds)
+2018-05-20 22:31:14	 ◣ 	kmurphy4 has quit (Quit: kmurphy4)
+2018-05-20 22:32:07	 ◣ 	jini has quit (Read error: No route to host)
+2018-05-20 22:32:17	 ◣ 	itissid has quit (Remote host closed the connection)
+2018-05-20 22:32:35	 ◥ 	Pidgeotto has joined ##linux
+2018-05-20 22:32:54	 ◥ 	itissid has joined ##linux
+2018-05-20 22:32:56	 ◣ 	xenial-user2 has quit (Quit: Quit.)
+2018-05-20 22:33:20	 ◣ 	kzimmermann has quit (Ping timeout: 245 seconds)
+2018-05-20 22:34:06	||JD||	Hitachi Deskstar AKA "Deathstar", worst HDD ever
+2018-05-20 22:34:45	Pentode	yeah i have one of those sitting on the shelf, lol
+2018-05-20 22:34:55	Pentode	has a giant swath of bad sectors in one spot
+2018-05-20 22:35:06	 ◣ 	WARlrus has quit (Ping timeout: 265 seconds)
+2018-05-20 22:35:30	 ◣ 	dropkick500 has quit (Remote host closed the connection)
+2018-05-20 22:35:32	Pentode	i was actually using it for quite a while, avoiding that part of the platter...
+2018-05-20 22:35:34	the_document	hwclock and date commands display different date, only hwclock is correct, how do I fix this?
+2018-05-20 22:36:05	 ◣ 	A_L8_1 has quit (Quit: Leaving)
+2018-05-20 22:36:32	 ◣ 	mf_nicecube has quit (Ping timeout: 260 seconds)
+2018-05-20 22:36:33	||JD||	Those quantum were really bad too, I have a fireball one dead, that one and the hitachi the only 2 HDD I had issues with
+2018-05-20 22:36:57	||JD||	I have a Seagate Barracuda from 1997 still working
+2018-05-20 22:36:59	 ◣ 	itissid has quit (Ping timeout: 248 seconds)
+2018-05-20 22:37:27	 ◣ 	Dimik has quit (Ping timeout: 256 seconds)
+2018-05-20 22:37:41	 ◥ 	dropkick500 has joined ##linux
+2018-05-20 22:37:47	pnbeast	the_document, iirc, hwclock will do that.  Maybe.
+2018-05-20 22:38:07	 ◥ 	WARlrus has joined ##linux
+2018-05-20 22:38:39	d1z	http://termbin.com/veu6 mine it's indeed Hitachi, I don't know if it's Deskstar though
+2018-05-20 22:39:13	 ◥ 	itissid has joined ##linux
+2018-05-20 22:39:54	Pentode	the problematic deathstars were full size drives
+2018-05-20 22:40:02	 ◥ 	Rave1 has joined ##linux
+2018-05-20 22:40:22	 ◥ 	isokee has joined ##linux
+2018-05-20 22:41:09	 ◣ 	JonathanD has quit (Read error: Connection reset by peer)
+2018-05-20 22:41:17	 ◥ 	JonathanD has joined ##linux
+2018-05-20 22:42:10	 ◣ 	phinxy has quit (Quit: leaving)
+2018-05-20 22:42:35	 ◣ 	ozymandias has quit (Remote host closed the connection)
+2018-05-20 22:42:59	ayecee	they were 3.5" drives in the 60-75gb range
+2018-05-20 22:43:11	 ◣ 	Acheron has quit (Quit: moving to another computer)
+2018-05-20 22:43:35	 ◣ 	itissid has quit (Ping timeout: 260 seconds)
+2018-05-20 22:43:46	 ◥ 	ozymandias has joined ##linux
+2018-05-20 22:44:16	d1z	how can I test if the disk or the cable is bad?
+2018-05-20 22:44:17	 ◥ 	jini has joined ##linux
+2018-05-20 22:44:34	 ◥ 	phinxy has joined ##linux
+2018-05-20 22:44:35	 ◣ 	SStalker has quit (Ping timeout: 264 seconds)
+2018-05-20 22:44:45	ayecee	test the drive in the original system, then test the drive in another system or with a different cable
+2018-05-20 22:45:34	 ◣ 	Arcaelyx has quit (Ping timeout: 276 seconds)
+2018-05-20 22:46:17	d1z	I'm afraid I don't have another disk like this. The thing has an embedded cable, goes to a certain port on the laptops mobo. It's definitely not like the other hd I have around
+2018-05-20 22:46:21	 ◥ 	mayshoe has joined ##linux
+2018-05-20 22:46:23	d1z	I mean laptop hdd
+2018-05-20 22:47:05	 ◣ 	jini has quit (Read error: No route to host)
+2018-05-20 22:47:07	 ◣ 	betelgeuse28 has quit (Ping timeout: 248 seconds)
+2018-05-20 22:47:16	d1z	the other one I have around its no cable, it goes  straight into a socket instead
+2018-05-20 22:47:27	ayecee	i'm afraid you don't have the equipment necessary to test this scenario
+2018-05-20 22:47:40	 ◣ 	dropkick500 has quit (Remote host closed the connection)
+2018-05-20 22:47:45	 ◥ 	A_L8_1 has joined ##linux
+2018-05-20 22:47:54	 ◣ 	mayshoe has quit (Client Quit)
+2018-05-20 22:48:04	 ◣ 	dt3k has quit (Read error: Connection reset by peer)
+2018-05-20 22:48:21	 ◣ 	compdoc has quit
+2018-05-20 22:48:33	d1z	but maybe the errors from the kernel messages are telling the story. I mean it says bus error all the way, and when I did run fsck on the disk, it found some stuff, but it was able to fix everything afterwards and mark it as clean
+2018-05-20 22:48:43	 ◣ 	PaddyMac has quit (Ping timeout: 260 seconds)
+2018-05-20 22:49:00	 ◥ 	Sheilong has joined ##linux
+2018-05-20 22:49:05	d1z	that's why I feel like probably the data is intact in there, but it may be the cable or one of the contacts that's causing trouble
+2018-05-20 22:49:54	 ◣ 	aaa__ has quit (Remote host closed the connection)
+2018-05-20 22:49:56	 ◥ 	DaringlyEsoteric has joined ##linux
+2018-05-20 22:50:04	ayecee	if only there were some way to share what you were seeing
+2018-05-20 22:51:06	d1z	if you scroll up a bit my first message has a pastebin link in it
+2018-05-20 22:51:17	 ◥ 	dt3k has joined ##linux
+2018-05-20 22:51:25	ayecee	not gonna happen
+2018-05-20 22:51:27	d1z	"opened laptop to clean fan, when I set it back again I get a bunch of messages like this in the journal: http://termbin.com/mplp"
+2018-05-20 22:52:11	ayecee	there's no way to tell from these errors without replacing one of the potentially affected components
+2018-05-20 22:52:41	ayecee	looks like cable error though
+2018-05-20 22:53:22	 ◣ 	govg has quit (Ping timeout: 276 seconds)
+2018-05-20 22:53:43	 ◥ 	jini has joined ##linux
+2018-05-20 22:54:03	ayecee	insofar as it's not a media error
+2018-05-20 22:54:04	 ◥ 	Prof_Birch has joined ##linux
+2018-05-20 22:54:06	 ◣ 	DaringlyEsoteric has quit (Remote host closed the connection)
+2018-05-20 22:54:11	 ◥ 	govg has joined ##linux
+2018-05-20 22:54:13	 ◥ 	xekxem has joined ##linux
+2018-05-20 22:54:32	 ◥ 	DaringlyEsoteric has joined ##linux
+2018-05-20 22:54:41	 ◥ 	kzimmermann has joined ##linux
+2018-05-20 22:55:03	 ◣ 	cyberg has quit (Quit: Leaving)
+2018-05-20 22:55:21	 ◥ 	cagomez has joined ##linux
+2018-05-20 22:56:21	 ◥ 	hucksy_ has joined ##linux
+2018-05-20 22:57:22	 ◣ 	kwarren__ has quit (Ping timeout: 260 seconds)
+2018-05-20 22:57:22	 ◣ 	solidfox has quit (Quit: Leaving)
+2018-05-20 22:57:38	 - 	notmike is now known as notwolf
+2018-05-20 22:58:00	 ◣ 	||JD|| has quit (Remote host closed the connection)
+2018-05-20 22:58:34	 ◥ 	||JD|| has joined ##linux
+2018-05-20 22:58:44	 ◣ 	govg has quit (Ping timeout: 245 seconds)
+2018-05-20 22:59:18	 ◥ 	Cruntulon has joined ##linux
+2018-05-20 22:59:43	 ◣ 	hucksy has quit (Ping timeout: 240 seconds)
+2018-05-20 22:59:49	 ◥ 	Acheron has joined ##linux
+2018-05-20 22:59:52	 ◣ 	JonathanD has quit (Ping timeout: 615 seconds)
+2018-05-20 23:00:18	 ◣ 	Cruntulon has quit (Client Quit)
+2018-05-20 23:00:27	 ◣ 	jini has quit (Ping timeout: 260 seconds)
+2018-05-20 23:00:52	 ◥ 	shork has joined ##linux
+2018-05-20 23:00:56	 ◣ 	d3r3k has quit (Quit: Connection closed for inactivity)
+2018-05-20 23:01:00	 ◣ 	||JD|| has quit (Remote host closed the connection)
+2018-05-20 23:01:01	 ◥ 	first-order has joined ##linux
+2018-05-20 23:01:30	 ◥ 	||JD|| has joined ##linux
+2018-05-20 23:02:00	 ◣ 	dpup-user has quit (Quit: WeeChat 0.3.1)
+2018-05-20 23:03:39	 ◥ 	jini has joined ##linux
+2018-05-20 23:04:17	 ◥ 	gzuh0 has joined ##linux
+2018-05-20 23:04:21	 ◥ 	bash_ has joined ##linux
+2018-05-20 23:04:35	HappyHobo	jim it's an upgrade too.  It has blue teeth
+2018-05-20 23:05:15	 ◣ 	Haxxa has quit (Ping timeout: 248 seconds)
+2018-05-20 23:05:27	 ◣ 	ciscam has quit (Ping timeout: 245 seconds)
+2018-05-20 23:06:21	 ◣ 	bash_ has quit (Client Quit)
+2018-05-20 23:07:05	 ◥ 	ciscam has joined ##linux
+2018-05-20 23:07:27	 ◥ 	dannylee has joined ##linux
+2018-05-20 23:07:34	dannylee	hi jim
+2018-05-20 23:08:06	 ◥ 	dirtyroshi has joined ##linux
+2018-05-20 23:08:17	 ◥ 	Haxxa has joined ##linux
+2018-05-20 23:08:25	 ◥ 	jnewt1 has joined ##linux
+2018-05-20 23:09:48	 ◥ 	JonathanD has joined ##linux
+2018-05-20 23:09:51	 ◣ 	DaringlyEsoteric has quit (Quit: The Lounge - https://thelounge.github.io)
+2018-05-20 23:10:06	 ◣ 	the_document has quit (Quit: Page closed)
+2018-05-20 23:10:28	 ◥ 	woost has joined ##linux
+2018-05-20 23:10:31	 ◥ 	DaringlyEsoteric has joined ##linux
+2018-05-20 23:10:56	Tech_8	hi
+2018-05-20 23:11:16	DaringlyEsoteric	hello Tech_8
+2018-05-20 23:11:18	dannylee	i install the newest version of openSuse and its really great..but thunderbird just did`nt work with KDE.but gnome work really great..so i use gnome..when i installed openSuse,,i install every thing all the software..Suse is c0000l
+2018-05-20 23:11:28	 ◣ 	amirpro has quit (Quit: amirpro)

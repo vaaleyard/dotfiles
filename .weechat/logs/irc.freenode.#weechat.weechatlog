@@ -1,0 +1,73 @@
+2018-05-20 16:44:04	 ◥ 	Valeyard juntou-se a #weechat
+2018-05-20 16:44:04	 - 	O tópico de #weechat é "https://weechat.org/ | Latest stable version: 2.1 | English support channel, *ONLY* about WeeChat software | Please read docs before asking! | Bug reports are welcome ONLY for latest stable or devel | Off-topic chan: #weechat-offtopic | Fingerprint: A9AB 5AB7 78FA 5C35 22FD 0378 F82F 4B16 DEC4 08F8"
+2018-05-20 16:44:04	 - 	Tópico definido por FlashCode (~FlashCode@weechat.org) em dom, 18 mar 2018 04:36:46
+2018-05-20 16:44:04	 - 	Canal #weechat: 816 apelidos (4 operadores, 1 voz, 811 normais)
+2018-05-20 16:44:05	 - 	PvNotice(ChanServ): Welcome to WeeChat english support channel. IMPORTANT: you *MUST* have read docs and FAQ before asking something on this channel! Read them at: https://weechat.org/doc/
+2018-05-20 16:44:05	 - 	URL para #weechat: https://weechat.org/
+2018-05-20 16:44:10	 - 	Canal criado em dom, 26 nov 2006 04:42:51
+2018-05-20 16:44:58	 ◣ 	amarok73 saiu (Quit: WeeChat 1.9)
+2018-05-20 16:45:08	@FlashCode	you have to update only if you want new features, no stability problems if you don't update
+2018-05-20 16:45:17	@FlashCode	(most of times)
+2018-05-20 16:46:04	 ◥ 	amarok73 juntou-se a #weechat
+2018-05-20 16:46:10	@FlashCode	sim642: this time it's better, I didn't squashed your commits
+2018-05-20 16:46:19	@FlashCode	squash*
+2018-05-20 16:46:29	 ◥ 	cyrn juntou-se a #weechat
+2018-05-20 16:46:53	jokrebel	FlashCode is very busy and i try to test mostly every new release for looking for problems
+2018-05-20 16:47:51	+weebot	-git(core)- [23 commits]
+2018-05-20 16:47:57	jokrebel	but never found one. Great work FlashCode Thanks a lot
+2018-05-20 16:48:21	@FlashCode	jokrebel: you're welcome :)
+2018-05-20 16:53:23	 ◥ 	Anthaas_ juntou-se a #weechat
+2018-05-20 16:55:24	 ◥ 	ryp juntou-se a #weechat
+2018-05-20 16:55:29	sim642	FlashCode, nice!
+2018-05-20 16:55:40	sim642	FlashCode, so what's next? IRCv3.2 invite-notify and chghost? :D
+2018-05-20 16:56:21	 ◣ 	blaze saiu (Quit: WeeChat 1.9.1)
+2018-05-20 16:56:25	 ◣ 	cyrn saiu (Quit: cyrn)
+2018-05-20 16:56:43	 ◥ 	cyrn juntou-se a #weechat
+2018-05-20 17:02:18	 ◣ 	caecias saiu (Ping timeout: 260 seconds)
+2018-05-20 17:02:40	 - 	irc: desconectado do servidor
+2018-05-20 21:52:25	 ◥ 	Valeyard has joined #weechat
+2018-05-20 21:52:25	 - 	Topic for #weechat is "https://weechat.org/ | Latest stable version: 2.1 | English support channel, *ONLY* about WeeChat software | Please read docs before asking! | Bug reports are welcome ONLY for latest stable or devel | Off-topic chan: #weechat-offtopic | Fingerprint: A9AB 5AB7 78FA 5C35 22FD 0378 F82F 4B16 DEC4 08F8"
+2018-05-20 21:52:25	 - 	Topic set by FlashCode (~FlashCode@weechat.org) on Sun, 18 Mar 2018 04:36:46
+2018-05-20 21:52:25	 - 	Channel #weechat: 803 nicks (4 ops, 1 voice, 798 normals)
+2018-05-20 21:52:25	 - 	PvNotice(ChanServ): Welcome to WeeChat english support channel. IMPORTANT: you *MUST* have read docs and FAQ before asking something on this channel! Read them at: https://weechat.org/doc/
+2018-05-20 21:52:25	 - 	URL for #weechat: https://weechat.org/
+2018-05-20 21:52:33	 - 	Channel created on Sun, 26 Nov 2006 04:42:51
+2018-05-20 21:53:11	 ◣ 	zava has quit (Ping timeout: 260 seconds)
+2018-05-20 21:53:13	 - 	zava3 is now known as zava
+2018-05-20 21:56:53	 ◣ 	tdy has quit (Ping timeout: 260 seconds)
+2018-05-20 21:56:57	 ◣ 	dwilc has quit (Ping timeout: 256 seconds)
+2018-05-20 21:56:58	 ◥ 	ershuai has joined #weechat
+2018-05-20 21:59:29	 ◣ 	ershuai has quit (Client Quit)
+2018-05-20 22:06:57	 ◣ 	mnemonic has quit (Quit: WeeChat 2.1)
+2018-05-20 22:06:59	 ◥ 	dwilc has joined #weechat
+2018-05-20 22:14:17	 ◥ 	andyhoang has joined #weechat
+2018-05-20 22:16:42	 ◣ 	almostdvs has quit (Ping timeout: 260 seconds)
+2018-05-20 22:17:20	 ◣ 	TheWolf has quit (Disconnected by services)
+2018-05-20 22:17:23	 ◥ 	TheWolf_ has joined #weechat
+2018-05-20 22:18:25	DrinxyDogg	what
+2018-05-20 22:19:34	 ◣ 	andyhoang has quit (Ping timeout: 245 seconds)
+2018-05-20 22:21:15	 ◣ 	well_laid_lawn has quit (Ping timeout: 245 seconds)
+2018-05-20 22:26:14	 ◥ 	dysfigured has joined #weechat
+2018-05-20 22:27:51	 ◣ 	banditkroot has quit (Quit: WeeChat 2.1)
+2018-05-20 22:30:34	 ◣ 	chomwitt has quit (Ping timeout: 260 seconds)
+2018-05-20 22:33:22	 ◣ 	kelnoky has quit (Quit: WeeChat 2.1)
+2018-05-20 22:35:17	 ◥ 	indeedwatson has joined #weechat
+2018-05-20 22:35:51	 ◣ 	hurz has quit (Quit: WeeChat 2.2-dev)
+2018-05-20 22:36:55	 ◥ 	hurz has joined #weechat
+2018-05-20 22:37:32	 - 	DrinxyDogg is now known as enclaved
+2018-05-20 22:44:28	 ◣ 	brainwash has quit (Ping timeout: 256 seconds)
+2018-05-20 22:44:59	 ◥ 	brainwash has joined #weechat
+2018-05-20 22:51:00	 ◣ 	acksys has quit (Ping timeout: 252 seconds)
+2018-05-20 22:51:17	 ◥ 	andyhoang has joined #weechat
+2018-05-20 22:52:59	 ◥ 	acksys has joined #weechat
+2018-05-20 22:55:03	 ◣ 	cyberg has quit (Quit: Leaving)
+2018-05-20 22:57:47	 ◣ 	davidl has quit (Ping timeout: 248 seconds)
+2018-05-20 22:59:58	 ◣ 	skrzyp has quit (Ping timeout: 240 seconds)
+2018-05-20 23:01:09	 ◥ 	skrzyp has joined #weechat
+2018-05-20 23:01:39	 ◣ 	ecx has quit (Quit: ecx)
+2018-05-20 23:02:48	 ◥ 	ecx has joined #weechat
+2018-05-20 23:03:22	 ◣ 	andyhoang has quit (Ping timeout: 245 seconds)
+2018-05-20 23:03:48	 ◣ 	Fats has quit (Remote host closed the connection)
+2018-05-20 23:05:04	 ◥ 	Fats has joined #weechat
+2018-05-20 23:08:02	 ◣ 	Shawn has quit (Quit: Bed.)
+2018-05-20 23:10:49	 ◣ 	flubble has quit (Ping timeout: 245 seconds)
