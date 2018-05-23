@@ -115,7 +115,7 @@ for_window [instance="dropdown"] floating enable , resize set 625 400 , move scr
 # otherwise starts a new one (to prevent multiple dropdown sessions).
 exec --no-startup-id $term -name dropdown -e tmux
 
-for_window [class="Pale moon"] move workspace $ws2, floating enable
+for_window [class="Pale moon"] move workspace $ws2
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 50 px or 50ppt
@@ -229,10 +229,6 @@ bindsym $mod+F10	exec --no-startup-id sudo dmenuumount
 # }}}
 # Letter keybindings =============={{{
 
-# kill focused window
-bindsym $mod+q kill
-bindsym $mod+Shift+q kill
-
 # screenshots
 bindsym $mod+Print					exec scrot -e 'mv $f ~/Pictures/scrot' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'
 bindsym --release $mod+Shift+Print  exec scrot -se 'mv $f ~/Pictures/scrot/' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'
@@ -240,31 +236,47 @@ bindsym --release $mod+Shift+Print  exec scrot -se 'mv $f ~/Pictures/scrot/' && 
 bindsym --release $mod+s			exec scrot -e 'xclip -selection clipboard -t image/png $f && rm -f $f'
 bindsym --release $mod+shift+s		exec scrot -se 'xclip -selection clipboard -t image/png $f && rm -f $f'
 
-bindsym $mod+e						exec $term -name weechat -e weechat-curses
-bindsym $mod+Shift+e				exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # Scratchpad windows
 bindsym $mod+a						[instance="math"] scratchpad show, [instance="math"] move position center
 bindsym $mod+shift+a				exec "tmux set -g status"
 
-bindsym $mod+u						[instance="dropdown"] scratchpad show, [instance="dropdown"] move position center
-#bindsym $mod+shift+u				gaps inner all set 10; gaps outer all set 10
+# Open the default browser
+#bindsym $mod+b
+bindsym $mod+shift+b				exec --no-startup-id $BROWSER
+
+# Reload config
+bindsym $mod+Shift+c				reload
+
+# start rofi/dmenu (a program launcher)
+bindsym $mod+d						exec dmenu_run -nb \#282828  -nf \#ebdbb2 -sb \#98971a -sf \#ebdbb2 -l 5 -fn curie
+#bindsym $mod+d						exec rofi -show combi
+
+# Start weechat / exit i3
+bindsym $mod+e						exec $term -name weechat -e weechat-curses
+bindsym $mod+Shift+e				exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # reload the configuration file
-bindsym $mod+c						exec $term -name neomutt -e neomutt
-bindsym $mod+Shift+c				reload
+bindsym $mod+n						exec $term -name neomutt -e neomutt
+bindsym $mod+Shift+n				exec $term -name newsboat -e newsboat
+
+# kill focused window
+bindsym $mod+q kill
+bindsym $mod+Shift+q kill
+
+# Start ranger
+bindsym $mod+r						exec $term -name nnn -e nnn
+bindsym $mod+Shift+r				exec $term -name ranger -e sudo ranger
 
 # Set the default gaps / Open Telegram
 bindsym $mod+t						split toggle
 bindsym $mod+shift+t				exec telegram-desktop
 
+bindsym $mod+u						[instance="dropdown"] scratchpad show, [instance="dropdown"] move position center
+#bindsym $mod+shift+u				gaps inner all set 10; gaps outer all set 10
+
 # Start i3lock
 bindsym $mod+x						exec $truemute ;exec $HOME/.config/i3/locki3.sh
 bindsym $mod+shift+x				exec prompt "Are you sure you want to shutdown?" "sudo poweroff -h now"
-
-# Start ranger
-bindsym $mod+r						exec $term -name nnn -e nnn
-bindsym $mod+Shift+r				exec $term -name ranger -e sudo ranger
 
 # Change gaps
 bindsym $mod+g						gaps inner current plus 5
@@ -272,20 +284,15 @@ bindsym $mod+shift+g				gaps inner current minus 5
 bindsym $mod+z						gaps outer current plus 5
 bindsym $mod+Shift+z				gaps outer current minus 5
 
-# start rofi/dmenu (a program launcher)
-bindsym $mod+d						exec dmenu_run -nb \#282828  -nf \#ebdbb2 -sb \#98971a -sf \#ebdbb2 -l 5 -fn curie
-#bindsym $mod+d						exec rofi -show combi
-
 # Set i3 with no gaps
 bindsym $mod+Shift+d				gaps inner current set 0; gaps outer current set 0
-
-# Open the default browser
-bindsym $mod+b						exec $term -name newsboat -e newsboat
-bindsym $mod+shift+b				exec --no-startup-id $BROWSER
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f						fullscreen toggle
 bindsym $mod+shift+f				gaps inner all set 10; gaps outer all set 10
+
+# Call vim-anywhere
+bindsym Mod1+v exec ~/.vim-anywhere/bin/run
 
 # change focus
 bindsym $mod+h						focus left
