@@ -24,7 +24,7 @@ URxvt.saveLines:        2000
 URxvt*scrollBar: false
 
 ! Define font (just change the name and size)
-!URxvt.font: xft:Terminess Powerline:size=8
+!URxvt.font: xft:Monaco for Powerline:size=8
 URxvt.font: xft:curie:size=8
 URxvt.boldFont: xft:tewi:bold:size=8:
 
