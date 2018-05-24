@@ -62,6 +62,22 @@ floating_modifier $mod
 # focus the child container
 #bindsym $mod+d focus child
 
+## Manual management of external displays
+# Set the shortcuts and what they do
+set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
+mode "$mode_display" {
+    bindsym v exec --no-startup-id xrandr --output VGA-0 --auto --right-of LVDS, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI-0 --auto --right-of LVDS, mode "default"
+    bindsym x exec --no-startup-id xrandr --output VGA-0 --auto --off, mode "default"
+    bindsym y exec --no-startup-id xrandr --output HDMI-0 --auto --off, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+e mode "$mode_display"
+
 # }}}
 # Workspace settings =============={{{
 set $ws1 "1:"
@@ -200,9 +216,9 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Tab		workspace back_and_forth
 
 # split in vertical orientation
-bindsym $mod+shift+slash split v
+bindsym $mod+shift+slash split v && exec notify-send "Tile vertically"
 # split in horizontal orientation
-bindsym $mod+slash split h
+bindsym $mod+slash split h && exec notify-send "Tile horizontally"
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+F1 layout stacking
@@ -252,7 +268,6 @@ bindsym $mod+d						exec dmenu_run -nb \#282828  -nf \#ebdbb2 -sb \#98971a -sf \
 #bindsym $mod+d						exec rofi -show combi
 
 # Start weechat / exit i3
-bindsym $mod+e						exec $term -name weechat -e weechat-curses
 bindsym $mod+Shift+e				exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # reload the configuration file
@@ -263,8 +278,12 @@ bindsym $mod+Shift+n				exec $term -name newsboat -e newsboat
 bindsym $mod+q kill
 bindsym $mod+Shift+q kill
 
+# Start weechat
+bindsym $mod+w						exec $term -name weechat -e weechat-curses
+#bindsym $mod+shift+w
+
 # Start ranger
-bindsym $mod+r						exec $term -name nnn -e nnn
+bindsym $mod+r						exec $term -name ranger -e ranger
 bindsym $mod+Shift+r				exec $term -name ranger -e sudo ranger
 
 # Set the default gaps / Open Telegram
