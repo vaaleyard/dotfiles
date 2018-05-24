@@ -56,7 +56,7 @@ bash <(curl -s https://raw.githubusercontent.com/Valeyard1/dotfiles/master/insta
 
 ##
 
-My dotfiles are managed with a bare repository. I used to store my dots with gnu stow, but it causes some things I don't wan't to, so I'm trying to give it a try. Here are some links explaining a bare repo:
+My dotfiles are managed with a bare repository. I used to store my dots with gnu stow, but it causes some things I don't want to, so I'm trying to give it a try. Here are some links explaining a bare repo:
 * [The best way to store your dotfiles: A bare Git repository](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)
 * [Manage Dotfiles With a Bare Git Repository](https://harfangk.github.io/2016/09/19/manage-dotfiles-with-a-git-bare-repository.html)
 
