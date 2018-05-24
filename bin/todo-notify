@@ -3,13 +3,15 @@
 # Description: A simple Todo List using notify-send
 
 # Source term colors to use
-. $HOME/.colors/parser
+#. $HOME/.colors/parser
 
 # Specify the todo file to read from
 # cli script to show/delete/add can be found
 # https://github.com/mohabaks/dotfiles/tree/master/local/.local/bin/todo
-todofile='/home/valeyard/.todo'
-image='/home/valeyard/Pictures/todo2.png'
+todofile='/home/void/.todo'
+image='/home/void/Pictures/todo2.png'
+BMAGENTA='#458588'
+RED='#cc241d'
 title="<span foreground='$BMAGENTA' >  TODO Weekdays</span>" # notify title
 
 # A function to read the todo file and nicely format the texts
