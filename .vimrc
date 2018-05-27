@@ -6,6 +6,7 @@ runtime macros/matchit.vim
 colorscheme gruvbox
 set background=dark
 
+set lazyredraw
 set tabstop=4
 set autoindent		" Indent according to previous line
 set softtabstop=4	" Tab key indents by 4 spaces
