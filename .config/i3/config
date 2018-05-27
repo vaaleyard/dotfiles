@@ -11,7 +11,7 @@
 
 # Variables ======================={{{
 
-set $term urxvt
+set $term st
 set $shutdown sudo shutdown -h now
 set $reboot sudo reboot
 
@@ -115,21 +115,20 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-assign [class="TelegramDesktop"] $ws3
+for_window [class="TelegramDesktop"] move workspace $ws3
 #assign [class="mpv"] $ws5
-assign [class="Spotify"] $ws10
-assign [class="(?i)urxvt" instance="ranger"] $ws6
-assign [class="(?i)urxvt" instance="nnn"] $ws6
-assign [class="(?i)urxvt" instance="neomutt"] $ws8
-assign [class="(?i)urxvt" instance="weechat"] $ws7
+for_window [class="Spotify"] $ws10
+for_window [class="ranger" instance="ranger"] move workspace $ws6
+for_window [class="neomutt" instance="neomutt"] move workspace $ws8
+for_window [class="weechat" instance="weechat"] move workspace $ws7
 
-for_window [instance="math"] floating enable, resize set 800 300, move scratchpad, border pixel 2
-exec --no-startup-id $term -name math -fn "xft:Monaco for powerline:pixelsize=15" -e bc -q -l
+for_window [instance="math" class="math"] floating enable, resize set 800 300, move scratchpad, border pixel 2
+exec --no-startup-id $term -n math -c math -e bc -q -l
 
-for_window [instance="dropdown"] floating enable , resize set 625 400 , move scratchpad , border pixel 5
+for_window [instance="dropdown" class="dropdown"] floating enable , resize set 625 400 , move scratchpad , border pixel 5
 # Runs the tmuxinit script, which searches for an earlier tmux instance,
 # otherwise starts a new one (to prevent multiple dropdown sessions).
-exec --no-startup-id $term -name dropdown -e tmux
+exec --no-startup-id $term -n dropdown -c dropdown -e tmux
 
 for_window [class="Pale moon"] move workspace $ws2
 for_window [title="GIMP Startup"] move workspace $ws5
@@ -253,7 +252,7 @@ bindsym --release $mod+s			exec scrot -e 'xclip -selection clipboard -t image/pn
 bindsym --release $mod+shift+s		exec scrot -se 'xclip -selection clipboard -t image/png $f && rm -f $f'
 
 # Scratchpad windows
-bindsym $mod+a						[instance="math"] scratchpad show, [instance="math"] move position center
+bindsym $mod+a						[instance="math" class="math"] scratchpad show, [instance="math" class="math"] move position center
 bindsym $mod+shift+a				exec "tmux set -g status"
 
 # Open the default browser
@@ -271,26 +270,26 @@ bindsym $mod+d						exec dmenu_run -nb \#282828  -nf \#ebdbb2 -sb \#98971a -sf \
 bindsym $mod+Shift+e				exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # reload the configuration file
-bindsym $mod+n						exec $term -name neomutt -e neomutt
-bindsym $mod+Shift+n				exec $term -name newsboat -e newsboat
+bindsym $mod+n						exec $term -n neomutt -c neomutt -e neomutt
+bindsym $mod+Shift+n				exec $term -n newsboat -c newsboat -e newsboat
 
 # kill focused window
 bindsym $mod+q kill
 bindsym $mod+Shift+q kill
 
 # Start weechat
-bindsym $mod+w						exec $term -name weechat -e weechat-curses
+bindsym $mod+w						exec $term -n weechat -c weechat -e weechat-curses
 #bindsym $mod+shift+w
 
 # Start ranger
-bindsym $mod+r						exec $term -name ranger -e ranger
-bindsym $mod+Shift+r				exec $term -name ranger -e sudo ranger
+bindsym $mod+r						exec $term -n ranger -c ranger -e ranger
+bindsym $mod+Shift+r				exec $term -n ranger -c ranger -e sudo ranger
 
 # Set the default gaps / Open Telegram
 bindsym $mod+t						split toggle
 bindsym $mod+shift+t				exec telegram-desktop
 
-bindsym $mod+u						[instance="dropdown"] scratchpad show, [instance="dropdown"] move position center
+bindsym $mod+u						[instance="dropdown" class="dropdown"] scratchpad show, [instance="dropdown" class="dropdown"] move position center
 #bindsym $mod+shift+u				gaps inner all set 10; gaps outer all set 10
 
 # Start i3lock
