@@ -9,7 +9,7 @@ export BROWSERCLI=w3m
 export READER=zathura
 export IMAGEVIEWER=feh
 export VIDEOPLAYER=mpv
-export PATH=$PATH:$HOME/bin:$HOME/bin/ascii
+export PATH=$PATH:$HOME/bin:$HOME/bin/ascii:/opt/altera/12.1sp1/quartus/bin/:/opt/altera/10.1sp1/modelsim_ase/linuxaloem/
 export NNN_BMS='gd:~/Documents;gD:~/Downloads/;gF:~/Documents/Faculdade/'
 export NNN_FALLBACK_OPENER=xdg-open
 # }}}
