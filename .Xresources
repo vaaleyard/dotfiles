@@ -253,7 +253,7 @@ rofi.padding:	350
 ! These options only take effect on startup.
 st.termname:          xterm-256color
 ! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
-! st.shell:        /bin/mksh
+st.shell:        /bin/mksh
 
 ! The following options options can be reloaded via USR1 signal.
 st.font:              curie:size=8
