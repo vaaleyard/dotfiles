@@ -19,7 +19,7 @@ set $reboot sudo reboot
 # Exec on start ==================={{{
 
 exec_always xrdb ~/.Xresources
-exec --no-startup-id xmodmap ~/.Xmodmap
+exec xmodmap ~/.Xmodmap
 exec --no-startup-id redshift &
 #exec --no-startup-id compton
 exec --no-startup-id $HOME/bin/polybar_launch
@@ -123,12 +123,12 @@ for_window [class="neomutt" instance="neomutt"] move workspace $ws8
 for_window [class="weechat" instance="weechat"] move workspace $ws7
 
 for_window [instance="math" class="math"] floating enable, resize set 800 300, move scratchpad, border pixel 2
-exec --no-startup-id $term -n math -c math -e bc -q -l
+exec --no-startup-id $term -n math -c math -f "Monaco for Powerline:size=14" -e bc -q -l
 
 for_window [instance="dropdown" class="dropdown"] floating enable , resize set 625 400 , move scratchpad , border pixel 5
 # Runs the tmuxinit script, which searches for an earlier tmux instance,
 # otherwise starts a new one (to prevent multiple dropdown sessions).
-exec --no-startup-id $term -n dropdown -c dropdown -e tmux
+exec --no-startup-id $term -n dropdown -c dropdown -e tmux new -s dropdown
 
 for_window [class="Pale moon"] move workspace $ws2
 for_window [title="GIMP Startup"] move workspace $ws5
@@ -260,6 +260,7 @@ bindsym $mod+shift+a				exec "tmux set -g status"
 bindsym $mod+shift+b				exec --no-startup-id $BROWSER
 
 # Reload config
+bindsym $mod+c						exec cmus-status
 bindsym $mod+Shift+c				reload
 
 # start rofi/dmenu (a program launcher)
@@ -344,10 +345,10 @@ bindsym $mod+Shift+o				resize grow width 10 px or 10 ppt
 #set $bigfor dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek(
 
 # For cmus
-set $music "$term tmux new-window && tmux send-keys cmus 'Enter'"
-set $next cmus-remote --next
+set $music "$term tmux new-window -t dropdown && tmux send-keys -t dropdown cmus 'Enter'"
+set $next cmus-remote --next && pkill dunst ; exec cmus-status
 set $play cmus-remote --play
-set $prev cmus-remote --prev
+set $prev cmus-remote --prev && pkill dunst ; exec cmus-status
 set $pause cmus-remote --pause
 set $truepause cmus-remote --stop
 
@@ -360,8 +361,9 @@ set $mute --no-startup-id amixer sset Master toggle
 set $truemute --no-startup-id amixer sset Master mute
 
 # Media keys
+bindsym $mod+F8 			exec $mute
 bindsym $mod+m				exec $music
-bindsym $mod+shift+m		exec $mute
+bindsym $mod+shift+m		exec tmux split-window -t dropdown -v && tmux send-keys -t dropdown 'cmus-lyrics | less' 'Enter'
 bindsym $mod+p				exec $play
 bindsym $mod+shift+p		exec $pause
 bindsym $mod+plus			exec $inc
