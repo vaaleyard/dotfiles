@@ -52,9 +52,9 @@ font-2 = Font Awesome 5 Free:style=Solid:pixelsize=10;2
 font-3 = Font Awesome 5 Brands:pixelsize=10;3
 font-4 = siji:pixelsize=9;2
 
-modules-left = i3 cmus
+modules-left = i3
 modules-center = date
-modules-right = memory cpu updates-available wlan volume battery-notify usb redshift-info battery
+modules-right = wlan volume battery
 
 tray-position = right
 tray-padding = 2
