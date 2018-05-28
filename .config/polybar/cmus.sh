@@ -36,5 +36,5 @@ duration=$(get_stat duration)
 minutes2=$(prepend_zero $(($position / 60)))
 seconds2=$(prepend_zero $(($duration % 60)))
 
-echo -n " $(cmus-remote -C status | grep file | cut -d'/' -f6 | sed 's/.mp3//') [$minutes1:$seconds1 / $minutes2:$seconds2]"
+echo -n " $(cmus-remote -Q | egrep "tag artist|title" | sed 's/tag artist //;s/tag title //' | sed 'N;s/\n/ - /') [$minutes1:$seconds1 / $minutes2:$seconds2]"
 
