@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [[ -z "$(pidof cmus)" ]]; then
+	notify-send "cmus is not running"
+elif [[ "$(cmus-remote -Q | head -1)" == "status stopped" ]]; then
+	notify-send "cmus is stopped"
+elif [[ "$(cmus-remote -Q | head -1)" == "status paused" ]]; then
+	notify-send "cmus is paused"
+else
+	notify-send "Now Playing ♫" "$(cmus-remote -C 'format_print "%a - %t"')"
+fi

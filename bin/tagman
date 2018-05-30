@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Editor de tags para arquivos mp3
+# Dependência: id3v2
+
+arquivo=$@
+
+info() {
+read -p "Título: " titulo
+read -p "Artista: " artista
+read -p "Álbum: " album
+read -p "Track: " track
+read -p "Ano: " ano
+
+id3v2 -t "$titulo" -a "$artista" -A "$album" -T "$track" -y "$ano" "$arquivo"
+}
+
+if [ -z "$@" ]
+then
+	printf "Erro: Entre com a faixa que dejesa alterar!\n"
+else
+	info
+	printf "\nTags atualizadas!\n"
+fi
