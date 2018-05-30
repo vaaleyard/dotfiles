@@ -20,8 +20,8 @@ set $reboot sudo reboot
 
 exec_always xrdb ~/.Xresources
 exec xmodmap ~/.Xmodmap
+exec xset +fp $HOME/.fonts/
 exec --no-startup-id redshift &
-#exec --no-startup-id compton
 #exec --no-startup-id $HOME/bin/polybar_launch
 exec --no-startup-id $HOME/.config/lemonbar/lemonbar.sh
 exec $term -e tmux new -s main
