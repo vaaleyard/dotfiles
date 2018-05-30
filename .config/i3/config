@@ -22,10 +22,11 @@ exec_always xrdb ~/.Xresources
 exec xmodmap ~/.Xmodmap
 exec --no-startup-id redshift &
 #exec --no-startup-id compton
-exec --no-startup-id $HOME/bin/polybar_launch
+#exec --no-startup-id $HOME/bin/polybar_launch
+exec --no-startup-id $HOME/bin/lemonbar.sh
 exec $term -e tmux
 #exec xrate r rate 200 30
-exec_always feh --bg-scale ~/Pictures/wall2.png
+exec_always feh --bg-scale ~/Pictures/Landscapes/sea.jpg
 exec_always $HOME/bin/todo-notify
 
 # }}}
@@ -33,7 +34,7 @@ exec_always $HOME/bin/todo-notify
 
 #Needed for i3-gaps
 for_window [class="^.*"] border pixel 0
-gaps inner 10
+gaps inner 35
 gaps outer 10
 
 set $mod Mod4
@@ -80,16 +81,13 @@ bindsym $mod+e mode "$mode_display"
 
 # }}}
 # Workspace settings =============={{{
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+set $ws1 ""
+set $ws2 ""
+set $ws3 ""
+set $ws4 ""
+set $ws5 ""
+set $ws6 ""
+set $ws7 ""
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -99,9 +97,6 @@ bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -111,16 +106,12 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
 
+for_window [class="weechat" instance="weechat"] move workspace $ws3
 for_window [class="TelegramDesktop"] move workspace $ws3
 #assign [class="mpv"] $ws5
-for_window [class="Spotify"] $ws10
 for_window [class="ranger" instance="ranger"] move workspace $ws6
-for_window [class="neomutt" instance="neomutt"] move workspace $ws8
-for_window [class="weechat" instance="weechat"] move workspace $ws7
+for_window [class="neomutt" instance="neomutt"] move workspace $ws7
 
 for_window [instance="math" class="math"] floating enable, resize set 800 300, move scratchpad, border pixel 2
 exec --no-startup-id $term -n math -c math -f "Monaco for Powerline:size=14" -e bc -q -l
@@ -136,6 +127,7 @@ for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 50 px or 50ppt
 for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
 #for_window [class="mpv"] floating enable, resize set 500 200, sticky enable
+for_window [title="st|tmux"] border pixel 4
 
 hide_edge_borders both
 
@@ -145,13 +137,14 @@ set $text-color          #ebdbb2
 set $inactive-text-color #a89984
 set $urgent-bg-color     #fbf1c7
 set $urgent-text-color   #282828
+set $blue				 #458588
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $urgent-text-color   #00ff00
+client.focused          $bg-color		    #CBCCCD	           $text-color          #CBCCCD
+client.unfocused        $bg-color			#798185			   $inactive-text-color #282828
+client.focused_inactive $bg-color		  	$inactive-bg-color $inactive-text-color #282828
+client.urgent           $bg-color		    $urgent-bg-color   $urgent-text-color   #282828
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -215,9 +208,9 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Tab		workspace back_and_forth
 
 # split in vertical orientation
-bindsym $mod+shift+slash split v && exec notify-send "Tile vertically"
+bindsym $mod+shift+slash split v
 # split in horizontal orientation
-bindsym $mod+slash split h && exec notify-send "Tile horizontally"
+bindsym $mod+slash split h
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+F1 layout stacking
