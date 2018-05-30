@@ -23,8 +23,8 @@ exec xmodmap ~/.Xmodmap
 exec --no-startup-id redshift &
 #exec --no-startup-id compton
 #exec --no-startup-id $HOME/bin/polybar_launch
-exec --no-startup-id $HOME/bin/lemonbar.sh
-exec $term -e tmux
+exec --no-startup-id $HOME/.config/lemonbar/lemonbar.sh
+exec $term -e tmux new -s main
 #exec xrate r rate 200 30
 exec_always feh --bg-scale ~/Pictures/Landscapes/sea.jpg
 exec_always $HOME/bin/todo-notify
