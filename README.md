@@ -49,10 +49,10 @@ bash <(curl -s https://raw.githubusercontent.com/Valeyard1/dotfiles/master/insta
 
 - Distro: `Void Linux`
 - Window Manager: `i3-gaps`
-- Bar: `Polybar`
-- Terminal Emulator: `URxvt-unicode`
+- Bar: `lemonbar`
+- Terminal Emulator: `xst`
 - Editor: `vim`
-- Font: [`curie`](https://my.mixtape.moe/jrelgl.bdf)
+- Font: [`curie`](https://github.com/NerdyPepper/curie)
 
 ##
 
