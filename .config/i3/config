@@ -24,9 +24,9 @@ exec xset +fp $HOME/.fonts/
 exec --no-startup-id redshift &
 #exec --no-startup-id $HOME/bin/polybar_launch
 exec --no-startup-id $HOME/.config/lemonbar/lemonbar.sh
-exec $term -e tmux new -s main
+#exec $term -e tmux new -s main
 #exec xrate r rate 200 30
-exec_always feh --bg-scale ~/Pictures/Landscapes/sea.jpg
+exec_always hsetroot -fill ~/Pictures/Landscapes/forest1.jpg
 exec_always $HOME/bin/todo-notify
 
 # }}}
@@ -110,13 +110,13 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 for_window [class="weechat" instance="weechat"] move workspace $ws3
 for_window [class="TelegramDesktop"] move workspace $ws3
 #assign [class="mpv"] $ws5
-for_window [class="ranger" instance="ranger"] move workspace $ws6
-for_window [class="neomutt" instance="neomutt"] move workspace $ws7
+for_window [class="ranger" instance="ranger"] move workspace $ws5
+for_window [class="neomutt" instance="neomutt"] move workspace $ws6
 
 for_window [instance="math" class="math"] floating enable, resize set 800 300, move scratchpad, border pixel 2
-exec --no-startup-id $term -n math -c math -f "Monaco for Powerline:size=14" -e bc -q -l
+#exec --no-startup-id $term -n math -c math -f "Monaco for Powerline:size=14" -e bc -q -l
 
-for_window [instance="dropdown" class="dropdown"] floating enable , resize set 625 400 , move scratchpad , border pixel 5
+or_window [instance="dropdown" class="dropdown"] floating enable , resize set 625 400 , move scratchpad , border pixel 5
 # Runs the tmuxinit script, which searches for an earlier tmux instance,
 # otherwise starts a new one (to prevent multiple dropdown sessions).
 exec --no-startup-id $term -n dropdown -c dropdown -e tmux new -s dropdown
