@@ -9,6 +9,6 @@ do
         "C-c")
                 echo -n "$file" | xclip -selection clipboard ;;
         "C-w")
-                hsetroot -tile "$file" ;;
+                hsetroot -fill "$file" ;;
         esac
 done
