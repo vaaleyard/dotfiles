@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+# Download 50 random images from unsplash.it in the /tmp/unsplash directory.
+
+DIR=/tmp/unsplash
+rm -rf $DIR
+mkdir $DIR
+
+for i in {1..50}; do
+	wget --quiet -O $DIR/$i.jpg "https://unsplash.it/1920/1080/?random"
+done
