@@ -1,0 +1,6 @@
+#!/bin/sh
+
+VIDEO=$(youtube-dl --list-formats $1 | grep 'video only' | sed '$!d' | awk '{print $1}')
+AUDIO=$(youtube-dl --list-formats $1 | grep 'audio only' | sed '$!d' | awk '{print $1}')
+
+youtube-dl --format $VIDEO+$AUDIO $1
