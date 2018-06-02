@@ -42,7 +42,7 @@ PS1='$(pwd | sed "s,^$HOME,~,") $(print "\033[0;36m$\033[00m") '
 
 # History settings
 HISTSIZE=2000
-HISTFILESIZE=200
+HISTFILESIZE=500
 HISTFILE=~/.mksh_history
 
 #}}}
