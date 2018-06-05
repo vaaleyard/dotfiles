@@ -26,14 +26,14 @@ volume(){
 	if [[ ! -z $NOTMUTED ]] ; then
 		VOL=$(awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master) | sed 's/%//g')
 		if [ $VOL -ge 55 ] ; then
-			echo -e "%{B#555}  %{B#458588} ${VOL}%"
+			echo -e "%{F#5F8972} %{F#A9C4C6}${VOL}%"
 		elif [ $VOL -ge 20 ] ; then
-			echo -e "%{B#555}  %{B#458588} ${VOL}%"
+			echo -e "%{F#5F8972} %{F#A9C4C6}${VOL}%"
 		else
-			echo -e "%{B#555}  %{B#458588} ${VOL}%"
+			echo -e "%{F#5F8972} %{F#A9C4C6}${VOL}%"
 		fi
 	else
-		echo -e "%{B#555}  %{B#cc241d} muted"
+		echo -e "%{F#cc241d} %{F#cc241d}muted"
 	fi
 }
 
@@ -42,27 +42,27 @@ battery() {
 	charging="$(</sys/class/power_supply/BAT0/status)"
 
 	[ "$charging" == "Charging" ] && \
-		battery="%{B#555}  %{B#458588} ${battery}%"
+		battery="%{F#5F8972}%{F#A9C4C6} ${battery}%"
 
 	case "$battery" in
 		[0-9]|10)
-			battery="%{B#555}  %{B#458588} ${battery}%"
+			battery="%{F#5F8972}%{F#A9C4C6} ${battery}%"
 			;;
 
 		1[0-9]|2[0-5])
-			battery="%{B#555}  %{B#458588} ${battery}%"
+			battery="%{F#5F8972}%{F#A9C4C6} ${battery}%"
 			;;
 
 		2[6-9]|3[0-9]|4[0-9]|50)
-			battery="%{B#555}  %{B#458588} ${battery}%"
+			battery="%{F#5F8972}%{F#A9C4C6} ${battery}%"
 			;;
 
 		5[1-9]|6[0-9]|7[0-5])
-			battery="%{B#555}  %{B#458588} ${battery}%"
+			battery="%{F#5F8972}%{F#A9C4C6} ${battery}%"
 			;;
 
 		7[6-9]|8[0-9]|9[0-9]|100)
-			battery="%{B#555}  %{B#458588} ${battery}%"
+			battery="%{F#5F8972}%{F#A9C4C6} ${battery}%"
 			;;
 	esac
 
@@ -78,9 +78,9 @@ works() {
 	while read -r workspace; do
 		ws="${workspace/* }"
 		case "$workspace" in
-			*"*"*) workspace_list+="%{B#458588} $ws "
+			*"*"*) workspace_list+="%{F#A9C4C6} $ws "
 				;;
-			*) workspace_list+="%{A:i3-msg workspace ${ws}:}%{B#282828} $ws %{A}%{B#676e7d}" ;;
+			*) workspace_list+="%{A:i3-msg workspace ${ws}:}%{F#5F8972} $ws %{A}%{F#676e7d}" ;;
 		esac
 	done < <(wmctrl -d)
 	output="%{A4:${i3_next}:}%{A5:${i3_prev}:}${workspace_list}%{A}%{A}" 
@@ -102,9 +102,9 @@ workspaces() {
 }
 
 while true; do
-	output="%{l}$(works)%{B#282828}%{c}%{B#555}  %{B#458588} $(clock) %{B-}%{r} $(battery) %{B-} $(volume) %{B-} %{B#555}  %{B#548588} $(wifi) %{B-}"
+	output="%{l}$(works)%{c}%{F#5F8972}%{B-} %{F#A9C4C6}$(clock) %{B-}%{r} $(battery) %{B-} $(volume) %{B-} %{F#5F8972}%{F-}%{F#A9C4C6} $(wifi) %{B-}"
 	echo "$output"
 	sleep .1;
 done |
-lemonbar -p -d -B#282828 -F#ebdbb2 \
+lemonbar -p -d -B#101e22 -F#ebdbb2 \
 	-f "$font" -f "$icon" -g 1000x22+175+10 | bash
