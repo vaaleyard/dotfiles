@@ -7,7 +7,7 @@ export EDITOR=vim
 export BROWSER=palemoon
 export BROWSERCLI=w3m
 export READER=zathura
-export IMAGEVIEWER=feh
+export IMAGEVIEWER=sxiv
 export VIDEOPLAYER=mpv
 export PATH=$PATH:$HOME/bin:$HOME/bin/ascii:/opt/altera/12.1sp1/quartus/bin/:/opt/altera/10.1sp1/modelsim_ase/linuxaloem/
 export NNN_BMS='gd:~/Documents;gD:~/Downloads/;gF:~/Documents/Faculdade/'
@@ -41,7 +41,7 @@ current_repository() {
 PS1='$(pwd | sed "s,^$HOME,~,") $(print "\033[0;36m$\033[00m") '
 
 # History settings
-HISTSIZE=2000
+HISTSIZE=5000
 HISTFILESIZE=500
 HISTFILE=~/.mksh_history
 
