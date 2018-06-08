@@ -40,10 +40,15 @@ init() {
 	export init
 }
 
+pkg() {
+	pkg=$(xbps-query -l | wc -l)
+	export pkg
+}
 # exec
 os
 wm
 init
+pkg
 cat <<EOF
 $user${f2}@${rst}$host
         os${f2}:${rst}          ${f7}$os${rst}
@@ -51,6 +56,7 @@ $user${f2}@${rst}$host
 │${f2}^${rst}_${f2}^${rst}│   shell${f2}:${rst}       ${f7}$shell${rst}
 └───┘   init${f2}:${rst}        ${f7}$init${rst}
         wm${f2}:${rst}          ${f7}$wm${rst}
+        packages${f2}:${rst}    ${f7}$pkg${rst}
 EOF
 
 # optional blocks
