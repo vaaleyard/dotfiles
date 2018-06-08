@@ -17,7 +17,7 @@ fehFiles="png jpg jpeg jpe"
 wgetFiles="mp3 flac opus mp3?source=feed pdf"
 
 if echo $fehFiles | grep -w $ext > /dev/null; then
-	feh "$1" >/dev/null & disown
+	sxiv "$1" >/dev/null & disown
 elif echo $mpvFiles | grep -w $ext > /dev/null; then
 	mpv -quiet "$1" > /dev/null & disown
 elif echo $wgetFiles | grep -w $ext > /dev/null; then
@@ -25,5 +25,5 @@ elif echo $wgetFiles | grep -w $ext > /dev/null; then
 elif echo "$@" | grep "$vidsites">/dev/null; then
 	mpv -quiet "$1" > /dev/null & disown
 else
-	$BROWSER "$1" 2>/dev/null & disown
+	$BROWSER "$1" --new-tab &>/dev/null & disown
 fi
