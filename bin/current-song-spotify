@@ -1,7 +1,0 @@
-#!/bin/bash
-pid=$(pidof spotify)
-if [ "$pid" != "" ];
-	then
-	eval $($(dirname $0)/spotify-cli eval)
-	echo '<span foreground="#FFFFFF"> '${SPOTIFY_ARTIST} - ${SPOTIFY_TITLE}' </span>'
-fi
