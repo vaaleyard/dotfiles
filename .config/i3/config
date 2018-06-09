@@ -26,7 +26,7 @@ exec --no-startup-id redshift &
 exec --no-startup-id $HOME/.config/lemonbar/lemonbar.sh
 #exec $term -e tmux new -s main
 #exec xrate r rate 200 30
-exec_always hsetroot -fill ~/Pictures/Landscapes/forest1.jpg
+exec_always hsetroot -fill ~/Pictures/Landscapes/river-forest.jpg
 exec_always $HOME/bin/todo-notify
 
 # }}}
@@ -34,8 +34,8 @@ exec_always $HOME/bin/todo-notify
 
 #Needed for i3-gaps
 for_window [class="^.*"] border pixel 0
-gaps inner 35
-gaps outer 10
+gaps inner 10
+gaps outer 25
 
 set $mod Mod4
 
@@ -113,10 +113,10 @@ for_window [class="TelegramDesktop"] move workspace $ws3
 for_window [class="ranger" instance="ranger"] move workspace $ws5
 for_window [class="neomutt" instance="neomutt"] move workspace $ws6
 
-for_window [instance="math" class="math"] floating enable, resize set 800 300, move scratchpad, border pixel 2
-#exec --no-startup-id $term -n math -c math -f "Monaco for Powerline:size=14" -e bc -q -l
+for_window [instance="math" class="math"] floating enable, resize set 800 300, move scratchpad
+exec --no-startup-id $term -n math -c math -f "Monaco for Powerline:size=14" -e bc -q -l
 
-or_window [instance="dropdown" class="dropdown"] floating enable , resize set 625 400 , move scratchpad , border pixel 5
+for_window [instance="dropdown" class="dropdown"] floating enable , resize set 625 400 , move scratchpad
 # Runs the tmuxinit script, which searches for an earlier tmux instance,
 # otherwise starts a new one (to prevent multiple dropdown sessions).
 exec --no-startup-id $term -n dropdown -c dropdown -e tmux new -s dropdown
@@ -127,7 +127,7 @@ for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 50 px or 50ppt
 for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
 #for_window [class="mpv"] floating enable, resize set 500 200, sticky enable
-for_window [title="st|tmux"] border pixel 4
+#for_window [title="st|tmux"] border pixel 4
 
 hide_edge_borders both
 
@@ -208,9 +208,9 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Tab		workspace back_and_forth
 
 # split in vertical orientation
-bindsym $mod+shift+slash split v
+bindsym $mod+shift+slash split v ; exec notify-send "Tile vertical"
 # split in horizontal orientation
-bindsym $mod+slash split h
+bindsym $mod+slash split h ; exec notify-send "Tile horizontal"
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+F1 layout stacking
@@ -257,7 +257,7 @@ bindsym $mod+c						exec cmus-status
 bindsym $mod+Shift+c				reload
 
 # start rofi/dmenu (a program launcher)
-bindsym $mod+d						exec dmenu_run -nb \#282828  -nf \#ebdbb2 -sb \#98971a -sf \#ebdbb2 -l 5 -fn curie
+bindsym $mod+d						exec dmenu_run -nb \#101e22  -nf \#A9C4C6 -sb \#5F8972 -sf \#A9C4C6 -l 5 -fn curie
 #bindsym $mod+d						exec rofi -show combi
 
 # Start weechat / exit i3
