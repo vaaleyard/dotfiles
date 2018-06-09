@@ -21,8 +21,8 @@
     #   %I  iconname (without its path)
     #   %p  progress value if set ([  0%] to [100%]) or nothing
     # Markup is allowed
-    format = "%s\n%b
-
+    #format = "%s\n%b
+	format = "<b>%s</b>\n%b"
     # Sort messages by urgency.
     sort = yes
 
@@ -31,7 +31,7 @@
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
-    alignment = left
+    alignment = right
 
     # The frequency with wich text that is longer than the notification
     # window allows bounces back and forth.
@@ -64,11 +64,10 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-30+20"
-
+	geometry = "300x8-32+34"
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
-    shrink = no
+    shrink = yes
 
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
@@ -114,13 +113,13 @@
     # Draw a line of "separatpr_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 2
+    separator_height = 0
 
     # Padding between text and separator.
-    padding = 8
+    padding = 16
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 16
 
     # Define a color for the separator.
     # possible values are:
@@ -128,7 +127,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    separator_color = auto
 
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
@@ -139,16 +138,16 @@
     dmenu = /usr/bin/dmenu -p dunst:
 
     # Browser for opening urls in context menu.
-    browser = /usr/bin/firefox -new-tab
+    browser = $BROWSER -new-tab
 
     # Align icons left/right/off
-    icon_position = left
+    icon_position = off
 
     # Paths to default icons.
     icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
 [frame]
-    width = 3
+    width = 0
     color = "#EBDBB2"
 
 [shortcuts]
@@ -175,18 +174,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#282828"
-    foreground = "#EBDBB2"
-    timeout = 10
+    background = "#101e22"
+    foreground = "#A9C4C6"
+    timeout = 2
 
 [urgency_normal]
-    background = "#282828"
-    foreground = "#EBDBB2"
+    background = "#101e22"
+    foreground = "#A9C4C6"
     timeout = 10
 
 [urgency_critical]
-    background = "#282828"
-    foreground = "#EBDBB2"
+    background = "#101e22"
+    foreground = "#A9C4C6"
     timeout = 0
 
 
