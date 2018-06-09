@@ -104,7 +104,7 @@ workspaces() {
 while true; do
 	output="%{l}$(works)%{c}%{F#5F8972}%{B-} %{F#A9C4C6}$(clock) %{B-}%{r} $(battery) %{B-} $(volume) %{B-} %{F#5F8972}%{F-}%{F#A9C4C6} $(wifi) %{B-}"
 	echo "$output"
-	sleep .1;
+	sleep 1;
 done |
 lemonbar -p -d -B#101e22 -F#ebdbb2 \
 	-f "$font" -f "$icon" -g 1000x22+175+10 | bash
