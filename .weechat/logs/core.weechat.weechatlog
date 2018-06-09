@@ -1,5 +1,0 @@
-2018-05-20 16:43:44		Plugins carregados: alias, buflist, charset, exec, fifo, fset, irc, logger, relay, script, trigger, xfer
-2018-05-20 16:44:12	 !!! 	Não pode escrever texto neste buffer
-2018-05-20 17:02:39		fifo: pipe fechado
-2018-05-20 21:52:06		Plugins loaded: alias, buflist, charset, exec, fifo, fset, irc, logger, relay, script, trigger, xfer
-2018-05-20 21:52:11	 !!! 	irc: command "join" must be executed on connected irc server
