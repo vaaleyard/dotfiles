@@ -13,7 +13,7 @@ set softtabstop=4	" Tab key indents by 4 spaces
 set shiftwidth=4	" >> indents by 4 spaces
 set noexpandtab		" Use spaces instead of tabs
 set laststatus=2
-set number
+set nonumber
 set backspace=indent,eol,start
 set hlsearch
 set incsearch ignorecase
@@ -22,12 +22,12 @@ set smartcase
 set showcmd
 set ruler
 set hidden
-set path=.,**
+set path=.,**,/usr/include
 set wildmenu wildmode=full
 set undofile undodir=~/.vim/tmp/undo/
 set tags+=~/.vim/systags
 set splitbelow splitright
-set list listchars=eol:$ listchars+=tab:│\  fillchars+=vert:│,fold:-
+set list listchars=eol:$ listchars+=tab:│\  fillchars+=vert:│,fold:=
 set foldenable foldmethod=marker
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -43,7 +43,7 @@ inoremap <C-D> *
 noremap ; :
 noremap : ;
 nnoremap ' `
-nnoremap ,: *``cgn
+nnoremap c* *``cgn
 
 " Juggling with buffers
 nnoremap ,b         :buffer *
@@ -136,3 +136,47 @@ if executable("ag")
     set grepformat^=%f:%l:%c:%m
 endif
 " }}}
+
+let g:currentmode={
+    \ 'n'  : 'NORMAL ',
+    \ 'no' : 'N·OPERATOR PENDING ',
+    \ 'v'  : 'VISUAL ',
+    \ 'V'  : 'V·LINE ',
+    \ '' : 'V·BLOCK ',
+    \ 's'  : 'SELECT ',
+    \ 'S'  : 'S·LINE ',
+    \ '' : 'S·BLOCK ',
+    \ 'i'  : 'INSERT ',
+    \ 'R'  : 'REPLACE ',
+    \ 'Rv' : 'V·REPLACE ',
+    \ 'c'  : 'COMMAND ',
+    \ 'cv' : 'VIM EX ',
+    \ 'ce' : 'EX ',
+    \ 'r'  : 'PROMPT ',
+    \ 'rm' : 'MORE ',
+    \ 'r?' : 'CONFIRM ',
+    \ '!'  : 'SHELL ',
+    \ 't'  : 'TERMINAL '}
+
+set statusline=
+set statusline+=%1*
+set statusline+=\ %{g:currentmode[mode()]}
+set statusline+=%*
+set statusline+=%2*
+set statusline+=\ %t\  
+set statusline+=%(%m%)
+set statusline+=%=
+set statusline+=%*
+set statusline+=%3*
+set statusline+=\ %l,
+set statusline+=%c\  
+set statusline+=%*
+set statusline+=\ %Y\  
+set statusline+=%4*
+set statusline+=\ %P\  
+set statusline+=%*
+
+highlight User1 ctermbg=35 ctermfg=235
+highlight User2 ctermbg=235 ctermfg=15
+highlight User4 ctermbg=30 ctermfg=15
+highlight MatchParen ctermbg=4 ctermfg=255
