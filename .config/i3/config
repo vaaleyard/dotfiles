@@ -107,7 +107,7 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 
-for_window [class="weechat" instance="weechat"] move workspace $ws3
+for_window [class="irssi" instance="irssi"] move workspace $ws3
 for_window [class="TelegramDesktop"] move workspace $ws3
 #assign [class="mpv"] $ws5
 for_window [class="ranger" instance="ranger"] move workspace $ws5
@@ -260,7 +260,7 @@ bindsym $mod+Shift+c				reload
 bindsym $mod+d						exec dmenu_run -nb \#101e22  -nf \#A9C4C6 -sb \#5F8972 -sf \#A9C4C6 -l 5 -fn curie
 #bindsym $mod+d						exec rofi -show combi
 
-# Start weechat / exit i3
+# Exit i3
 bindsym $mod+Shift+e				exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # reload the configuration file
@@ -271,8 +271,8 @@ bindsym $mod+Shift+n				exec $term -n newsboat -c newsboat -e newsboat
 bindsym $mod+q kill
 bindsym $mod+Shift+q kill
 
-# Start weechat
-bindsym $mod+w						exec $term -n weechat -c weechat -e weechat-curses
+# Start irssi
+bindsym $mod+w						exec $term -n irssi -c irssi -e irssi
 #bindsym $mod+shift+w
 
 # Start ranger
