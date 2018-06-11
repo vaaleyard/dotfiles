@@ -7,11 +7,11 @@ colorscheme gruvbox
 set background=dark
 
 set lazyredraw
-set tabstop=4
-set autoindent		" Indent according to previous line
-set softtabstop=4	" Tab key indents by 4 spaces
-set shiftwidth=4	" >> indents by 4 spaces
-set noexpandtab		" Use spaces instead of tabs
+set tabstop=4      "Tab indentation levels every four columns
+set shiftwidth=4   "Indent/outdent by four columns
+set expandtab      "Convert all tabs that are typed into spaces
+set shiftround     "Always indent/outdent to nearest tabstop
+set smarttab       "Use shiftwidths at left margin, tabstops everywhere else
 set laststatus=2
 set nonumber
 set backspace=indent,eol,start
@@ -70,26 +70,11 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap        ,,      <C-n><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>\<lt>C-p>" : ""<CR>
 inoremap        ,:      <C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>\<lt>C-p>" : ""<CR>
-inoremap        ,=      <C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>\<lt>C-p>" : ""<CR>
 
 " Share text
 command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | xclip -i -selection clipboard
 " AutoCMD's {{{
 if has('autocmd')
-	augroup C_Files
-		autocmd!
-		"autocmd BufNewFile *.c 0r ~/.vim/snippets/skeleton.c | call cursor(8,17) " Call the skeleton.c for every new .c file
-		" Just some shit to show the file creation time
-		"autocmd BufNewFile *.c :r!date "+\%d/\%m/\%Y \%H:\%M"
-		"autocmd BufNewFile *.c :norm kJ | call cursor(13,1)
-		" When typing ';' marks a undo point, so when hit u, it won't undo the whole thing that you did in insert mode (nice when programming), and always save when press ;
-		autocmd BufNewFile *.c inoremap ; ;<c-g>u
-		autocmd BufNewFile,BufRead *.c inoremap {<CR> <CR>{<CR>}<Esc>O
-		autocmd BufNewFile,BufWritePost,BufRead *.c inoremap /*<space> /*  */<Esc>2<Left>i
-		"autocmd BufNewFile *.c inoremap ; :w<CR>
-		autocmd BufRead,BufNewFile,BufWritePost *.c set colorcolumn=72
-	augroup END
-
 	augroup Prolog_Files
 		autocmd!
 		autocmd BufRead,BufNewFile,BufWritePost *.pl set filetype=prolog
@@ -136,7 +121,7 @@ if executable("ag")
     set grepformat^=%f:%l:%c:%m
 endif
 " }}}
-
+" Statusline {{{
 let g:currentmode={
     \ 'n'  : 'NORMAL ',
     \ 'no' : 'N·OPERATOR PENDING ',
@@ -175,8 +160,24 @@ set statusline+=\ %Y\
 set statusline+=%4*
 set statusline+=\ %P\  
 set statusline+=%*
-
-highlight User1 ctermbg=35 ctermfg=235
-highlight User2 ctermbg=235 ctermfg=15
-highlight User4 ctermbg=30 ctermfg=15
-highlight MatchParen ctermbg=4 ctermfg=255
+" }}}
+" Highlights config {{{
+highlight User1 ctermbg=35 ctermfg=0
+highlight User2 ctermbg=0 ctermfg=195
+highlight User4 ctermbg=30 ctermfg=195
+highlight MatchParen ctermbg=4 ctermfg=195
+highlight clear Search
+highlight       Search    ctermfg=White  ctermbg=Red    cterm=bold
+highlight    IncSearch    ctermfg=White  ctermbg=Red    cterm=bold
+" }}}
+" Netrw {{{
+let g:netrw_sort_by        = 'time'
+let g:netrw_sort_direction = 'reverse'
+let g:netrw_banner         = 0
+let g:netrw_liststyle      = 3
+let g:netrw_browse_split   = 3
+let g:netrw_fastbrowse     = 1
+let g:netrw_sort_by        = 'name'
+let g:netrw_sort_direction = 'normal'
+let g:netrw_winsize = -28
+" }}}
