@@ -282,30 +282,46 @@ st.prompt_char:       $
 
 ! opacity==255 means what terminal will be not transparent, 0 - fully transparent
 st.opacity:      255
-! Defaults taken from base16-twilight colorscheme.
-st.foreground:   #A9C4C6
-st.background:   #282828
-st.color0:       #282828
-st.color1:       #cc241d
-st.color2:       #98971a
-st.color3:       #d79921
-st.color4:       #458588
-st.color5:       #b16286
-st.color6:       #689d6a
-st.color7:       #a89984
-st.color8:       #928374
-st.color9:       #fb4934
-st.color10:      #b8bb26
-st.color11:      #fabd2f
-st.color12:      #83a598
-st.color13:      #d3869b
-st.color14:      #8ec07c
-st.color15:      #ebdbb2
-st.color16:
-st.color17:
-st.color18:
-st.color19:
-st.color20:
-st.color21:
+
+! Theme: mine
+
+#define base00 #002b36
+#define base01 #073642
+#define base02 #586e75
+#define base03 #657b83
+#define base04 #839496
+#define base05 #93a1a1
+#define base06 #eee8d5
+#define base07 #fdf6e3
+#define base08 #dc322f
+#define base09 #cb4b16
+#define base0A #b58900
+#define base0B #859900
+#define base0C #2aa198
+#define base0D #268bd2
+#define base0E #6c71c4
+#define base0F #d33682
+
+*.foreground:   #A9C4C6
+*.background:   #101e22
+*.cursorColor:  #A9C4C6
+
+*.color0:       #101e22
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base09
+*.color10:      base01
+*.color11:      base02
+*.color12:      base04
+*.color13:      base06
+*.color14:      base0F
+*.color15:      base07
 
 ! }}}
