@@ -6,22 +6,22 @@ runtime macros/matchit.vim
 colorscheme gruvbox
 set background=dark
 
-set lazyredraw
-set tabstop=4      "Tab indentation levels every four columns
-set shiftwidth=4   "Indent/outdent by four columns
-set expandtab      "Convert all tabs that are typed into spaces
-set shiftround     "Always indent/outdent to nearest tabstop
-set smarttab       "Use shiftwidths at left margin, tabstops everywhere else
-set laststatus=2
-set nonumber
-set backspace=indent,eol,start
-set hlsearch
-set incsearch ignorecase
-set noswapfile
-set smartcase
-set showcmd
-set ruler
-set hidden
+set lazyredraw                  " Don't update the display while executing macros
+set tabstop=4                   " Tab indentation levels every four columns
+set shiftwidth=4                " Indent/outdent by four columns
+set expandtab                   " Convert all tabs that are typed into spaces
+set shiftround                  " Always indent/outdent to nearest tabstop
+set smarttab                    " Use shiftwidths at left margin, tabstops everywhere else
+set laststatus=2                " Always show the statusline
+set nonumber                    " Don't display numbers
+set backspace=indent,eol,start  " Fix backspace
+set hlsearch                    " Highlight search
+set incsearch ignorecase        " Increase search
+set noswapfile                  " Don't use swap file
+set smartcase                   " Override the 'ignorecase' option if the search pattern contains upper case characters.
+set showcmd                     " Show commands at bottom
+set ruler                       " Show current line, column
+set hidden                      " Switch buffers without the need of saving them
 set path=.,**,/usr/include
 set wildmenu wildmode=full
 set undofile undodir=~/.vim/tmp/undo/
@@ -33,6 +33,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
+
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 " Ergonomics
 inoremap <C-H> (
