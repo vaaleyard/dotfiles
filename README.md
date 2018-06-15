@@ -6,8 +6,8 @@
 <p align="center">
     <b>Screenshots</b><br>
     <a href="https://i.imgur.com/yrqlY5O.png">mksh</a>&nbsp;&nbsp;&nbsp;
-    <a href="https://i.imgur.com/2o7ZIlW.png">tmux</a>&nbsp;&nbsp;&nbsp;
-    <a href="https://i.imgur.com/IpD7E9E.png">vim</a>
+    <a href="https://i.imgur.com/wHMqOCp.png">tmux</a>&nbsp;&nbsp;&nbsp;
+    <a href="https://i.imgur.com/p6b1Rv5.png">vim</a>
 </p>
 
 
