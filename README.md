@@ -18,39 +18,32 @@
 
 - **newsboat**: RSS feed reader for text terminals.
 - **mutt**: Fast and secure text-based mail client.
-- **weechat**: IRC client.
-- **nnn**: A vim-like & lightweight file manager.
+- **irssi**: IRC client.
+- **ranger**: A vim-like & lightweight file manager.
 - **mksh**: A shell that is not bloat like bash (Bloat Again Shell).
 - **tmux**: A terminal multiplexer.
 - **vim**: Highly configurable text editor, I'm using with no plugins, only vanilla vim.
 - **transmission-remote-cli**: Curses interface for the daemon of the BitTorrent client Transmission.
-- **scrot**: Minimalistc screen capture.
+- **scrot**: Minimalist screen capture.
 - **youtube-dl**: Open source program to download videos from YouTube.
 - **surfraw**: Fast search engine from CLI.
 - **kpcli**: Command Line password manager for KeePass.
+- **cmus**: Music player.
 
 ### GUI
 
 - **Pale Moon**: The only browser that's fast and doesn't consume so much memory.
 - **dunst**: Lightweight notification-daemon.
 - **zathura**: Minimalistic and highly customizable document viewer.
-- **feh**: Lightweight and powerful image viewer.
-- **cmus**: Music player.
+- **sxiv**: Lightweight and powerful image viewer.
 - **mpv**: A free software command line video player highly customizable.
-
-
-## Installation
-
-```
-bash <(curl -s https://raw.githubusercontent.com/Valeyard1/dotfiles/master/install.sh)
-```
 
 ## Info
 
 - Distro: `Void Linux`
 - Window Manager: `i3-gaps`
 - Bar: `lemonbar`
-- Terminal Emulator: `xst`
+- Terminal Emulator: `st`
 - Editor: `vim`
 - Font: [`curie`](https://github.com/NerdyPepper/curie)
 
@@ -65,7 +58,5 @@ Posts about managing with GNU stow:
 * [Using GNU stow to manage your dotfiles](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html)
 * [Dotfile management with GNU stow](https://jonleopard.com/dotfile-management-with-gnu-stow/)
 * [Using GNU stow with your dotfiles](https://protesilaos.com/codelog/gnu-stow-dotfiles/)
-
-
 
 Interesting read: [Why share your dotfiles](https://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/)
