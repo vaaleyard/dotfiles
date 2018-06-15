@@ -83,11 +83,11 @@ bindsym $mod+e mode "$mode_display"
 # Workspace settings =============={{{
 set $ws1 ""
 set $ws2 ""
-set $ws3 ""
-set $ws4 ""
-set $ws5 ""
-set $ws6 ""
-set $ws7 ""
+set $ws3 ""
+set $ws4 ""
+set $ws5 ""
+set $ws6 ""
+set $ws7 ""
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -107,11 +107,11 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 
-for_window [class="irssi" instance="irssi"] move workspace $ws3
-for_window [class="TelegramDesktop"] move workspace $ws3
+for_window [class="irssi" instance="irssi"] move workspace $ws7
+for_window [class="TelegramDesktop"] move workspace $ws6
 #assign [class="mpv"] $ws5
-for_window [class="ranger" instance="ranger"] move workspace $ws5
-for_window [class="neomutt" instance="neomutt"] move workspace $ws6
+for_window [class="ranger" instance="ranger"] move workspace $ws4
+for_window [class="neomutt" instance="neomutt"] move workspace $ws5
 
 for_window [instance="math" class="math"] floating enable, resize set 800 300, move scratchpad
 exec --no-startup-id $term -n math -c math -f "Monaco for Powerline:size=14" -e bc -q -l
@@ -119,7 +119,7 @@ exec --no-startup-id $term -n math -c math -f "Monaco for Powerline:size=14" -e 
 for_window [instance="dropdown" class="dropdown"] floating enable , resize set 625 400 , move scratchpad
 # Runs the tmuxinit script, which searches for an earlier tmux instance,
 # otherwise starts a new one (to prevent multiple dropdown sessions).
-exec --no-startup-id $term -n dropdown -c dropdown -e tmux new -s dropdown
+exec --no-startup-id $term -n dropdown -c dropdown -e tmux new-session -s dropdown
 
 for_window [class="Pale moon"] move workspace $ws2
 for_window [title="GIMP Startup"] move workspace $ws5
@@ -272,7 +272,7 @@ bindsym $mod+q kill
 bindsym $mod+Shift+q kill
 
 # Start irssi
-bindsym $mod+w						exec $term -n irssi -c irssi -e irssi
+bindsym $mod+w						exec $term -n irssi -c irssi -e tmux new-session -s irssi 'irssi && tmux set-option -t irssi status off'
 #bindsym $mod+shift+w
 
 # Start ranger
