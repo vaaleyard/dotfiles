@@ -18,9 +18,9 @@
 
 - **newsboat**: RSS feed reader for text terminals.
 - **mutt**: Fast and secure text-based mail client.
-- **irssi**: IRC client.
+- **weechat**: IRC client.
 - **ranger**: A vim-like & lightweight file manager.
-- **mksh**: A shell that is not bloat like bash (Bloat Again Shell).
+- **mksh**: An alternative shell to bash, MirBSD Korn Shell.
 - **tmux**: A terminal multiplexer.
 - **vim**: Highly configurable text editor, I'm using with no plugins, only vanilla vim.
 - **transmission-remote-cli**: Curses interface for the daemon of the BitTorrent client Transmission.
