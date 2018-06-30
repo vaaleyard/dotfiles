@@ -1,4 +1,7 @@
-" My old vim configuration: http://ix.io/1f88
+" My old vim configuration: http://ix.io/1f88   (It is here only by reference, it's a super bloat config!!)
+
+" General settings {{{
+
 " Filetype support
 filetype plugin indent on
 syntax on
@@ -11,8 +14,8 @@ set background=dark
 set scrolloff=5
 set lazyredraw                          " Don't update the display while executing macros
 set tabstop=4                           " Tab indentation levels every four columns
-set shiftwidth=4                        " Indent/outdent by four columns (>> key)
-set expandtab                           " Convert all tabs that are typed into spaces
+set shiftwidth=4                        " Indent/outdent by four columns (when pressing >>)
+set expandtab                           " Convert all tabs that are typed into spaces (it has a better compatibility with other computers)
 set shiftround                          " Always indent/outdent to nearest tabstop
 set smarttab                            " Use shiftwidths at left margin, tabstops everywhere else
 set laststatus=2                        " Always show the statusline
@@ -31,16 +34,10 @@ set undofile undodir=~/.vim/tmp/undo/   " Set undofiles (undo files even if you 
 set splitbelow splitright               " Split belor and/or right when opening new buffers
 set list listchars=eol:$,trail:∙ listchars+=tab:│\  fillchars+=vert:│,fold:\  
 set foldenable foldmethod=marker
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
-
-" Select a function
-xnoremap if /^\s*}<CR><Esc>V%
-
-" Set statusline
+" Set up statusline
 set statusline=\ %f\ %y\ %m%=%l/%L\ \ \ \ \ \ \ \ %c\  
+ " }}}
+" Mappings {{{
 
 " Ergonomics
 inoremap <C-H> (
@@ -70,6 +67,28 @@ nnoremap ,i :ilist /
 nnoremap [I [I:ijump<Space><Space><Space><C-r><C-w><S-Left><Left><Left>
 nnoremap ]I ]I:ijump<Space><Space><Space><C-r><C-w><S-Left><Left><Left>
 
+" Move to other buffers
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+
+" Visual select inside a whole function
+xnoremap if /^\s*}<CR><Esc>V%
+
+" File navigation
+nnoremap ,f :find *
+nnoremap ,s :sfind *
+nnoremap ,v :vert sfind *
+nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+nnoremap ,S :sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+nnoremap gb :ls<CR>:buffer<Space>
+
+" better completion menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " Smooth listing
 cnoremap <expr> <CR> <SID>CCR()
 function! s:CCR()
@@ -89,26 +108,14 @@ function! s:CCR()
     else | return "\<CR>" | endif
 endfunction
 
-" File navigation
-nnoremap ,f :find *
-nnoremap ,s :sfind *
-nnoremap ,v :vert sfind *
-nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-nnoremap ,S :sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-nnoremap gb :ls<CR>:buffer<Space>
-
-" commands for adjusting indentation rules manually
+" Commands for adjusting indentation rules manually
 command! -nargs=1 Spaces execute "setlocal tabstop=" . <args> . " shiftwidth=" . <args> . " softtabstop=" . <args> . " expandtab" | setlocal ts? sw? sts? et?
 command! -nargs=1 Tabs   execute "setlocal tabstop=" . <args> . " shiftwidth=" . <args> . " softtabstop=" . <args> . " noexpandtab" | setlocal ts? sw? sts? et?
 
-" better completion menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Share text
+" Share text on ix.io (visual select something, type :IX, and it will upload to ix.io)
 command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | xclip -i -selection clipboard
 
+" }}}
 " AutoCMD's {{{
 if has('autocmd')
     augroup Set_FileTypes
