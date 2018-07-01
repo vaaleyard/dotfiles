@@ -88,6 +88,7 @@ nnoremap gb :ls<CR>:buffer<Space>
 " better completion menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 " Smooth listing
 cnoremap <expr> <CR> <SID>CCR()
@@ -149,8 +150,8 @@ if has('autocmd')
         highlight ModeMsg         ctermbg=Red       ctermfg=White    cterm=bold
         highlight Search          ctermfg=White     ctermbg=Red      cterm=bold
         highlight IncSearch       ctermfg=White     ctermbg=Red      cterm=bold
-        highlight StatusLine      ctermfg=35        ctermbg=7
-        highlight StatusLineNC    ctermfg=7         ctermbg=35
+        highlight StatusLine      ctermfg=35        ctermbg=8
+        highlight StatusLineNC    ctermfg=8         ctermbg=35
 
         " Git-specific settings
         autocmd FileType gitcommit nnoremap <buffer> { ?^@@<CR>|nnoremap <buffer> } /^@@<CR>|setlocal iskeyword+=-
