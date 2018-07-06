@@ -256,7 +256,7 @@ st.termname:          xterm-256color
 st.shell:        /bin/mksh
 
 ! The following options options can be reloaded via USR1 signal.
-st.font:              curie:size=11
+st.font:              curie:size=12
 *.italicFont:         curie:italic:size=11
 st.borderpx:          35
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
@@ -286,21 +286,45 @@ st.opacity:      255
 
 ! Theme: mine
 
+! Verde mais escuro
 #define base00 #002b36
+
+! Verde escuro
 #define base01 #073642
+
+! Cinza escuro
 #define base02 #586e75
 #define base03 #657b83
+
+! Cinza um pouco claro
 #define base04 #839496
 #define base05 #93a1a1
+
+! #ebdbb2 do Gruvbox
 #define base06 #eee8d5
 #define base07 #fdf6e3
+
+! Vermelho brilhante
 #define base08 #dc322f
+
+! Vermelho
 #define base09 #cb4b16
-#define base0A #b58900
+
+! Verde agua
+#define base0A #5F8972
+
+! Verde
 #define base0B #859900
+
+! Verde mar
 #define base0C #2aa198
+! Light blue
 #define base0D #268bd2
+
+! Roxo
 #define base0E #6c71c4
+
+! Pink
 #define base0F #d33682
 
 *.foreground:   #A9C4C6
@@ -314,14 +338,14 @@ st.opacity:      255
 *.color4:       base0D
 *.color5:       base0E
 *.color6:       base0C
-*.color7:       base05
+*.color7:       base03
 
-*.color8:       base03
+*.color8:       base00
 *.color9:       base09
-*.color10:      base01
+*.color10:      base0A
 *.color11:      base02
 *.color12:      base04
-*.color13:      base06
+*.color13:      #A9C4C6
 *.color14:      base0F
 *.color15:      base07
 
