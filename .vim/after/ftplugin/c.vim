@@ -4,8 +4,10 @@
 "autocmd BufNewFile *.c :norm kJ | call cursor(13,1)
 " When typing ';' marks a undo point, so when hit u, it won't undo the whole thing that you did in insert mode (nice when programming), and always save when press ;
 inoremap ; ;<c-g>u
-inoremap {<CR> <CR>{<CR>}<Esc>O
-inoremap /*<space> /*  */<Esc>2<Left>i
 "inoremap ; :w<CR>
+inoremap {<CR> <space>{<CR>}<Esc>O
+inoremap /*<space> /*  */<Esc>2<Left>i
 set colorcolumn=72
-
+iabbrev #i #include
+iabbrev #d #define
+set foldmethod=syntax
