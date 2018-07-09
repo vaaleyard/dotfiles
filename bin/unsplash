@@ -7,5 +7,6 @@ rm -rf $DIR
 mkdir $DIR
 
 for i in {1..50}; do
-	wget --quiet -O $DIR/$i.jpg "https://unsplash.it/1920/1080/?random"
+	wget --quiet -O $DIR/$i.jpg "https://source.unsplash.com/random/1366x768"
+    sleep 2
 done
