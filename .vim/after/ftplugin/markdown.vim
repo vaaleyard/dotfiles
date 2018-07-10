@@ -1,4 +1,3 @@
-
 " [B]old text
 inoremap ;b **<Esc>i
 
@@ -15,13 +14,13 @@ inoremap ;l --------<Enter>
 inoremap ;c ```<CR>```<CR><CR><esc>2kO
 
 " Header [1]
-inoremap ;1 #<Space><Enter><Esc>kA
+inoremap ;1 #<Space>
 
 " Header [2]
-inoremap ;2 ##<Space><Enter><Esc>kA
+inoremap ;2 ##<Space>
 
 " Header [3]
-inoremap ;3 ###<Space><Enter><Esc>kA
+inoremap ;3 ###<Space>
 
 " Insert [u]rls
 inoremap ;u []()<Esc>F[a
