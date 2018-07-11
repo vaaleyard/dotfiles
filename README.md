@@ -41,7 +41,7 @@
 ## Info
 
 - Distro: `Void Linux`
-- Window Manager: `i3-gaps`
+- Window Manager: `bspwm`
 - Bar: `lemonbar`
 - Terminal Emulator: `st`
 - Editor: `vim`
