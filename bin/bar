@@ -1,0 +1,257 @@
+#!/bin/bash
+
+panel_fifo=/tmp/panel-fifo
+font="-*-cherry-*-*-*--*-*"
+icon="*-siji-*-*-*--10-*"
+width="1000"
+height="22"
+horizontal_offset=175
+vertical_offset=10
+PANEL_WM_NAME=bspwm_panel
+
+# Colors
+COLOR_DEFAULT_FG="#A9C4C6"
+COLOR_DEFAULT_BG="#101e22" #Green
+COLOR_MONITOR_FG="#dee3e0"
+COLOR_MONITOR_BG="#101e22"
+COLOR_FOCUSED_MONITOR_FG="#A9C4C6"
+COLOR_FOCUSED_MONITOR_BG="#528588"
+COLOR_FREE_FG="#737171"
+COLOR_FREE_BG="#101e22"
+COLOR_FOCUSED_FREE_FG="#dee3e0"
+COLOR_FOCUSED_FREE_BG="#528588"
+COLOR_OCCUPIED_FG="#A9C4C6"
+COLOR_OCCUPIED_BG="#101e22"
+COLOR_FOCUSED_OCCUPIED_FG="#A9C4C6"
+COLOR_FOCUSED_OCCUPIED_BG="#5F8972"
+COLOR_URGENT_FG="#dee3e0"
+COLOR_URGENT_BG="#ba5e57"
+COLOR_FOCUSED_URGENT_FG="#b48ead"
+COLOR_FOCUSED_URGENT_BG="#ba5e57"
+COLOR_STATE_FG="#101e22"
+COLOR_STATE_BG="#101e22"
+COLOR_SYS_FG="#dee3e0"
+COLOR_SYS_BG="#101e22"
+
+[ -e "$panel_fifo" ] && rm "$panel_fifo"
+mkfifo "$panel_fifo"
+
+clock() {
+    while true; do
+        date +"S%H:%M"
+        sleep 15
+    done
+}
+
+battery() {
+    battery="$(</sys/class/power_supply/BAT0/capacity)"
+    charging="$(</sys/class/power_supply/BAT0/status)"
+
+    [ "$charging" == "Charging" ] && \
+        battery="%{F#5F8972}%{F#A9C4C6} ${battery}%"
+
+    while true; do
+        case "$battery" in
+            [0-9]|10)
+                printf "%s" "Z%{F#5F8972}%{F#A9C4C6} ${battery}% "
+                ;;
+
+            1[0-9]|2[0-5])
+                printf "%s" "Z%{F#5F8972}%{F#A9C4C6} ${battery}% "
+                ;;
+
+            2[6-9]|3[0-9]|4[0-9]|50)
+                printf "%s" "Z%{F#5F8972}%{F#A9C4C6} ${battery}% "
+                ;;
+
+            5[1-9]|6[0-9]|7[0-5])
+                printf "%s" "Z%{F#5F8972}%{F#A9C4C6} ${battery}% "
+                ;;
+
+            7[6-9]|8[0-9]|9[0-9]|100)
+                printf "%s" "Z%{F#5F8972}%{F#A9C4C6} ${battery}% "
+                ;;
+        esac
+        sleep 180
+    done
+}
+
+wifi() {
+    WIFI=$(iwconfig wlp6s0 | sed -n 's/"//g; s/\s*$//g; s/.*ESSID://p')
+
+    if [ "$wifi" == "off/any" ]; then
+        WIFI_OUTPUT="no wifi"
+    else
+        WIFI_OUTPUT="${WIFI}"
+    fi
+
+    printf "%s\\n" " $WIFI_OUTPUT "
+}
+
+volume() {
+    while true; do
+        NOTMUTED=$(amixer -M | head -5 | grep "\[on\]")
+        AUDIO=$(amixer -M | head -5 | grep -o -m 1 -E "[[:digit:]]+%")
+
+        if [ -z "$NOTMUTED" ];
+        then
+            printf "%s\\n" "T Muted "
+        else
+            case "$AUDIO" in
+                0%|[0-9]%) printf "%s\\n" "T $AUDIO " ;;
+                1?%|2?%|3?%) printf "%s\\n" "T $AUDIO " ;;
+                4?%|5?%|6?%) printf "%s\\n" "T $AUDIO " ;;
+                *) printf "%s\\n" "T $AUDIO " ;;
+            esac
+        fi
+        sleep 0.1
+    done
+}
+# Just to make sure there is no double process
+killall -9 lemonbar xdo clock volume
+
+# Echo every modules to panel_fifo
+battery > "$panel_fifo" &
+wifi > "$panel_fifo" &
+clock > "$panel_fifo" &
+volume > "$panel_fifo" &
+bspc subscribe report  > "$panel_fifo" &
+num_mon=$(bspc query -M | wc -l)
+
+bar_wp() {
+    while read -r line ; do
+        case $line in
+            Y*) # wifi output
+                sysY="${line#?}"
+                ;;
+            S*)
+                # clock output
+                sysC="${line#?}"
+                ;;
+            T*)
+                # xtitle output
+                sysR="${line#?}"
+                ;;
+            Z*) # battery output
+                sysZ="${line#?}"
+                ;;
+            W*)
+                # workspaces output
+                wm=
+                IFS=':'
+                set -- ${line#?}
+                while [ $# -gt 0 ] ; do
+                    item=$1
+                    name=${item#?}
+                    case $item in
+                        [mM]*)
+                            case $item in
+                                m*)
+                                    # monitor
+                                    FG=$COLOR_MONITOR_FG
+                                    BG=$COLOR_MONITOR_BG
+                                    on_focused_monitor=
+                                    ;;
+                                M*)
+                                    # focused monitor
+                                    FG=$COLOR_FOCUSED_MONITOR_FG
+                                    BG=$COLOR_FOCUSED_MONITOR_BG
+                                    on_focused_monitor=1
+                                    ;;
+                            esac
+                            [ $num_mon -lt 2 ] && shift && continue
+                            wm="${wm}%{F${FG}}%{B${BG}}%{A:bspc monitor -f ${name}:} ${name} %{A}%{B-}%{F-}"
+                            ;;
+                        [fFoOuU]*)
+                            case $item in
+                                f*)
+                                    # free desktop
+                                    FG=$COLOR_FREE_FG
+                                    BG=$COLOR_FREE_BG
+                                    UL=$BG
+                                    ;;
+                                F*)
+                                    if [ "$on_focused_monitor" ] ; then
+                                        # focused free desktop
+                                        FG=$COLOR_FOCUSED_FREE_FG
+                                        BG=$COLOR_FOCUSED_FREE_BG
+                                        UL=$BG
+                                    else
+                                        # active free desktop
+                                        FG=$COLOR_FREE_FG
+                                        BG=$COLOR_FREE_BG
+                                        UL=$COLOR_FOCUSED_FREE_BG
+                                    fi
+                                    ;;
+                                o*)
+                                    # occupied desktop
+                                    FG=$COLOR_OCCUPIED_FG
+                                    BG=$COLOR_OCCUPIED_BG
+                                    UL=$BG
+                                    ;;
+                                O*)
+                                    if [ "$on_focused_monitor" ] ; then
+                                        # focused occupied desktop
+                                        FG=$COLOR_FOCUSED_OCCUPIED_FG
+                                        BG=$COLOR_FOCUSED_OCCUPIED_BG
+                                        UL=$BG
+                                    else
+                                        # active occupied desktop
+                                        FG=$COLOR_OCCUPIED_FG
+                                        BG=$COLOR_OCCUPIED_BG
+                                        UL=$COLOR_FOCUSED_OCCUPIED_BG
+                                    fi
+                                    ;;
+                                u*)
+                                    # urgent desktop
+                                    FG=$COLOR_URGENT_FG
+                                    BG=$COLOR_URGENT_BG
+                                    UL=$BG
+                                    ;;
+                                U*)
+                                    if [ "$on_focused_monitor" ] ; then
+                                        # focused urgent desktop
+                                        FG=$COLOR_FOCUSED_URGENT_FG
+                                        BG=$COLOR_FOCUSED_URGENT_BG
+                                        UL=$BG
+                                    else
+                                        # active urgent desktop
+                                        FG=$COLOR_URGENT_FG
+                                        BG=$COLOR_URGENT_BG
+                                        UL=$COLOR_FOCUSED_URGENT_BG
+                                    fi
+                                    ;;
+                            esac
+                            wm="${wm}%{F${FG}}%{B${BG}}%{U${UL}}%{+u}%{A:bspc desktop -f ${name}:} ${name} %{A}%{B-}%{F-}%{-u}"
+                            ;;
+                        [LTG]*)
+                            # layout, state and flags
+                            wm="${wm}%{F$COLOR_STATE_FG}%{B$COLOR_STATE_BG} ${name} %{B-}%{F-}"
+                            ;;
+                    esac
+                    shift
+                done
+                ;;
+        esac
+        printf "%s\n" "%{l}${wm}%{c} ${sysC}%{r}${sysR}${sysY} ${sysZ}"
+    done
+}
+
+bar_wp < "$panel_fifo" | lemonbar -a 12 \
+    -g "$width"x"$height"+"$horizontal_offset"+"$vertical_offset" \
+    -f "$font" -f "$icon" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" -n "$PANEL_WM_NAME" | sh &
+
+sleep 0.5
+# Trigger the PANEL_FIFO to make it instantly refreshed after bspwmrc reloaded
+echo "dummy" > "$panel_fifo"
+
+sleep 0.5
+# Rule the panel to make it hiding below fullscreen window
+# I add 'sleep 0.5' to avoid xdo executed before the Lemonbar fully loaded
+wid=$(xdo id -a "$PANEL_WM_NAME")
+xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+
+# Don't close this process
+wait
+
+
