@@ -1,5 +1,9 @@
 #! /bin/sh
 
+# Scratchpad terminal: https://www.reddit.com/r/bspwm/comments/85hr4c/making_a_scratchpaddropdown_terminal_in_bspwm/
+# I've modified a little bit to open with a tmux session instead of just a terminal
+st -c scratchterm -n scratchterm -c scratchterm -e tmux new-session -s scratchterm &
+xsetroot -cursor_name left_ptr &
 hsetroot -fill ~/Pictures/Landscapes/river-forest.jpg
 xrdb -load $HOME/.Xresources
 xmodmap $HOME/.Xmodmap
@@ -28,8 +32,11 @@ bspc config bottom_padding          33
 # Rules
 bspc rule -a st              desktop='^1'   state=floating
 bspc rule -a 'Pale moon'     desktop='^2'
-bspc rule -a TelegramDesktop desktop='^6'   state=floating
 bspc rule -a zathura         desktop='^4'   focus=on
+bspc rule -a neomutt         desktop='^5'
+bspc rule -a TelegramDesktop desktop='^6'   state=floating
+bspc rule -a weechat         desktop='^7'
 bspc rule -a mpv             state=floating center=true
 bspc rule -a Sxiv            state=floating center=true
 bspc rule -a Screenkey       manage=off
+bspc rule -a scratchterm sticky=on state=floating hidden=on
