@@ -133,43 +133,46 @@ super + shift + {b,t}
 
 # Reboot system
 super + shift + BackSpace
-    $HOME/bin/prompt "Are you sure you want to reboot?" "$reboot"
+    $HOME/bin/prompt "Are you sure you want to reboot?" "sudo reboot"
 
 # Screenshot (copying to clipboard)
-super + s
-    scrot -e 'xclip -selection clipboard -t image/png $f && rm -f $f'
-super + shift + s
-    scrot -se 'xclip -selection clipboard -t image/png $f && rm -f $f'
+super + {s, shift + s}
+    {scrot -e 'xclip -selection clipboard -t image/png $f && rm -f $f', scrot -se 'xclip -selection clipboard -t image/png $f && rm -f $f'}
 
 # Screenshot (saving to some directory)
-super + Print
-    scrot -e 'mv $f ~/Pictures/scrot' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'
-super + shift + Print
-    scrot -se 'mv $f ~/Pictures/scrot/' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'
+super + {Print, shift + Print}
+    {scrot -e 'mv $f ~/Pictures/scrot' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot', scrot -se 'mv $f ~/Pictures/scrot/' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'}
+
+# Open ranger/ranger with sudo
+super + {r, shift + r}
+    {st -n ranger -c ranger -e ranger, st -n ranger -c ranger -e sudo ranger}
 
 # Open Neomutt/Newsboat
-super + n
-    st -n neomutt -c neomutt -e neomutt
-super + shift + n
-    st -n newsboat -c newsboat -e newsboat
+super + {n, shift + n}
+    {st -n neomutt -c neomutt -e neomutt, st -n newsboat -c newsboat -e newsboat}
 
 # Weechat/dmoji script
-super + w
-    st -n weechat -c weechat -e weechat-curses
-super + shift + w
-    st -n weechat -c weechat -e weechat-curses
+super + {w, shift + w}
+    {st -n weechat -c weechat -e weechat-curses, st -n weechat -c weechat -e weechat-curses}
 
 # Turn off the sound and stop cmus
 super + x
-    amixer sset Master mute ; cmus-remote --stop
+    amixer sset Master mute ; $HOME/.config/i3/locki3.sh
 
 # Shutdown computer
 super + shift + x
     $HOME/bin/prompt "Are you sure you want to shutdown?" "sudo poweroff -h now"
 
+# Record the screen/Stop recording the scren
+alt + {r, shift + r}
+    {$HOME/bin/record-slop, killall ffmpeg && notify-send "FFmpeg" "Gravação da tela finalizada!"}
+
+super + u
+    scratchtermtoggle
+
 # Media {{{
 # For cmus
-set $music "st tmux new-window -t dropdown && tmux send-keys -t dropdown cmus 'Enter'"
+set $music "st tmux new-window -t scratchterm && tmux send-keys -t scratchterm cmus 'Enter'"
 
 # Mute sound
 super + F8
@@ -180,8 +183,8 @@ super + F8
     #exec $music
 
 # Deprecated
-#super + shift + m
-    #tmux split-window -t dropdown -v && tmux send-keys -t dropdown 'cmus-lyrics | less' 'Enter'
+super + shift + m
+    tmux split-window -t scratchterm -v && tmux send-keys -t scratchterm 'cmus-lyrics | less' 'Enter'
 
 # Play a song on cmus
 super + p
