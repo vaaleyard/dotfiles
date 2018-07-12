@@ -24,8 +24,8 @@ super + {_,shift + }q
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
+#super + m
+	#bspc desktop -l next
 
 # send the newest marked node to the newest preselected node
 super + y
@@ -115,21 +115,22 @@ super + {Left,Down,Up,Right}
 # User bindings
 ##########################
 
+# Letter keybindings {{{
 # Open st with tmux
 super + shift + Return
     st -e tmux
 
 # Reload bspwm
 super + F5
-    ~/.config/bspwm/bspwmrc
+    $HOME/.config/bspwm/bspwmrc
 
 # cmus-status script
 super + c
 	$HOME/bin/cmus-status
 
 ## Browser and Telegram
-super + shift + {b,t}
-	{$BROWSER 2>&-,Telegram 2>&-}
+super + shift + {b, t}
+	{$BROWSER 2>&-, Telegram 2>&-}
 
 # Reboot system
 super + shift + BackSpace
@@ -153,7 +154,7 @@ super + {n, shift + n}
 
 # Weechat/dmoji script
 super + {w, shift + w}
-    {st -n weechat -c weechat -e weechat-curses, st -n weechat -c weechat -e weechat-curses}
+    {st -n weechat -c weechat -e weechat-curses, $HOME/bin/dmoji}
 
 # Turn off the sound and stop cmus
 super + x
@@ -170,17 +171,16 @@ alt + {r, shift + r}
 super + u
     scratchtermtoggle
 
+# }}}
 # Media {{{
-# For cmus
-set $music "st tmux new-window -t scratchterm && tmux send-keys -t scratchterm cmus 'Enter'"
 
 # Mute sound
 super + F8
     amixer sset Master toggle
 
 # Conflited
-#super + m
-    #exec $music
+super + m
+    st tmux new-window -t scratchterm && tmux send-keys -t scratchterm cmus 'Enter'
 
 # Deprecated
 super + shift + m
@@ -207,8 +207,8 @@ super + {comma, period}
     cmus-remote {--prev, --next} && pkill dunst && cmus-status
 
 # When you're watching educational videos and someone comes up to you:
-# It mutes your sound, goes to another workspace with vim and ranger opened to pretend you are doing something
+# It mutes your sound, goes to another workspace with vim and zathura opened to pretend you are doing something useful
 super + shift + Delete
-    amixer sset Master mute ; workspace '' ; st -e zathura vim ~/.vimrc ; exec $term -e ranger
+    amixer sset Master mute ; bspc desktop -f '^8' ; st -e vim ~/.vimrc ; zathura $HOME/Documents/library/Linux/Guia\ Foca\ Linux\ -\ Intermediário.pdf
 
 # }}}
