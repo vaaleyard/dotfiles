@@ -11,8 +11,8 @@ PANEL_WM_NAME=bspwm_panel
 
 icon() {
     case $2 in
-        0) printf "%s" "%{F#A9C4C6}${1}%{F-}";;
-        1) printf "%s" "%{F#A9C4C6}${1}%{F-}";;
+        0) printf "%s" "%{F#5F8972}${1}%{F-}";;
+        1) printf "%s" "%{F#5F8972}${1}%{F-}";;
     esac
 }
 
@@ -55,16 +55,19 @@ battery() {
         battery_status=$(cat /sys/class/power_supply/BAT0/status)
         battery_percent=$(cat /sys/class/power_supply/BAT0/capacity)
         case "$battery_status" in
-            Charging) echo 'Z' "$(icon  0) ${battery_percent} ";;
+            Charging) echo 'Z' "$(icon  0) ${battery_percent}% ";;
             Discharging)
                 if [ "$battery_percent" -gt 80 ]
                 then
-                    echo 'Z' "$(icon  0) ${battery_percent} "
+                    echo 'Z' "$(icon  0) ${battery_percent}% "
+                elif [ "$battery_percent" -gt 50 ]
+                then
+                    echo 'Z' "$(icon  0) ${battery_percent}% "
                 elif [ "$battery_percent" -gt 30 ]
                 then
-                    echo 'Z' "$(icon  0) ${battery_percent} "
+                    echo 'Z' "$(icon  0) ${battery_percent}% "
                 else
-                    echo 'Z' "$(icon  0) ${battery_percent} "
+                    echo 'Z' "$(icon  0) ${battery_percent}% "
                 fi
                 ;;
             Unknown|Full) echo 'Z' "$(icon  0) 100% ";;
@@ -96,10 +99,10 @@ volume() {
             printf "%s\\n" "T%{F#cc241d} Muted "
         else
             case "$AUDIO" in
-                0%|[0-9]%) printf "%s\\n" "T $AUDIO " ;;
-                1?%|2?%|3?%) printf "%s\\n" "T $AUDIO " ;;
-                4?%|5?%|6?%) printf "%s\\n" "T $AUDIO " ;;
-                *) printf "%s\\n" "T $AUDIO " ;;
+                0%|[0-9]%) printf "%s\\n" "T%{F#5F8972} %{F-}$AUDIO " ;;
+                1?%|2?%|3?%) printf "%s\\n" "T%{F#5F8972} %{F-}$AUDIO " ;;
+                4?%|5?%|6?%) printf "%s\\n" "T%{F#5F8972} %{F-}$AUDIO " ;;
+                *) printf "%s\\n" "T%{F#5F8972} %{F-}$AUDIO " ;;
             esac
         fi
         sleep 0.1
@@ -231,7 +234,7 @@ bar_wp() {
                 done
                 ;;
         esac
-        printf "%s\n" "%{l}${wm}%{c} ${sysC}%{r}${sysR}${sysY} ${sysZ}"
+        printf "%s\n" "%{l}${wm}%{c}%{F#5F8972} %{F-}${sysC}%{r}${sysR}${sysY} ${sysZ}"
     done
 }
 
