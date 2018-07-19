@@ -63,11 +63,11 @@ battery() {
                 elif [ "$battery_percent" -gt 50 ]
                 then
                     echo 'Z' "$(icon  0) ${battery_percent}% "
-                elif [ "$battery_percent" -gt 30 ]
+                elif [ "$battery_percent" -gt 16 ]
                 then
                     echo 'Z' "$(icon  0) ${battery_percent}% "
                 else
-                    echo 'Z' "$(icon  0) ${battery_percent}% "
+                    echo 'Z' "$(icon  0) ${battery_percent}% "
                 fi
                 ;;
             Unknown|Full) echo 'Z' "$(icon  0) 100% ";;
