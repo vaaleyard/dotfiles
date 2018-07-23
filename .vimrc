@@ -1,5 +1,12 @@
 " My old vim configuration: http://ix.io/1f88   (It is here only by reference, it's a super bloat config!!)
 
+call plug#begin('~/.vim/plugged')
+" Plugins for notetaking only:
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'suan/vim-instant-markdown', { 'on' : 'InstantMarkdownPreview' }
+Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' }
+call plug#end()
+
 " General settings {{{
 
 " Filetype support
@@ -7,11 +14,9 @@ filetype plugin indent on
 syntax on
 
 runtime macros/matchit.vim
-runtime! plugin/sensible.vim
-colorscheme gruvbox
-set background=dark
-
-set scrolloff=5
+colorscheme gruvbox                     " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
+set background=dark                     " Use a dark background
+set scrolloff=5                         " Keep at least 3 lines above/below when scrolling
 set lazyredraw                          " Don't update the display while executing macros
 set tabstop=4                           " Tab indentation levels every four columns
 set shiftwidth=4                        " Indent/outdent by four columns (when pressing >>)
@@ -29,13 +34,14 @@ set showcmd                             " Show commands at bottom
 set hidden                              " Switch buffers without the need of saving them
 set clipboard=unnamedplus               " Copy to clipboard when yanking text with yy/dd etc.
 set path=.,**                           " Set path to the current and children directories
-set wildmenu wildmode=full              " Show things to auto complete when pressing tab in command mode
+set wildmenu wildmode=full              " Display all matching files when we tab complete
 set undofile undodir=~/.vim/tmp/undo/   " Set undofiles (undo files even if you exited the file)
 set splitbelow splitright               " Split belor and/or right when opening new buffers
 set list listchars=eol:$,trail:∙ listchars+=tab:│\  fillchars+=vert:│,fold:\  
 set foldenable foldmethod=marker
+set shell=bash\ -i
 " Set up statusline
-set statusline=\ %f\ %y\ %m%=%l/%L\ \ \ \ \ \ \ \ %c\  
+set statusline=\ %f\ %y\ %m%=%l,%c\ \ \ \ \ \ \ \ \ \ \ \ %P\ |
  " }}}
 " Mappings {{{
 
@@ -45,9 +51,18 @@ inoremap <C-J> )
 inoremap <C-K> [
 inoremap <C-L> ]
 inoremap <C-D> *
+" http://items.sjbach.com/319/configuring-vim-right
 noremap ; :
 noremap : ;
 nnoremap ' `
+
+nnoremap <Esc> :nohl<CR>
+" Make 0 go to the first character rather than the beginning
+" " of the line. When we're programming, we're almost always
+" " interested in working with text rather than empty space. If
+" " you want the traditional beginning of line, use ^
+nnoremap 0 ^
+nnoremap ^ 0
 
 " Supercharge dot formula
 nnoremap c* *``cgn
@@ -88,7 +103,7 @@ nnoremap gb :ls<CR>:buffer<Space>
 " better completion menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 " Smooth listing
 cnoremap <expr> <CR> <SID>CCR()
@@ -116,13 +131,21 @@ command! -nargs=1 Tabs   execute "setlocal tabstop=" . <args> . " shiftwidth=" .
 " Share text on ix.io (visual select something, type :IX, and it will upload to ix.io)
 command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | xclip -i -selection clipboard
 
+" Clear all the registers available: https://stackoverflow.com/a/41003241
+command! ClearReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+
+" Fix the go to next line if wrap is enabled
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+
 " }}}
 " AutoCMD's {{{
 if has('autocmd')
     augroup Set_FileTypes
         autocmd!
+        "autocmd BufRead,BufNewFile,BufWritePost *.md set filetype=markdown
+        autocmd FileType vimwiki map <leader>d <Plug>VimwikiToggleListItem
         autocmd BufRead,BufNewFile,BufWritePost *.pl set filetype=prolog
-        autocmd FileType markdown setlocal spell
         autocmd FileType gitcommit setlocal spell
         autocmd FileType qf wincmd J | setlocal wrap
         autocmd FileType mail
@@ -152,6 +175,16 @@ if has('autocmd')
         highlight IncSearch       ctermfg=White     ctermbg=Red      cterm=bold
         highlight StatusLine      ctermfg=35        ctermbg=8
         highlight StatusLineNC    ctermfg=8         ctermbg=35
+        highlight Visual          ctermbg=247       ctermfg=black    cterm=bold
+        " Tabline color settings
+        highlight TabLine      ctermfg=White  ctermbg=Black     cterm=NONE
+        highlight TabLineFill  ctermfg=White  ctermbg=Black     cterm=NONE
+        highlight TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+        " Spell color settings
+        highlight SpellBad     term=underline cterm=underline ctermfg=Red
+        highlight SpellCap     term=underline cterm=underline
+        highlight SpellRare    term=underline cterm=underline
+        highlight SpellLocal   term=underline cterm=underline
 
         " Git-specific settings
         autocmd FileType gitcommit nnoremap <buffer> { ?^@@<CR>|nnoremap <buffer> } /^@@<CR>|setlocal iskeyword+=-
@@ -191,4 +224,20 @@ let g:netrw_fastbrowse     = 1
 let g:netrw_sort_by        = 'name'
 let g:netrw_sort_direction = 'normal'
 let g:netrw_winsize = -28
+
+function! ToggleExplore()
+    if &ft ==# "netrw"
+         Rexplore
+    else
+         Explore
+    endif
+endfunction
+map <F2> <Esc><Esc>:call ToggleExplore()<CR>
 " }}}
+" vimwiki ;(
+let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+
+" Instant Markdown Preview ;(
+let g:instant_markdown_autostart = 0    " disable autostart
+let g:instant_markdown_slow = 1
+nnoremap <leader>md :InstantMarkdownPreview<CR>
