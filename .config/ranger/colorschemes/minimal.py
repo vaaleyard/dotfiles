@@ -21,7 +21,7 @@ class base(ColorScheme):
             if context.border:
                 fg = 238
             if context.image:
-                fg = 146
+                fg = 4
             if context.video:
                 fg = 176
             if context.audio:
@@ -33,7 +33,7 @@ class base(ColorScheme):
                 fg = 1
             if context.directory:
                 attr |= bold
-                fg = 6
+                fg = 35
             elif context.executable and not \
                     any((context.media, context.container,
                        context.fifo, context.socket)):
@@ -59,13 +59,13 @@ class base(ColorScheme):
                     fg = 1
             if not context.selected and (context.cut or context.copied):
                 fg = 15
-                bg = 8
+                bg = 44
             if context.main_column:
                 if context.selected:
                     attr |= bold
                 if context.marked:
                     attr |= bold
-                    fg = 8
+                    fg = 119
             if context.badinfo:
                 if attr & reverse:
                     bg = 1
@@ -75,24 +75,24 @@ class base(ColorScheme):
         elif context.in_titlebar:
             attr |= bold
             if context.hostname:
-                fg = context.bad and 8 or 7
+                fg = context.bad and 6 or 7
             elif context.directory:
-                fg = 8
+                fg = 35
             elif context.tab:
                 if context.good:
                     fg = 1
             elif context.link:
-                fg = 8
+                fg = 6
 
         elif context.in_statusbar:
             if context.permissions:
                 if context.good:
                     fg = 7
                 elif context.bad:
-                    fg = 8
+                    fg = 6
             if context.marked:
                 attr |= bold | reverse
-                fg = 8
+                fg = 6
             if context.message:
                 if context.bad:
                     attr |= bold
@@ -113,7 +113,7 @@ class base(ColorScheme):
 
         if context.in_taskview:
             if context.title:
-                fg = 8
+                fg = 6
 
             if context.selected:
                 attr |= reverse
