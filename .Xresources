@@ -256,8 +256,8 @@ st.termname:          xterm-256color
 st.shell:        /bin/mksh
 
 ! The following options options can be reloaded via USR1 signal.
-st.font:              curie:size=12
-*.italicFont:         curie:italic:size=11
+st.font:              Monaco:size=10
+*.italicFont:         Monaco:italic:size=10
 st.borderpx:          35
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:       2
