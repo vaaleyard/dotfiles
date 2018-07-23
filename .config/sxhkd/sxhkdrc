@@ -2,11 +2,11 @@
 
 # terminal emulator
 super + Return
-	st -g 79x20
+	st -g 130x40
 
 # program launcher
 super + d
-	dmenu_run -i -fn 'iosevka Nerd Font:size=11' -p ' Search  ' -nb '#2f343f' -nf '#e7e8eb' -sb '#81A1C1' -sf '#2f343f'
+	dmenu_run -i -l 3 -fn 'iosevka Nerd Font:size=11' -p ' Search  ' -nb '#2f343f' -nf '#e7e8eb' -sb '#81A1C1' -sf '#2f343f'
 
 # make sxhkd reload its configuration files:
 super + shift + c
