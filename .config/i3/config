@@ -81,40 +81,49 @@ bindsym $mod+e mode "$mode_display"
 
 # }}}
 # Workspace settings =============={{{
-set $ws1 ""
-set $ws2 ""
-set $ws3 ""
-set $ws4 ""
-set $ws5 ""
-set $ws6 ""
-set $ws7 ""
+set $ws1  ""
+set $ws2  ""
+set $ws3  ""
+set $ws4  ""
+set $ws5  ""
+set $ws6  ""
+set $ws7  ""
+set $ws8  "VIII"
+set $ws9  "IX"
+set $ws10 "X"
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
+bindsym $mod+1  workspace $ws1
+bindsym $mod+2  workspace $ws2
+bindsym $mod+3  workspace $ws3
+bindsym $mod+4  workspace $ws4
+bindsym $mod+5  workspace $ws5
+bindsym $mod+6  workspace $ws6
+bindsym $mod+7  workspace $ws7
+bindsym $mod+8  workspace $ws8
+bindsym $mod+9  workspace $ws9
+bindsym $mod+0  workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+1  move container to workspace $ws1
+bindsym $mod+Shift+2  move container to workspace $ws2
+bindsym $mod+Shift+3  move container to workspace $ws3
+bindsym $mod+Shift+4  move container to workspace $ws4
+bindsym $mod+Shift+5  move container to workspace $ws5
+bindsym $mod+Shift+6  move container to workspace $ws6
+bindsym $mod+Shift+7  move container to workspace $ws7
+bindsym $mod+Shift+8  move container to workspace $ws8
+bindsym $mod+Shift+9  move container to workspace $ws9
+bindsym $mod+Shift+0  move container to workspace $ws10
 
-for_window [class="irssi" instance="irssi"] move workspace $ws7
+for_window [class="weechat" instance="weechat"] move workspace $ws7
 for_window [class="TelegramDesktop"] move workspace $ws6
 #assign [class="mpv"] $ws5
 for_window [class="ranger" instance="ranger"] move workspace $ws4
 for_window [class="neomutt" instance="neomutt"] move workspace $ws5
 
 for_window [instance="math" class="math"] floating enable, resize set 800 300, move scratchpad
-exec --no-startup-id $term -n math -c math -f "Monaco for Powerline:size=14" -e bc -q -l
+exec --no-startup-id $term -n math -c math -f "Monaco:size=14" -e bc -q -l
 
 for_window [instance="dropdown" class="dropdown"] floating enable , resize set 625 400 , move scratchpad
 # Runs the tmuxinit script, which searches for an earlier tmux instance,
@@ -128,6 +137,8 @@ for_window [window_role="gimp-dock"] floating disable; move left; resize shrink 
 for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
 #for_window [class="mpv"] floating enable, resize set 500 200, sticky enable
 #for_window [title="st|tmux"] border pixel 4
+#for_window [title="Spotify"] floating enable, sticky enable
+for_window [class="Sxiv"] floating enable
 
 hide_edge_borders both
 
@@ -246,7 +257,7 @@ bindsym --release $mod+shift+s		exec scrot -se 'xclip -selection clipboard -t im
 
 # Scratchpad windows
 bindsym $mod+a						[instance="math" class="math"] scratchpad show, [instance="math" class="math"] move position center
-bindsym $mod+shift+a				exec "tmux set -g status"
+#bindsym $mod+shift+a				exec cmusart
 
 # Open the default browser
 #bindsym $mod+b
@@ -257,7 +268,7 @@ bindsym $mod+c						exec cmus-status
 bindsym $mod+Shift+c				reload
 
 # start rofi/dmenu (a program launcher)
-bindsym $mod+d						exec dmenu_run -nb \#101e22  -nf \#A9C4C6 -sb \#5F8972 -sf \#A9C4C6 -l 5 -fn curie
+bindsym $mod+d						exec dmenu_run -i -fn 'iosevka Nerd Font:size=11' -p ' Search  ' -nb '#2f343f' -nf '#e7e8eb' -sb '#81A1C1' -sf '#2f343f'
 #bindsym $mod+d						exec rofi -show combi
 
 # Exit i3
@@ -271,13 +282,15 @@ bindsym $mod+Shift+n				exec $term -n newsboat -c newsboat -e newsboat
 bindsym $mod+q kill
 bindsym $mod+Shift+q kill
 
-# Start irssi
-bindsym $mod+w						exec $term -n irssi -c irssi -e tmux new-session -s irssi 'irssi && tmux set-option -t irssi status off'
-#bindsym $mod+shift+w
+# Start weechat
+bindsym $mod+w						exec $term -n weechat -c weechat -e weechat-curses
+bindsym $mod+shift+w                exec $HOME/bin/dmoji
 
 # Start ranger
 bindsym $mod+r						exec $term -n ranger -c ranger -e ranger
 bindsym $mod+Shift+r				exec $term -n ranger -c ranger -e sudo ranger
+bindsym Mod1+r                      exec $HOME/bin/record-slop
+bindsym Mod1+Shift+r                exec killall ffmpeg && exec notify-send "FFmpeg" "Gravação da tela finalizada!"
 
 # Set the default gaps / Open Telegram
 bindsym $mod+t						split toggle
@@ -301,7 +314,7 @@ bindsym $mod+Shift+d				gaps inner current set 0; gaps outer current set 0
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f						fullscreen toggle
-bindsym $mod+shift+f				gaps inner all set 10; gaps outer all set 10
+bindsym $mod+shift+f				gaps inner all set 10; gaps outer all set 25
 
 # Call vim-anywhere
 bindsym Mod1+v exec ~/.vim-anywhere/bin/run
