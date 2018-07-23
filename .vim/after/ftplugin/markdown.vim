@@ -1,30 +1,36 @@
-" [B]old text
-inoremap ;b **<Esc>i
+" Set spell for markdown files
+setlocal spell
 
-" Under[s]cored text
-inoremap ;s __<Esc>i
+" [B]old text
+inoremap ,b **<Esc>i
+
+" I[t]alic text
+inoremap ,t __<Esc>i
+
+" [R]isk text
+inoremap ,r ~~~~<Esc>hi
 
 " [n]ew underscore line
-inoremap ;n <Enter><Enter>---<Enter><Enter>
+inoremap ,n <Enter><Enter>---<Enter><Enter>
 
 " Not sure what is it
-inoremap ;l --------<Enter>
+inoremap ,l <Enter>--------<Enter>
 
 " [C]ode
-inoremap ;c ```<CR>```<CR><CR><esc>2kO
+inoremap ,c ```<CR>```<CR><CR><esc>2kO
 
 " Header [1]
-inoremap ;1 #<Space>
+inoremap ,1 #<Space>
 
 " Header [2]
-inoremap ;2 ##<Space>
+inoremap ,2 ##<Space>
 
 " Header [3]
-inoremap ;3 ###<Space>
+inoremap ,3 ###<Space>
 
 " Insert [u]rls
-inoremap ;u []()<Esc>F[a
-noremap  ;w yiWi[<esc>Ea](<esc>pa)
+inoremap ,u []()<Esc>F[a
+noremap  ,w yiWi[<esc>Ea](<esc>pa)
 
 " Insert [i]mages
-inoremap ;i ![]()<Esc>F[a
+inoremap ,i ![]()<Esc>F[a
