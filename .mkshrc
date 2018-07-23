@@ -14,7 +14,7 @@ export NNN_BMS='gd:~/Documents;gD:~/Downloads/;gF:~/Documents/Faculdade/'
 export NNN_FALLBACK_OPENER=xdg-open
 # }}}
 # mksh settings ==================={{{
-set -o vi
+set -o emacs
 bind ^L=clear-screen
 bind ^V=edit-line
 bind ^K=up-history
