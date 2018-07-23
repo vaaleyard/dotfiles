@@ -2,10 +2,10 @@ HISTSIZE=3000
 HISTFILESIZE=200
 
 if [ "x" != "x$DISPLAY" ]; then
-	xmodmap -e "clear lock"
-	xmodmap -e "keycode 66 = Escape"
-	xmodmap -e "keycode 9 = Caps_Lock"
-	xmodmap -e "add Lock = Caps_Lock"
+    xmodmap -e "clear lock"
+    xmodmap -e "keycode 66 = Escape"
+    xmodmap -e "keycode 9 = Caps_Lock"
+    xmodmap -e "add Lock = Caps_Lock"
 fi
 
 export SHELL=/bin/bash
@@ -20,9 +20,9 @@ export PATH=$PATH:$HOME/bin:$HOME/bin/ascii
 export NNN_USE_EDITOR=1
 
 set -o vi
-bind 'set show-mode-in-prompt on'
-bind 'set vi-ins-mode-string \e[1;31m INSERT \e[0m'
-bind 'set vi-cmd-mode-string \e[1;32m NORMAL \e[0m'
+#bind 'set show-mode-in-prompt on'
+#bind 'set vi-ins-mode-string \e[1;31m INSERT \e[0m'
+#bind 'set vi-cmd-mode-string \e[1;32m NORMAL \e[0m'
 bind "\C-l":clear-screen
 bind "\C-j":previous-history
 bind "\C-k":next-history
