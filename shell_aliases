@@ -51,11 +51,13 @@ alias :vs='test -n "$TMUX" && tmux split-window -h'
 alias :wq=exit
 alias myip='wget -qO- http://ipecho.net/plain ; echo'
 docx() { pandoc -f docx -t rst "$@" | vim - ; }
+alias note='vim ~/syncthing/markor/Tasks/notes.md'
+#alias note='cd $HOME/syncthing/markor/Tasks/ && vim `fzf --preview="cat {}" --preview-window=right:70%:wrap` && cd ~'
 
 # }}}
 # Useful general aliases {{{
 
-alias kpcli='kpcli --kdb /home/void/syncthing/pw/keypass.kdb'
+alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keypass.kdb'
 alias b="~/bin/chromium_bookmarks.rb"
 alias fehslide="feh -.zZD5 --keep-zoom-vp -Bblack -^feh"
 alias mp3="youtube-dl --extract-audio --audio-format mp3 "
@@ -916,6 +918,7 @@ cfg-poly(){ vim ~/.config/polybar/config ;}
 cfg-lemon(){ vim ~/bin/bar ;}
 cfg-bsp() { vim ~/.config/bspwm/bspwmrc ;}
 cfg-sxk() { vim ~/.config/sxhkd/sxhkdrc ;}
+cfg-xmo() { vim ~/.xmonad/xmonad.hs ;}
 
 # }}}
 # miscellaneous functions ################{{{
