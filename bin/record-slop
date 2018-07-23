@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set $(slop -q -o -f '%x %y %w %h')
+
+notify-send "FFmpeg" "Gravação da tela iniciada!"
+
+ffmpeg -f x11grab \
+-s ${3}x${4} \
+-an -r 25 \
+-i :0.0+${1},${2} \
+-q:v 5 \
+-y ~/Downloads/record_`date +%d-%m-%Y_%H:%M`.mkv
