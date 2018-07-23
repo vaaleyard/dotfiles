@@ -1,0 +1,10 @@
+#!/bin/sh
+
+DIR=/tmp/rtv
+NAME=$(echo "$1" | cut -d'/' -f4)
+
+mkdir $DIR 1>/dev/null
+
+wget --quiet -O $DIR/$NAME "$1" 1>/dev/null
+
+sxiv $DIR/$NAME
