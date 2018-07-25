@@ -46,13 +46,13 @@ endfunction
 call Iab('#d', '#define ')
 call Iab('#i', '#include <><Left>')
 call Iab('#I', '#include ""<Left>')
-call Iab('printf', 'printf("\n");<C-O>?\<CR>')
-call Iab('if', 'if() {<CR>}<Left><C-O>?)<CR>')
-call Iab('for', 'for(;;) {<CR>}<C-O>?;;<CR>')
-call Iab('while', 'while() {<CR>}<C-O>?)<CR>')
-call Iab('else', 'else {<CR>x;<CR>}<C-O>?x;<CR><Del><Del>')
-call Iab('ifelse', 'if() {<CR>}<CR>else {<CR>}<C-O>?)<CR>')
-call Iab('intmain', 'int main(int argc, char **argv)<CR>'.
- \ '{<CR>x;<CR>return 0;<CR>}<CR><C-O>?x;<CR><Del><Del>')
+call Iab('cout', 'cout << "" << endl;<C-O>?"<CR>:nohl<CR>')
+call Iab('if', 'if() {<CR>}<Left><C-O>?)<CR>:nohl<CR>')
+call Iab('for', 'for(;;) {<CR>}<C-O>?;;<CR>:nohl<CR>')
+call Iab('while', 'while() {<CR>}<C-O>?)<CR>:nohl<CR>')
+call Iab('else', 'else {<CR>x;<CR>}<C-O>?x;<CR><Del><Del>:nohl<CR>')
+call Iab('ifelse', 'if() {<CR>}<CR>else {<CR>}<C-O>?)<CR>:nohl<CR>')
+call Iab('intmain', 'int main(int argc, char *argv[])<CR>'.
+ \ '{<CR>x;<CR>return 0;<CR>}<CR><C-O>?x;<CR><Del><Del>:nohl<CR>')
 
 
