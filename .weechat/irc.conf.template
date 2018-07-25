@@ -57,6 +57,7 @@ pv_tags = "notify_private"
 raw_messages = 256
 server_buffer = merge_with_core
 smart_filter = on
+smart_filter_chghost = on
 smart_filter_delay = 5
 smart_filter_join = on
 smart_filter_join_unmask = 30
@@ -72,6 +73,7 @@ item_channel_modes = default
 item_lag_counting = default
 item_lag_finished = yellow
 item_nick_modes = default
+message_chghost = brown
 message_join = green
 message_quit = red
 mirc_remap = "1,-1:darkgray"
@@ -103,6 +105,13 @@ whois_double_nick = off
 [msgbuffer]
 
 [ctcp]
+clientinfo = ""
+finger = ""
+ping = ""
+source = ""
+time = ""
+userinfo = ""
+version = ""
 
 [ignore]
 
@@ -125,20 +134,20 @@ connection_timeout = 60
 ipv6 = on
 local_hostname = ""
 msg_kick = ""
-msg_part = "WeeChat ${info:version}"
-msg_quit = "WeeChat ${info:version}"
-nicks = "void,void1,void2,void3,void4"
+msg_part = ""
+msg_quit = ""
+nicks = "nick1,nick2,nick3,nick4"
 nicks_alternate = on
 notify = ""
-password = ""
+password = "<YourPassword>"
 proxy = ""
 realname = ""
 sasl_fail = continue
 sasl_key = ""
 sasl_mechanism = plain
-sasl_password = ""
+sasl_password = "<YourPassword>"
 sasl_timeout = 15
-sasl_username = ""
+sasl_username = "<YourDefaultNick>"
 split_msg_max_length = 512
 ssl = off
 ssl_cert = ""
@@ -147,27 +156,27 @@ ssl_fingerprint = ""
 ssl_priorities = "NORMAL:-VERS-SSL3.0"
 ssl_verify = on
 usermode = ""
-username = "void"
+username = "<YourDefaultNick>"
 
 [server]
-freenode.addresses = "chat.freenode.net"
-freenode.proxy
+freenode.addresses = "freenodeok2gncmy.onion/7000"
+freenode.proxy = "tor"
 freenode.ipv6
-freenode.ssl
-freenode.ssl_cert
-freenode.ssl_priorities
+freenode.ssl = on
+freenode.ssl_cert = "%h/certs/freenode.pem"
+freenode.ssl_priorities = "NORMAL:-VERS-TLS-ALL:+VERS-TLS1.0:+VERS-SSL3.0:%COMPAT"
 freenode.ssl_dhkey_size
 freenode.ssl_fingerprint
-freenode.ssl_verify
+freenode.ssl_verify = off
 freenode.password
 freenode.capabilities
-freenode.sasl_mechanism
-freenode.sasl_username
-freenode.sasl_password
+freenode.sasl_mechanism = external
+freenode.sasl_username = "<YourFreenodeNick>"
+freenode.sasl_password = "<YourFreenodePassword>"
 freenode.sasl_key
 freenode.sasl_timeout
 freenode.sasl_fail
-freenode.autoconnect
+freenode.autoconnect = on
 freenode.autoreconnect
 freenode.autoreconnect_delay
 freenode.nicks
