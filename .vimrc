@@ -93,6 +93,7 @@ xnoremap if /^\s*}<CR><Esc>V%
 
 " File navigation
 nnoremap ,f :find *
+nnoremap ,e :e %:h/
 nnoremap ,s :sfind *
 nnoremap ,v :vert sfind *
 nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
