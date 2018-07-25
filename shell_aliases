@@ -52,6 +52,7 @@ alias :wq=exit
 alias myip='wget -qO- http://ipecho.net/plain ; echo'
 docx() { pandoc -f docx -t rst "$@" | vim - ; }
 alias note='vim ~/syncthing/markor/Tasks/notes.md'
+alias stnote='st -c scratchterm -g 80x20 -e vim $HOME/syncthing/markor/Tasks/notes.md -c :Goyo &'
 #alias note='cd $HOME/syncthing/markor/Tasks/ && vim `fzf --preview="cat {}" --preview-window=right:70%:wrap` && cd ~'
 
 # }}}
