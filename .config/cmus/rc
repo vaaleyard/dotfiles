@@ -52,4 +52,5 @@ unbind -f common <
 unbind -f common >
 bind common > player-next
 bind common < player-prev
-
+unbind -f common ^E
+bind common ^E run st -e tagman {}
