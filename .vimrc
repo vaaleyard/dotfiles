@@ -1,12 +1,5 @@
 " My old vim configuration: http://ix.io/1f88   (It is here only by reference, it's a super bloat config!!)
 
-call plug#begin('~/.vim/plugged')
-" Plugins for notetaking only:
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'suan/vim-instant-markdown', { 'on' : 'InstantMarkdownPreview' }
-Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' }
-call plug#end()
-
 " General settings {{{
 
 " Filetype support
@@ -56,7 +49,6 @@ noremap ; :
 noremap : ;
 nnoremap ' `
 
-nnoremap <Esc> :nohl<CR>
 " Make 0 go to the first character rather than the beginning
 " " of the line. When we're programming, we're almost always
 " " interested in working with text rather than empty space. If
@@ -235,10 +227,3 @@ function! ToggleExplore()
 endfunction
 map <F2> <Esc><Esc>:call ToggleExplore()<CR>
 " }}}
-" vimwiki ;(
-let g:vimwiki_ext2syntax = {'.md': 'markdown'}
-
-" Instant Markdown Preview ;(
-let g:instant_markdown_autostart = 0    " disable autostart
-let g:instant_markdown_slow = 1
-nnoremap <leader>md :InstantMarkdownPreview<CR>
