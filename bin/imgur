@@ -76,7 +76,7 @@ while [ $# -gt 0 ]; do
   delete_hash="${delete_hash%%</deletehash>*}"
   url=$(printf '%s' "$url" | sed -e 's/^http:/https:/')
   printf "%s\\n" "$url" >&2
-  printf "%s" "Delete page: https://imgur.com/delete/$delete_hash" >&2
+  printf "%s\\n" "Delete page: https://imgur.com/delete/$delete_hash" >&2
 
   # Append the URL to a string so we can put them all on the clipboard later
   clip="$url"
