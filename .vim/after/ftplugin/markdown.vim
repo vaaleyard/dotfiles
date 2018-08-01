@@ -2,7 +2,7 @@
 setlocal spell
 
 " [B]old text
-inoremap ,b **<Esc>i
+inoremap ,b ****<left><left>
 
 " I[t]alic text
 inoremap ,t __<Esc>i
