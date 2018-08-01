@@ -1,5 +1,10 @@
 " My old vim configuration: http://ix.io/1f88   (It is here only by reference, it's a super bloat config!!)
 
+call plug#begin('~/.vim/plugged')
+" Plugins for notetaking only
+Plug 'vimwiki/vimwiki'
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+call plug#end()
 " General settings {{{
 
 " Filetype support
@@ -226,4 +231,9 @@ function! ToggleExplore()
     endif
 endfunction
 map <F2> <Esc><Esc>:call ToggleExplore()<CR>
+" }}}
+" Plugins {{{
+" vimwiki with markdown support
+let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+
 " }}}
