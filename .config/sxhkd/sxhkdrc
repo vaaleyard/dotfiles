@@ -118,7 +118,7 @@ super + {Left,Down,Up,Right}
 # Letter keybindings {{{
 # Open st with tmux
 super + shift + Return
-    st -e tmux
+    st -e tmux new-session -s main
 
 # Reload bspwm
 super + F5
@@ -130,7 +130,7 @@ super + c
 
 ## Browser and Telegram
 super + shift + {b, t}
-    $BROWSER 2>&-, Telegram 2>&-}
+    {$BROWSER 2>&-, Telegram 2>&-}
 
 # Reboot system
 super + shift + BackSpace
@@ -181,11 +181,11 @@ super + F8
 
 # Conflited binding
 super + m
-    st tmux new-window -t scratchterm && tmux send-keys -t scratchterm cmus 'Enter'
+    tmux new-window -t main cmus
 
 # Deprecated (fucking scratchpad on bspwm)
 super + shift + m
-    tmux split-window -t scratchterm -v && tmux send-keys -t scratchterm 'cmus-lyrics | less' 'Enter'
+    tmux split-window -t main -v && tmux send-keys -t main 'cmus-lyrics | less' 'Enter'
 
 # Play/Pause a song on cmus
 super + {p, shift + p}
