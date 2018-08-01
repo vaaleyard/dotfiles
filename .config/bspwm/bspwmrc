@@ -3,18 +3,16 @@
 # Autostart {{{
 # Scratchpad terminal: https://www.reddit.com/r/bspwm/comments/85hr4c/making_a_scratchpaddropdown_terminal_in_bspwm/
 # I've modified a little bit to open with a tmux session instead of just a terminal
-hsetroot -fill ~/Pictures/Landscapes/river-forest.jpg
-xsetroot -cursor_name left_ptr
-xrdb -load ~/.Xresources
-xset +fp $HOME/.fonts/
-$HOME/bin/todo-notify
-st -c scratchterm -g 80x20 -e vim $HOME/syncthing/markor/Tasks/notes.md
-killall -9 sxhkd bar dunst
+#hsetroot -fill ~/Pictures/Landscapes/river-forest.jpg
+#xrdb -load ~/.Xresources
+#xset +fp $HOME/.fonts/
+#$HOME/bin/todo-notify
+#killall -9 sxhkd bar dunst
 sxhkd &
-dunst &
-sleep 1
-bar &
-notify-send "Notification" "Bspwmrc Loaded"
+#dunst &
+#sleep 1
+#bar &
+#notify-send "Notification" "Bspwmrc Loaded"
 # }}}
 # bspwm config {{{
 bspc monitor -d 'I' 'II' 'III' 'IV' 'V' 'VI' 'VII' 'VIII' 'IX' 'X' # Workspace icons
