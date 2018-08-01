@@ -5,7 +5,7 @@
 " When typing ';' marks a undo point, so when hit u, it won't undo the whole thing that you did in insert mode (nice when programming), and always save when press ;
 inoremap ; ;<c-g>u
 "inoremap ; :w<CR>
-inoremap {<CR> <space>{<CR>}<Esc>O
+inoremap {<CR> <CR>{<CR>}<Esc>O
 inoremap /*<space> /*  */<Esc>2<Left>i
 "iabbrev #i #include
 "iabbrev #d #define
@@ -47,6 +47,7 @@ call Iab('#d', '#define ')
 call Iab('#i', '#include <><Left>')
 call Iab('#I', '#include ""<Left>')
 call Iab('printf', 'printf("\n");<C-O>?\<CR>:nohl<CR>')
+call Iab('scanf', 'scanf("%", );<C-O>?"<CR>:nohl<CR>')
 call Iab('if', 'if() {<CR>}<Left><C-O>?)<CR>:nohl<CR>')
 call Iab('for', 'for(;;) {<CR>}<C-O>?;;<CR>:nohl<CR>')
 call Iab('while', 'while() {<CR>}<C-O>?)<CR>:nohl<CR>')
