@@ -19,7 +19,7 @@ export VIDEOPLAYER=mpv
 export PATH=$PATH:$HOME/bin:$HOME/bin/ascii
 export NNN_USE_EDITOR=1
 
-set -o vi
+set -o emacs
 #bind 'set show-mode-in-prompt on'
 #bind 'set vi-ins-mode-string \e[1;31m INSERT \e[0m'
 #bind 'set vi-cmd-mode-string \e[1;32m NORMAL \e[0m'
