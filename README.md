@@ -1,4 +1,5 @@
 # Dotfiles
+![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/dotfiles.png "dotfiles") <br />
 ![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/screenshot.png "Screenshot") <br />
 
 ![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/screenshot2.png "Screenshot 2") <br />
@@ -41,11 +42,11 @@
 ## Info
 
 - Distro: `Void Linux`
-- Window Manager: `bspwm`
-- Bar: `lemonbar`
+- Window Manager: `dwm`
+- Bar: `dwm custom bar`
 - Terminal Emulator: `st`
 - Editor: `vim`
-- Font: [`curie`](https://github.com/NerdyPepper/curie)
+- Font: `Monaco`
 
 ##
 
