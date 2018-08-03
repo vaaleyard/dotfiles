@@ -168,11 +168,11 @@ if has('autocmd')
         autocmd QuickFixCmdPost    l* lwindow
         autocmd VimEnter            * cwindow
         " various adjustments of the default colorscheme
-        highlight ModeMsg         ctermbg=Red       ctermfg=White    cterm=bold
+        highlight ModeMsg         ctermbg=1         ctermfg=White    cterm=bold
         highlight Search          ctermfg=White     ctermbg=Red      cterm=bold
         highlight IncSearch       ctermfg=White     ctermbg=Red      cterm=bold
-        highlight StatusLine      ctermfg=35        ctermbg=8
-        highlight StatusLineNC    ctermfg=8         ctermbg=35
+        highlight StatusLine      ctermfg=67        ctermbg=0
+        highlight StatusLineNC    ctermfg=0         ctermbg=67
         highlight Visual          ctermbg=247       ctermfg=black    cterm=bold
         " Tabline color settings
         highlight TabLine      ctermfg=White  ctermbg=Black     cterm=NONE
