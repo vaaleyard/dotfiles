@@ -33,7 +33,7 @@ class base(ColorScheme):
                 fg = 1
             if context.directory:
                 attr |= bold
-                fg = 35
+                fg = 12
             elif context.executable and not \
                     any((context.media, context.container,
                        context.fifo, context.socket)):
@@ -59,7 +59,7 @@ class base(ColorScheme):
                     fg = 1
             if not context.selected and (context.cut or context.copied):
                 fg = 15
-                bg = 35
+                bg = 12
             if context.main_column:
                 if context.selected:
                     attr |= bold
@@ -77,7 +77,7 @@ class base(ColorScheme):
             if context.hostname:
                 fg = context.bad and 6 or 7
             elif context.directory:
-                fg = 35
+                fg = 12
             elif context.tab:
                 if context.good:
                     fg = 1
