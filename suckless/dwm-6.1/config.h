@@ -104,7 +104,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-i", "-p", "Search ", "-fn", "iosevka Nerd Font:size=11" , "-nb", "#2D333D", "-nf", "#D8DEE9", "-sb", "#81A1C1", "-sf", "#2D333D", "-w", "360", "-h", "20", "-x", "24", "-y", "42", NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-i", "-l", "3", "-p", "Search ", "-fn", "iosevka Nerd Font:size=11" , "-nb", "#2D333D", "-nf", "#D8DEE9", "-sb", "#81A1C1", "-sf", "#2D333D", "-w", "360", "-h", "20", "-x", "24", "-y", "42", NULL };
 static const char *termcmd[]    = { "st", NULL };
 static const char *mail[]       = { "st", "-c", "neomutt", "-e", "neomutt", NULL};
 static const char *ranger[]     = { "st", "-c", "ranger", "-e", "ranger", NULL};
