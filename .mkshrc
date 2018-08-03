@@ -73,9 +73,7 @@ HISTFILE=~/.mksh_history
 }
 
 # }}}
-# Souce files ====================={{{
+# Source files ====================={{{
 source "$HOME/.vim/gruvbox_256palette.sh"
-source $HOME/shell_aliases
-
-export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
+source $HOME/.aliases
 # }}}
