@@ -7,7 +7,7 @@
 ! see src/config.h for more information about option meanings.
 
 ! These options only take effect on startup.
-st.termname:          xterm-256color
+! st.termname:          st-256color
 ! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
 st.shell:            /bin/mksh
 
@@ -39,67 +39,47 @@ st.prompt_char:       $
 ! opacity==255 means what terminal will be not transparent, 0 - fully transparent
 st.opacity:      255
 
-! Theme: mine
-! Verde mais escuro
-#define base00 #002b36
+! Project:    Nord XResources
+! Version:    0.1.0
+! Repository: https://github.com/arcticicestudio/nord-xresources
+! License:    MIT
 
-! Verde escuro
-#define base01 #073642
+#define nord0 #2D333D
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
 
-! Cinza escuro
-#define base02 #586e75
-#define base03 #657b83
+*.foreground:   nord4
+*.background:   nord0
+*.cursorColor:  nord4
+*fading: 35
+*fadeColor: nord3
 
-! Cinza um pouco claro
-#define base04 #839496
-#define base05 #93a1a1
-
-! #ebdbb2 do Gruvbox
-#define base06 #eee8d5
-#define base07 #fdf6e3
-
-! Vermelho brilhante
-#define base08 #dc322f
-
-! Vermelho
-#define base09 #cb4b16
-
-! Verde agua
-#define base0A #5F8972
-
-! Verde
-#define base0B #859900
-
-! Verde mar
-#define base0C #2aa198
-! Light blue
-#define base0D #268bd2
-
-! Roxo
-#define base0E #6c71c4
-
-! Pink
-#define base0F #d33682
-
-*.foreground:   #A9C4C6
-*.background:   #101e22
-*.cursorColor:  #A9C4C6
-
-*.color0:       #101e22
-*.color1:       base08
-*.color2:       base0B
-*.color3:       base0A
-*.color4:       base0D
-*.color5:       base0E
-*.color6:       base0C
-*.color7:       base03
-*.color8:       base00
-*.color9:       base09
-*.color10:      base0A
-*.color11:      base02
-*.color12:      base04
-*.color13:      #A9C4C6
-*.color14:      base0F
-*.color15:      base07
-
-! }}}
+*.color0: nord0
+*.color1: nord11
+*.color2: nord14
+*.color3: nord13
+*.color4: nord9
+*.color5: nord15
+*.color6: nord8
+*.color7: nord5
+*.color8: nord3
+*.color9: nord11
+*.color10: nord14
+*.color11: nord13
+*.color12: nord9
+*.color13: nord15
+*.color14: nord7
+*.color15: nord6
