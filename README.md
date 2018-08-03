@@ -4,7 +4,6 @@
 
 ---
 
-![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/dotfiles.png "dotfiles") <br />
 ![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/screenshot.png "Screenshot") <br />
 
 ![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/screenshot2.png "Screenshot 2") <br />
