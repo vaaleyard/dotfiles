@@ -7,5 +7,5 @@ elif [[ "$(cmus-remote -Q | head -1)" == "status stopped" ]]; then
 elif [[ "$(cmus-remote -Q | head -1)" == "status paused" ]]; then
 	notify-send "cmus is paused"
 else
-	notify-send "Now Playing ♫" "$(cmus-remote -C 'format_print "%a - %t"')"
+	notify-send "Now Playing ♫" "$(cmus-remote -C 'format_print "%a · %t"')"
 fi
