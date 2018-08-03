@@ -1,4 +1,9 @@
-# Dotfiles
+<p align="center">
+    <img src="https://github.com/Valeyard1/dotfiles/blob/master/dotfiles.png" align="center">
+</p>
+
+---
+
 ![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/dotfiles.png "dotfiles") <br />
 ![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/screenshot.png "Screenshot") <br />
 
