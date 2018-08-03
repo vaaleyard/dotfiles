@@ -43,14 +43,14 @@ init() {
 #$user${f2}@${rst}$host
 # exec
 os
-wm
+#wm
 init
 cat <<EOF
 	os${f2}:${rst}          ${f7}$os${rst}
 	kernel${f2}:${rst}      ${f7}$kernel${rst}
 	shell${f2}:${rst}       ${f7}$shell${rst}
 	init${f2}:${rst}        ${f7}$init${rst}
-	wm${f2}:${rst}          ${f7}$wm${rst}
+	wm${f2}:${rst}          ${f7}dwm${rst}
 EOF
 
 # optional blocks
