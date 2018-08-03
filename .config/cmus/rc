@@ -1,56 +1,57 @@
-# SETTINGS
+# Directory colors
+set color_win_dir=default
 
-set mouse=false
+# Normal text
+set color_win_fg=4
 
-set format_title=%t
-set format_current= %a %= %l
-set format_trackwin=%3n. %t%= %d
-set format_statusline= %{status} %{?d?%t %= %1{continue}%1{follow}%1{repeat}%1{shuffle} %{position} / %d}
-
-# COLORS
-
-set color_win_dir=5
-
-set color_error=160
-
-set color_info=136
-
-set color_separator=0
-
-set color_win_cur=28
-
+# Window background color.
 set color_win_bg=default
-set color_win_fg=default
 
+# Command line color.
 set color_cmdline_bg=default
 set color_cmdline_fg=default
 
-set color_statusline_bg=default
-set color_statusline_fg=default
+# Color of error messages displayed on the command line.
+set color_error=lightred
 
-set color_titleline_bg=default
-set color_titleline_fg=28
+# Color of informational messages displayed on the command line.
+set color_info=lightyellow
 
-set color_win_cur_sel_bg=default
-set color_win_cur_sel_fg=28
+# Color of currently playing track.
+set color_win_cur=1
 
-set color_win_inactive_cur_sel_bg=default
-set color_win_inactive_cur_sel_fg=28
+# Color of the separator line between windows in view (1).
+set color_separator=black
 
-set color_win_inactive_sel_bg=default
-set color_win_inactive_sel_fg=default
-
-set color_win_sel_bg=default
-set color_win_sel_fg=28
-
+# Color of window titles (topmost line of the screen).
 set color_win_title_bg=default
-set color_win_title_fg=0
+set color_win_title_fg=black
 
-# SHORTCUTS
+# Status line color.
+set color_statusline_bg=default
+set color_statusline_fg=gray
 
-unbind -f common <
-unbind -f common >
-bind common > player-next
-bind common < player-prev
-unbind -f common ^E
-bind common ^E run st -e tagman {}
+# Color of the line displaying currently playing track.
+set color_titleline_bg=black
+set color_titleline_fg=1
+
+# Color of the selected row which is also the currently playing track in active window.
+set color_win_cur_sel_bg=default
+set color_win_cur_sel_fg=1
+
+# Color of the selected row which is also the currently playing track in inactive window.
+set color_win_inactive_cur_sel_bg=default
+set color_win_inactive_cur_sel_fg=1
+
+# Color of selected row in inactive window.
+set color_win_inactive_sel_bg=default
+set color_win_inactive_sel_fg=1
+
+# Color of selected row in active window.
+set color_win_sel_bg=default
+set color_win_sel_fg=1
+
+# Command line color.
+set color_cmdline_bg=default
+set color_cmdline_fg=default
+
