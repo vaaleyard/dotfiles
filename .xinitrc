@@ -11,6 +11,8 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
+xset +fp $HOME/.fonts/
 exec redshift &
-exec bspwm
-
+exec dunst &
+exec dwmstatus &
+exec dwm

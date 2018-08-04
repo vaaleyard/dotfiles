@@ -1,4 +1,0 @@
-Edit MS Word documents in Vim:
-	pandoc -f docx -t rst /patht/to/file.docx | vim -
-
-
