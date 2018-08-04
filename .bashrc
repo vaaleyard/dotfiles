@@ -35,7 +35,7 @@ bind "\C-k":next-history
 
 PS1='\w \[\e[1;34m\]\$ \[\e[0m\]'
 
-source ~/shell_aliases
+source ~/.aliases
 # git prompt(requirement to get __git_ps1). Ref: https://stackoverflow.com/a/12871094/9159065
 [ -f ~/.git-prompt.sh ] && source ~/.git-prompt.sh
 [ -f $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh ] && source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
