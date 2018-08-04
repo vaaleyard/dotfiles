@@ -82,7 +82,6 @@ static const int resizehints = 0;	/* 1 means respect size hints in tiled resizal
 /* tagging */
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "\ue00a",   gaplessgrid },    /* organizes windows in the grid */
 	{ "\ue002",   tile },    	/* first entry is default */
 	{ "\ue006",   NULL },   	/* no layout function means floating behavior */
 	{ "\ue000",   monocle },        /* monocle is good for maximizing the preservation and focusing of the window */
@@ -90,6 +89,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions
+ * Mod5Mask == AltGr (Right Alt)
  * Mod4Mask == Super key
  * Mod1Mask == Alt key
  */
@@ -119,8 +119,6 @@ static const char *volsuperup[] = { "amixer", "-q", "sset", "Master", "5%+", NUL
 static const char *muteall[]    = { "amixer", "-q", "sset", "Master", "toggle", NULL};
 static const char *cmus[]       = { "tmux", "new-window", "-t", "main", "cmus", NULL};
 static const char *cmuspause[]  = { "cmus-remote", "--pause", NULL};
-static const char *reboot[]     = { "prompt", "Are you sure you want to reboot?", "sudo reboot", NULL};
-static const char *poweroff[]   = { "prompt", "Are you sure you want to shutdown?", "sudo poweroff -h now", NULL};
 static const char *lock[]       = { "amixer", "-q", "sset", "Master", "mute", "&&", "locki3.sh", NULL};
 static const char *scrotclip[]  = { "scrot", "-e", "xclip", "-selection", "clipboard", "-t;", "image/png", "$f", "&&", "rm", "-f", "$f", NULL};
 static const char *scrotsclip[] = { "scrot", "-se", "xclip", "-selection", "clipboard", "-t;", "image/png", "$f", "&&", "rm", "-f", "$f", NULL};
@@ -128,66 +126,69 @@ static const char *scrotsave[]  = { "scrot", "-e", "mv", "$f", "~/Pictures/scrot
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-    /* Pause music in cmus // Launch dmenu */
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = cmuspause } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+    /* Toggle status bar */
+	{ MODKEY,                       XK_b,      togglebar,      {0} },
 
-    /* Idk // Open terminal */
+	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+
+	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+
+	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
+	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
+	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
+
+    /* Move to the master side // Open terminal */
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 
-	{ MODKEY,                       XK_c,      spawn,          {.v = cmustatus } },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+    /* Mod + tab */
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 
-    /* Quit dwm // kill window */
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY,                       XK_q,      killclient,     {0} },
-
-    /* Change layouts */
-	{ MODKEY,                       XK_F1,     setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_F2,     setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_F3,     setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_F4,     setlayout,      {.v = &layouts[3]} },
-
-    /* Start ranger w/ sudo // start ranger */
-	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = sudoranger } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = ranger } },
-
-    /* Execute dmoji script // open weechat */
-	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = dmoji } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = weechat } },
-
-    /* Mute sound w/ alsa // open cmus */
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = muteall } },
-	{ MODKEY,                       XK_m,      spawn,          {.v = cmus } },
-
-    /* Open neomutt */
-	{ MODKEY,                       XK_n,      spawn,          {.v = mail } },
-
-    /* Turn off pc // lock pc */
-	{ MODKEY|ShiftMask,             XK_x,      spawn,          {.v = poweroff } },
-	{ MODKEY,                       XK_x,      spawn,          {.v = lock } },
-
-    /* screenshot */
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = scrotsclip } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = scrotclip } },
-
-	{ MODKEY,                       XK_Print,  spawn,          {.v = scrotsave } },
-
-    /* Reboot pc */
-	{ MODKEY|ShiftMask,             XK_BackSpace,      spawn,  {.v = reboot } },
 
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+
+	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+
+    /* Show current song on dunst */
+	{ MODKEY,                       XK_c,      spawn,          {.v = cmustatus } },
+
+    /* Pause music in cmus // Launch dmenu */
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = cmuspause } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+
+    /* Open neomutt */
+	{ MODKEY,                       XK_n,      spawn,          {.v = mail } },
+
+    /* Quit dwm // kill window */
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY,                       XK_q,      killclient,     {0} },
+
+    /* Execute dmoji script // open weechat */
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = dmoji } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = weechat } },
+
+    /* Start ranger w/ sudo // start ranger */
+	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = sudoranger } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = ranger } },
+
+    /* Lock pc (it is not working) T_T */
+	{ MODKEY, XK_x, spawn, {.v = lock } },
 
     /* Super increase volume // increase volume */
 	{ MODKEY|ShiftMask,             XK_equal,  spawn,          {.v = volsuperup } },
@@ -197,47 +198,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_minus,  spawn,          {.v = volsupdown } },
 	{ MODKEY,                       XK_minus,  spawn,          {.v = voldown } },
 
-    /* idk yet */
-	{ MODKEY,                       XK_less,  tagmon,         {.i = -1 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-
-    /* Decrease window size on bottom // move window up */
-    { MODKEY|ShiftMask,             XK_u,      moveresize,     {.v = "0x 0y 0w -25h"} },
-    { MODKEY,                       XK_u,      moveresize,     {.v = "0x -25y 0w 0h"} },
-
-    /* Increase window on bottom // move window down */
-    { MODKEY|ShiftMask,             XK_i,      moveresize,     {.v = "0x 0y 0w 25h"} },
-    { MODKEY,                       XK_i,      moveresize,     {.v = "0x 25y 0w 0h"} },
-
-    /* Decrease window on right // move window to the right */
-    { MODKEY|ShiftMask,             XK_y,      moveresize,     {.v = "0x 0y -25w 0h"} },
-    { MODKEY,                       XK_y,      moveresize,     {.v = "-25x 0y 0w 0h"} },
-
-    /* Decrease window on left // move window to the left */
-    { MODKEY|ShiftMask,             XK_o,      moveresize,     {.v = "0x 0y 25w 0h"} },
-    { MODKEY,                       XK_o,      moveresize,     {.v = "25x 0y 0w 0h"} },
-
-	{ MODKEY|ShiftMask,             XK_Up,     moveresize,     {.v = "0x 0y 0w -25h"} },
-	{ MODKEY|ShiftMask,             XK_Down,   moveresize,     {.v = "0x 0y 0w 25h"} },
-	{ MODKEY|ShiftMask,             XK_Left,   moveresize,     {.v = "0x 0y -25w 0h"} },
-	{ MODKEY|ShiftMask,             XK_Right,  moveresize,     {.v = "0x 0y 25w 0h"} },
-
     /* Restart dwm (it does not compile) */
-	{ MODKEY,                       XK_F5,     self_restart,   {0} },
-
-    /* Resize window up, also resizing the above window (only on tile mode) // toggle bar */
-    { MODKEY|ShiftMask,             XK_b,      setcfact,       {.f = +0.25} },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-
-    /* Resize window down, also resizing the window below (only on tile mode) */
-	{ MODKEY|ShiftMask,             XK_v,      setcfact,       {.f = -0.25} },
-
-    /* Set the default tile size on tile mode */
-	{ MODKEY,                       XK_t,      setcfact,       {.f =  0.00} },
-
+    { MODKEY|ShiftMask,             XK_F5,     self_restart,   {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -248,6 +210,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 };
+
 /* button definitions */
 /* click can be ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
