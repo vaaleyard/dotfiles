@@ -258,7 +258,6 @@ static void tile(Monitor *);
 static void htile(Monitor *);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
-static void togglefullscreen(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
@@ -1445,16 +1444,6 @@ pop(Client *c)
 	arrange(c->mon);
 }
 
-Client *
-prevtiled(Client *c) {
-	Client *p, *r;
-
-	for(p = selmon->clients, r = NULL; p && p != c; p = p->next)
-		if(!p->isfloating && ISVISIBLE(p))
-			r = p;
-	return r;
-}
-
 void
 propertynotify(XEvent *e)
 {
@@ -1497,37 +1486,6 @@ propertynotify(XEvent *e)
 		if (ev->atom == netatom[NetWMWindowType])
 			updatewindowtype(c);
 	}
-}
-
-void
-pushdown(const Arg *arg) {
-	Client *sel = selmon->sel, *c;
-
-	if(!sel || sel->isfloating || sel == nexttiled(selmon->clients))
-		return;
-	if((c = nexttiled(sel->next))) {
-		detach(sel);
-		sel->next = c->next;
-		c->next = sel;
-	}
-	focus(sel);
-	arrange(selmon);
-}
-
-void
-pushup(const Arg *arg) {
-	Client *sel = selmon->sel, *c;
-
-	if(!sel || sel->isfloating)
-		return;
-	if((c = prevtiled(sel)) && c != nexttiled(selmon->clients)) {
-		detach(sel);
-		sel->next = c;
-		for(c = selmon->clients; c->next != sel->next; c = c->next)
-			c->next = sel;
-	}
-	focus(sel);
-	arrange(selmon);
 }
 
 void
@@ -2139,14 +2097,6 @@ togglefloating(const Arg *arg)
 		selmon->sel->sfh = selmon->sel->h;
 	}
 	arrange(selmon);
-}
-
-void
-togglefullscreen(const Arg *arg) {
-    if (!selmon->sel)
-        return;
-
-    setfullscreen(selmon->sel, !selmon->sel->isfullscreen);
 }
 
 void
