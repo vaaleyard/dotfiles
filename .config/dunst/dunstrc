@@ -147,7 +147,7 @@
     icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
     frame_width = 0
-    frame_color = "#EBDBB2"
+    frame_color = "#2D333D"
 
 [shortcuts]
 
@@ -173,18 +173,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#101e22"
-    foreground = "#A9C4C6"
+    background = "#2D333D"
+    foreground = "#D8DEE9"
     timeout = 2
 
 [urgency_normal]
-    background = "#101e22"
-    foreground = "#A9C4C6"
+    background = "#2D333D"
+    foreground = "#D8DEE9"
     timeout = 10
 
 [urgency_critical]
-    background = "#101e22"
-    foreground = "#A9C4C6"
+    background = "#2D333D"
+    foreground = "#D8DEE9"
     timeout = 0
 
 
