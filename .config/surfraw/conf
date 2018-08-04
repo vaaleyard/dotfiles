@@ -1,5 +1,0 @@
-SURFRAW_text_browser=$BROWSER
-SURFRAW_graphical=no
-SURFRAW_screen=tmux
-SURFRAW_new_screen=no
-
