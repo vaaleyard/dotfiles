@@ -37,7 +37,6 @@ set undofile undodir=~/.vim/tmp/undo/   " Set undofiles (undo files even if you 
 set splitbelow splitright               " Split belor and/or right when opening new buffers
 set list listchars=eol:$,trail:∙ listchars+=tab:│\  fillchars+=vert:│,fold:\  
 set foldenable foldmethod=marker
-set shell=bash\ -i
 " Set up statusline
 set statusline=\ %f\ %y\ %m%=%l,%c\ \ \ \ \ \ \ \ \ \ \ \ %P\ |
  " }}}
@@ -172,7 +171,7 @@ if has('autocmd')
         highlight Search          ctermfg=White     ctermbg=Red      cterm=bold
         highlight IncSearch       ctermfg=White     ctermbg=Red      cterm=bold
         highlight StatusLine      ctermfg=67        ctermbg=0
-        highlight StatusLineNC    ctermfg=0         ctermbg=67
+        highlight StatusLineNC    ctermfg=8         ctermbg=67
         highlight Visual          ctermbg=247       ctermfg=black    cterm=bold
         " Tabline color settings
         highlight TabLine      ctermfg=White  ctermbg=Black     cterm=NONE
