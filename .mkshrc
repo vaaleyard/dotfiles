@@ -1,22 +1,22 @@
 #!/bin/mksh
 
 if [ "$TERM" = "linux" ]; then
-    echo -en "\e]P0222222" #black
-    echo -en "\e]P8222222" #darkgrey
-    echo -en "\e]P1803232" #darkred
-    echo -en "\e]P9982b2b" #red
-    echo -en "\e]P25b762f" #darkgreen
-    echo -en "\e]PA89b83f" #green
-    echo -en "\e]P3aa9943" #brown
-    echo -en "\e]PBefef60" #yellow
-    echo -en "\e]P4324c80" #darkblue
-    echo -en "\e]PC2b4f98" #blue
+    echo -en "\e]P02D333D" #nord background
+    echo -en "\e]P82D333D" #darkgrey
+    echo -en "\e]P1BF616A" #pink
+    echo -en "\e]P9BF616A" #pink
+    echo -en "\e]P281A1C1" #lightgreen
+    echo -en "\e]PAA3BE8C" #green
+    echo -en "\e]P3666666" #brown
+    echo -en "\e]PBEBCB8B" #yellow
+    echo -en "\e]P481A1C1" #darkblue
+    echo -en "\e]PC81A1C1" #blue
     echo -en "\e]P5706c9a" #darkmagenta
     echo -en "\e]PD826ab1" #magenta
-    echo -en "\e]P692b19e" #darkcyan
-    echo -en "\e]PEa1cdcd" #cyan
-    echo -en "\e]P7ffffff" #lightgrey
-    echo -en "\e]PFdedede" #white
+    echo -en "\e]P688C0D0" #darkcyan
+    echo -en "\e]PED8DEE9" #cyan
+    echo -en "\e]P7D8DEE9" #lightgrey
+    echo -en "\e]PFD8DEE9" #white
     clear #for background artifacting
 fi
 # Global variables ================{{{
