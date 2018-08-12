@@ -71,4 +71,4 @@ if (selmon->lt[selmon->sellt]->arrange == monocle) {
 ```
  - In the original patch of the [uselessgaps](https://dwm.suckless.org/patches/uselessgap/) the gaps between windows is bigger than the gaps between the borders, which is weird:
 ![image](https://i.imgur.com/t58XDCx.png)
-    The modified version, fix this, and make all gaps be equal, you can patch the original, and change the resizeclient function to [this](https://github.com/Valeyard1/dotfiles/blob/master/suckless/dwm-6.1/config.h#L1293-L1327) function
+    The modified version, fix this, and make all gaps be equal, you can patch the original, and change the resizeclient function to [this](https://github.com/Valeyard1/dotfiles/blob/master/suckless/dwm-6.1/dwm.c#L1293-L1327) function
