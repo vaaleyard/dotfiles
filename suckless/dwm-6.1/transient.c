@@ -1,3 +1,5 @@
+/* cc transient.c -o transient -lX11 */
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <X11/Xlib.h>
