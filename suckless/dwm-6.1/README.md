@@ -51,9 +51,9 @@ The configuration of dwm is done by creating a custom config.h
 and (re)compiling the source code.
 
 PATCHES:
- - [uselessgaps](https://dwm.suckless.org/patches/uselessgap/)
- - [moveresize](https://dwm.suckless.org/patches/moveresize/)
- - [statuscolors](https://dwm.suckless.org/patches/statuscolors/)
+ - [uselessgaps](https://dwm.suckless.org/patches/uselessgap/) to set gaps between windows
+ - [moveresize](https://dwm.suckless.org/patches/moveresize/) to resize/move windows
+ - [statuscolors](https://dwm.suckless.org/patches/statuscolors/) - to set different colors to each action (i.e. normal, selected, urgent, occupied)
 
 CHANGES:
  - I've created the `barsize` variable, which represent the size of the dwm statusbar
