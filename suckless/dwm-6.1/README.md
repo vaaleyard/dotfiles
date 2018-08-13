@@ -51,24 +51,9 @@ The configuration of dwm is done by creating a custom config.h
 and (re)compiling the source code.
 
 PATCHES:
- - [uselessgaps](https://dwm.suckless.org/patches/uselessgap/) to set gaps between windows
+ - [tilegap](https://dwm.suckless.org/patches/tilegap/) to set gaps between windows
  - [moveresize](https://dwm.suckless.org/patches/moveresize/) to resize/move windows
- - [statuscolors](https://dwm.suckless.org/patches/statuscolors/) - to set different colors to each action (i.e. normal, selected, urgent, occupied)
+ - [statuscolors](https://dwm.suckless.org/patches/statuscolors/) to set different colors for each action (i.e. normal, selected, urgent, occupied)
 
 CHANGES:
  - I've created the `barsize` variable, which represent the size of the dwm statusbar
- - Set gaps if only one window is open, you can do this through the [uselessgaps](https://dwm.suckless.org/patches/uselessgap/) patch, and do this:
-
-    Change this line of the patch:
-```
-if (selmon->lt[selmon->sellt]->arrange == monocle || n == 1) {
-```
-
-to this:
-
-```
-if (selmon->lt[selmon->sellt]->arrange == monocle) {
-```
- - In the original patch of the [uselessgaps](https://dwm.suckless.org/patches/uselessgap/) the gaps between windows is bigger than the gaps between the borders, which is weird:
-![image](https://i.imgur.com/t58XDCx.png)
-    The modified version, fix this, and make all gaps be equal, you can patch the original, and change the resizeclient function to [this](https://github.com/Valeyard1/dotfiles/blob/master/suckless/dwm-6.1/dwm.c#L1293-L1327) function

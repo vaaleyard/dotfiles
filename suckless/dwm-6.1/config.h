@@ -1,26 +1,27 @@
 /* See LICENSE file for copyright and license details. */
 
 #include "patches/moveresize.c"
+#include "patches/push.c"
 
 /* appearance */
 static const char *fonts[] = {
-    "siji" ","
-	"Monaco:size=12"
+    "cherry"
 };
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const unsigned int gappx     = 12;        /* gap pixel between windows */
-static const unsigned int barsize   = 7;        /* size of the dwm bar */
+static const unsigned int borderpx   = 0;        /* border pixel of windows */
+static const unsigned int snap       = 32;       /* snap pixel */
+static const int showbar             = 1;        /* 0 means no bar */
+static const int topbar              = 1;        /* 0 means bottom bar */
+static const unsigned int gappx      = 12;       /* gap pixel between windows */
+static const unsigned int barsize    = 10;       /* size of the dwm bar */
+static const unsigned int tagspacing = 6;        /* size of the dwm bar */
 
 #define NUMCOLORS 9
 static const char colors[NUMCOLORS][MAXCOLORS][9] = {
 	// border	 foreground	  background 7C817C
-	{ "#ffffff",	 "#D8DEE9", 	  "#21252c" },  // 0 = normal
-	{ "#181818", 	 "#D0CBB5", 	  "#81A1C1" },  // 1 = selected
-	{ "#b43030", 	 "#f5f5f5", 	  "#b23450" },  // 2 = red / urgent
-	{ "#181818", 	 "#dee3e0", 	  "#4C566A" },  // 3 = green / occupied
+	{ "#ffffff",	 "#FDF7E1", 	  "#373348" },  // 0 = normal
+	{ "#181818", 	 "#FDF7E1", 	  "#C99C70" },  // 1 = selected
+	{ "#b43030", 	 "#FDF7E1", 	  "#b23450" },  // 2 = urgent
+	{ "#181818", 	 "#FDF7E1", 	  "#504a68" },  // 3 = occupied
 	{ "#212121", 	 "#ab7438", 	  "#0b0606" },  // 4 = yellow
 	{ "#212121", 	 "#475971", 	  "#0b0606" },  // 5 = blue
 	{ "#212121", 	 "#694255", 	  "#0b0606" },  // 6 = magenta
@@ -29,8 +30,9 @@ static const char colors[NUMCOLORS][MAXCOLORS][9] = {
 };
 
 /* tagging */
-//static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tags[] = { " ", " ", " ", " ", " ", " ", "\ue241 " };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
+//static const char *tags[] = { "  ô  ", "  õ  ", "  ö  " };
+//static const char *tags[] = { " ", " ", " ", " ", " ", " ", "\ue241 " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -39,27 +41,29 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Pale moon"     ,  NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "xterm-256color",  NULL,       NULL,       1 << 0,       0,           -1 },
-	{ "Telegram"      ,  NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "Telegram"      ,  NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "zathura"       ,  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "ranger"        ,  NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "neomutt"       ,  NULL,       NULL,       1 << 4,       0,           -1 },
-	{ "weechat"       ,  NULL,       NULL,       1 << 6,       0,           -1 },
+	{ "neomutt"       ,  NULL,       NULL,       1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "\ue002",   tile },    /* first entry is default */
-	{ "\ue006",   NULL },    /* no layout function means floating behavior */
-	{ "\ue000",   monocle }, /* monocle is good for maximizing the preservation and focusing of the window */
+	{ " [T] ",   tile },    /* first entry is default */
+	{ " <> ",   NULL },    /* no layout function means floating behavior */
+	{ " [M] ",   monocle }, /* monocle is good for maximizing the preservation and focusing of the window */
 };
 
 /* key definitions */
+/* Mod4Mask == Super key
+ * Mod1Mask == Alt key
+ * Mod5Mask == Alt Gr
+ */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -72,7 +76,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-i", "-l", "3", "-p", "Search ", "-fn", "iosevka Nerd Font:size=11" , "-nb", "#2D333D", "-nf", "#D8DEE9", "-sb", "#81A1C1", "-sf", "#2D333D", "-w", "360", "-h", "20", "-x", "24", "-y", "42", NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-i", "-l", "3", "-p", "Search ", "-fn", "iosevka Nerd Font:size=11" , "-nb", "#373348", "-nf", "#ffffff", "-sb", "#C99C70", "-sf", "#FDF7E1", "-w", "360", "-h", "20", "-x", "24", "-y", "42", NULL };
 static const char *termcmd[]    = { "st", NULL };
 static const char *mail[]       = { "st", "-c", "neomutt", "-e", "neomutt", NULL};
 static const char *ranger[]     = { "st", "-c", "ranger", "-e", "ranger", NULL};
@@ -97,6 +101,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 
+    { MODKEY|ControlMask,           XK_j,      pushdown,       {0} },
+    { MODKEY|ControlMask,           XK_k,      pushup,         {0} },
+
     /* For tile mode */
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
@@ -115,9 +122,12 @@ static Key keys[] = {
     /* Mod + tab */
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 
+    /* Choose layouts: 1-tile, 2-floating, 3-monocle */
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+
+    /* Mute sound with alsa */
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = muteall } },
 
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
