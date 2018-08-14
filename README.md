@@ -38,7 +38,7 @@
 - Bar: `dwm custom bar`
 - Terminal Emulator: `st`
 - Editor: `vim`
-- Font: `Monaco`
+- Font: `Hack`
 
 ##
 
