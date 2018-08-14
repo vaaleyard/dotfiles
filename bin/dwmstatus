@@ -1,28 +1,5 @@
 #!/bin/bash
 
-battery() {
-    battery_status=$(cat /sys/class/power_supply/BAT0/status)
-    battery_percent=$(cat /sys/class/power_supply/BAT0/capacity)
-    case "$battery_status" in
-        Charging) echo "BAT: ${battery_percent}% ";;
-        Discharging)
-            if [ "$battery_percent" -gt 80 ]
-            then
-                echo "BAT: ${battery_percent}% "
-            elif [ "$battery_percent" -gt 50 ]
-            then
-                echo "BAT:  ${battery_percent}% "
-            elif [ "$battery_percent" -gt 16 ]
-            then
-                echo "BAT: ${battery_percent}% "
-            else
-                echo "BAT: ${battery_percent}% "
-            fi
-            ;;
-        Unknown|Full) echo "BAT: 100% ";;
-    esac
-}
-
 clock() {
     echo $(date +"%H:%M %p ")
 }
