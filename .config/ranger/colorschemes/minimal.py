@@ -21,7 +21,7 @@ class base(ColorScheme):
             if context.border:
                 fg = 238
             if context.image:
-                fg = 4
+                fg = 39
             if context.video:
                 fg = 176
             if context.audio:
@@ -29,11 +29,9 @@ class base(ColorScheme):
             if context.document:
                 fg = 216
             if context.container:
-                attr |= bold
                 fg = 1
             if context.directory:
-                attr |= bold
-                fg = 12
+                fg = 1
             elif context.executable and not \
                     any((context.media, context.container,
                        context.fifo, context.socket)):
