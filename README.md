@@ -2,15 +2,7 @@
     <img src="https://github.com/Valeyard1/dotfiles/blob/master/dotfiles.png" align="center">
 </p>
 
-![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/scrot.png "Screenshot 2") <br />
-
-<p align="center">
-    <b>Screenshots</b><br>
-    <a href="https://i.imgur.com/yrqlY5O.png">mksh</a>&nbsp;&nbsp;&nbsp;
-    <a href="https://i.imgur.com/wHMqOCp.png">tmux</a>&nbsp;&nbsp;&nbsp;
-    <a href="https://i.imgur.com/p6b1Rv5.png">vim</a>
-</p>
-
+![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/scrot.png "scrot") <br />
 
 
 ## Setup
