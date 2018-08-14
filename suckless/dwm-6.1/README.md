@@ -8,7 +8,7 @@ PATCHES:
 CHANGES:
  - I've created the `barsize` variable, which represents the size of the dwm statusbar
  - There's a `tagspacing` variable which represents the size of the tag label
- - To remove the windows indicator in the statusbar, change this _for loop_ in the **dwm.c** file:
+ - To remove the windows indicator in the statusbar, change this _for loop_ in the _void drawbar_ function in the **dwm.c** file:
  ```
  for (i = 0; i < LENGTH(tags); i++) {
      w = TEXTW(tags[i]);
@@ -29,9 +29,20 @@ CHANGES:
  }
 ```
  **Obs.:** You will need the [statuscolors](https://dwm.suckless.org/patches/statuscolors/) patch to set the colors to each situation (selected, normal, occupied, etc).
-    
-    
-
+ - To remove the current window description, remove this _if statement_ in the _void drawbar_ function int the **dwm.c** file:
+    ```
+	if ((w = x - xx) > bh) {
+		x = xx;
+		if (m->sel) {
+			drw_setscheme(drw, &scheme[m == selmon ? 1 : 0]);
+			drw_text(drw, x, 0, w, bh, m->sel->name, 0);
+			drw_rect(drw, x + 1, 1, dx, dx, m->sel->isfixed, m->sel->isfloating, 0);
+		} else {
+			drw_setscheme(drw, &scheme[0]);
+			drw_rect(drw, x, 0, w, bh, 1, 0, 1);
+		}
+	}
+    ```
 
 
 dwm - dynamic window manager
