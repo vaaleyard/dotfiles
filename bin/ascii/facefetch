@@ -50,13 +50,13 @@ os
 init
 pkg
 cat <<EOF
-$user${f2}@${rst}$host
-        os${f2}:${rst}          ${f7}$os${rst}
-┌───┐   kernel${f2}:${rst}      ${f7}$kernel${rst}
-│${f2}^${rst}_${f2}^${rst}│   shell${f2}:${rst}       ${f7}$shell${rst}
-└───┘   init${f2}:${rst}        ${f7}$init${rst}
-        wm${f2}:${rst}          ${f7}dwm${rst}
-        packages${f2}:${rst}    ${f7}$pkg${rst}
+$user${f1}@${rst}$host
+        os${f1}:${rst}          ${f7}$os${rst}
+┌───┐   kernel${f1}:${rst}      ${f7}$kernel${rst}
+│${f3}^${rst}_${f1}^${rst}│   shell${f2}:${rst}       ${f7}$shell${rst}
+└───┘   init${f1}:${rst}        ${f7}$init${rst}
+        wm${f1}:${rst}          ${f7}dwm${rst}
+        packages${f1}:${rst}    ${f7}$pkg${rst}
 EOF
 
 # optional blocks

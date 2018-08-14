@@ -1,24 +1,5 @@
 #!/bin/mksh
 
-if [ "$TERM" = "linux" ]; then
-    echo -en "\e]P02D333D" #nord background
-    echo -en "\e]P82D333D" #darkgrey
-    echo -en "\e]P1BF616A" #pink
-    echo -en "\e]P9BF616A" #pink
-    echo -en "\e]P281A1C1" #lightgreen
-    echo -en "\e]PAA3BE8C" #green
-    echo -en "\e]P3666666" #brown
-    echo -en "\e]PBEBCB8B" #yellow
-    echo -en "\e]P481A1C1" #darkblue
-    echo -en "\e]PC81A1C1" #blue
-    echo -en "\e]P5706c9a" #darkmagenta
-    echo -en "\e]PD826ab1" #magenta
-    echo -en "\e]P688C0D0" #darkcyan
-    echo -en "\e]PED8DEE9" #cyan
-    echo -en "\e]P7D8DEE9" #lightgrey
-    echo -en "\e]PFD8DEE9" #white
-    clear #for background artifacting
-fi
 # Global variables ================{{{
 export SHELL=/bin/mksh
 export PAGER=less

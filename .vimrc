@@ -170,8 +170,8 @@ if has('autocmd')
         highlight ModeMsg         ctermbg=1         ctermfg=White    cterm=bold
         highlight Search          ctermfg=White     ctermbg=Red      cterm=bold
         highlight IncSearch       ctermfg=White     ctermbg=Red      cterm=bold
-        highlight StatusLine      ctermfg=67        ctermbg=0
-        highlight StatusLineNC    ctermfg=8         ctermbg=67
+        highlight StatusLine      ctermfg=1        ctermbg=0
+        highlight StatusLineNC    ctermfg=8         ctermbg=1
         highlight Visual          ctermbg=247       ctermfg=black    cterm=bold
         " Tabline color settings
         highlight TabLine      ctermfg=White  ctermbg=Black     cterm=NONE
