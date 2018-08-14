@@ -29,7 +29,7 @@ CHANGES:
  }
 ```
  **Obs.:** You will need the [statuscolors](https://dwm.suckless.org/patches/statuscolors/) patch to set the colors to each situation (selected, normal, occupied, etc).
- - To remove the current window description, remove this _if statement_ in the _void drawbar_ function in the **dwm.c** file:
+ - To remove the current window description, remove this _if/else statement_ in the _void drawbar_ function in the **dwm.c** file:
     ```
 	if ((w = x - xx) > bh) {
 		x = xx;
