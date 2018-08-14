@@ -2,9 +2,7 @@
     <img src="https://github.com/Valeyard1/dotfiles/blob/master/dotfiles.png" align="center">
 </p>
 
-![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/screenshot.png "Screenshot") <br />
-
-![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/screenshot2.png "Screenshot 2") <br />
+![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/scrot.png "Screenshot 2") <br />
 
 <p align="center">
     <b>Screenshots</b><br>
