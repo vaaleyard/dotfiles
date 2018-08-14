@@ -9,6 +9,8 @@ do
         "C-c")
                 echo -n "$file" | xclip -selection clipboard ;;
         "C-w")
-                hsetroot -fill "$file" ;;
+                setroot -f "$file" ;;
+        "C-m")
+                mv "$file" ~/Pictures/Wallpapers/ ;;
         esac
 done
