@@ -1,3 +1,38 @@
+# MY SETUP
+
+PATCHES:
+ - [tilegap](https://dwm.suckless.org/patches/tilegap/) to set gaps between windows
+ - [moveresize](https://dwm.suckless.org/patches/moveresize/) to resize/move windows
+ - [statuscolors](https://dwm.suckless.org/patches/statuscolors/) to set different colors for each action (i.e. normal, selected, urgent, occupied)
+- CHANGES:
+    - I've created the `barsize` variable, which represents the size of the dwm statusbar
+    - There's a `tagspacing` variable which represents the size of the tag label
+    - To remove the windows indicator in the statusbar, change this _for loop_ in the **dwm.c** file:
+    ```
+    for (i = 0; i < LENGTH(tags); i++) {
+        w = TEXTW(tags[i]);
+        drw_setscheme(drw, &scheme[(m->tagset[m->seltags] & 1 << i) ? 1 : (urg & 1 << i ? 2 : 0)]);
+        drw_text(drw, x, 0, w, bh, tags[i], 0);
+        drw_rect(drw, x + 1, 1, dx, dx, m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
+                occ & 1 << i, 0);
+        x += w;
+    }
+    ```
+    to this:  
+    ```
+    for (i = 0; i < LENGTH(tags); i++) {
+        w = TEXTW(tags[i]) + tagspacing;
+        drw_setscheme(drw, &scheme[(m->tagset[m->seltags] & 1 << i) ? 1 : (urg & 1 << i ? 2 : (occ & 1 << i ? 3:0))]);
+        drw_text(drw, x, 0, w, bh, tags[i], 0);
+        x += w;
+    }
+    ```
+    **Obs.:** You will need the [statuscolors](https://dwm.suckless.org/patches/statuscolors/) patch to set the colors to each situation (selected, normal, occupied, etc).
+    
+    
+
+
+
 dwm - dynamic window manager
 ============================
 dwm is an extremely fast, small, and dynamic window manager for X.
@@ -49,11 +84,3 @@ Configuration
 -------------
 The configuration of dwm is done by creating a custom config.h
 and (re)compiling the source code.
-
-PATCHES:
- - [tilegap](https://dwm.suckless.org/patches/tilegap/) to set gaps between windows
- - [moveresize](https://dwm.suckless.org/patches/moveresize/) to resize/move windows
- - [statuscolors](https://dwm.suckless.org/patches/statuscolors/) to set different colors for each action (i.e. normal, selected, urgent, occupied)
-
-CHANGES:
- - I've created the `barsize` variable, which represent the size of the dwm statusbar
