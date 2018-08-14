@@ -5,7 +5,8 @@
 
 /* appearance */
 static const char *fonts[] = {
-    "cherry"
+    "cherry:style=Regular:size=8",
+    "Siji:style=Regular:size=9"
 };
 static const unsigned int borderpx   = 0;        /* border pixel of windows */
 static const unsigned int snap       = 32;       /* snap pixel */
@@ -13,15 +14,15 @@ static const int showbar             = 1;        /* 0 means no bar */
 static const int topbar              = 1;        /* 0 means bottom bar */
 static const unsigned int gappx      = 12;       /* gap pixel between windows */
 static const unsigned int barsize    = 10;       /* size of the dwm bar */
-static const unsigned int tagspacing = 6;        /* size of the dwm bar */
+static const unsigned int tagspacing = 9;        /* size of the dwm bar */
 
 #define NUMCOLORS 9
 static const char colors[NUMCOLORS][MAXCOLORS][9] = {
 	// border	 foreground	  background 7C817C
-	{ "#ffffff",	 "#FDF7E1", 	  "#373348" },  // 0 = normal
-	{ "#181818", 	 "#FDF7E1", 	  "#C99C70" },  // 1 = selected
+	{ "#ffffff",	 "#FDF7E1", 	  "#2A3334" },  // 0 = normal
+	{ "#181818", 	 "#FDF7E1", 	  "#e15443" },  // 1 = selected
 	{ "#b43030", 	 "#FDF7E1", 	  "#b23450" },  // 2 = urgent
-	{ "#181818", 	 "#FDF7E1", 	  "#504a68" },  // 3 = occupied
+	{ "#181818", 	 "#FDF7E1", 	  "#394547" },  // 3 = occupied
 	{ "#212121", 	 "#ab7438", 	  "#0b0606" },  // 4 = yellow
 	{ "#212121", 	 "#475971", 	  "#0b0606" },  // 5 = blue
 	{ "#212121", 	 "#694255", 	  "#0b0606" },  // 6 = magenta
@@ -30,9 +31,8 @@ static const char colors[NUMCOLORS][MAXCOLORS][9] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5" };
-//static const char *tags[] = { "  ô  ", "  õ  ", "  ö  " };
-//static const char *tags[] = { " ", " ", " ", " ", " ", " ", "\ue241 " };
+//static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "", "", "", "", "\ue241" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -54,9 +54,9 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ " [T] ",   tile },    /* first entry is default */
-	{ " <> ",   NULL },    /* no layout function means floating behavior */
-	{ " [M] ",   monocle }, /* monocle is good for maximizing the preservation and focusing of the window */
+    { "\ue002",   tile },    /* first entry is default */
+	{ "\ue006",   NULL },    /* no layout function means floating behavior */
+	{ "\ue000",   monocle }, /* monocle is good for maximizing the preservation and focusing of the window */
 };
 
 /* key definitions */
@@ -76,7 +76,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-i", "-l", "3", "-p", "Search ", "-fn", "iosevka Nerd Font:size=11" , "-nb", "#373348", "-nf", "#ffffff", "-sb", "#C99C70", "-sf", "#FDF7E1", "-w", "360", "-h", "20", "-x", "24", "-y", "42", NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-i", "-l", "3", "-p", "Search ", "-fn", "iosevka Nerd Font:size=11" , "-nb", "#394547", "-nf", "#D8DEE9", "-sb", "#e15443", "-sf", "#2D333D", "-w", "360", "-h", "20", "-x", "24", "-y", "42", NULL };
 static const char *termcmd[]    = { "st", NULL };
 static const char *mail[]       = { "st", "-c", "neomutt", "-e", "neomutt", NULL};
 static const char *ranger[]     = { "st", "-c", "ranger", "-e", "ranger", NULL};
@@ -196,10 +196,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
 };
 
 /* button definitions */
