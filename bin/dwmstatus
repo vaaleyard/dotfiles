@@ -21,9 +21,32 @@ volume() {
     fi
 }
 
+battery() {
+    battery_status=$(cat /sys/class/power_supply/BAT0/status)
+    battery_percent=$(cat /sys/class/power_supply/BAT0/capacity)
+    case "$battery_status" in
+        Charging) echo " ${battery_percent}% ";;
+        Discharging)
+            if [ "$battery_percent" -gt 80 ]
+            then
+                echo " ${battery_percent}% "
+            elif [ "$battery_percent" -gt 50 ]
+            then
+                echo " ${battery_percent}% "
+            elif [ "$battery_percent" -gt 16 ]
+            then
+                echo " ${battery_percent}% "
+            else
+                echo " ${battery_percent}% "
+            fi
+            ;;
+        Unknown|Full) echo " 100% ";;
+    esac
+}
+
 while true
 do
-    xsetroot -name " $(clock)                                                                                                     $(volume)"
-    sleep 1
+    xsetroot -name " $(clock)                                                                                                 $(battery)  $(volume)"
+    sleep 2
 done
 
