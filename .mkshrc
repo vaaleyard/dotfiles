@@ -1,6 +1,15 @@
 #!/bin/mksh
 
-# Global variables ================{{{
+bind ^L=clear-screen
+bind ^K=up-history
+bind ^J=down-history
+umask 077
+
+PS1='$(pwd | sed "s,^$HOME,~,") $(print "\033[0;36m$\033[00m") '
+
+HISTSIZE=256
+HISTFILE=/tmp/.`id -nu`-history
+
 export SHELL=/bin/mksh
 export PAGER=less
 export EDITOR=vim
@@ -10,51 +19,57 @@ export READER=zathura
 export IMAGEVIEWER=sxiv
 export VIDEOPLAYER=mpv
 export PATH=$PATH:$HOME/bin:$HOME/bin/ascii:/opt/altera/12.1sp1/quartus/bin/:/opt/altera/10.1sp1/modelsim_ase/linuxaloem/
-export NNN_BMS='gd:~/Documents;gD:~/Downloads/;gF:~/Documents/Faculdade/'
-export NNN_FALLBACK_OPENER=xdg-open
-# }}}
-# mksh settings ==================={{{
-set -o emacs
-bind ^L=clear-screen
-bind ^V=edit-line
-bind ^K=up-history
-bind ^J=down-history
 
-
-# Will return the current branch name
-# Usage example: git pull origin $(current_branch)
-current_branch() {
-	ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-	ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-	echo ${ref#refs/heads/}
-}
-
-current_repository() {
-	ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-	ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-	echo $(git remote -v | cut -d':' -f 2)
-}
-
-#PS1=$'\e[01;36m${PWD/#$HOME/~}\e[01;31m\ ${?/#0/}\e[01;32m\n➜\e[0m\ '
-#PS1=$'\e[01;36m${PWD/#$HOME/~}\e[01;37m\ on\e[01;35m\ \ue0a0 $(current_branch "q")\e[0m\n↳ '
-#PS1=''$(print '\033[38;1;36m$(pwd | sed "s,^$HOME,~,")\033[00m')' '$(print '\033[38;1;35m$(current_branch)\033[00m')' '$(print '\033[38;1;32m\n➜ \033[00m')''
-PS1='$(pwd | sed "s,^$HOME,~,") $(print "\033[0;36m$\033[00m") '
-
-# History settings
-HISTSIZE=5000
-HISTFILESIZE=500
-HISTFILE=~/.mksh_history
-
-#}}}
-# mksh especific functions ========{{{
+alias c=clear
+alias e="$EDITOR"
+alias ..="cd .."
+alias which='command -v'
+alias xmo='xmodmap ~/.Xmodmap'
+alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keypass.kdb'
+alias dotfiles="/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
 
 '!!'() {
 	echo "$(history -1 | grep -oP "(?<=\t).*$")"
 	$(history -1 | grep -oP "(?<=\t).*$")
 }
 
-# }}}
-# Source files ====================={{{
+# ix.io - txt file upload
+ix() {
+    curl -sF f:1='<-' ix.io < "$*"
+}
+
+# iotek - txt file upload
+io(){
+    curl -sT- https://p.iotek.org < "$*"
+}
+
+### uguu - txt/images upload only for 24 hours
+uguu () {
+    for i in $*; do
+        curl -i -F file=@"$i" https://uguu.se/api.php?d=upload-tool | grep https
+    done
+}
+
+fuwa() {
+    for i in "$@"; do
+        curl -s -F file=@$i} https://fuwa.se/api/upload
+    done
+}
+
+### mixtape - txt/image upload up to 100MB
+mix() {
+    for i in "$@"; do
+        curl -sf -F files[]=$i https://mixtape.moe/upload.php
+    done
+}
+
+# anonfile - any file upload up to 10gb (this site is like transfer.sh) - the link is a download link
+anon() {
+    for i in "$@"; do
+        curl -F document=@$i https://anonfiles.cc/api/upload
+    done
+}
+
 source "$HOME/.vim/gruvbox_256palette.sh"
-source $HOME/.aliases
-# }}}
+#source $HOME/.aliases
