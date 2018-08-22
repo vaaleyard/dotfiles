@@ -30,7 +30,6 @@ set noswapfile                          " Don't use swap file
 set smartcase                           " Override the 'ignorecase' option if the search pattern contains upper case characters.
 set showcmd                             " Show commands at bottom
 set hidden                              " Switch buffers without the need of saving them
-set clipboard=unnamedplus               " Copy to clipboard when yanking text with yy/dd etc.
 set path=.,**                           " Set path to the current and children directories
 set wildmenu wildmode=full              " Display all matching files when we tab complete
 set undofile undodir=~/.vim/tmp/undo/   " Set undofiles (undo files even if you exited the file)
@@ -236,3 +235,6 @@ map <F2> <Esc><Esc>:call ToggleExplore()<CR>
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 
 " }}}
+
+autocmd BufNewFile *.py :norm O#!/usr/bin/env python
+autocmd BufNewFile *.py :norm 2o
