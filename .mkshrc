@@ -26,7 +26,7 @@ alias ..="cd .."
 alias which='command -v'
 alias xmo='xmodmap ~/.Xmodmap'
 alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keypass.kdb'
-alias dotfiles="/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
 
 '!!'() {
