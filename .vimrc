@@ -1,9 +1,12 @@
 " My old vim configuration: http://ix.io/1f88   (It is here only by reference, it's a super bloat config!!)
 
 call plug#begin('~/.vim/plugged')
-" Plugins for notetaking only
-Plug 'vimwiki/vimwiki'
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'davidhalter/jedi-vim'
+Plug 'maralla/completor.vim'
+Plug 'majutsushi/tagbar'
 call plug#end()
 " General settings {{{
 
@@ -12,7 +15,7 @@ filetype plugin indent on
 syntax on
 
 runtime macros/matchit.vim
-colorscheme gruvbox                     " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
+colorscheme murphy                      " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
 set background=dark                     " Use a dark background
 set scrolloff=5                         " Keep at least 3 lines above/below when scrolling
 set lazyredraw                          " Don't update the display while executing macros
@@ -231,10 +234,17 @@ endfunction
 map <F2> <Esc><Esc>:call ToggleExplore()<CR>
 " }}}
 " Plugins {{{
-" vimwiki with markdown support
-let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
+nnoremap <Tab> :NERDTreeToggle<CR>
 " }}}
-
-autocmd BufNewFile *.py :norm O#!/usr/bin/env python
-autocmd BufNewFile *.py :norm 2o

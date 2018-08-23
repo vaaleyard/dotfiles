@@ -69,12 +69,6 @@ alias shrug="echo '¯\_(ツ)_/¯' | xclip -i -selection clipboard" #emotes/faces
 alias lenny="echo '( ͡° ͜ʖ ͡°)' | xclip -i -selection clipboard"
 alias fu="echo '┌∩┐(◣_◢)┌∩┐' | xclip -i -selection clipboard"
 alias cry="echo '( -̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷄◞ω◟-̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷅ )' | xclip -i -selection clipboard"
-# Aliases to help with my github bare repo
-# Links: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
-#		 https://harfangk.github.io/2016/09/19/manage-dotfiles-with-a-git-bare-repository.html
-alias dotfiles="/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
-#alias df="/usr/bin/git --git-dir=$HOME/bare-dotfiles/ --work-tree=$HOME"
-
 # Do something and receive a desktop alert when it completes `sudo apt-get install something | alert`
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
