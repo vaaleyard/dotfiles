@@ -9,7 +9,7 @@ CHANGES:
  - I've created the `barsize` variable, which represents the size of the dwm statusbar
  - There's a `tagspacing` variable which represents the size of the tag label
  - To remove the windows indicator in the statusbar, change this _for loop_ in the _void drawbar_ function in the **dwm.c** file:
- ```
+ ```C
  for (i = 0; i < LENGTH(tags); i++) {
      w = TEXTW(tags[i]);
      drw_setscheme(drw, &scheme[(m->tagset[m->seltags] & 1 << i) ? 1 : (urg & 1 << i ? 2 : 0)]);
@@ -20,7 +20,7 @@ CHANGES:
  }
 ```
  to this:  
- ```
+ ```C
  for (i = 0; i < LENGTH(tags); i++) {
      w = TEXTW(tags[i]) + tagspacing;
      drw_setscheme(drw, &scheme[(m->tagset[m->seltags] & 1 << i) ? 1 : (urg & 1 << i ? 2 : (occ & 1 << i ? 3:0))]);
@@ -28,9 +28,9 @@ CHANGES:
      x += w;
  }
 ```
- **Obs.:** You will need the [statuscolors](https://dwm.suckless.org/patches/statuscolors/) patch to set the colors to each situation (selected, normal, occupied, etc).
+   **Obs.:** You will need the [statuscolors](https://dwm.suckless.org/patches/statuscolors/) patch to set the colors to each situation (selected, normal, occupied, etc).
  - To remove the current window description, remove this _if/else statement_ in the _void drawbar_ function in the **dwm.c** file:
-    ```
+    ```C
 	if ((w = x - xx) > bh) {
 		x = xx;
 		if (m->sel) {
