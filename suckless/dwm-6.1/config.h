@@ -129,6 +129,7 @@ static Key keys[] = {
 
     /* Mute sound with alsa */
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = muteall } },
+	{ MODKEY|ControlMask,           XK_m,      spawn,          {.v = cmus } },
 
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
@@ -156,8 +157,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 
     /* Screenshots to clipboard */
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("scrot -se 'xclip -selection clipboard -t image/png $f && rm -f $f'") },
-	{ MODKEY,                       XK_s,      spawn,          SHCMD("scrot -e 'xclip -selection clipboard -t image/png $f && rm -f $f'") },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("scrot 'xclip -selection clipboard -t image/png $f && rm -f $f'") },
+	{ MODKEY,                       XK_s,      spawn,          SHCMD("import /tmp/file.png && xclip -sel clip -t image/png /tmp/file.png && rm /tmp/file.png") },
 
     /* Save Screenshots */
 	{ MODKEY|ShiftMask,             XK_Print,  spawn,          SHCMD("scrot -se 'mv $f ~/Pictures/scrot/' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'") },
