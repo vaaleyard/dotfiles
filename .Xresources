@@ -73,11 +73,13 @@ st.opacity:      255
 #define nord14 #A3BE8C
 #define nord15 #B48EAD
 
-*.foreground:   self7
-*.background:   #3A4B52
-*.cursorColor:  self4
+*.foreground:   nord4
+*.background:   nord0
+*.cursorColor:  nord4
+*fading: 35
+*fadeColor: nord3
 
-*.color0: #3A4B52
+*.color0: nord1
 *.color1: nord11
 *.color2: nord14
 *.color3: nord13
