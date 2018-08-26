@@ -5,7 +5,7 @@ bind ^K=up-history
 bind ^J=down-history
 umask 077
 
-PS1='$(pwd | sed "s,^$HOME,~,") $(print "\033[0;36m$\033[00m") '
+PS1='$(pwd | sed "s,^$HOME,~,")$(print "\033[0;36m$\033[00m") '
 
 HISTSIZE=256
 HISTFILE=/tmp/.`id -nu`-history
@@ -71,5 +71,14 @@ anon() {
     done
 }
 
+cgcc() {
+    name1=$1
+    name2=$2
+    file1=${name1%%.*}
+    file2=${name2%%.*}
+    gcc -c "${file1}.c"
+    gcc -c "${file2}.c"
+    gcc -o exec "${file1}.o" "${file2}.o"
+}
 source "$HOME/.vim/gruvbox_256palette.sh"
 #source $HOME/.aliases
