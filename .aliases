@@ -50,7 +50,6 @@ alias stnote='st -c scratchterm -g 80x20 -e vim $HOME/syncthing/markor/Tasks/not
 # }}}
 # Useful general aliases {{{
 
-alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keypass.kdb'
 alias mp3="youtube-dl --extract-audio --audio-format mp3 "
 alias vimrc="$EDITOR ~/.vimrc"
 alias mkshrc="$EDITOR ~/.mkshrc"

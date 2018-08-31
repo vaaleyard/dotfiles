@@ -5,17 +5,14 @@ Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'davidhalter/jedi-vim'
+Plug 'morhetz/gruvbox'
 Plug 'maralla/completor.vim'
-Plug 'majutsushi/tagbar'
 call plug#end()
 " General settings {{{
 
 " Filetype support
-filetype plugin indent on
-syntax on
-
 runtime macros/matchit.vim
-colorscheme murphy                      " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
+colorscheme gruvbox                     " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
 set background=dark                     " Use a dark background
 set scrolloff=5                         " Keep at least 3 lines above/below when scrolling
 set lazyredraw                          " Don't update the display while executing macros
@@ -26,6 +23,8 @@ set shiftround                          " Always indent/outdent to nearest tabst
 set smarttab                            " Use shiftwidths at left margin, tabstops everywhere else
 set laststatus=2                        " Always show the statusline
 set nonumber                            " Don't display line numbers
+set relativenumber
+set cursorline
 set backspace=indent,eol,start          " Fix backspace
 set hlsearch                            " Highlight search
 set incsearch ignorecase                " Increase search
@@ -39,8 +38,6 @@ set undofile undodir=~/.vim/tmp/undo/   " Set undofiles (undo files even if you 
 set splitbelow splitright               " Split belor and/or right when opening new buffers
 set list listchars=eol:$,trail:∙ listchars+=tab:│\  fillchars+=vert:│,fold:\  
 set foldenable foldmethod=marker
-" Set up statusline
-set statusline=\ %f\ %y\ %m%=%l,%c\ \ \ \ \ \ \ \ \ \ \ \ %P\ |
  " }}}
 " Mappings {{{
 
@@ -99,11 +96,6 @@ nnoremap ,S :sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 nnoremap gb :ls<CR>:buffer<Space>
 
-" better completion menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-
 " Smooth listing
 cnoremap <expr> <CR> <SID>CCR()
 function! s:CCR()
@@ -143,50 +135,16 @@ if has('autocmd')
     augroup Set_FileTypes
         autocmd!
         "autocmd BufRead,BufNewFile,BufWritePost *.md set filetype=markdown
-        autocmd FileType vimwiki map <leader>d <Plug>VimwikiToggleListItem
-        autocmd BufRead,BufNewFile,BufWritePost *.pl set filetype=prolog
         autocmd FileType gitcommit setlocal spell
         autocmd FileType qf wincmd J | setlocal wrap
-        autocmd FileType mail
-                    \ if expand('%:p') =~ '^/tmp/mutt/\(neo\)\?mutt-' |
-                    \     set ft=pandoc                               |
-                    \ else                                            |
-                    \     setlocal spell                              |
-                    \ endif
     augroup END
 
+    highlight CursorLine ctermbg=239 cterm=none
 
     " Return to last edit position when opening files (You want this!)
     augroup Remember_cursor_position
         autocmd!
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-    augroup END
-
-    augroup VimSettings
-        autocmd!
-        " automatic location/quickfix window
-        autocmd QuickFixCmdPost [^l]* cwindow
-        autocmd QuickFixCmdPost    l* lwindow
-        autocmd VimEnter            * cwindow
-        " various adjustments of the default colorscheme
-        highlight ModeMsg         ctermbg=1         ctermfg=White    cterm=bold
-        highlight Search          ctermfg=White     ctermbg=Red      cterm=bold
-        highlight IncSearch       ctermfg=White     ctermbg=Red      cterm=bold
-        highlight StatusLine      ctermfg=1        ctermbg=0
-        highlight StatusLineNC    ctermfg=8         ctermbg=1
-        highlight Visual          ctermbg=247       ctermfg=black    cterm=bold
-        " Tabline color settings
-        highlight TabLine      ctermfg=White  ctermbg=Black     cterm=NONE
-        highlight TabLineFill  ctermfg=White  ctermbg=Black     cterm=NONE
-        highlight TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
-        " Spell color settings
-        highlight SpellBad     term=underline cterm=underline ctermfg=Red
-        highlight SpellCap     term=underline cterm=underline
-        highlight SpellRare    term=underline cterm=underline
-        highlight SpellLocal   term=underline cterm=underline
-
-        " Git-specific settings
-        autocmd FileType gitcommit nnoremap <buffer> { ?^@@<CR>|nnoremap <buffer> } /^@@<CR>|setlocal iskeyword+=-
     augroup END
 
     " Show spaces as red if there's nothing after it (stole Greg Hurrel)
@@ -199,52 +157,20 @@ if has('autocmd')
     augroup END
 endif
 " }}}
-" Grep {{{
-command! -nargs=+ -complete=file_in_path -bar Grep  silent! grep! <args> | redraw!
-command! -nargs=+ -complete=file_in_path -bar LGrep silent! lgrep! <args> | redraw!
-
-nnoremap <silent> ,G :Grep <C-r><C-w><CR>
-xnoremap <silent> ,G :<C-u>let cmd = "Grep " . visual#GetSelection() <bar>
-            \ call histadd("cmd", cmd) <bar>
-            \ execute cmd<CR>
-
-if executable("ag")
-    set grepprg=ag\ --vimgrep
-    set grepformat^=%f:%l:%c:%m
-endif
-" }}}
-" Netrw {{{
-let g:netrw_sort_by        = 'time'
-let g:netrw_sort_direction = 'reverse'
-let g:netrw_banner         = 0
-let g:netrw_liststyle      = 3
-let g:netrw_browse_split   = 3
-let g:netrw_fastbrowse     = 1
-let g:netrw_sort_by        = 'name'
-let g:netrw_sort_direction = 'normal'
-let g:netrw_winsize = -28
-
-function! ToggleExplore()
-    if &ft ==# "netrw"
-         Rexplore
-    else
-         Explore
-    endif
-endfunction
-map <F2> <Esc><Esc>:call ToggleExplore()<CR>
-" }}}
 " Plugins {{{
 
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'filetype'] ]
       \ },
       \ }
 
 nnoremap <Tab> :NERDTreeToggle<CR>
+
+let g:completor_auto_trigger = 0
+inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
+
 " }}}

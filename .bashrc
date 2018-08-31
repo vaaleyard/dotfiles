@@ -1,5 +1,5 @@
-HISTSIZE=3000
-HISTFILESIZE=200
+HISTSIZE=256
+HISTFILE=/tmp/.`id -nu`-history
 
 export SHELL=/bin/bash
 export PAGER=less
@@ -13,19 +13,19 @@ export PATH=$PATH:$HOME/bin:$HOME/bin/ascii
 export NNN_USE_EDITOR=1
 
 set -o emacs
-#bind 'set show-mode-in-prompt on'
-#bind 'set vi-ins-mode-string \e[1;31m INSERT \e[0m'
-#bind 'set vi-cmd-mode-string \e[1;32m NORMAL \e[0m'
 bind "\C-l":clear-screen
 bind "\C-j":previous-history
 bind "\C-k":next-history
 
+alias c=clear
+alias e="$EDITOR"
+alias ..="cd .."
+alias which='command -v'
+alias xmo='xmodmap ~/.Xmodmap'
+alias kpcli='kpcli --kdb $HOME/keypass.kdb'
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
-PS1='\w \[\e[1;34m\]\$ \[\e[0m\]'
+PS1='\w\[\e[1;34m\]\$ \[\e[0m\]'
 
 source ~/.aliases
-# git prompt(requirement to get __git_ps1). Ref: https://stackoverflow.com/a/12871094/9159065
-[ -f ~/.git-prompt.sh ] && source ~/.git-prompt.sh
-[ -f $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh ] && source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
-
+source ~/.vim/gruvbox_256palette.sh
