@@ -92,7 +92,7 @@ getConfiguredPlayer()
     if command -v vlc &>/dev/null; then
       player="vlc"
     elif command -v mpv &>/dev/null; then
-      player="mpv"
+      player="mpv --ytdl-format=18"
     elif command -v mplayer &>/dev/null; then
       player="mplayer"
     else
