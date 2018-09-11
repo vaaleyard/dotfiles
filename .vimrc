@@ -51,6 +51,12 @@ inoremap <C-D> *
 noremap ; :
 noremap : ;
 nnoremap ' `
+inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
+inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
+inoremap        (  ()<Left>
+inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap        [  []<Left>
+inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 
 " Make 0 go to the first character rather than the beginning
 " " of the line. When we're programming, we're almost always
@@ -235,6 +241,3 @@ map <F2> <Esc><Esc>:call ToggleExplore()<CR>
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 
 " }}}
-
-autocmd BufNewFile *.py :norm O#!/usr/bin/env python
-autocmd BufNewFile *.py :norm 2o
