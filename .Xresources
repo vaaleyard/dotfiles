@@ -7,7 +7,7 @@
 ! see src/config.h for more information about option meanings.
 
 ! These options only take effect on startup.
-! st.termname:          st-256color
+st.termname:          screen-256color
 ! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
 st.shell:            /bin/mksh
 
@@ -93,3 +93,19 @@ st.opacity:      255
 *.color13: nord15
 *.color14: nord7
 *.color15: nord6
+
+
+XTerm*faceName: Monaco
+XTerm.vt100.font: 7x13
+! start with TrueType fonts disabled
+XTerm*faceSize: 10
+XTerm.termName: xterm-256color
+XTerm.vt100.locale: true
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.backarrowKey: false
+XTerm.ttyModes: erase ^?
+XTerm.vt100.translations: #override \n\
+    Ctrl <Key>M: maximize() \n\
+    Ctrl <Key>R: restore()
+XTerm.vt100.saveLines: 4096
+*.letterSpace:  17
