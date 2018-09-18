@@ -11,10 +11,10 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-xset +fp $HOME/.fonts/
+#xset +fp $HOME/.fonts/
 exec redshift &
 $HOME/bin/dwmstatus &
-setroot -f $HOME/Pictures/Wallpapers/31.jpg
+#setroot -f $HOME/Pictures/Wallpapers/31.jpg
 while true; do
     # Log stderror to a file
     dwm 2> /tmp/dwm.log
