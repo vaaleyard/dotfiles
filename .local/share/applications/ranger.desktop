@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=ranger
+Comment=Launches the ranger file manager
+Icon=utilities-terminal
+Terminal=true
+Exec=st -e /usr/bin/ranger
+Categories=ConsoleOnly;System;FileTools;FileManager
+MimeType=inode/directory;inode/mount-point;x-scheme-handler/ssh;x-scheme-handler/smb;x-scheme-handler/nfs;x-scheme-handler/ftp;
+
