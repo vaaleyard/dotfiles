@@ -2,8 +2,8 @@
 Type=Application
 Name=mpv Media Player
 TryExec=mpv
-Exec=mpv -- %U
+Exec=mpv -vo=drm -- %U
 Terminal=false
 Categories=AudioVideo;Audio;Video;Player;
-MimeType=application/octet-stream;
+MimeType=application/octet-stream;application/mp4;
 
