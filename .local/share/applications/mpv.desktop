@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=mpv Media Player
+TryExec=mpv
+Exec=mpv -- %U
+Terminal=false
+Categories=AudioVideo;Audio;Video;Player;
+MimeType=application/octet-stream;
+
