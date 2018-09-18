@@ -14,7 +14,7 @@ static const int showbar             = 1;        /* 0 means no bar */
 static const int topbar              = 1;        /* 0 means bottom bar */
 static const unsigned int gappx      = 12;       /* gap pixel between windows */
 static const unsigned int barsize    = 10;       /* size of the dwm bar */
-static const unsigned int tagspacing = 9;        /* size of the dwm bar */
+static const unsigned int tagspacing = 10;        /* size of icon area */
 
 #define NUMCOLORS 9
 static const char colors[NUMCOLORS][MAXCOLORS][9] = {
@@ -91,7 +91,6 @@ static const char *volsuperup[] = { "amixer", "-q", "sset", "Master", "5%+", NUL
 static const char *muteall[]    = { "amixer", "-q", "sset", "Master", "toggle", NULL};
 static const char *cmus[]       = { "tmux", "new-window", "-t", "main", "cmus", NULL};
 static const char *cmuspause[]  = { "cmus-remote", "--pause", NULL};
-static const char *lock[]       = { "amixer", "-q", "sset", "Master", "mute", "&&", "locki3.sh", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
