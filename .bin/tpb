@@ -14,7 +14,7 @@ program='transmission-remote-cli'
 TPB="https://thepiratebay.org"
 
 # show N first matches by default
-limit=35
+limit=45
 
 # colors
 numbcolor='\x1b[1;35m'
