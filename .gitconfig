@@ -9,8 +9,8 @@
     s = status
     p = push
     cm = commit -m
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    hist1 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    histg = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    histc = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
     aliases = config --get-regexp alias
 [difftool]
     prompt = false
