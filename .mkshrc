@@ -21,12 +21,12 @@ if [ "$TERM" = "linux" ]; then
 fi
 
 bind ^L=clear-screen
-bind ^K=up-history
-bind ^J=down-history
 umask 077
 
-#PS1='$(pwd | sed "s,^$HOME,~,")$(print "\033[0;36m$\033[00m") '
-PS1='$ '
+
+[ `id -u` = '0' ] && PS1='# > ' || PS1='$(pwd | sed "s,^$HOME,~,") $(print "\033[0;36m$\033[00m")> '
+PS2='> '
+export PS1 PS2
 
 HISTSIZE=256
 HISTFILE=/tmp/.`id -nu`-history
@@ -35,20 +35,21 @@ export SHELL=/bin/mksh
 export PAGER=less
 export EDITOR=vim
 export BROWSER=palemoon
-export BROWSERCLI=w3m
+export BROWSERCLI=lynx
 export READER=zathura
 export IMAGEVIEWER=sxiv
 export VIDEOPLAYER=mpv
-export PATH=$PATH:$HOME/bin:$HOME/bin/ascii:/opt/altera/12.1sp1/quartus/bin/:/opt/altera/10.1sp1/modelsim_ase/linuxaloem/
+export PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii:$HOME/Downloads/jdk1.8.0_181/
 
-alias c=clear
 alias e="$EDITOR"
 alias ..="cd .."
 alias which='command -v'
 alias xmo='xmodmap ~/.Xmodmap'
-alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keypass.kdb'
+alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keypass.kdbx'
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
+yt() { mpv --ytdl-format=136+251/136+171/136+250/136+140 "$@" ;}
+alias r=ranger
 
 '!!'() {
 	echo "$(history -1 | grep -oP "(?<=\t).*$")"
@@ -102,17 +103,19 @@ cgcc() {
     gcc -o exec "${file1}.o" "${file2}.o"
 }
 
-man() {
-	env LESS_TERMCAP_mb=$'\E[01;31m' \
-		LESS_TERMCAP_md=$'\E[01;31m' \
-		LESS_TERMCAP_me=$'\E[0m' \
-		LESS_TERMCAP_se=$'\E[0m' \
-		LESS_TERMCAP_so=$'\E[01;44;33m' \
-		LESS_TERMCAP_ue=$'\E[0m' \
-		LESS_TERMCAP_us=$'\E[01;32m' \
-		man "$@"
+'!g'() {
+    oi=$(echo $@ | sed 's/\ /+/')
+    torsocks $BROWSERCLI https://google.com/search?q="$oi" -noreferer
 }
 
+'!ddg' () {
+    oi=$(echo $@ | sed 's/\ /+/')
+    torsocks $BROWSERCLI https://duckduckgo.com/?q="$oi" -noreferer
+}
+
+pwgen() {
+	head /dev/urandom | tr -dc 'a-zA-Z0-9.,[$:-?~!^_\\\[\]]' | head -c${1:-22}; echo
+}
 
 source "$HOME/.vim/gruvbox_256palette.sh"
 #source $HOME/.aliases
