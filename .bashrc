@@ -1,5 +1,5 @@
 HISTSIZE=256
-HISTFILE=/tmp/.`id -nu`-history
+HISTFILE=~/.bash_history
 
 export SHELL=/bin/bash
 export PAGER=less
