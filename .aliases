@@ -905,3 +905,34 @@ unsplash() {
 	done
 }
 # }}}
+#
+#
+# Sysadmin {{{
+
+# Docker
+alias dcls='docker container ls'
+alias dils='docker image ls'
+alias dsprune='docker system prune'
+
+dirm () {
+    docker rmi -f "$@"
+}
+
+dcstop () {
+    docker container stop "$@"
+}
+
+dcrm () {
+    docker container rm -f "$@"
+}
+
+dcrmall() {
+    docker container rm $(docker container ls -aq) -f
+}
+
+# Redes
+digdns() {
+    dig +short "$@"
+}
+
+alias meuip="ip addr | grep inet | grep wlp3s0 | cut -d' ' -f6"
