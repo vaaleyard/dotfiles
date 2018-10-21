@@ -4,7 +4,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
-Plug 'davidhalter/jedi-vim'
 Plug 'morhetz/gruvbox'
 Plug 'maralla/completor.vim'
 call plug#end()
@@ -51,6 +50,10 @@ inoremap <C-D> *
 noremap ; :
 noremap : ;
 nnoremap ' `
+inoremap " ""<Left>
+inoremap ( ()<Left>
+inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>""""""")))
+inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")""""""")))
 
 " Make 0 go to the first character rather than the beginning
 " " of the line. When we're programming, we're almost always
@@ -137,6 +140,7 @@ if has('autocmd')
         "autocmd BufRead,BufNewFile,BufWritePost *.md set filetype=markdown
         autocmd FileType gitcommit setlocal spell
         autocmd FileType qf wincmd J | setlocal wrap
+        autocmd FileType yaml set shiftwidth=2 tabstop=2
     augroup END
 
     highlight CursorLine ctermbg=239 cterm=none
@@ -171,6 +175,5 @@ let g:lightline = {
 nnoremap <Tab> :NERDTreeToggle<CR>
 
 let g:completor_auto_trigger = 0
-inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
 
 " }}}
