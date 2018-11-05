@@ -13,7 +13,7 @@ fi
 
 #xset +fp $HOME/.fonts/
 exec redshift &
-$HOME/bin/dwmstatus &
+$HOME/.bin/dwmstatus &
 #setroot -f $HOME/Pictures/Wallpapers/31.jpg
 while true; do
     # Log stderror to a file
