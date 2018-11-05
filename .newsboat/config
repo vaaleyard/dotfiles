@@ -79,7 +79,7 @@ macro r set browser "tmux split-window && tmux send-keys 'rtv %u\n'"; open-in-br
 # task-spooler: https://www.youtube.com/watch?v=wv8D8wT20ZY
 # youtube-dl: https://www.youtube.com/watch?v=MFxlwVhwayg
 #macro p set browser "tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-10 %u"; open-in-browser ; set browser "$BROWSER %u"
-macro p set browser "mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-10 %u"; open-in-browser ; set browser "$BROWSER %u"
+macro p set browser "mpv --ytdl-format=22 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-10 %u"; open-in-browser ; set browser "$BROWSER %u"
 
 # Ref: https://github.com/LukeSmithxyz/voidrice/blob/master/.newsboat/config#L36
 macro d set browser "dmenuhandler"; open-in-browser ; set browser linkhandler
@@ -102,7 +102,7 @@ highlight article     ":.*\\(image\\)$"                     color74  default
 highlight article     ":.*\\(embedded flash\\)$"            color74  default
 
 color listnormal_unread										default  default
-color listfocus_unread										default  color240 bold
+color listfocus_unread										default  color11 bold
 color listnormal                                            color7   default
 color listfocus                                             default  color240 bold
 color info                                                  color15  color241
