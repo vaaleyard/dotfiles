@@ -736,7 +736,7 @@ function colours() {
 }
 
 # Show the most used commands
-top10() { history 1 | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head; }
+top10() { history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head; }
 
 # Kill zombie process
 killall-zombies() { kill -HUP $(ps -A -ostat,ppid | grep -e '[zZ]'| awk '{ print $2 }') ;}
