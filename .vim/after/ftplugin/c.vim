@@ -5,7 +5,7 @@
 " When typing ';' marks a undo point, so when hit u, it won't undo the whole thing that you did in insert mode (nice when programming), and always save when press ;
 inoremap ; ;<c-g>u
 "inoremap ; :w<CR>
-inoremap {<CR> <CR>{<CR>}<Esc>O
+inoremap {<CR> <space>{<CR>}<Esc>O
 inoremap /*<space> /*  */<Esc>2<Left>i
 "iabbrev #i #include
 "iabbrev #d #define
