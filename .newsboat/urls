@@ -15,6 +15,7 @@
 "query:All Articles Video-English:tags # \"Video-English\"" "Video-English"
 
 # }}}
+https://github.com/Valeyard1.private.atom?token=AgDQph0uaEOs8rAmPsviZQy32pe1BUnlks65rriEwA== "GitHub" "GitHub"
 http://www.mairovergara.com/feed "Blog" "~Mairo Vergara"
 # News =================={{{
 
@@ -28,36 +29,18 @@ https://rss.tecmundo.com.br/feed "Tech News" "~TecMundo"
 # Reddit ================{{{
 
 https://www.reddit.com/r/commandline/.rss "Linux-Subreddit" "~/r/commandline"
-https://www.reddit.com/r/AskProgramming/.rss "Linux-Subreddit" "~/r/AskProgramming"
-https://www.reddit.com/r/C_Programming/.rss "Linux-Subreddit" "~/r/C_Programming"
-https://www.reddit.com/r/learnprogramming/.rss "Linux-Subreddit" "~/r/learnprogramming"
 https://www.reddit.com/r/linux/.rss "Linux-Subreddit" "~/r/linux"
-https://www.reddit.com/r/linux4noobs/.rss "Linux-Subreddit" "~/r/linux4noobs"
 https://www.reddit.com/r/OutOfTheLoop/.rss "Linux-Subreddit" "~/r/OutOfTheLoop"
 https://www.reddit.com/r/programming/.rss "Linux-Subreddit" "~/r/Programming"
-https://www.reddit.com/r/tmux/.rss "Linux-Subreddit" "~/r/tmux"
-https://www.reddit.com/r/LinuxActionShow/.rss "Linux-Subreddit" "~/r/LinuxActionShow"
 https://www.reddit.com/r/unixporn/.rss "Linux-Subreddit" "~/r/Unixporn"
-https://www.reddit.com/r/gnu/.rss "Linux-Subreddit" "~/r/gnu"
-https://www.reddit.com/r/archlinux/.rss "Linux-Subreddit" "~/r/ArchLinux"
-https://www.reddit.com/r/linux_devices/.rss "Linux-Subreddit" "~/r/Linux_devices"
-https://www.reddit.com/r/UnixProTips/.rss "Linux-Subreddit" "~/r/UnixProTips"
-https://www.reddit.com/r/zsh/.rss "Linux-Subreddit" "~/r/zsh"
-https://www.reddit.com/r/urxvt/.rss "Linux-Subreddit" "~/r/urxvt"
 https://www.reddit.com/r/bash/.rss "Linux-Subreddit" "~/r/bash"
-https://www.reddit.com/r/ScriptSwap/.rss "Linux-Subreddit" "~/r/ScriptSwap"
 https://www.reddit.com/r/vim/.rss "Linux-Subreddit" "~/r/vim"
 https://www.reddit.com/r/vim_magic/.rss "Linux-Subreddit" "~/r/vim_magic"
-https://www.reddit.com/r/vimplugins/.rss "Linux-Subreddit" "~/r/vim_plugins"
-https://www.reddit.com/r/linuxprojects/.rss "Linux-Subreddit" "~/r/linuxprojects"
 https://www.reddit.com/r/usefulscripts/.rss "Linux-Subreddit" "~/r/usefulscripts"
-https://www.reddit.com/r/i3wm/.rss "Linux-Subreddit" "~/r/i3wm"
-https://www.reddit.com/r/debian/.rss "Linux-Subreddit" "~/r/debian"
-https://www.reddit.com/r/opensource/.rss "Linux-Subreddit" "~/r/opensource"
-https://www.reddit.com/r/xubuntu/.rss "Linux-Subreddit" "~/r/xubuntu"
-https://www.reddit.com/r/xfce/.rss "Linux-Subreddit" "~/r/xfce"
-https://www.reddit.com/r/coolgithubprojects/.rss "Linux-Subreddit" "~/r/coolgithubprojects"
 https://www.reddit.com/r/selfhosted/.rss "Linux-Subreddit" "~/r/selfhosted"
+https://www.reddit.com/r/sysadmin/.rss "Linux-Subreddit" "~/r/sysadmin"
+https://www.reddit.com/r/privacy/.rss "Linux-Subreddit" "~/r/privacy"
+https://www.reddit.com/r/privacytoolsIO/.rss "Linux-Subreddit" "~/r/privacytoolsIO"
 
 # }}}
 # Youtube ==============={{{
@@ -103,17 +86,11 @@ http://vimcasts.org/feeds/ogg "Video-Linux" "~Vimcasts"
 
 http://feeds2.feedburner.com/Command-line-fu "Linux-CLI" "~Command Line Fu"
 http://vi.stackexchange.com/feeds "Linux-CLI" "~StackExchange: vim"
-http://unix.stackexchange.com/feeds/tag/zsh "Linux-CLI" "~StackExchange: zsh"
 http://feeds.pinboard.in/rss/t:bash/ "Linux-CLI" "~Pinboard: bash"
-http://feeds.pinboard.in/rss/t:zsh/ "Linux-CLI" "~Pinboard: zsh"
 http://feeds.pinboard.in/rss/t:mksh/ "Linux-CLI" "~Pinboard: mksh"
-http://feeds.pinboard.in/rss/t:tmux/ "Linux-CLI" "~Pinboard: tmux"
 http://www.pgrs.net/feed/ "Linux-CLI"
 https://sanctum.geek.nz/arabesque/feed/ "Linux-CLI"
 http://www.catonmat.net/feed/ "Linux-CLI"
-https://bbs.archlinux.org/extern.php?action=feed&tid=213092&type=atom "Linux-CLI" "~Arch Linux Forum: w3m tip tricks"
-https://bbs.archlinux.org/extern.php?action=feed&tid=93025&type=atom "Linux-CLI" "~Arch Linux Forum: Ranger"
-https://bbs.archlinux.org/extern.php?action=feed&fid=27&type=atom "Linux-CLI" "~Arch Linux Forum: Community Contributions"
 
 # }}}
 # Linux ================={{{
