@@ -34,7 +34,7 @@ HISTFILE=/tmp/.`id -nu`-history
 export SHELL=/bin/mksh
 export PAGER=less
 export EDITOR=vim
-export BROWSER=palemoon
+export BROWSER=chromium
 export BROWSERCLI=lynx
 export READER=zathura
 export IMAGEVIEWER=sxiv
@@ -43,13 +43,13 @@ export PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii:$HOME/Downloads/jdk1.8.0_181/
 
 alias e="$EDITOR"
 alias ..="cd .."
-alias which='command -v'
 alias xmo='xmodmap ~/.Xmodmap'
 alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keepass.kdbx'
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias torlinks='links -g -socks-proxy 127.0.0.1:9050'
+alias {dots,dotfiles}="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias screenoff='xset dpms force off'
 chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
 yt() { mpv --ytdl-format=136+251/136+171/136+250/136+140 "$@" ;}
-alias r=ranger
 
 '!!'() {
 	echo "$(history -1 | grep -oP "(?<=\t).*$")"
@@ -91,16 +91,6 @@ anon() {
     for i in "$@"; do
         curl -F document=@$i https://anonfiles.cc/api/upload
     done
-}
-
-cgcc() {
-    name1=$1
-    name2=$2
-    file1=${name1%%.*}
-    file2=${name2%%.*}
-    gcc -c "${file1}.c"
-    gcc -c "${file2}.c"
-    gcc -o exec "${file1}.o" "${file2}.o"
 }
 
 '!g'() {
