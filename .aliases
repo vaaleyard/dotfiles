@@ -32,7 +32,6 @@ fi
 # }}}
 # Useful programming aliases {{{
 
-alias e="$EDITOR"
 alias g=git
 alias tmux="tmux"
 alias t="tmux"
@@ -40,23 +39,19 @@ alias ta="tmux a"
 alias h='function hdi(){ howdoi $* -c -n 3; }; hdi'
 alias :sp='test -n "$TMUX" && tmux split-window'
 alias :vs='test -n "$TMUX" && tmux split-window -h'
-alias :wq=exit
 alias myip='wget -qO- http://ipecho.net/plain ; echo'
 docx() { pandoc -f docx -t rst "$@" | vim - ; }
-alias note='vim ~/syncthing/markor/Tasks/notes.md'
-alias stnote='st -c scratchterm -g 80x20 -e vim $HOME/syncthing/markor/Tasks/notes.md -c :Goyo &'
 #alias note='cd $HOME/syncthing/markor/Tasks/ && vim `fzf --preview="cat {}" --preview-window=right:70%:wrap` && cd ~'
 
 # }}}
 # Useful general aliases {{{
 
-alias mp3="youtube-dl --extract-audio --audio-format mp3 "
+#alias mp3="youtube-dl --extract-audio --audio-format mp3 "
 alias vimrc="$EDITOR ~/.vimrc"
 alias mkshrc="$EDITOR ~/.mkshrc"
-alias muttrc="$EDITOR ~/.muttrc"
-alias tmuxconf="$EDITOR ~/.tmux.conf"
-alias porn="mpv https://www.pornhub.com/random"
-alias xmo='xmodmap ~/.Xmodmap'
+#alias xmo='xmodmap ~/.Xmodmap'
+#alias bashrc='$EDITOR ~/.bashrc'
+alias zshrc='$EDITOR ~/.zshrc'
 
 # }}}
 # Useless aliases {{{
@@ -69,26 +64,16 @@ alias lenny="echo '( ͡° ͜ʖ ͡°)' | xclip -i -selection clipboard"
 alias fu="echo '┌∩┐(◣_◢)┌∩┐' | xclip -i -selection clipboard"
 alias cry="echo '( -̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷄◞ω◟-̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷅ )' | xclip -i -selection clipboard"
 # Do something and receive a desktop alert when it completes `sudo apt-get install something | alert`
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # }}}
 
 # }}}
-
-# Functions ============================={{{
-
 # Upload files  ##########################{{{
 
 # ix.io - txt file upload
 ix() {
-    curl -F- f:1='<-' ix.io < "$*"
-}
-
-# haste - txt file upload
-haste() {
-    a=$(cat);
-    curl -X POST -s -d "$a" https://hastebin.com/documents | \
-        awk -F '"' '{print "https://hastebin.com/"$4}' | xclip -sel clip;
+    curl -sF f:1='<-' ix.io < "$*"
 }
 
 # iotek - txt file upload
@@ -96,17 +81,16 @@ io(){
     curl -sT- https://p.iotek.org < "$*"
 }
 
-#fuwa
-fuwa() {
-    for i in "$@"; do
-        curl -s -F file=@$i} https://fuwa.se/api/upload
+### uguu - txt/images upload only for 24 hours
+uguu () {
+    for i in $*; do
+        curl -i -F file=@"$i" https://uguu.se/api.php?d=upload-tool | grep https
     done
 }
 
-### uguu - txt/images upload only for 24 hours
-uguu () {
-    for arg in $*; do
-        curl -i -F file=@"$i" https://uguu.se/api.php?d=upload-tool | grep https
+fuwa() {
+    for i in "$@"; do
+        curl -s -F file=@${i} https://fuwa.se/api/upload
     done
 }
 
@@ -117,342 +101,12 @@ mix() {
     done
 }
 
-### 0x0 - txt/image upload up to 512MB
-0x0() {
-    for i in "$@"; do
-        finalResult="$(curl -sf -F file="@$i" https://0x0.st/)"
-            printf "$finalResult" | xclip -selection clipboard
-            notify-send "Uploaded!" "${finalResult}"
-            done
-}
-
-### ptpb - txt/image upload
-ptpb() {
-    for i in "$@"; do
-        finalResult="$(curl -sf -F c="@$i" https://ptpb.pw/)"
-            finalResult="${finalResult##*url: }"
-            finalResult="${finalResult%%$'\n'*}"
-            printf "$finalResult" | xclip -selection clipboard
-            notify-send "Uploaded!" "${finalResult}"
-            done
-}
-
-### transfer - any file upload for 14 days (up to 10gb) - the link is a download link
-transfer() {
-    for i in "$@"; do
-        finalResult="$(curl -sS -T $i https://transfer.sh/)"
-        printf "$finalResult" | xclip -selection clipboard
-        notify-send "Uploaded!" "${finalResult}"
-    done
-}
-
 # anonfile - any file upload up to 10gb (this site is like transfer.sh) - the link is a download link
 anon() {
     for i in "$@"; do
-        curl -F "file=@$i" https://anonfile.com/api/upload | sed 's/.*short":"//;s/"}.*//'
-        echo
+        curl -F document=@$i https://anonfiles.cc/api/upload
     done
 }
-
-# }}}
-# Transmission ########################### {{{
-# DEMO: http://www.youtube.com/watch?v=hLz7ditUwY8
-# LINK: https://github.com/fagga/transmission-remote-cli
-# Remember: edit .config/transmission-remote-cli/settings.cfg and set password as transmission to get it work
-# DESC: ncurses frontend to transmission-daemon
-tsm-ncurse() { sudo transmission-remote-cli ;}
-tsm-start(){ transmission-daemon ;}
-tsm-kill(){ killall transmission-daemon ;}
-
-# }}}
-# Internet ###############################{{{
-
-
-# Getting tips #############{{{
-
-# Get commands cheatsheets
-cheatsheet() { curl cheat.sh/$1; }
-
-# search commandlinefu.com
-cmdfu() { curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" \
-	| sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" ;}
-
-# display one random command from commandlinefu.com
-cmdfu-random() { echo -e "`curl -sL http://www.commandlinefu.com/commands/random/json|sed -re 's/.*,"command":"(.*)","summary":"([^"]+).*/\\x1b[1;32m\2\\n\\n\\x1b[1;33m\1\\x1b[0m/g'`\n" ;}
-
-
-# }}}
-# SPPC #####################{{{
-sppc() {
-  # choose a player (cvlc is default)
-  # SP_VIDPLAYER=cvlc
-  # SP_VIDPLAYER=(cvlc --file-caching=10000)
-  # SP_VIDPLAYER=(cvlc --video-on-top --width=500 --height=280 --video-x=-15 --video-y=-50)
-  # SP_VIDPLAYER=vlc
-  # SP_VIDPLAYER=(vlc --control=lirc)
-  # SP_VIDPLAYER=mplayer
-  # SP_VIDPLAYER=(mplayer -cache 1000)
-  # SP_VIDPLAYER=mpv
-  # SP_VIDPLAYER=(mpv --cache=1000)
-  # SP_VIDPLAYER=(mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50)
-  SP_VIDPLAYER=(mpv --cache=2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50)
-
-  # sopcast port
-  SP_LOCAL_PORT=55050
-
-  # ip address and port for video player to connect to
-  SP_PLAYER_IPADDR=localhost
-  SP_PLAYER_PORT=55051
-
-  echo -e "${Red}>>>Kill any exiting sopcast connection ${Color_Off}"
-    killall sp-sc &>/dev/null
-  echo -e "${Yellow}>>>Loading sopcast connection ${Color_Off}"
-    (sp-sc "$1" "$SP_LOCAL_PORT" "$SP_PLAYER_PORT" &>/dev/null &)
-  echo -e "${Yellow}>>>Check if sopcast stream is alive at $SP_PLAYER_IPADDR:$SP_PLAYER_PORT [hit Ctrl+C on this screen to exit properly] ${Color_Off}"
-    until nc -vzw 2 "$SP_PLAYER_IPADDR" "$SP_PLAYER_PORT"; do sleep 2; done
-  echo -e "${Green}>>>Connecting to sopcast stream ${Color_Off}"
-    ($SP_VIDPLAYER http://"$SP_PLAYER_IPADDR":"$SP_PLAYER_PORT")
-  echo "${On_IRed}>>>Video Player has exited properly. Killing sopcast stream now ${Color_Off}"
-    wait
-    killall sp-sc
-}
-
-# manually kill sopcast (sometimes it doesnt exit properly and still uses bandwidth in the background)
-sppc-kill() { killall sp-sc ;}
-
-# channel list
-spp-acasa() { sppc "sop://broker.sopcast.com:3912/149256" ;}
-spp-acasagolda() { sppc "sop://broker.sopcast.com:3912/253471" ;}
-spp-acasatv() { sppc "sop://broker.sopcast.com:3912/149256" ;}
-spp-antena1a() { sppc "sop://broker.sopcast.com:3912/149257" ;}
-spp-antena1b() { sppc "sop://broker.sopcast.com:3912/151301" ;}
-spp-antena1c() { sppc "sop://broker.sopcast.com:3912/148083" ;}
-spp-antenastars() { sppc "sop://broker.sopcast.com:3912/148255" ;}
-spp-antena3() { sppc "sop://broker.sopcast.com:3912/148084" ;}
-spp-axn() { sppc "sop://broker.sopcast.com:3912/253035" ;}
-spp-axnblack() { sppc "sop://broker.sopcast.com:3912/149261" ;}
-spp-axnwhite() { sppc "sop://broker.sopcast.com:3912/149262" ;}
-spp-b1() { sppc "sop://broker.sopcast.com:3912/148087" ;}
-spp-boomerang() { sppc "sop://broker.sopcast.com:3912/149264" ;}
-spp-cartoonnetwork() { sppc "sop://broker.sopcast.com:3912/148254" ;}
-spp-digiworld() { sppc "sop://broker.sopcast.com:3912/148260" ;}
-spp-digisport1a() { sppc "sop://broker.sopcast.com:3912/148886" ;}
-spp-digisport1b() { sppc "sop://broker.sopcast.com:3912/173020" ;}
-spp-digisport2c() { sppc "sop://broker.sopcast.com:3912/263242" ;}
-spp-discoverychannel() { sppc "sop://broker.sopcast.com:3912/256241" ;}
-spp-discoveryscience() { sppc "sop://broker.sopcast.com:3912/256243" ;}
-spp-disneychannel() { sppc "sop://broker.sopcast.com:3912/253031" ;}
-spp-disneyjunior() { sppc "sop://broker.sopcast.com:3912/256239" ;}
-spp-diva() { sppc "sop://broker.sopcast.com:3912/253034/123456" ;}
-spp-divauniversal() { sppc "sop://broker.sopcast.com:3912/253034" ;}
-spp-ducktv() { sppc "sop://broker.sopcast.com:3912/148259" ;}
-spp-etnotv() { sppc "sop://broker.sopcast.com:3912/173116" ;}
-spp-euforia() { sppc "sop://broker.sopcast.com:3912/253473" ;}
-spp-eurosport1() { sppc "sop://broker.sopcast.com:3912/263056" ;}
-spp-filmbox() { sppc "sop://broker.sopcast.com:3912/148981" ;}
-spp-filmcafe() { sppc "sop://broker.sopcast.com:3912/256238" ;}
-spp-hbo+hd() { sppc "sop://51.15.38.157:3912/260710" ;}
-spp-idx() { sppc "sop://broker.sopcast.com:3912/256244" ;}
-spp-kanald() { sppc "sop://broker.sopcast.com:3912/149258" ;}
-spp-minimax() { sppc "sop://broker.sopcast.com:3912/148263" ;}
-spp-natgeowild() { sppc "sop://broker.sopcast.com:3912/253037" ;}
-spp-nationalgeographic() { sppc "sop://broker.sopcast.com:3912/148248" ;}
-spp-nationaltv() { sppc "sop://broker.sopcast.com:3912/253030" ;}
-spp-nickelodeon() { sppc "sop://broker.sopcast.com:3912/253472" ;}
-spp-paramount() { sppc "sop://broker.sopcast.com:3912/253033" ;}
-spp-primatv() { sppc "sop://broker.sopcast.com:3912/148086" ;}
-spp-procinema() { sppc "sop://broker.sopcast.com:3912/148249" ;}
-spp-protva() { sppc "sop://broker.sopcast.com:3912/149252" ;}
-spp-protvb() { sppc "sop://broker.sopcast.com:3912/151380" ;}
-spp-realitateatv() { sppc "sop://broker.sopcast.com:3912/253036" ;}
-spp-romaniatv() { sppc "sop://broker.sopcast.com:3912/148258" ;}
-spp-sport.ro() { sppc "sop://broker.sopcast.com:3912/178547" ;}
-spp-tlc() { sppc "sop://broker.sopcast.com:3912/148256" ;}
-spp-traveltv() { sppc "sop://broker.sopcast.com:3912/148885" ;}
-spp-tv1000() { sppc "sop://broker.sopcast.com:3912/256337/123456" ;}
-spp-tvpaprika() { sppc "sop://broker.sopcast.com:3912/148881" ;}
-spp-tv1000() { sppc "sop://broker.sopcast.com:3912/256337" ;}
-spp-tvr1() { sppc "sop://broker.sopcast.com:3912/148085" ;}
-spp-tvr2() { sppc "sop://broker.sopcast.com:3912/173286" ;}
-spp-viasathistory() { sppc "sop://broker.sopcast.com:3912/151300" ;}
-spp-zutv() { sppc "sop://broker.sopcast.com:3912/148252" ;}
-
-
-# format channel to functions quicker
-# e.g soprip newchannels.txt
-soprip() {
-  if [ $# -lt 1 ]
-  then
-    echo -e "turn sopcast channel listing into functions"
-    echo -e "copy sopcast list from http://sopcast.ucoz.com/ to text file"
-    echo -e "\nUsage:\n$0 <filename.txt>"
-    return 1
-  fi
-  # lowercase list; rm spaces/empty lines; merge name and link
-  LIST=$(cat "$1" | tr '[:upper:]' '[:lower:]' | sed 's/ //g' | sed '$!N;s/\n/ /' | sed '/^$/d')
-  echo $LIST | while read line; do
-    SOPNAME=$(echo $line | awk '{print $1}')
-    SOPLINK=$(echo $line | awk '{print $2}')
-    # print into functions format
-    echo "spp-"$SOPNAME"() { sppc \""$SOPLINK"\" ;}"
-  done
-}
-
-#}}}
-
-# }}}
-# Educational Videos #######{{{
-# requirements:
-#     1. install nohup mpv vim youtube-dl
-#     2. add this to your ~/.vimrc
-#        map <F8> :exec '!nohup mpv ' . shellescape(getline('.'), 1) . ' >/dev/null 2>&1&'<CR><CR>
-#
-# how to use:
-#     1. fap-xvideos ashlynn brooke
-#     2. hit F8 on the link you want to play
-#     3. hit ZZ or ZQ to quit vim
-fap-xvideos() {
-keyword="$(echo "http://www.xvideos.com/?k=$@" | sed 's/ /\+/g')"
-pagenum=5
-pagenum_to_url=$(for num in $(seq 1 "$pagenum"); do echo "$keyword&p=$num"; done )
-videourl=$(echo "$pagenum_to_url" | while read line; do elinks -dump "$line" \
-	| awk '/xvideos\.com\/video/ {print $2}' | awk '!x[$0]++' ; done)
-
-echo $videourl | sed 's/\ /\n/g' | awk '!x[$0]++' | vim -R -
-}
-
-chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
-
-# }}}
-# Radios ###################{{{
-
-radio-q107(){ mpv "https://live.leanstream.co/CFGQFM?args=web_01" ;}
-
-# URL: http://whatnotlinux.blogspot.com/2013/02/somafm-and-digitally-imported-bash.html
-somafm() {
-	while true; do local station;echo "Select a station to listen to:";select station in "Doomed" "Groove Salad" "Lush" "Suburbs of Goa" "Secret Agent" "Drone Zone" "Space Station" "cliqhop idm" "Digitalis" "Sonic Universe" "Boot Liquor" "Covers" "Illinois Street Lounge" "indie pop rocks" "PopTron" "Tags Trip" "Beat Bender" "Mission Control";do station=$(echo -n "$station"|tr '[:upper:]' '[:lower:]'|sed 's/ //g');break;done; mpv -playlist http://somafm.com/startstream=${station}.pls; done;
-}
-
-# }}}
-# Streaming ################{{{
-# DEMO: https://www.youtube.com/watch?v=MFxlwVhwayg
-# DESC: download/stream media from many online sites
-youtube-dl-stream() { youtube-dl -o - "$1" | $PLAYER - ;}
-yt-playlist(){ youtube-dl --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s" "$@" ;}
-ted(){  mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-10 --ytdl-format=medium "$@"; }
-yt() {
-	# with no ytdl format the video will be to the highest available resolution, which is bad for badly networks
-	# Ref: https://www.reddit.com/r/archlinux/comments/5m2os3/mpv_is_it_possible_to_change_video_quality_while/
-	# --ytdl-format=18 (360p)
-	# --ytdl-format=22 (720p)
-	 mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-10  --ytdl-format=18 "$@";
-	 #mpv --no-border --force-window --autofit=500x280 --geometry=-15-10  --ytdl-format=18 "$@";
-}
-
-# }}}
-# Check if a website is down
-down4me() { curl -s "http://downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g' ;}
-
-# Get qrcode from argv
-#qrcode() { echo $@ | curl -F-=\<- qrenco.de; }
-qrcode() { link=$(echo "http://qrcode.kaywa.com/img.php?s=8&d=$@" | sed 's/ /+/g'); $BROWSER $link ;}
-
-
-# }}}
-# Hardware/Software info #################{{{
-
-# Clone scree to dual monitor
-clonescreen(){ xrandr --output LVDS --auto --mode 1366x768 --output VGA-0 --auto --mode 1024x768 --same-as LVDS;}
-
-# Extend screen to dual monitor
-extendscreen(){ xrandr --output LVDS --auto --mode 1366x768 --output VGA-0 --auto --mode 1024x768 --right-of LVDS; }
-
-# Turn off dual monitor
-offscreen(){ xrandr --output VGA-0 --off; }
-
-toggleredshift() {
-# check if process is running ( 0 = off, 1 = on )
-STATUS="$(ps -ef | grep '[r]edshift' | wc -l)"
-# if off then turn on
-if [[ "${STATUS}" == 0 ]]; then
-	notify-send -t 1 --icon=info "RedShift" "On"
-	redshift >/dev/null 2>&1 & disown
-	# if on then turn off
-elif [[ "${STATUS}" == 1 ]]; then
-	notify-send -t 1 --icon=info "RedShift" "Off"
-	redshift -x && killall redshift
-fi
-}
-
-# }}}
-# Manipulating files #####################{{{
-
-# View markdown as manpages
-# http://blog.metamatt.com/blog/2013/01/09/previewing-markdown-files-from-the-terminal/
-mdless(){ pandoc -s -f markdown -t man "$*" | groff -T utf8 -man | less ;}
-
-# show file access permission
-# http://unix.stackexchange.com/a/46921
-file-permission() { stat --format '%a %n' "$@" ;}
-
-# Move filenames to lowercase
-function lowercase()
-{
-	for file ; do
-		filename=${file##*/}
-		case "$filename" in
-			*/*) dirname==${file%/*} ;;
-			*) dirname=.;;
-		esac
-		nf=$(echo $filename | tr A-Z a-z)
-		newname="${dirname}/${nf}"
-		if [ "$nf" != "$filename" ]; then
-			mv "$file" "$newname"
-			echo "lowercase: $file --> $newname"
-		else
-			echo "lowercase: $file not changed."
-		fi
-	done
-}
-
-# }}}
-# Images #################################{{{
-# Resizing Pictures to different resolutions
-image-resizer() {
-if [ $# -lt 2 ]; then
-	echo -e "resize pictures to another resolution"
-	echo -e "\nUsage:   $0 <size:32x32|96x96|128x128|640x480|800x600|1024x768|1280x720|1280x960|1920x1080> <image>"
-	echo -e "\nExample: $0 800x600 pic1.png pic2.png pic3.png"
-	echo -e "           $0 640x480 *.jpg"
-	return 1
-fi
-IMAGE_SIZE="$1"
-myArray=( "$@" )
-for arg in "${myArray[@]:1}"; do
-	convert "$arg" -resize "$IMAGE_SIZE" "${arg%.*}"_"$IMAGE_SIZE"_resized."${arg##*.}"
-done
-}
-
-# Rotate images
-image-rotate() {
-if [ $# -lt 2 ]; then
-	echo -e "rotate pictures"
-	echo -e "\nUsage:   $0 <90|180|270> <image>"
-	echo -e "\nExample: $0 90 pic1.png pic2.png pic3.png"
-	echo -e "           $0 180 *.jpg"
-	return 1
-fi
-IMAGE_DEGREE="$1"
-myArray=( "$@" )
-for arg in "${myArray[@]:1}"; do
-	convert "$arg" -rotate "$IMAGE_DEGREE" "${arg%.*}"_"$IMAGE_DEGREE"_rotated."${arg##*.}"
-done
-}
-
-# w3m browser with inline images
-# https://plus.google.com/102499719144563443986/posts/Vja8W69iHoi
-# tutorial video: http://www.youtube.com/watch?v=R2bMUtCOGko
-w3mimg() { w3m -o imgdisplay=/usr/lib/w3m/w3mimgdisplay $1 ;}
 
 # }}}
 # Custom terminal commands ###############{{{
@@ -497,241 +151,95 @@ mkcd() {
 	cd "$1"
 }
 
-#List files only, the advantage is that it works just like normal 'ls' so you could do 'lf -al | grep blah' etc.
-lf () {
-	ls -1p $@ | grep -v '\/$'
-}
-
-# }}}
-# Conversion #############################{{{
-
-# DESC: convert youtube to audio (youtube.com only)
-# -f 171 = webm audio (vorbis)
-# -f 140 = m4a (aac)
-yt2ogg() { youtube-dl -c --restrict-filenames -x --audio-format vorbis -o "%(title)s.%(ext)s" -f 171 "$@" ;}
-yt2wav() { youtube-dl -c --restrict-filenames -x --audio-format wav -o "%(title)s.%(ext)s" -f 171 "$@" ;}
-yt2mp3() { youtube-dl -c --restrict-filenames -x --audio-format mp3 -o "%(title)s.%(ext)s" -f 171 "$@" ;}
-yt2webmaudio() { youtube-dl -c --restrict-filenames -o "%(title)s.%(ext)s" -f 171 "$@" ;}
-yt2m4a() { youtube-dl -c --restrict-filenames -o "%(title)s.%(ext)s" -f 140 "$@" ;}
-
-# http://askubuntu.com/a/50180
-convert_pdf_to_png() {
-	if [ $# -lt 1 ]
-	then
-		echo -e "convert PDF document to PNG image (default dpi is 150)"
-		echo -e "\nUsage:\n$0 <pdf> <dpi> <startingpage> <endingpage>"
-		echo -e "\nall pages to images:\n$0 file.pdf"
-		echo -e "\nchange dpi (common dpi are 150, 300, 600):\n$0 file.pdf 300"
-		echo -e "\nsingle page to image:\n$0 file.pdf 300 5"
-		echo -e "\nmultiple pages to images:\n$0 file.pdf 300 5 12"
-
-		return 1
-	fi
-	pdftoppm -png "$1" "${1%.*}"-"${2:-150}"DPI -r "${2:-150}" -f "$3" -l "${4:-$3}"
-}
-
-convert_pdf_to_jpg() {
-	if [ $# -lt 1 ]
-	then
-		echo -e "convert PDF document to JPEG image (default dpi is 150)"
-		echo -e "\nUsage:\n$0 <pdf> <dpi> <startingpage> <endingpage>"
-		echo -e "\nall pages to images:\n$0 file.pdf"
-		echo -e "\nchange dpi (common dpi are 150, 300, 600):\n$0 file.pdf 300"
-		echo -e "\nsingle page to image:\n$0 file.pdf 300 5"
-		echo -e "\nmultiple pages to images:\n$0 file.pdf 300 5 12"
-
-		return 1
-	fi
-	pdftoppm -jpeg "$1" "${1%.*}"-"${2:-150}"DPI -r "${2:-150}" -f "$3" -l "${4:-$3}"
-}
-convert_images_to_pdf() {
-	if [ $# -lt 1 ]
-	then
-		echo -e "convert images into one single pdf"
-		echo -e "\nUsage:\n$0 <images>"
-		echo -e "\nexample:\n$0 image1.jpg image2.jpg image3.jpg"
-		echo -e "\n$0 *.jpg"
-		echo -e "\n$0 *.png"
-
-		return 1
-	fi
-	convert "$@" "${1%.*}"-`date +'%F_%Hh%Ms%S'`.pdf
-}
-
-
-# Using libreoffice
-convert_to_html() { soffice --headless --convert-to "html:XHTML Writer File:UTF8" "$1" ;}
-convert_to_txt() { soffice --headless --convert-to "txt:Text (encoded):UTF8" "$1" ;}
-
-# http://duff-johnson.com/2014/02/17/the-8-most-popular-document-formats-on-the-web/
-convert_to_pdf() {
-	if [ $# -lt 1 ]; then
-		echo -e "Usage: $0 <file_name>.<doc|docx|ppt|pptx|xls|xlsx|txt|rtf|html|epub|cbr|cbz|cbt|cb7|cba|jpg|jpeg|pbm|pgm|png>"
-		echo -e "\nsingle:   $0 file.doc"
-		echo -e "\nmultiple: $0 file1.jpg file2.jpg file3.jpg"
-		echo -e "\nwildcard: $0 *.png"
-		echo -e "\nRequirement: calibre imagemagick libreoffice"
-		return 1
-	else
-		if [ ! -f "${1%.*}".pdf ] ; then
-			NAME=${1%.*}
-			case "$1" in
-				*.doc|*.docx)    soffice --headless --convert-to pdf "$@" ;;
-				*.ppt|*.pptx)    soffice --headless --convert-to pdf "$@" ;;
-				*.xls|*.xlsx)    soffice --headless --convert-to pdf "$@" ;;
-				*.txt|*.rtf)     soffice --headless --convert-to pdf "$@" ;;
-				*.html)          soffice --headless --convert-to pdf "$@" ;;
-				*.epub)          soffice --headless --convert-to pdf "$@" ;;
-				*.cbr|*.cbz|*.cb7|*.cbt|*.cba)    ebook-convert "$1" .pdf ;;
-				*.jpg|*.jpeg|*.pbm|*.pgm|*.png)   convert "$@" "${1%.*}"-`date +'%F_%Hh%Ms%S'`.pdf ;;
-				*)               echo "'$1' - unsupported format or file does not exist" ;;
-			esac
-		else
-			echo "'${1%.*}.pdf' - file exist, skipping to prevent overwrite"
-		fi
-	fi
-}
-
-# convert video to gif animation
-# http://superuser.com/a/730389
-# http://superuser.com/a/841379
-convert_to_gifv() {
-	if [ $# -lt 1 ]
-	then
-		echo -e "convert video to animated gif"
-		echo -e "\nUsage:\n$0 <file> <resolution>"
-		echo -e "\nexample:\n$0 file.mkv \n"
-		echo -e "$0 file.mkv 320\n"
-		echo -e "$0 file.mkv 720\n"
-		echo -e "$0 file.mkv 1080\n"
-		echo -e "Note: animated gif size are usually x2 or x3 the size of the original video file"
-
-		return 1
-	fi
-
-	# get video resolution (height)
-	eval $(ffprobe -v error -of flat=s=_ -select_streams v:0 -show_entries stream=height,width "$1")
-	size=${streams_stream_0_height}
-
-	ffmpeg -i "$1" -vf scale="${2:-$size}":-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -loop 0 - "${1%.*}"-gifvid"$2".gif
-}
-
 # }}}
 # Compacting and extracting ##############{{{
 # Extract a folder
-extract() {
-	if [ -z "$1" ]; then
-		echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|exe|deb|tar.bz2|tar.gz|tar.xz>"
-	else
-		if [ -f "$1" ] ; then
-			NAME=${1%.*}
-			#mkdir $NAME && cd $NAME
-			case "$1" in
-				*.tar.bz2)  tar xvjf ./"$1"    ;;
-				*.tar.gz)   tar xvzf ./"$1"    ;;
-				*.tar.xz)   tar xvJf ./"$1"    ;;
-				*.lzma)     unlzma ./"$1"      ;;
-				*.bz2)      bunzip2 ./"$1"     ;;
-				*.rar)      unrar x -ad ./"$1" ;;
-				*.gz)       gunzip ./"$1"      ;;
-				*.tar)      tar xvf ./"$1"     ;;
-				*.tbz2)     tar xvjf ./"$1"    ;;
-				*.tgz)      tar xvzf ./"$1"    ;;
-				*.zip)      unzip ./"$1"       ;;
-				*.Z)        uncompress ./"$1"  ;;
-				*.7z)       7z x ./"$1"        ;;
-				*.xz)       unxz ./"$1"        ;;
-				*.exe)      cabextract ./"$1"  ;;
-				*.deb)      ar x ./"$1"        ;;
-				*)          echo "extract: '$1' - unknown archive method" ;;
-			esac
-		else
-			echo "'$1' - file does not exist"
-		fi
-	fi
-}
-
-# Compress a file
-compress() {
-	if [[ -n "$1" ]]; then
-		FILE=$1
-		case $FILE in
-			*.tar ) shift && tar cf $FILE $* ;;
-			*.tar.bz2 ) shift && tar cjf $FILE $* ;;
-			*.tar.gz ) shift && tar czf $FILE $* ;;
-			*.tgz ) shift && tar czf $FILE $* ;;
-			*.zip ) shift && zip $FILE $* ;;
-			*.rar ) shift && rar $FILE $* ;;
-		esac
-	else
-		echo "usage: compress <foo.tar.gz> ./foo ./bar"
-	fi
-}
-
+#extract() {
+#	if [ -z "$1" ]; then
+#		echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|exe|deb|tar.bz2|tar.gz|tar.xz>"
+#	else
+#		if [ -f "$1" ] ; then
+#			NAME=${1%.*}
+#			#mkdir $NAME && cd $NAME
+#			case "$1" in
+#				*.tar.bz2)  tar xvjf ./"$1"    ;;
+#				*.tar.gz)   tar xvzf ./"$1"    ;;
+#				*.tar.xz)   tar xvJf ./"$1"    ;;
+#				*.lzma)     unlzma ./"$1"      ;;
+#				*.bz2)      bunzip2 ./"$1"     ;;
+#				*.rar)      unrar x -ad ./"$1" ;;
+#				*.gz)       gunzip ./"$1"      ;;
+#				*.tar)      tar xvf ./"$1"     ;;
+#				*.tbz2)     tar xvjf ./"$1"    ;;
+#				*.tgz)      tar xvzf ./"$1"    ;;
+#				*.zip)      unzip ./"$1"       ;;
+#				*.Z)        uncompress ./"$1"  ;;
+#				*.7z)       7z x ./"$1"        ;;
+#				*.xz)       unxz ./"$1"        ;;
+#				*.exe)      cabextract ./"$1"  ;;
+#				*.deb)      ar x ./"$1"        ;;
+#				*)          echo "extract: '$1' - unknown archive method" ;;
+#			esac
+#		else
+#			echo "'$1' - file does not exist"
+#		fi
+#	fi
+#}
+#
+## Compress a file
+#compress() {
+#	if [[ -n "$1" ]]; then
+#		FILE=$1
+#		case $FILE in
+#			*.tar ) shift && tar cf $FILE $* ;;
+#			*.tar.bz2 ) shift && tar cjf $FILE $* ;;
+#			*.tar.gz ) shift && tar czf $FILE $* ;;
+#			*.tgz ) shift && tar czf $FILE $* ;;
+#			*.zip ) shift && zip $FILE $* ;;
+#			*.rar ) shift && rar $FILE $* ;;
+#		esac
+#	else
+#		echo "usage: compress <foo.tar.gz> ./foo ./bar"
+#	fi
+#}
+#
 # }}}
 # Opening configuration files ############{{{
 
+rld-zshrc() { source ~/.zshrc ;}
 rld-xres() { xrdb ~/.Xresources ;}
 rld-mksh() { source ~/.mkshrc ;}
-cfg-mailcap() { $EDITOR ~/.mutt/mailcap ;}
-cfg-mpv() { $EDITOR ~/.config/mpv/mpv.conf ;}
-cfg-mpv-input() { $EDITOR ~/.config/mpv/input.conf ;}
-cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
-cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
-cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
-cfg-dunst(){ $EDITOR ~/.config/dunst/dunstrc ;}
-cfg-weechat(){ $EDITOR ~/.weechat/weechat.conf ;}
-cfg-irc(){ $EDITOR ~/.weechat/irc.conf ;}
-cfg-xres(){ $EDITOR ~/.Xresources ;}
-cfg-i3(){ $EDITOR ~/.config/i3/config ;}
-cfg-poly(){ $EDITOR ~/.config/polybar/config ;}
-cfg-lemon(){ $EDITOR ~/bin/bar ;}
-cfg-bsp() { $EDITOR ~/.config/bspwm/bspwmrc ;}
-cfg-sxk() { $EDITOR ~/.config/sxhkd/sxhkdrc ;}
-cfg-dwm() { cd ~/suckless/dwm-6.1/ && $EDITOR config.h ;}
-cfg-ali() { $EDITOR ~/.aliases ;}
+#cfg-mailcap() { $EDITOR ~/.mutt/mailcap ;}
+#cfg-mpv() { $EDITOR ~/.config/mpv/mpv.conf ;}
+#cfg-mpv-input() { $EDITOR ~/.config/mpv/input.conf ;}
+#cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
+#cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
+#cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
+#cfg-dunst(){ $EDITOR ~/.config/dunst/dunstrc ;}
+#cfg-weechat(){ $EDITOR ~/.weechat/weechat.conf ;}
+#cfg-irc(){ $EDITOR ~/.weechat/irc.conf ;}
+#cfg-xres(){ $EDITOR ~/.Xresources ;}
+#cfg-i3(){ $EDITOR ~/.config/i3/config ;}
+#cfg-poly(){ $EDITOR ~/.config/polybar/config ;}
+#cfg-lemon(){ $EDITOR ~/bin/bar ;}
+#cfg-bsp() { $EDITOR ~/.config/bspwm/bspwmrc ;}
+#cfg-sxk() { $EDITOR ~/.config/sxhkd/sxhkdrc ;}
+#cfg-dwm() { cd ~/suckless/dwm-6.1/ && $EDITOR config.h ;}
+#cfg-ali() { $EDITOR ~/.aliases ;}
 
 # }}}
 # miscellaneous functions ################{{{
 
-# Show date of many contries
-date-global() {
-	# use tzselect to find timezone listing
-	local SHOWTIMEZONE="$(
-	alias date='date +"%a %D %l:%M %p"'
-	echo "Current Location:" "$(date)"
-	echo "USA LosAngeles:" "$(TZ='America/Los_Angeles' date)"
-	echo "Canada Alberta:" "$(TZ='America/Edmonton' date)"
-	echo "USA NewYork:" "$(TZ='America/New_York' date)"
-	echo "EU London:" "$(TZ='Europe/London' date)"
-	echo "Bangladesh Dhaka:" "$(TZ='Asia/Dhaka' date)"
-	echo "China Xinjiang:" "$(TZ='Asia/Urumqi' date)"
-	echo "Vietnam Saigon:" "$(TZ='Asia/Ho_Chi_Minh' date)"
-	echo "China Beijing:" "$(TZ='Asia/Shanghai' date)"
-	echo "HK HongKong:" "$(TZ='Asia/Hong_Kong' date)"
-	echo "Japan Tokyo:" "$(TZ='Asia/Tokyo' date)"
-	)"
-	echo "$SHOWTIMEZONE" | column -t
+pwgen() {
+    head /dev/urandom | tr -dc '[:graph:]' | head -c${1:-22}; echo
 }
 
-# call vim help page from shell prompt
-function :h { vim +":h $1" +'wincmd o' +'nnoremap q :q!<CR>' ;}
-
-# REMIND ME, ITS IMPORTANT!
-# usage: remindme <time> <text>
-# e.g.: remindme 10m "omg, the pizza"
-remindme() { sleep $1 && zenity --info --text "$2" & }
-
-# https://github.com/nicknisi/dotfiles/blob/master/zsh/functions.zsh
-# print available colors and their numbers
-function colours() {
-	for i in $(seq 0 255); do
-		printf "\x1b[38;5;${i}m colour${i}"
-		if (( $i % 5 == 0 )); then
-			printf "\n"
-		else
-			printf "\t"
-		fi
+# Download random wallpapers from unsplash website
+unsplash() {
+	rm -rf /tmp/unsplash
+	mkdir /tmp/unsplash/
+	for i in $(seq 50); do
+		wget --quiet -O /tmp/unsplash/$i.jpg "https://unsplash.it/1920/1080/?random"
 	done
 }
 
@@ -739,7 +247,7 @@ function colours() {
 top10() { history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head; }
 
 # Kill zombie process
-killall-zombies() { kill -HUP $(ps -A -ostat,ppid | grep -e '[zZ]'| awk '{ print $2 }') ;}
+#killall-zombies() { kill -HUP $(ps -A -ostat,ppid | grep -e '[zZ]'| awk '{ print $2 }') ;}
 
 # Ref: https://github.com/paulmillr/dotfiles/blob/master/home/.zshrc.sh#L282
 # Show how much RAM application uses.
@@ -880,33 +388,6 @@ spdf () {
 }
 
 # }}}
-
-# }}}
-# Testing Area =========================={{{
-
-rmd () {
-    grep -v "\-\-\-\-\-" "$*" | pandoc -s -f markdown -t man | groff -T utf8 -man | less
-}
-
-record (){
-	ffmpeg -f x11grab -video_size 1366x768 -i $DISPLAY -f alsa -i default -c:v ffvhuff -c:a flac $(date +%d-%m-%Y_%H:%M).mkv
-}
-
-pwgen() {
-	head /dev/urandom | tr -dc 'a-zA-Z0-9.,[$:-?~!^_\\\[\]]' | head -c${1:-22}; echo
-}
-
-# Download random wallpapers from unsplash website
-unsplash() {
-	rm -rf /tmp/unsplash
-	mkdir /tmp/unsplash/
-	for i in $(seq 50); do
-		wget --quiet -O /tmp/unsplash/$i.jpg "https://unsplash.it/1920/1080/?random"
-	done
-}
-# }}}
-#
-#
 # Sysadmin {{{
 
 # Docker
@@ -916,6 +397,10 @@ alias dsprune='docker system prune'
 
 dirm () {
     docker rmi -f "$@"
+}
+
+dirmall() {
+    docker rmi -f $(docker image ls -aq)
 }
 
 dcstop () {
@@ -930,9 +415,20 @@ dcrmall() {
     docker container rm $(docker container ls -aq) -f
 }
 
+# Get the IP address of a docker container
+dcip() {
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
+}
+
 # Redes
 digdns() {
     dig +short "$@"
 }
 
-alias meuip="ip addr | grep inet | grep wlp3s0 | cut -d' ' -f6"
+alias meuip="ip -f inet -o addr show wlp3s0 | grep -oP '(?<=inet )[0-9.]+'"
+
+# }}}
+
+# View markdown as manpages
+# http://blog.metamatt.com/blog/2013/01/09/previewing-markdown-files-from-the-terminal/
+mdless(){ pandoc -s -f markdown -t man "$*" | groff -T utf8 -man | less ;}
