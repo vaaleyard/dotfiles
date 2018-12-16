@@ -10,8 +10,10 @@
     p = push
     cm = commit -m
     histg = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    histc = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    histc = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
     aliases = config --get-regexp alias
+    unstage = reset
+    uncommit = reset --soft HEAD^
 [difftool]
     prompt = false
 [diff]
