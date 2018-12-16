@@ -17,7 +17,7 @@ inoremap ,n <Enter><Enter>---<Enter><Enter>
 inoremap ,l <Enter>--------<Enter>
 
 " [C]ode
-inoremap ,c ```<CR>```<CR><CR><esc>2kO
+inoremap ,c ```<CR>```<CR><esc>kO
 
 " Header [1]
 inoremap ,1 #<Space>
