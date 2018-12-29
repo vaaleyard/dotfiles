@@ -900,7 +900,7 @@ record (){
 }
 
 pwgen() {
-	head /dev/urandom | tr -dc 'a-zA-Z0-9.,[$:-?~!^_\\\[\]]' | head -c${1:-22}; echo
+	head /dev/urandom | tr -dc '[[:graph:]]' | head -c${1:-22}; echo
 }
 
 # Download random wallpapers from unsplash website
@@ -912,3 +912,9 @@ unsplash() {
 	done
 }
 # }}}
+#
+
+dcip() {
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
+}
+
