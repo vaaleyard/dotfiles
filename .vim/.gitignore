@@ -1,5 +1,5 @@
 .netrwhist
 view/
-colors/
+!colors/gruvbox.vim
 plugged/
 tmp/
