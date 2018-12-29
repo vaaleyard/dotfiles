@@ -24,7 +24,7 @@ bind ^L=clear-screen
 umask 077
 
 
-[ `id -u` = '0' ] && PS1='# > ' || PS1='$(pwd | sed "s,^$HOME,~,") $(print "\033[0;36m$\033[00m")> '
+[ `id -u` = '0' ] && PS1='# >' || PS1='$(pwd | sed "s,^$HOME,~,") $(print "\033[0;36m$\033[00m")> '
 PS2='> '
 export PS1 PS2
 
@@ -46,7 +46,7 @@ alias ..="cd .."
 alias xmo='xmodmap ~/.Xmodmap'
 alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keepass.kdbx'
 alias torlinks='links -g -socks-proxy 127.0.0.1:9050'
-alias {dots,dotfiles}="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias screenoff='xset dpms force off'
 chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
 yt() { mpv --ytdl-format=136+251/136+171/136+250/136+140 "$@" ;}
