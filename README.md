@@ -40,6 +40,22 @@
 - Editor: `vim`
 - Font: `Hack`
 
+
+## Xorg files
+
+To get touchpad working after a minimal install, copy the code below to the file `/etc/X11/xorg.conf.d/30-touchpad.conf`:
+
+```
+Section "InputClass"
+	Identifier "touchpad"
+	Driver "libinput"
+	MatchIsTouchpad "on"
+	Option "Tapping" "on"
+        Option "TappingButtonMap" "lmr"
+        Option "TappingDrag" "on"
+EndSection
+```
+
 ##
 
 My dotfiles are managed with a bare repository. I used to store my dots with gnu stow, but it causes some things I don't want to, so I'm trying to give it a try. Here are some links explaining a bare repo:
