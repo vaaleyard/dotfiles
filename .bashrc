@@ -17,9 +17,6 @@ export VIDEOPLAYER=mpv
 export PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii
 HISTFILE=~/.bash_history
 
-bind "\C-j":previous-history
-bind "\C-k":next-history
-
 alias ec="$EDITOR -Nu $HOME/.vimrc"
 alias e="$EDITOR -Nu $HOME/.c-vimrc"
 alias which='command -v'
