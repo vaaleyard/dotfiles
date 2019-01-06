@@ -48,6 +48,7 @@ docx() { pandoc -f docx -t rst "$@" | vim - ; }
 
 #alias mp3="youtube-dl --extract-audio --audio-format mp3 "
 alias vimrc="$EDITOR ~/.vimrc"
+alias nvimrc="$EDITOR ~/.config/nvim/init.vim"
 alias mkshrc="$EDITOR ~/.mkshrc"
 #alias xmo='xmodmap ~/.Xmodmap'
 #alias bashrc='$EDITOR ~/.bashrc'
