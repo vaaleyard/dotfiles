@@ -41,7 +41,7 @@
 - Font: `Hack`
 
 
-## Xorg files
+## X11 files
 
 To get touchpad working after a minimal install, copy the code below to the file `/etc/X11/xorg.conf.d/30-touchpad.conf`:
 
