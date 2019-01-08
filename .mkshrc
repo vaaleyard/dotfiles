@@ -45,7 +45,7 @@ alias e="$EDITOR"
 alias ..="cd .."
 alias xmo='xmodmap ~/.Xmodmap'
 alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keepass.kdbx'
-alias torlinks='links -g -socks-proxy 127.0.0.1:9050'
+alias torlinks='links -socks-proxy 127.0.0.1:9050'
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias screenoff='xset dpms force off'
 chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
@@ -104,7 +104,7 @@ anon() {
 }
 
 pwgen() {
-	head /dev/urandom | tr -dc 'a-zA-Z0-9.,[$:-?~!^_\\\[\]]' | head -c${1:-22}; echo
+	head /dev/urandom | tr -dc '[[:graph:]]' | head -c${1:-22}; echo
 }
 
 source "$HOME/.vim/gruvbox_256palette.sh"
