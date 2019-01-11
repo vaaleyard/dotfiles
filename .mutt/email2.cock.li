@@ -1,7 +1,7 @@
-source "gpg2 -dq $HOME/pass.gpg | sed -n '17,20p' |"
+source "gpg -dq $HOME/pass.gpg | sed -n '17,20p' |"
+unmailboxes *
 
 # The variables $my_user, $my_pass and $my_name are stored in pass.gpg, neomutt decrypt that file and source them
-unmailboxes *
 set imap_user = "$my_user@cock.li"         # Put here your email account
 set imap_pass = "$my_pass"                 # If it's empty, the password will be requested on the startup
 set smtp_url = "smtp://$my_user@cock.li@mail.cock.li:587/"
