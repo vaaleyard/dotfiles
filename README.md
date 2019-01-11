@@ -56,7 +56,22 @@ Section "InputClass"
 EndSection
 ```
 
-##
+## Mutt config
+
+I've configured my neomutt to work with gpg, so my passwords and emails are not stored in plain text files like it was before (that's why I hadn't pushed to the repo). They are encrypted with gpg, so only me can decrypt it.
+
+To use my config just create a `$HOME/pass.gpg` with your information like this:
+
+```
+set my_user="<email-user>"       # Don't write what there's after @. Example: in email@potato.com, write only "email"
+set my_pass="<your-password>"
+set my_name="<your-name>"
+```
+
+Pay attention to the sed commands mixed with gpg in each email file I have.
+
+
+---
 
 My dotfiles are managed with a bare repository. I used to store my dots with gnu stow, but it causes some things I don't want to, so I'm trying to give it a try. Here are some links explaining a bare repo:
 * [The best way to store your dotfiles: A bare Git repository](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)
