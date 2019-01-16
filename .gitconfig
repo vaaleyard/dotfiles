@@ -1,22 +1,41 @@
 [user]
     email = leonardof@tutanota.com
     name = Leonardo F.
+
 [core]
-    editor = vim
+    editor = nvim
+    pager = less -#2 -N -S
+
 [merge]
     tool = vimdiff
+[mergetool]
+    prompt = true
+
+[branch]
+  autosetuprebase = always # 'git pull' irá dar rebase ao invés de merge
+
 [alias]
     s = status
     p = push
     histc = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     histg = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-    aliases = config --get-regexp alias
+    aliases = git config -l | grep alias | cut -c 7-
 
     # https://www.christianengvall.se/untrack-files-local-repository-keep-origin-git/
 	assume-unchanged = update-index --assume-unchanged
+
+	diff = diff --ignore-space-at-eol -b -w --ignore-blank-lines
+
+	update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
+
 [difftool]
     prompt = false
 [diff]
     tool = vimdiff
-[commit]
-	verbose = true
+
+[push]
+	default = current # Push irá enviar o branch atual e cria no remote caso não exista
+
+[apply]
+	whitespace = nowarn # Não notificar sobre espaço em branco faltando no EOF
+
