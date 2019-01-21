@@ -3,12 +3,15 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Themes
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tyrannicaltoucan/vim-quantum'
 "Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
-Plug 'itchyny/lightline.vim'
-Plug 'shinchu/lightline-gruvbox.vim'
+"Plug 'itchyny/lightline.vim'
+"Plug 'shinchu/lightline-gruvbox.vim'
 
 " Languages
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -18,7 +21,7 @@ Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'ervandew/supertab'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 if executable('python')
-  Plug 'zchee/deoplete-jedi'
+  Plug 'zchee/deoplete-jedi', { 'do': 'python' }
 endif
 
 Plug 'tpope/vim-fugitive'
@@ -37,28 +40,18 @@ Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 
-"Markdown
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 call plug#end()
 
 " }}}
 " Global stuff ============================={{{
 let g:quantum_italics=1
-set background=dark                     " Use a dark background
 set termguicolors
 colorscheme quantum                     " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
+set background=dark                     " Use a dark background
 set scrolloff=5                         " Keep at least 3 lines above/below when scrolling
 set lazyredraw                          " Don't update the display while executing macros
 set tabstop=4                           " Tab indentation levels every four columns
@@ -190,21 +183,6 @@ nnoremap N Nzzzv
 nnoremap zl :let @z=@"<cr>x$p:let @"=@z<cr>
 
 " }}}
-" NERDTree ================================={{{
-" Toggle NERDTree with F6
-nnoremap <tab> :NERDTreeToggle<CR>
-
-" Close NERDTree with Shift-TAB
-nnoremap <S-Tab> :NERDTreeClose<CR>
-
-" Show the bookmarks table on startup
-let NERDTreeShowBookmarks = 1
-
-" Autoclose nerdtree if it is the only open buffer
-augroup nerdtree_close
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
-" }}}
 " Functions ================================{{{
 
 " map '<CR>' in command-line mode to execute the function below
@@ -272,6 +250,22 @@ endif
 " }}}
 " Plugins {{{
 
+" Nerdtree
+" Toggle NERDTree with F6
+nnoremap <tab> :NERDTreeToggle<CR>
+
+" Close NERDTree with Shift-TAB
+nnoremap <S-Tab> :NERDTreeClose<CR>
+
+" Show the bookmarks table on startup
+let NERDTreeShowBookmarks = 1
+
+" Autoclose nerdtree if it is the only open buffer
+augroup nerdtree_close
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+
+
 " fzf.vim
 " File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
 let g:fzf_files_options =
@@ -295,7 +289,7 @@ inoremap <expr> <c-x><c-m> fzf#vim#complete#word({'left': '15%'})
 command! Plugs call fzf#run({
             \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
             \ 'options': '--delimiter / --nth -1',
-            \ 'down':    '~40%',
+            \ 'down':    '~20%',
             \ 'sink':    'Explore'})
 
 let g:fzf_colors =
@@ -341,5 +335,21 @@ let g:lightline = {
     \ 'separator': { 'left': '', 'right': '' },
     \ 'subseparator': { 'left': '|', 'right': '|' }
     \ }
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+let g:vim_json_syntax_conceal = 0
+
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'b'    : '#W',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W',
+      \'x'    : '%a',
+      \'y'    : '#W %R',
+      \'z'    : '#H'}
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " }}}
