@@ -1,26 +1,47 @@
-" THAT'S MY OLD VIM CONFIGURATION, I BLOW IT OVER AND I'M STARTING A NEW ONE
-" BECAUSE THIS ONE IS TOO BLOAT, I'LL KEEP IT HERE ONLY FOR REFERENCE.
-
 " Plugins inicialization ==================={{{
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.local/share/vim/plugged')
 
-Plug 'tyrannicaltoucan/vim-quantum'
-Plug 'tpope/vim-surround'
+Plug 'w0rp/ale', { 'do': 'pip install flake8 isort yapf' }
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'lucasteles/SWTC.Vim', { 'on': 'SWTC .vim/plugged/SWTC.vim/intro.swtc' }
-Plug 'itchyny/lightline.vim'
-"Plug 'tpope/vim-fugitive'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'roxma/nvim-yarp'
+"Plug 'chriskempson/base16-vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'gregsexton/MatchTag', { 'for': 'html' }
+Plug 'ervandew/supertab'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if executable('python')
+  Plug 'zchee/deoplete-jedi'
+endif
+Plug 'tpope/vim-fugitive'
+if isdirectory('/usr/local/opt/fzf')
+  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+else
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+endif
+
+" Others
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-surround'
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
+"Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
 " }}}
 " Global stuff ============================={{{
-runtime macros/matchit.vim
+
 colorscheme gruvbox                     " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
 set background=dark                     " Use a dark background
 set scrolloff=5                         " Keep at least 3 lines above/below when scrolling
@@ -34,6 +55,7 @@ set laststatus=2                        " Always show the statusline
 set number                              " Don't display line numbers
 set numberwidth=4
 set relativenumber
+set clipboard=unnamedplus               " O registrador * vira unnamed, permite que os textos copiados pelo vim vão para o clipboard
 set backspace=indent,eol,start          " Fix backspace
 set hlsearch                            " Highlight search
 set incsearch ignorecase                " Increase search
@@ -42,24 +64,14 @@ set smartcase                           " Override the 'ignorecase' option if th
 set showcmd                             " Show commands at bottom
 set hidden                              " Switch buffers without the need of saving them
 set path=.,**                           " Set path to the current and children directories
-set undofile undodir=~/.vim/tmp/undo/   " Set undofiles (undo files even if you exited the file)
 set splitbelow splitright               " Split belor and/or right when opening new buffers
-set list listchars=eol:$,trail:∙ listchars+=tab:│\  fillchars+=vert:│,fold:\  
+set list listchars=eol:$,trail:∙ listchars+=tab:│\  fillchars+=vert:│,fold:\
 set foldenable foldmethod=marker
+
 " }}}
 " General mappings ========================={{{
 
-" Pontuation binding in insert mode (Ergonomics)
-inoremap <C-H> (
-inoremap <C-J> )
-inoremap <C-K> [
-inoremap <C-L> ]
-inoremap <C-D> *
-inoremap <C-F> _
-inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>""""""")))
-inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>""""""")))
-inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")""""""")))
-inoremap ( ()<Left>
+map <leader> <space>
 
 " File navigation
 nnoremap ,f :find *
@@ -105,7 +117,7 @@ nnoremap g* g*``
 
 " Change the word under cursor, highlight the others in the file, and you can repeat the change pressing dot
 nnoremap c*  *Ncgn
-nnoremap c*c #``cgN
+"nnoremap c* #``cgN
 vnoremap c*  *Ncgn
 
 " Remove all trailing whitespace by pressing F5
@@ -176,24 +188,6 @@ nnoremap N Nzzzv
 nnoremap zl :let @z=@"<cr>x$p:let @"=@z<cr>
 
 " }}}
-" NERDTree ================================={{{
-" Toggle NERDTree with F6
-nnoremap <tab> :NERDTreeToggle<CR>
-
-" Close NERDTree with Shift-TAB
-nnoremap <S-Tab> :NERDTreeClose<CR>
-
-" Open NERDTree in the right side
-let g:NERDTreeWinPos = "right"
-
-" Show the bookmarks table on startup
-let NERDTreeShowBookmarks = 1
-
-" Autoclose nerdtree if it is the only open buffer
-augroup nerdtree_close
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
-" }}}
 " Functions ================================{{{
 
 " map '<CR>' in command-line mode to execute the function below
@@ -220,21 +214,6 @@ function! s:VSetSearch()
 	let @@ = temp
 endfunction
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-set wildmode=list:longest,list:full
-function! InsertTabWrapper()
-	let col = col('.') - 1
-	if !col || getline('.')[col - 1] !~ '\k'
-		return "\<Tab>"
-	else
-		return "\<C-p>"
-	endif
-endfunction
-inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
-inoremap <S-Tab> <C-n>
-
 " It lets '%' works for other things, like if/endif, tags, etc
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
@@ -250,6 +229,7 @@ endif
 
 " }}}
 " AutoCMD's ================================{{{
+
 if has('autocmd')
 	" Show spaces as red if there's nothing after it (from Greg Hurrel)
 	augroup TrailWhiteSpaces
@@ -278,23 +258,33 @@ if has('autocmd')
 					\ endif
 	augroup END
 
-	" Ref: https://jeffkreeftmeijer.com/vim-number/
-	augroup numbertoggle
-	  autocmd!
-	  autocmd BufEnter,FocusGained * set relativenumber number
-	  autocmd BufLeave,FocusLost   * set norelativenumber number
-	augroup END
-
 endif
 
 " }}}
 " Plugins {{{
 
-" Fzf ======================================{{{
+let g:deoplete#enable_at_startup = 1
 
+" Nerdtree
+" Toggle NERDTree with F6
+nnoremap <tab> :NERDTreeToggle<CR>
+
+" Close NERDTree with Shift-TAB
+nnoremap <S-Tab> :NERDTreeClose<CR>
+
+" Show the bookmarks table on startup
+let NERDTreeShowBookmarks = 1
+
+" Autoclose nerdtree if it is the only open buffer
+augroup nerdtree_close
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+
+
+" fzf.vim
 " File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
 let g:fzf_files_options =
-			\ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+            \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
 " Mapping selecting mappings
 " Show avaliable mappings
@@ -312,37 +302,58 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-x><c-m> fzf#vim#complete#word({'left': '15%'})
 
 command! Plugs call fzf#run({
-			\ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
-			\ 'options': '--delimiter / --nth -1',
-			\ 'down':    '~40%',
-			\ 'sink':    'Explore'})
+            \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
+            \ 'options': '--delimiter / --nth -1',
+            \ 'down':    '~20%',
+            \ 'sink':    'Explore'})
 
 let g:fzf_colors =
-			\ { 'fg':      ['fg', 'Normal'],
-			\ 'bg':      ['bg', 'Normal'],
-			\ 'hl':      ['fg', 'Comment'],
-			\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-			\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-			\ 'hl+':     ['fg', 'Statement'],
-			\ 'info':    ['fg', 'PreProc'],
-			\ 'border':  ['fg', 'Ignore'],
-			\ 'prompt':  ['fg', 'Conditional'],
-			\ 'pointer': ['fg', 'Exception'],
-			\ 'marker':  ['fg', 'Keyword'],
-			\ 'spinner': ['fg', 'Label'],
-			\ 'header':  ['fg', 'Comment'] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'border':  ['fg', 'Ignore'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 let g:fzf_action = {
-			\ 'ctrl-s': 'split',
-			\ 'ctrl-v': 'vsplit'
-			\ }
-nnoremap <space>ff  :FZF<CR>
+            \ 'ctrl-s': 'split',
+            \ 'ctrl-v': 'vsplit'
+            \ }
+nnoremap <space>ff  :Files<CR>
 nnoremap <space>fl  :Lines<CR>
 nnoremap <space>fbl :BLines<CR>
-nnoremap <space>fh  :FZF ~<CR>
-nnoremap <space>fu  :FZF /<CR>
-nnoremap <space>fc  :Commits <CR>
+nnoremap <space>fh  :Files<CR>
+nnoremap <space>gb  :Buffers<CR>
+nnoremap <space>p   :History<CR>
 
-" }}}
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+let g:vim_json_syntax_conceal = 0
+
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   'python': [
+\       'isort',
+\       'yapf',
+\       'remove_trailing_lines',
+\       'trim_whitespace'
+\   ]
+\}
+let g:ale_python_pylint_options = '--load-plugins pylint_django'
 
 " }}}
