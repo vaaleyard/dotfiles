@@ -8,7 +8,7 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; histor
 
 export SHELL=/bin/zsh
 export PAGER=less
-export EDITOR=vim
+export EDITOR=nvim
 export BROWSER=chromium-browser
 export BROWSERCLI=w3m
 export READER=zathura
@@ -17,8 +17,7 @@ export VIDEOPLAYER=mpv
 export PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii
 HISTFILE=~/.bash_history
 
-alias ec="$EDITOR -Nu $HOME/.vimrc"
-alias e="$EDITOR -Nu $HOME/.c-vimrc"
+alias e="$EDITOR"
 alias which='command -v'
 alias xmo='xmodmap ~/.Xmodmap'
 alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keepass.kdbx'
