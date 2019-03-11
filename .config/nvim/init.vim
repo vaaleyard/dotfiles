@@ -3,7 +3,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Themes
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tyrannicaltoucan/vim-quantum'
@@ -17,12 +17,14 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
+Plug 'kshenoy/vim-signature'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
-Plug 'ervandew/supertab'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-if executable('python')
-  Plug 'zchee/deoplete-jedi', { 'do': 'python' }
-endif
+"Plug 'ervandew/supertab'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"if executable('python')
+  "Plug 'zchee/deoplete-jedi', { 'do': 'python' }
+"endif
 
 Plug 'tpope/vim-fugitive'
 if isdirectory('/usr/local/opt/fzf')
@@ -40,14 +42,29 @@ Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
+Plug 'yuttie/comfortable-motion.vim'
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+
+"Markdown
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
+""Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 call plug#end()
 
 " }}}
 " Global stuff ============================={{{
+set runtimepath+=~/.fzf
 let g:quantum_italics=1
 set termguicolors
 colorscheme quantum                     " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
@@ -75,6 +92,12 @@ set path=.,**                           " Set path to the current and children d
 set splitbelow splitright               " Split belor and/or right when opening new buffers
 set list listchars=eol:$,trail:∙ listchars+=tab:│\  fillchars+=vert:│,fold:\
 set foldenable foldmethod=marker
+set cursorline
+set colorcolumn=80
+set shortmess+=c                        " don't give |ins-completion-menu| messages.
+set updatetime=300                      " Smaller updatetime for CursorHold & CursorHoldI
+set cmdheight=2                         " Better display for messages
+set signcolumn=yes                      " always show signcolumns
 " }}}
 " General mappings ========================={{{
 
@@ -267,9 +290,6 @@ augroup END
 
 
 " fzf.vim
-" File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
-let g:fzf_files_options =
-            \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
 " Mapping selecting mappings
 " Show avaliable mappings
@@ -311,6 +331,7 @@ let g:fzf_action = {
             \ 'ctrl-s': 'split',
             \ 'ctrl-v': 'vsplit'
             \ }
+
 nnoremap <space>ff  :Files<CR>
 nnoremap <space>fl  :Lines<CR>
 nnoremap <space>fbl :BLines<CR>
@@ -320,7 +341,8 @@ nnoremap <space>p   :History<CR>
 
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+"let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+"let $FZF_DEFAULT_COMMAND = 'rg --hidden -l ""'
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -333,23 +355,125 @@ let g:lightline = {
     \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype'] ]
     \ },
     \ 'separator': { 'left': '', 'right': '' },
-    \ 'subseparator': { 'left': '|', 'right': '|' }
+    \ 'subseparator': { 'left': '|', 'right': '|' },
+    \ 'component_function': {
+    \   'cocstatus': 'coc#status'
+    \ },
     \ }
+
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 let g:vim_json_syntax_conceal = 0
 
-let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'b'    : '#W',
-      \'win'  : '#I #W',
-      \'cwin' : '#I #W',
-      \'x'    : '%a',
-      \'y'    : '#W %R',
-      \'z'    : '#H'}
-
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+let g:comfortable_motion_no_default_key_mappings = 1
+
+
+" Coc.vim
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` for fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+
+
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+
 " }}}
+
