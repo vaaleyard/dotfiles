@@ -47,6 +47,8 @@ docx() { pandoc -f docx -t rst "$@" | vim - ; }
 # Useful general aliases {{{
 
 #alias mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keepass.kdbx'
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias vimrc="$EDITOR ~/.vimrc"
 alias nvimrc="$EDITOR ~/.config/nvim/init.vim"
 alias mkshrc="$EDITOR ~/.mkshrc"
@@ -250,29 +252,106 @@ top10() { history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -
 # Kill zombie process
 #killall-zombies() { kill -HUP $(ps -A -ostat,ppid | grep -e '[zZ]'| awk '{ print $2 }') ;}
 
+# Count code lines in some directory.
+# $ loc py js css
+# # => Lines of code for .py: 3781
+# # => Lines of code for .js: 3354
+# # => Lines of code for .css: 2970
+# # => Total lines of code: 10105
+function loc() {
+  local total
+  local firstletter
+  local ext
+  local lines
+  total=0
+  for ext in $@; do
+    firstletter=$(echo $ext | cut -c1-1)
+    if [[ firstletter != "." ]]; then
+      ext=".$ext"
+    fi
+    lines=`find-exec "*$ext" cat | wc -l`
+    lines=${lines// /}
+    total=$(($total + $lines))
+    echo "Lines of code for ${fg[blue]}$ext${reset_color}: ${fg[green]}$lines${reset_color}"
+  done
+  echo "${fg[blue]}Total${reset_color} lines of code: ${fg[green]}$total${reset_color}"
+}
+
+
+function _calcram() {
+  local sum
+  sum=0
+  for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
+    sum=$(($i + $sum))
+  done
+  sum=$(echo "scale=2; $sum / 1024.0" | bc)
+  echo $sum
+}
+
+# Show how much RAM application uses.
+# $ ram safari
+# # => safari uses 154.69 MBs of RAM
+function ram() {
+  local sum
+  local app="$1"
+  if [ -z "$app" ]; then
+    echo "First argument - pattern to grep from processes"
+    return 0
+  fi
+
+  sum=$(_calcram $app)
+  if [[ $sum != "0" ]]; then
+    echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM"
+  else
+    echo "No active processes matching pattern '${fg[blue]}${app}${reset_color}'"
+  fi
+}
+
+# Same, but tracks RAM usage in realtime. Will run until you stop it.
+# $ rams safari
+function rams() {
+  local sum
+  local app="$1"
+  if [ -z "$app" ]; then
+    echo "First argument - pattern to grep from processes"
+    return 0
+  fi
+
+  while true; do
+    sum=$(_calcram $app)
+    if [[ $sum != "0" ]]; then
+      echo -en "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM\r"
+    else
+      echo -en "No active processes matching pattern '${fg[blue]}${app}${reset_color}'\r"
+    fi
+    sleep 1
+  done
+}
+
+
 # Ref: https://github.com/paulmillr/dotfiles/blob/master/home/.zshrc.sh#L282
 # Show how much RAM application uses.
 # $ ram safari
 # # => safari uses 154.69 MBs of RAM.
-function ram() {
-  local sum
-  local items
-  local app="$1"
-  if [ -z "$app" ]; then
-    echo "First argument - pattern to grep from processes"
-  else
-    sum=0
-    for i in `ps aux | grep -i "$app" | grep -v "grep" | awk '{print $6}'`; do
-      sum=$(($i + $sum))
-    done
-    sum=$(echo "scale=2; $sum / 1024.0" | bc)
-    if [[ $sum != "0" ]]; then
-      echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
-    else
-      echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
-    fi
-  fi
-}
+#function ram() {
+#  local sum
+#  local items
+#  local app="$1"
+#  if [ -z "$app" ]; then
+#    echo "First argument - pattern to grep from processes"
+#  else
+#    sum=0
+#    for i in `ps aux | grep -i "$app" | grep -v "grep" | awk '{print $6}'`; do
+#      sum=$(($i + $sum))
+#    done
+#    sum=$(echo "scale=2; $sum / 1024.0" | bc)
+#    if [[ $sum != "0" ]]; then
+#      echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
+#    else
+#      echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
+#    fi
+#  fi
+#}
 
 # }}}
 # FZF Functions ########################## {{{
@@ -427,6 +506,8 @@ digdns() {
 }
 
 alias meuip="ip -f inet -o addr show wlp3s0 | grep -oP '(?<=inet )[0-9.]+'"
+
+# My GCP machines
 
 # }}}
 
