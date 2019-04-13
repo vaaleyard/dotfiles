@@ -47,13 +47,32 @@ To get touchpad working after a minimal install, copy the code below to the file
 
 ```
 Section "InputClass"
-	Identifier "touchpad"
-	Driver "libinput"
-	MatchIsTouchpad "on"
-	Option "Tapping" "on"
+        Identifier "touchpad"
+        Driver "libinput"
+        MatchIsTouchpad "on"
+        Option "Tapping" "on"
+        Option "XkbModel" "thinkpad60"
         Option "TappingButtonMap" "lmr"
         Option "TappingDrag" "on"
 EndSection
+```
+
+Set keyboard to br-abnt2, but with thinkpad keyboard `/etc/X11/xorg.conf.d/00-keyboard.conf`
+```
+ Section "InputClass"
+        Identifier "keyboard-all"
+        MatchIsKeyboard "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "evdev"
+        Option "XkbLayout" "br"
+        Option "XkbModel" "thinkpad60"
+        Option "XkbOptions" "terminate:ctrl_alt_bksp"
+EndSection
+```
+
+Get audio working in thinkpads: `/etc/modprobe.d/alsa-base.conf` (don't ask me why it works)
+```
+options snd-hda-intel position_fix=1 model=lenovo
 ```
 
 ## Mutt config
