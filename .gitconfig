@@ -1,7 +1,6 @@
 [user]
     email = leonardof@tutanota.com
     name = Leonardo F.
-
 [core]
     editor = nvim
     pager = less -#2 -N -S
@@ -17,16 +16,19 @@
 [alias]
     s = status
     p = push
-    histc = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    histg = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    cm = commit -m
+    full-log = log --stat --decorate --source -p
+    histg = log --graph --pretty=format:'%C(yellow)%h%C(bold white red)%d%Creset %s %C(bold green)%cr %Creset%C(white)%an' --abbrev-commit --date=relative
+    date-log = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
     aliases = git config -l | grep alias | cut -c 7-
+    unstage = reset
+    uncommit = reset --soft HEAD^
 
     # https://www.christianengvall.se/untrack-files-local-repository-keep-origin-git/
-	assume-unchanged = update-index --assume-unchanged
+    assume-unchanged = update-index --assume-unchanged
 
-	diff = diff --ignore-space-at-eol -b -w --ignore-blank-lines
-
-	update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
+    diff = diff --ignore-space-at-eol -b -w --ignore-blank-lines
+    update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
 
 [difftool]
     prompt = false
@@ -34,8 +36,8 @@
     tool = vimdiff
 
 [push]
-	default = current # Push irá enviar o branch atual e cria no remote caso não exista
+    default = current # Push irá enviar o branch atual e cria no remote caso não exista
 
 [apply]
-	whitespace = nowarn # Não notificar sobre espaço em branco faltando no EOF
+    whitespace = nowarn # Não notificar sobre espaço em branco faltando no EOF
 
