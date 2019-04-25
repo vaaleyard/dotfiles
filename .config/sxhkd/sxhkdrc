@@ -2,38 +2,38 @@
 
 # terminal emulator
 super + Return
-	st -g 130x40
+    st -g 130x40
 
 # program launcher
 super + d
-	dmenu_run -i -l 3 -fn 'iosevka Nerd Font:size=11' -p ' Search  ' -nb '#2f343f' -nf '#e7e8eb' -sb '#81A1C1' -sf '#2f343f'
+    rofi -combi-modi window,drun,ssh -theme solarized -font "hack 10" -show combi
 
 # make sxhkd reload its configuration files:
 super + shift + c
-	pkill -USR1 -x sxhkd
+    pkill -USR1 -x sxhkd
 
 # }}}
 # bspwm hotkeys {{{
 
 # quit bspwm normally
 super + alt + Escape
-	bspc quit
+    bspc quit
 
 # close and kill
 super + {_,shift + }q
-	bspc node -{c,k}
+    bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
 #super + m
-	#bspc desktop -l next
+    #bspc desktop -l next
 
 # send the newest marked node to the newest preselected node
 super + y
-	bspc node newest.marked.local -n newest.!automatic.local
+    bspc node newest.marked.local -n newest.!automatic.local
 
 # swap the current node and the biggest node
 super + g
-	bspc node -s biggest
+    bspc node -s biggest
 
 # }}}
 # state/flags {{{
@@ -51,63 +51,64 @@ super + ctrl + {m,x,y,z}
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+    bspc node -{f,s} {west,south,north,east}
 
 # focus the next/previous node in the current desktop (similar to super + tab but on the same workspace)
 #super + {_,shift + }c
-	#bspc node -f {next,prev}.local
+    #bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
-	bspc desktop -f {prev.local,next.local}
+    bspc desktop -f {prev.local,next.local}
 
 # focus the last node/desktop
 super + {grave,Tab}
-	bspc {node,desktop} -f last
+    bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+    bspc wm -h off; \
+    bspc node {older,newer} -f; \
+    bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+    bspc {desktop -f,node -d} '^{1-9,10}'
 
 # }}}
 # preselect {{{
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
+    bspc node -p {west,south,north,east}
 
 # preselect the ratio
 super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+    bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
 super + ctrl + space
-	bspc node -p cancel
+    bspc node -p cancel
 
 # cancel the preselection for the focused desktop
 super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 # }}}
 # move/resize {{{
 
+# Only on FLOATING MODE
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
 super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window
 super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # }}}
 
@@ -126,23 +127,34 @@ super + F5
 
 # cmus-status script
 super + c
-    $HOME/bin/cmus-status
+    $HOME/.bin/cmus-status
+
+# spotify
+super + ctrl + s
+    {spotify 2>&-}
 
 ## Browser and Telegram
-super + shift + {b, t}
-    {$BROWSER 2>&-, Telegram 2>&-}
+super + shift + {b, e}
+    {brave-browser 2>&-, Telegram 2>&-}
 
 # Reboot system
 super + shift + BackSpace
-    $HOME/bin/prompt "Are you sure you want to reboot?" "sudo reboot"
+    $HOME/.bin/prompt "Are you sure you want to reboot?" "sudo reboot"
 
 # Screenshot (copying to clipboard)
+super + s
+    {scrot -e 'xclip -selection clipboard -t image/png $f && rm -f $f'}
+
+super + shift + s
+    {scrot -se 'xclip -selection clipboard -t image/png $f && rm -f $f'}
+
+## Screenshot
 super + {s, shift + s}
-    {scrot -e 'xclip -selection clipboard -t image/png $f && rm -f $f', scrot -se 'xclip -selection clipboard -t image/png $f && rm -f $f'}
+    {maim | xclip -selection clipboard -t image/png, maim -us | xclip -selection clipboard -t image/png}
 
 # Screenshot (saving to some directory)
 super + {Print, shift + Print}
-    {scrot -e 'mv $f ~/Pictures/scrot' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot', scrot -se 'mv $f ~/Pictures/scrot/' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'}
+    {maim -u, maim -us} ~/Pictures/scrot/$(date +%d-%m-%Y-%T).png && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'
 
 # Open ranger/ranger with sudo
 super + {r, shift + r}
@@ -154,15 +166,15 @@ super + {n, shift + n}
 
 # Weechat/dmoji script
 super + {w, shift + w}
-    {st -n weechat -c weechat -e weechat-curses, $HOME/bin/dmoji}
+    {st -n weechat -c weechat -e weechat-curses, $HOME/.bin/dmoji}
 
 # Turn off the sound and stop cmus/shutdown computer
 super + {x, shift + x}
-    {amixer sset Master mute ; $HOME/.config/i3/locki3.sh, $HOME/bin/prompt "Are you sure you want to shutdown?" "sudo poweroff -h now"}
+    {amixer sset Master mute ; $HOME/.bin/locki3.sh, $HOME/.bin/prompt "Are you sure you want to shutdown?" "sudo poweroff -h now"}
 
 # Record the screen/Stop recording the scren
 alt + {r, shift + r}
-    {$HOME/bin/record-slop, killall ffmpeg && notify-send "FFmpeg" "Gravação da tela finalizada!"}
+    {$HOME/.bin/record-slop, killall ffmpeg && notify-send "FFmpeg" "Gravação da tela finalizada!"}
 
 super + u
     scratchtermtoggle
@@ -170,14 +182,27 @@ super + u
 # When you're watching educational videos and someone comes up to you:
 # It mutes your sound, goes to another workspace with vim and zathura opened to pretend you are doing something useful
 super + shift + Delete
-    amixer sset Master mute ; bspc desktop -f '^8' ; st -e vim ~/.vimrc ; zathura $HOME/Documents/library/Linux/Guia\ Foca\ Linux\ -\ Intermediário.pdf
+    amixer sset Master mute ; bspc desktop -f '^8' ; st -e vim ~/.vimrc ; zathura $HOME/Downloads/Docker\ para\ Desenvolvedores.pdf
 
 # }}}
 # Media {{{
 
 # Mute sound
-super + F8
-    amixer sset Master toggle
+XF86AudioMute
+    {amixer -q set Master toggle}
+
+XF86AudioPrev
+    {dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous}
+
+XF86AudioPlay
+    {dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause}
+
+XF86AudioNext
+    {dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next}
+
+XF86AudioStop
+    {dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop}
+
 
 # Conflited binding
 super + m
@@ -191,7 +216,10 @@ super + shift + m
 super + {p, shift + p}
     cmus-remote {--play, --pause}
 
-# Increase/dicrease sound
+# Increase/dicrease sound (the 1st is to thinkpad laptops) https://www.reddit.com/r/archlinux/comments/4268ur/x220_thinkpad_buttons_volume_updown_mute/
+{XF86AudioRaiseVolume, XF86AudioLowerVolume}
+    {amixer -q set Master 2dB+ unmute, amixer -q set Master 2dB- unmute}
+
 super + {minus, equal}
     amixer sset Master 2%{-,+}
 
@@ -202,5 +230,8 @@ super + shift + {minus, equal}
 # {Previous,Next} music
 super + {comma, period}
     cmus-remote {--prev, --next} && pkill dunst && cmus-status
+
+XF86AudioMicMute
+    {pactl set-source-mute 1 toggle}
 
 # }}}
