@@ -40,3 +40,5 @@ source ~/.aliases
 [ -f ~/.git-prompt.sh ] && source ~/.git-prompt.sh
 [ -f $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh ] && source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
