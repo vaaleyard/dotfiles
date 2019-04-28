@@ -24,7 +24,7 @@ bind ^L=clear-screen
 umask 077
 
 
-[ `id -u` = '0' ] && PS1='# >' || PS1='$(pwd | sed "s,^$HOME,~,") $(print "\033[0;36m$\033[00m")> '
+[ `id -u` = '0' ] && PS1='# >' || PS1='$(pwd | sed "s,^$HOME,~,") $(printf "\033[0;36m$\033[00m")> '
 PS2='> '
 export PS1 PS2
 
@@ -33,20 +33,20 @@ HISTFILE=/tmp/.`id -nu`-history
 
 export SHELL=/bin/mksh
 export PAGER=less
-export EDITOR=vim
-export BROWSER=chromium
+export EDITOR=nvim
+export BROWSER=brave-browser
 export BROWSERCLI=lynx
 export READER=zathura
 export IMAGEVIEWER=sxiv
 export VIDEOPLAYER=mpv
-export PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii:$HOME/Downloads/jdk1.8.0_181/
+export PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii:$HOME/.gem/ruby/2.6.0/bin
 
 alias e="$EDITOR"
 alias ..="cd .."
 alias xmo='xmodmap ~/.Xmodmap'
 alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keepass.kdbx'
 alias torlinks='links -socks-proxy 127.0.0.1:9050'
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 alias screenoff='xset dpms force off'
 chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
 yt() { mpv --ytdl-format=136+251/136+171/136+250/136+140 "$@" ;}
@@ -104,8 +104,13 @@ anon() {
 }
 
 pwgen() {
-	head /dev/urandom | tr -dc '[[:graph:]]' | head -c${1:-22}; echo
+    head /dev/urandom | tr -dc '[[:graph:]]' | head -c${1:-22}; echo
 }
 
 source "$HOME/.vim/gruvbox_256palette.sh"
 #source $HOME/.aliases
+
+# The next line updates PATH for the Google Cloud SDK.
+# if [ -f '/home/valeyard/google-cloud-sdk/path.bash.inc' ]; then . '/home/valeyard/google-cloud-sdk/bin/gcloud'; fi
+alias gcloud='/home/valeyard/google-cloud-sdk/bin/gcloud'
+
