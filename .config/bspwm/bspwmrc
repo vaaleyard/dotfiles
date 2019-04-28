@@ -4,15 +4,15 @@
 # Scratchpad terminal: https://www.reddit.com/r/bspwm/comments/85hr4c/making_a_scratchpaddropdown_terminal_in_bspwm/
 # I've modified a little bit to open with a tmux session instead of just a terminal
 #hsetroot -fill ~/Pictures/Landscapes/river-forest.jpg
-#xrdb -load ~/.Xresources
-#xset +fp $HOME/.fonts/
-#$HOME/bin/todo-notify
-#killall -9 sxhkd bar dunst
+xrdb -load ~/.Xresources
+xset +fp $HOME/.fonts/
+xsetroot -cursor_name left_ptr &
+killall -9 sxhkd bar dunst
 sxhkd &
 #dunst &
 #sleep 1
-#bar &
-#notify-send "Notification" "Bspwmrc Loaded"
+$HOME/.bin/bar 1>/dev/null &
+notify-send "Notification" "Bspwmrc Loaded"
 # }}}
 # bspwm config {{{
 bspc monitor -d 'I' 'II' 'III' 'IV' 'V' 'VI' 'VII' 'VIII' 'IX' 'X' # Workspace icons
@@ -31,7 +31,9 @@ bspc config bottom_padding          13
 bspc config initial_polarity        second_child
 
 # Rules
-bspc rule -a 'Pale moon'     desktop='^2'
+bspc rule -a 'Brave-browser' desktop='^2'
+bspc rule -a Firefox         desktop='^7'   focus=on
+bspc rule -a 'Spotify'       desktop='^4'
 bspc rule -a zathura         desktop='^4'   focus=on
 bspc rule -a ranger          desktop='^4'   focus=on
 bspc rule -a neomutt         desktop='^5'
