@@ -19,7 +19,7 @@ macro index <F9> '<sync-mailbox><enter-command>source ~/.mutt/email1.outlook<ent
 macro index <F10> '<sync-mailbox><enter-command>source ~/.mutt/email4.gmail<enter><change-folder>!<enter>' 'Go to email4@gmail e-mail'
 
 # Default account
-source ~/.mutt/email1.outlook
+source ~/.mutt/email2.cock.li
 
 # Delete without confirming
 set delete
