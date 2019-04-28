@@ -141,16 +141,12 @@ super + shift + {b, e}
 super + shift + BackSpace
     $HOME/.bin/prompt "Are you sure you want to reboot?" "sudo reboot"
 
-# Screenshot (copying to clipboard)
-super + s
-    {scrot -e 'xclip -selection clipboard -t image/png $f && rm -f $f'}
-
-super + shift + s
-    {scrot -se 'xclip -selection clipboard -t image/png $f && rm -f $f'}
-
 ## Screenshot
 super + {s, shift + s}
-    {maim | xclip -selection clipboard -t image/png, maim -us | xclip -selection clipboard -t image/png}
+    {maim | xclip -selection clipboard -t image/png}
+
+super + shift + s
+    {maim -us | xclip -selection clipboard -t image/png}
 
 # Screenshot (saving to some directory)
 super + {Print, shift + Print}
