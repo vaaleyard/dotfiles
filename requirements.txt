@@ -35,3 +35,4 @@ zathura
 xinit
 xorg-server
 libXfont2
+ImageMagick
