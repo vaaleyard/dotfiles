@@ -12,13 +12,26 @@ if [ -f "$usermodmap" ]; then
 fi
 
 #xset +fp $HOME/.fonts/
-exec redshift &
-$HOME/.bin/dwmstatus &
-#setroot -f $HOME/Pictures/Wallpapers/31.jpg
-while true; do
-    # Log stderror to a file
-    dwm 2> /tmp/dwm.log
-    # No error logging
-    #dwm >/dev/null 2>&1
-done
 
+dbus="dbus-launch --sh-syntax --exit-with-session" 
+exec redshift &
+setroot -f $HOME/Pictures/Wallpapers/04.jpg
+
+# startx bspwm
+# startx dwm
+# ...
+case $2 in
+    bspwm)
+        ntpdate ntp.ubuntu.com
+        exec $dbus bspwm
+        ;;
+    dwm)
+        while true; do
+            # Log stderror to a file
+            dwm 2> /tmp/dwm.log
+            # No error logging
+            #dwm >/dev/null 2>&1
+        done
+        ;;
+    *) exec $dbus bspwm ;;
+esac
