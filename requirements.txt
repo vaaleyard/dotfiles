@@ -20,6 +20,8 @@ unzip
 urlview
 vim-x11
 weechat
+weechat-perl
+weechat-python
 wget
 xauth
 xclip
@@ -36,3 +38,13 @@ xinit
 xorg-server
 libXfont2
 ImageMagick
+redshift
+sxhkd
+dbus
+bspwm
+alsa-utils
+lemonbar
+xdo
+i3lock
+xsetroot
+maim
