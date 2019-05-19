@@ -78,7 +78,7 @@ battery() {
 
 wifi() {
     while true; do
-        network_id=$(/sbin/iwgetid -r)
+        network_id=$(wpa_cli status | awk -F= '/^ssid/ { print $2 }')
         if [ -n "$network_id" ]
         then
             echo 'Y' "$(icon  0) "$network_id"";
