@@ -48,3 +48,6 @@ xdo
 i3lock
 xsetroot
 maim
+kpcli
+ffmpeg
+zathura-pdf-mupdf
