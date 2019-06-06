@@ -16,6 +16,11 @@ Plug 'ryanoasis/vim-devicons'
 "Plug 'kshenoy/vim-signature'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
+
 "Plug 'ervandew/supertab'
 Plug 'Chiel92/vim-autoformat'
 if executable('python')
@@ -29,7 +34,8 @@ if executable('terraform')
     Plug 'vim-syntastic/syntastic', { 'for': 'tf' }
     Plug 'juliosueiras/vim-terraform-completion'
 endif
-Plug 'honza/vim-snippets'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 "Plug 'tpope/vim-fugitive'
 if isdirectory('/usr/local/opt/fzf')
@@ -71,6 +77,7 @@ call plug#end()
 " Global stuff ============================={{{
 set runtimepath+=~/.fzf
 let g:quantum_italics=1
+set mouse=a
 set termguicolors
 colorscheme quantum                     " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
 set background=dark                     " Use a dark background
@@ -349,24 +356,8 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 "let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 "let $FZF_DEFAULT_COMMAND = 'rg --hidden -l ""'
 
-" Lightline
-let g:lightline = {
-    \ 'colorscheme': 'quantum',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste'], [ 'filename', 'modified' ] ],
-    \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype'] ]
-    \ },
-    \ 'separator': { 'left': '', 'right': '' },
-    \ 'subseparator': { 'left': '|', 'right': '|' },
-    \ 'component_function': {
-    \   'cocstatus': 'coc#status'
-    \ },
-    \ }
-
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 let g:comfortable_motion_scroll_down_key = "j"
@@ -492,7 +483,6 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -517,6 +507,44 @@ let g:terraform_registry_module_completion = 0
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
 let g:deoplete#enable_at_startup = 1
-call deoplete#initialize()
+
+
+
+
+" all lists will be of type quickfix
+let g:deoplete#sources#go#gocode_binary = '$HOME/go/bin/gocode'
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_list_type = "quickfix"
+let g:go_test_timeout = '10s'
+let g:go_fmt_command = "$HOME/go/bin/goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_jump_to_error = 0
+let g:go_metalinter_autosave = 0
+let g:go_metalinter_enabled = []
+let g:go_metalinter_autosave_enabled = []
+let g:go_gocode_unimported_packages = 1
+let g:go_decls_mode = 'fzf'
+let g:go_auto_sameids = 1
+
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 " }}}
 

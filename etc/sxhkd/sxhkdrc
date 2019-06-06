@@ -127,7 +127,7 @@ super + F5
 
 # cmus-status script
 super + c
-    $HOME/.bin/cmus-status
+    $HOME/bin/cmus-status
 
 # spotify
 super + ctrl + s
@@ -139,7 +139,7 @@ super + shift + {b, e}
 
 # Reboot system
 super + shift + BackSpace
-    $HOME/.bin/prompt "Are you sure you want to reboot?" "sudo reboot"
+    $HOME/bin/prompt "Are you sure you want to reboot?" "sudo reboot"
 
 ## Screenshot
 super + {s, shift + s}
@@ -162,15 +162,15 @@ super + {n, shift + n}
 
 # Weechat/dmoji script
 super + {w, shift + w}
-    {st -n weechat -c weechat -e weechat-curses, $HOME/.bin/dmoji}
+    {st -n weechat -c weechat -e weechat-curses, $HOME/bin/dmoji}
 
 # Turn off the sound and stop cmus/shutdown computer
 super + {x, shift + x}
-    {amixer sset Master mute ; $HOME/.bin/locki3.sh, $HOME/.bin/prompt "Are you sure you want to shutdown?" "sudo poweroff -h now"}
+    {amixer sset Master mute ; $HOME/bin/locki3.sh, $HOME/bin/prompt "Are you sure you want to shutdown?" "sudo poweroff -h now"}
 
 # Record the screen/Stop recording the scren
 alt + {r, shift + r}
-    {$HOME/.bin/record-slop, killall ffmpeg && notify-send "FFmpeg" "Gravação da tela finalizada!"}
+    {$HOME/bin/record-slop, killall ffmpeg && notify-send "FFmpeg" "Gravação da tela finalizada!"}
 
 super + u
     scratchtermtoggle

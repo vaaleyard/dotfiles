@@ -11,7 +11,7 @@ killall -9 sxhkd bar dunst
 sxhkd &
 #dunst &
 #sleep 1
-$HOME/.bin/bar 1>/dev/null &
+$HOME/bin/bar 1>/dev/null &
 notify-send "Notification" "Bspwmrc Loaded"
 # }}}
 # bspwm config {{{
