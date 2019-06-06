@@ -7,19 +7,19 @@
 # General settings =========================={{{
 
 # Folder hooks
-folder-hook 'email2.cock.li' 'source ~/.mutt/email2.cock.li'
-folder-hook 'email3.outlook' 'source ~/.mutt/email3.outlook'
-folder-hook 'email1.outlook' 'source ~/.mutt/email1.outlook'
-folder-hook 'email4.gmail' 'source ~/.mutt/email4.gmail'
+folder-hook 'email2.cock.li' 'source $XDG_CONFIG_HOME/neomuttt/email2.cock.li'
+folder-hook 'email3.outlook' 'source $XDG_CONFIG_HOME/neomutt/email3.outlook'
+folder-hook 'email1.outlook' 'source $XDG_CONFIG_HOME/neomutt/email1.outlook'
+folder-hook 'email4.gmail' 'source $XDG_CONFIG_HOME/neomutt/email4.gmail'
 
 # Macros for switching accounts
-macro index <F7> '<sync-mailbox><enter-command>source ~/.mutt/email2.cock.li<enter><change-folder>!<enter>' 'Go to email2@cock.li e-mail'
-macro index <F8> '<sync-mailbox><enter-command>source ~/.mutt/email3.outlook<enter><change-folder>!<enter>' 'Go to email3@outlook e-mail'
-macro index <F9> '<sync-mailbox><enter-command>source ~/.mutt/email1.outlook<enter><change-folder>!<enter>' 'Go to email1@outlook e-mail'
-macro index <F10> '<sync-mailbox><enter-command>source ~/.mutt/email4.gmail<enter><change-folder>!<enter>' 'Go to email4@gmail e-mail'
+macro index <F7> '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/neomutt/email2.cock.li<enter><change-folder>!<enter>' 'Go to email2@cock.li e-mail'
+macro index <F8> '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/neomutt/email3.outlook<enter><change-folder>!<enter>' 'Go to email3@outlook e-mail'
+macro index <F9> '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/neomutt/email1.outlook<enter><change-folder>!<enter>' 'Go to email1@outlook e-mail'
+macro index <F10> '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/neomutt/email4.gmail<enter><change-folder>!<enter>' 'Go to email4@gmail e-mail'
 
 # Default account
-source ~/.mutt/email2.cock.li
+source $XDG_CONFIG_HOME/neomutt/email2.cock.li
 
 # Delete without confirming
 set delete
@@ -89,7 +89,7 @@ set mime_forward = yes
 # }}}
 # Keybidings ================================{{{
 
-source ~/.mutt/bindings.mutt
+source $XDG_CONFIG_HOME/neomutt/bindings.mutt
 macro index,pager U "<enter-command>set pipe_decode = yes<enter><pipe-message>urlview<enter><enter-command>set pipe_decode = no<enter>""view URLs"
 
 # Open mutt manual with w3m and/or vim
@@ -211,17 +211,17 @@ macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 #}}}
 # Colors ===================================={{{
 
-source "~/.mutt/colors"
+source "$XDG_CONFIG_HOME/neomutt/colors"
 
 #}}}
 # Aliases ==========================={{{
 
-source ~/.mutt/aliases
+source $XDG_CONFIG_HOME/neomutt/aliases
 
 # }}}
 # HTML Rendering ============================{{{
 
-set mailcap_path = "~/.mutt/mailcap"
+set mailcap_path = "$XDG_CONFIG_HOME/neomutt/mailcap"
 
 alternative_order text/plain text/enriched text/html     # list html for last
 auto_view text/html                                      # view html automatically
