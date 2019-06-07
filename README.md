@@ -4,6 +4,45 @@
 
 ![Alt text](https://i.imgur.com/F5AFwFc.png "scrot") <br />
 
+## Tree
+```
+$HOME
+  ├── bin
+  ├── etc
+  │   ├── X11
+  │   ├── bash
+  │   ├── bspwm
+  │   ├── cmus
+  │   ├── dconf
+  │   ├── dunst
+  │   ├── feh
+  │   ├── git
+  │   ├── i3
+  │   ├── mpv
+  │   ├── neomutt
+  │   ├── newsboat
+  │   ├── nvim
+  │   ├── polybar
+  │   ├── ranger
+  │   ├── sxhkd
+  │   ├── sxiv
+  │   ├── tmux
+  │   ├── weechat
+  │   └── zathura
+  ├── src
+  │   ├── build
+  │   ├── code
+  ├── usr
+  │   ├── desktop
+  │   ├── docs
+  │   ├── images
+  │   ├── lib
+  │   ├── music
+  │   ├── suckless
+  │   └── videos
+  └── var
+      └── share
+```
 
 ## Setup
 
