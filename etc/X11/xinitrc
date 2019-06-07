@@ -15,14 +15,14 @@ fi
 
 dbus="dbus-launch --sh-syntax --exit-with-session" 
 exec redshift &
-setroot -f $HOME/Pictures/Wallpapers/04.jpg
+#setroot -f $HOME/Pictures/Wallpapers/04.jpg
 
 # startx bspwm
 # startx dwm
 # ...
 case $2 in
     bspwm)
-        ntpdate ntp.ubuntu.com
+        ntpdate a.ntp.br
         exec $dbus bspwm
         ;;
     dwm)
