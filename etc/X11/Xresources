@@ -9,11 +9,11 @@
 ! These options only take effect on startup.
 st.termname:          screen-256color
 ! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
-st.shell:            /bin/mksh
+! st.shell:            /bin/mksh
 
 ! The following options options can be reloaded via USR1 signal.
-st.font:              Monaco:size=9
-st.italicFont:        Monaco:italic:size=9
+st.font:              Fira Code:size=9
+st.italicFont:        Fira Code:italic:size=9
 st.borderpx:          35
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:       2
