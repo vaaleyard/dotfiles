@@ -2,7 +2,7 @@
     <img src="https://i.imgur.com/YHr1OMl.png" align="center">
 </p>
 
-![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/scrot.png "scrot") <br />
+![Alt text](https://i.imgur.com/F5AFwFc.png "scrot") <br />
 
 
 ## Setup
