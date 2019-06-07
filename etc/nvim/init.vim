@@ -1,6 +1,6 @@
 " Plugins inicialization ==================={{{
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/var/share/nvim/plugged')
 
 " Themes
 Plug 'vim-airline/vim-airline'
