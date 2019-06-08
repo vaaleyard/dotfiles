@@ -23,7 +23,6 @@ fi
 bind ^L=clear-screen
 umask 077
 
-
 [ `id -u` = '0' ] && PS1='# >' || PS1='$(pwd | sed "s,^$HOME,~,") $(printf "\033[0;36m$\033[00m")> '
 PS2='> '
 export PS1 PS2
@@ -31,25 +30,7 @@ export PS1 PS2
 HISTSIZE=256
 HISTFILE=/tmp/.`id -nu`-history
 
-export SHELL=/bin/mksh
-export PAGER=less
-export EDITOR=nvim
-export BROWSER=brave-browser
-export BROWSERCLI=lynx
-export READER=zathura
-export IMAGEVIEWER=sxiv
-export VIDEOPLAYER=mpv
-export PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii:$HOME/.gem/ruby/2.6.0/bin
-
-alias e="$EDITOR"
 alias ..="cd .."
-alias xmo='xmodmap ~/.Xmodmap'
-alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keepass.kdbx'
-alias torlinks='links -socks-proxy 127.0.0.1:9050'
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
-alias con='ps -A --sort -rsz -o comm,pmem,pcpu|awk "NR<=15"'
-chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
-yt() { mpv --ytdl-format=136+251/136+171/136+250/136+140 "$@" ;}
 
 '!!'() {
 	echo "$(history -1 | grep -oP "(?<=\t).*$")"
@@ -103,25 +84,9 @@ anon() {
     torsocks $BROWSERCLI https://duckduckgo.com/?q="$oi" -noreferer
 }
 
-pwgen() {
-    head /dev/urandom | tr -dc '[[:graph:]]' | head -c${1:-22}; echo
-}
-
-
-# list and grep with file permission
-lsg() {
-  keyword=$(echo "$@" |  sed 's/ /.*/g')
-  ls -hlA --color=yes \
-  | awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(" %0o ",k);print}' \
-  | grep -iE $keyword
-}
-
 #
 
 source "$HOME/.vim/gruvbox_256palette.sh"
 #source $HOME/.aliases
-
-# The next line updates PATH for the Google Cloud SDK.
-# if [ -f '/home/valeyard/google-cloud-sdk/path.bash.inc' ]; then . '/home/valeyard/google-cloud-sdk/bin/gcloud'; fi
-alias gcloud='/home/valeyard/google-cloud-sdk/bin/gcloud'
+[ -f ~/.xprofile ] && source ~/.xprofile
 
