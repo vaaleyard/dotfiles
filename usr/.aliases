@@ -1,0 +1,556 @@
+# Aliases ==============================={{{
+
+# System aliases {{{
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ll='ls -laF'
+alias {sls,sl}=ls
+alias {lc,cls,cl,cc,cll,clear,clar,clea}="clear"
+alias l='ls -F'
+alias cdfac="cd ~/Documents/Faculdade"
+alias mv='mv -v'
+alias sxiv='sxiv -b -q -s f 2>/dev/null'
+alias mkdir='mkdir -p -v'				# create if not exist, verbose
+alias con='ps -A --sort -rsz -o comm,pmem,pcpu|awk "NR<=15"'
+ed() { command ed -p "> " "$@" ;}
+alias which='command -v'
+alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1'
+alias bash='bash --init-file $XDG_CONFIG_HOME/bash/bashrc'
+# color for common commands
+# tutorial video: http://www.youtube.com/watch?v=RbVCzxnKJL4
+if [ -x /usr/bin/dircolors ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# }}}
+# Useful programming aliases {{{
+
+alias e=$EDITOR
+alias g=git
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
+alias t="tmux"
+alias ta="tmux a"
+alias h='function hdi(){ howdoi $* -c -n 3; }; hdi'
+alias :sp='test -n "$TMUX" && tmux split-window'
+alias :vs='test -n "$TMUX" && tmux split-window -h'
+alias myip='wget -qO- http://ipecho.net/plain ; echo'
+docx() { pandoc -f docx -t rst "$@" | vim - ; }
+#alias note='cd $HOME/syncthing/markor/Tasks/ && vim `fzf --preview="cat {}" --preview-window=right:70%:wrap` && cd ~'
+
+# }}}
+# Useful general aliases {{{
+
+yt() { mpv --ytdl-format=136+251/136+171/136+250/136+140 "$@" ;}
+#alias mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias kpcli='kpcli --kdb $HOME/usr/syncthing/keepass/keepass.kdbx'
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+alias vimrc="$EDITOR ~/.vimrc"
+alias nvimrc="$EDITOR ~/.config/nvim/init.vim"
+alias mkshrc="$EDITOR ~/.mkshrc"
+alias xmo='xmodmap $XDG_CONFIG_HOME/X11/Xmodmap'
+#alias bashrc='$EDITOR ~/.bashrc'
+alias zshrc='$EDITOR ~/.zshrc'
+alias torlinks='links -socks-proxy 127.0.0.1:9050'
+
+# }}}
+# Useless aliases {{{
+
+chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
+alias weather='curl -s wttr.in/uberlandia | head -5'       # print weather
+alias weatherforecast='curl -s wttr.in/uberlandia | head -37 | tail -30'
+alias starwars="telnet towel.blinkenlights.nl"
+alias shrug="echo '¯\_(ツ)_/¯' | xclip -i -selection clipboard" #emotes/faces
+alias lenny="echo '( ͡° ͜ʖ ͡°)' | xclip -i -selection clipboard"
+alias fu="echo '┌∩┐(◣_◢)┌∩┐' | xclip -i -selection clipboard"
+alias cry="echo '( -̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷄◞ω◟-̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷅ )' | xclip -i -selection clipboard"
+# Do something and receive a desktop alert when it completes `sudo apt-get install something | alert`
+#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# }}}
+
+# }}}
+# Upload files  ##########################{{{
+
+# ix.io - txt file upload
+ix() {
+    curl -sF f:1='<-' ix.io < "$*"
+}
+
+# iotek - txt file upload
+io(){
+    curl -sT- https://p.iotek.org < "$*"
+}
+
+### uguu - txt/images upload only for 24 hours
+uguu () {
+    for i in $*; do
+        curl -i -F file=@"$i" https://uguu.se/api.php?d=upload-tool | grep https
+    done
+}
+
+fuwa() {
+    for i in "$@"; do
+        curl -s -F file=@${i} https://fuwa.se/api/upload
+    done
+}
+
+### mixtape - txt/image upload up to 100MB
+mix() {
+    for i in "$@"; do
+        curl -sf -F files[]=$i https://mixtape.moe/upload.php
+    done
+}
+
+# anonfile - any file upload up to 10gb (this site is like transfer.sh) - the link is a download link
+anon() {
+    for i in "$@"; do
+        curl -F document=@$i https://anonfiles.cc/api/upload
+    done
+}
+
+# }}}
+# Custom terminal commands ###############{{{
+
+# Color manpages
+# LINK: https://wiki.archlinux.org/index.php/Man_page#Colored_man_pages
+man() {
+	env LESS_TERMCAP_mb=$'\E[01;31m' \
+		LESS_TERMCAP_md=$'\E[01;31m' \
+		LESS_TERMCAP_me=$'\E[0m' \
+		LESS_TERMCAP_se=$'\E[0m' \
+		LESS_TERMCAP_so=$'\E[01;44;33m' \
+		LESS_TERMCAP_ue=$'\E[0m' \
+		LESS_TERMCAP_us=$'\E[01;32m' \
+		man "$@"
+}
+
+# ls recent items at bottom with green TODAY yellow YESTERDAY substituted with file permission also
+# https://www.reddit.com/r/archlinux/comments/41s1w4/what_is_your_favorite_one_liner_to_use/cz50y1m
+# http://askubuntu.com/a/152005
+lst() {
+	ls -vAFqh --color=yes -got --time-style=long-iso "$@" \
+		| sed "s/$(date +%Y-%m-%d)/\x1b[32m     TODAY\x1b[m/;s/$(date +'%Y-%m-%d' -d yesterday)/\x1b[33m YESTERDAY\x1b[m/" \
+		| awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(" %0o ",k);print}' | tac
+}
+
+# searches for manual locally or online
+manned() {
+	for arg in "$@"; do man $arg 2> /dev/null \
+		|| $arg -H 2> /dev/null || $arg -h 2> /dev/null \
+		|| $arg --help-all 2> /dev/null || $arg --help 2> /dev/null \
+		|| help $arg 2> /dev/null \
+		|| $BROWSERCLI "http://manned.org/browse/search?q=$@" 2> /dev/null \
+		|| $BROWSER "http://manned.org/browse/search?q=$@" 2> /dev/null \
+		|| open "http://manned.org/browse/search?q=$@" 2> /dev/null \
+		|| xdg-open "http://manned.org/browse/search?q=$@"
+done
+}
+
+mkcd() {
+	mkdir "$1"
+	cd "$1"
+}
+
+# }}}
+# Compacting and extracting ##############{{{
+# Extract a folder
+extract() {
+	if [ -z "$1" ]; then
+		echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|exe|deb|tar.bz2|tar.gz|tar.xz>"
+	else
+		if [ -f "$1" ] ; then
+			NAME=${1%.*}
+			#mkdir $NAME && cd $NAME
+			case "$1" in
+				*.tar.bz2)  tar xvjf ./"$1"    ;;
+				*.tar.gz)   tar xvzf ./"$1"    ;;
+				*.tar.xz)   tar xvJf ./"$1"    ;;
+				*.lzma)     unlzma ./"$1"      ;;
+				*.bz2)      bunzip2 ./"$1"     ;;
+				*.rar)      unrar x -ad ./"$1" ;;
+				*.gz)       gunzip ./"$1"      ;;
+				*.tar)      tar xvf ./"$1"     ;;
+				*.tbz2)     tar xvjf ./"$1"    ;;
+				*.tgz)      tar xvzf ./"$1"    ;;
+				*.zip)      unzip ./"$1"       ;;
+				*.Z)        uncompress ./"$1"  ;;
+				*.7z)       7z x ./"$1"        ;;
+				*.xz)       unxz ./"$1"        ;;
+				*.exe)      cabextract ./"$1"  ;;
+				*.deb)      ar x ./"$1"        ;;
+				*)          echo "extract: '$1' - unknown archive method" ;;
+			esac
+		else
+			echo "'$1' - file does not exist"
+		fi
+	fi
+}
+
+# Compress a file
+compress() {
+	if [[ -n "$1" ]]; then
+		FILE=$1
+		case $FILE in
+			*.tar ) shift && tar cf $FILE $* ;;
+			*.tar.bz2 ) shift && tar cjf $FILE $* ;;
+			*.tar.gz ) shift && tar czf $FILE $* ;;
+			*.tgz ) shift && tar czf $FILE $* ;;
+			*.zip ) shift && zip $FILE $* ;;
+			*.rar ) shift && rar $FILE $* ;;
+		esac
+	else
+		echo "usage: compress <foo.tar.gz> ./foo ./bar"
+	fi
+}
+
+ #}}}
+# Opening configuration files ############{{{
+
+rld-zshrc() { source ~/.zshrc ;}
+rld-xres() { xrdb ~/.Xresources ;}
+rld-mksh() { source ~/.mkshrc ;}
+#cfg-mailcap() { $EDITOR ~/.mutt/mailcap ;}
+#cfg-mpv() { $EDITOR ~/.config/mpv/mpv.conf ;}
+#cfg-mpv-input() { $EDITOR ~/.config/mpv/input.conf ;}
+#cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
+#cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
+#cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
+#cfg-dunst(){ $EDITOR ~/.config/dunst/dunstrc ;}
+#cfg-weechat(){ $EDITOR ~/.weechat/weechat.conf ;}
+#cfg-irc(){ $EDITOR ~/.weechat/irc.conf ;}
+#cfg-xres(){ $EDITOR ~/.Xresources ;}
+#cfg-i3(){ $EDITOR ~/.config/i3/config ;}
+#cfg-poly(){ $EDITOR ~/.config/polybar/config ;}
+#cfg-lemon(){ $EDITOR ~/bin/bar ;}
+#cfg-bsp() { $EDITOR ~/.config/bspwm/bspwmrc ;}
+#cfg-sxk() { $EDITOR ~/.config/sxhkd/sxhkdrc ;}
+#cfg-dwm() { cd ~/suckless/dwm-6.1/ && $EDITOR config.h ;}
+#cfg-ali() { $EDITOR ~/.aliases ;}
+
+# }}}
+# miscellaneous functions ################{{{
+
+pwgen() {
+    head /dev/urandom | tr -dc '[:graph:]' | head -c${1:-22}; echo
+}
+
+# Download random wallpapers from unsplash website
+unsplash() {
+	rm -rf /tmp/unsplash
+	mkdir /tmp/unsplash/
+	for i in $(seq 50); do
+		wget --quiet -O /tmp/unsplash/$i.jpg "https://unsplash.it/1920/1080/?random"
+	done
+}
+
+# Show the most used commands
+top10() { history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head; }
+
+# Kill zombie process
+#killall-zombies() { kill -HUP $(ps -A -ostat,ppid | grep -e '[zZ]'| awk '{ print $2 }') ;}
+
+# Count code lines in some directory.
+# $ loc py js css
+# # => Lines of code for .py: 3781
+# # => Lines of code for .js: 3354
+# # => Lines of code for .css: 2970
+# # => Total lines of code: 10105
+function loc() {
+  local total
+  local firstletter
+  local ext
+  local lines
+  total=0
+  for ext in $@; do
+    firstletter=$(echo $ext | cut -c1-1)
+    if [[ firstletter != "." ]]; then
+      ext=".$ext"
+    fi
+    lines=`find-exec "*$ext" cat | wc -l`
+    lines=${lines// /}
+    total=$(($total + $lines))
+    echo "Lines of code for ${fg[blue]}$ext${reset_color}: ${fg[green]}$lines${reset_color}"
+  done
+  echo "${fg[blue]}Total${reset_color} lines of code: ${fg[green]}$total${reset_color}"
+}
+
+
+function _calcram() {
+  local sum
+  sum=0
+  for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
+    sum=$(($i + $sum))
+  done
+  sum=$(echo "scale=2; $sum / 1024.0" | bc)
+  echo $sum
+}
+
+# Show how much RAM application uses.
+# $ ram safari
+# # => safari uses 154.69 MBs of RAM
+function ram() {
+  local sum
+  local app="$1"
+  if [ -z "$app" ]; then
+    echo "First argument - pattern to grep from processes"
+    return 0
+  fi
+
+  sum=$(_calcram $app)
+  if [[ $sum != "0" ]]; then
+    echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM"
+  else
+    echo "No active processes matching pattern '${fg[blue]}${app}${reset_color}'"
+  fi
+}
+
+# Same, but tracks RAM usage in realtime. Will run until you stop it.
+# $ rams safari
+function rams() {
+  local sum
+  local app="$1"
+  if [ -z "$app" ]; then
+    echo "First argument - pattern to grep from processes"
+    return 0
+  fi
+
+  while true; do
+    sum=$(_calcram $app)
+    if [[ $sum != "0" ]]; then
+      echo -en "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM\r"
+    else
+      echo -en "No active processes matching pattern '${fg[blue]}${app}${reset_color}'\r"
+    fi
+    sleep 1
+  done
+}
+
+
+# list and grep with file permission
+lsg() {
+  keyword=$(echo "$@" |  sed 's/ /.*/g')
+  ls -hlA --color=yes \
+  | awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(" %0o ",k);print}' \
+  | grep -iE $keyword
+}
+
+# Ref: https://github.com/paulmillr/dotfiles/blob/master/home/.zshrc.sh#L282
+# Show how much RAM application uses.
+# $ ram safari
+# # => safari uses 154.69 MBs of RAM.
+#function ram() {
+#  local sum
+#  local items
+#  local app="$1"
+#  if [ -z "$app" ]; then
+#    echo "First argument - pattern to grep from processes"
+#  else
+#    sum=0
+#    for i in `ps aux | grep -i "$app" | grep -v "grep" | awk '{print $6}'`; do
+#      sum=$(($i + $sum))
+#    done
+#    sum=$(echo "scale=2; $sum / 1024.0" | bc)
+#    if [[ $sum != "0" ]]; then
+#      echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
+#    else
+#      echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
+#    fi
+#  fi
+#}
+
+# }}}
+# FZF Functions ########################## {{{
+
+fzf-locate() { xdg-open "$(locate "*" | fzf -e)" ;}
+fzf-surfraw() { surfraw -browser=$BROWSER "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e)" ;}
+
+# fuzzy grep open via ag (Search for the word in every file)
+svim() {
+  local file
+
+  file="$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1 " +" $2}')"
+
+  if [[ -n $file ]]
+  then
+     vim $file
+  fi
+}
+
+# cda - including hidden directories
+cdall() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+# cdfile - cd into a selected file directory
+cdfile() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# fh - repeat history, it finds and don't execute the line
+runcmd (){ perl -e 'ioctl STDOUT, 0x5412, $_ for split //, <>' ; }
+fh() {
+  ([ -n "$ZSH_NAME" ] && fc -l 1 || history 1) | fzf +s --tac | sed -re 's/^\s*[0-9]+\s*//' | runcmd
+}
+
+# Kill process by searching by the name
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
+# fshow - git commit browser
+fshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+
+# fcs - get git commit sha
+# example usage: git rebase -i `fcs`
+fcs() {
+  local commits commit
+  commits=$(git log --color=always --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e --ansi --reverse) &&
+  echo -n $(echo "$commit" | sed "s/ .*//")
+}
+
+# fcoc - checkout git commit
+fcoc() {
+  local commits commit
+  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  git checkout $(echo "$commit" | sed "s/ .*//")
+}
+
+# Search by pdfs in your computer
+spdf () {
+    local DIR open
+    declare -A already
+    DIR="${HOME}/.cache/pdftotext"
+    mkdir -p "${DIR}"
+    if [ "$(uname)" = "Darwin" ]; then
+        open=open
+    else
+        open="gio open"
+    fi
+
+    {
+    ag -g ".pdf$"; # fast, without pdftotext
+    ag -g ".pdf$" \
+    | while read -r FILE; do
+        local EXPIRY HASH CACHE
+        HASH=$(md5sum "$FILE" | cut -c 1-32)
+        # Remove duplicates (file that has same hash as already seen file)
+        [ ${already[$HASH]+abc} ] && continue # see https://stackoverflow.com/a/13221491
+        already[$HASH]=$HASH
+        EXPIRY=$(( 86400 + $RANDOM * 20 )) # 1 day (86400 seconds) plus some random
+        CMD="pdftotext -f 1 -l 1 '$FILE' - 2>/dev/null | tr \"\n\" \"_\" "
+        CACHE="$DIR/$HASH"
+        test -f "${CACHE}" && [ $(expr $(date +%s) - $(date -r "$CACHE" +%s)) -le $EXPIRY ] || eval "$CMD" > "${CACHE}"
+        echo -e "$FILE\t$(cat ${CACHE})"
+    done
+    } | fzf -e  -d '\t' \
+        --preview-window up:75% \
+        --preview '
+                v=$(echo {q} | tr " " "|");
+                echo {1} | grep -E "^|$v" -i --color=always;
+                pdftotext -f 1 -l 1 {1} - | grep -E "^|$v" -i --color=always' \
+        | awk 'BEGIN {FS="\t"; OFS="\t"}; {print "\""$1"\""}' \
+        | xargs $open > /dev/null 2> /dev/null
+}
+
+# }}}
+# Sysadmin {{{
+
+# Docker
+alias dcls='docker container ls'
+alias dils='docker image ls'
+alias dsprune='docker system prune'
+
+dirm () {
+    docker rmi -f "$@"
+}
+
+dirmall() {
+    docker rmi -f $(docker image ls -aq)
+}
+
+dcstop () {
+    docker container stop "$@"
+}
+
+dcrm () {
+    docker container rm -f "$@"
+}
+
+dcrmall() {
+    docker container rm $(docker container ls -aq) -f
+}
+
+# Get the IP address of a docker container
+dcip() {
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
+}
+
+dcbash() {
+    docker exec -it "$@" bash
+    if [ "$?" -ne 0 ]; then
+        docker exec -it "$@" sh
+    fi
+}
+
+dclogs() {
+    docker logs -f $(docker ps | grep "$1" | awk '{ print $1 }')
+}
+
+dktop() {
+  docker stats --format "table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}  {{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}"
+}
+
+# Redes
+digdns() {
+    dig +short "$@"
+}
+
+alias meuip="ip -f inet -o addr show wlp3s0 | grep -oP '(?<=inet )[0-9.]+'"
+
+# My GCP machines
+ssh-gcp() {
+    ssh -i $HOME/.ssh/google_compute_engine "$@"
+}
+
+gcpstop() {
+    gcloud compute instances stop "$@"
+}
+
+gcpstart() {
+    gcloud compute instances start "$@"
+}
+
+
+# }}}
+
+# View markdown as manpages
+# http://blog.metamatt.com/blog/2013/01/09/previewing-markdown-files-from-the-terminal/
+mdless(){ pandoc -s -f markdown -t man "$*" | groff -T utf8 -man | less ;}
