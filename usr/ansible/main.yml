@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  vars_prompt:
+    - name: ssh_key
+      prompt: "Is your SSH key associeted with your GitHub account? (y/n) "
+      private: no
+      default: no
+
+  roles:
+    - packages
