@@ -63,7 +63,7 @@ fi
 ssh-add -q $HOME/.ssh/id_rsa
 
 dotfiles() {
-   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
+   /usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME $@
 }
 
 git clone --bare git@github.com:valeyard1/dotfiles.git $HOME/.dotfiles.git
