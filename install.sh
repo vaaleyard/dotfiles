@@ -66,6 +66,7 @@ dotfiles() {
    /usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME $@
 }
 
+mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
 git clone --bare git@github.com:valeyard1/dotfiles.git $HOME/.dotfiles.git
 echo ".dotfiles.git" >> .gitignore
 mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
