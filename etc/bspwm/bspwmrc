@@ -4,8 +4,8 @@
 # Scratchpad terminal: https://www.reddit.com/r/bspwm/comments/85hr4c/making_a_scratchpaddropdown_terminal_in_bspwm/
 # I've modified a little bit to open with a tmux session instead of just a terminal
 #hsetroot -fill ~/Pictures/Landscapes/river-forest.jpg
-xrdb -load ~/.Xresources
-xset +fp $HOME/.fonts/
+xrdb -load $XDG_CONFIG_HOME/X11/Xresources
+xset +fp $XDG_DATA_HOME/fonts
 xsetroot -cursor_name left_ptr &
 killall -9 sxhkd bar dunst
 sxhkd &

@@ -15,7 +15,7 @@ bind "\C-k":next-history
 #PS1='\[\e[1;36m\]\w\[\e[0m\] $(__git_ps1 "\[\e[01;37m\]on\[\e[0m\] \[\e[1;35m\]\\ue0a0 %s\[\e[0m\]")\n\[\e[1;32m\]➜\[\e[0m\] '
 PS1='\w \[\e[1;34m\]\$ \[\e[0m\]'
 
-source ~/.aliases
+source $HOME/usr/.aliases
 # git prompt(requirement to get __git_ps1). Ref: https://stackoverflow.com/a/12871094/9159065
 [ -f ~/.git-prompt.sh ] && source ~/.git-prompt.sh
 [ -f $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh ] && source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
