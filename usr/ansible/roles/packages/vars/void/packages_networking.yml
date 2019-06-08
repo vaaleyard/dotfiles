@@ -1,0 +1,12 @@
+pkg:
+  - arp-scan
+  - wget
+  - curl
+  - nmap
+  - rsync
+  - wget
+  - bind-utils
+  - inetutils-telnet
+  - tor
+  - nmap
+  - strace
