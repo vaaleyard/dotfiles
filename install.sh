@@ -92,5 +92,5 @@ dotfiles config --local status.showUntrackedFiles no
 
 ansible-playbook --ask-become-pass -i usr/ansible/hosts usr/ansible/main.yml --extra-vars "autism=master"
 
-source $HOME/usr/.aliases
+. $HOME/usr/.aliases
 printf "${YELLOW}Finished!${NC}\n"
