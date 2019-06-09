@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# requirements: git, ansible
+
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
@@ -52,6 +54,13 @@ while [ $# -gt 0 ]; do
     shift
 done
 
+if [ -z $autism ]; then
+    autism=master
+fi
+
+#
+# Checking dependencies
+#
 if ! [ -x "$(command -v git)" ]; then
     printf "${RED}[ git ] not found, make sure it's installed${CN}\n"
     exit
@@ -75,7 +84,10 @@ dotfiles() {
 }
 
 mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
+
+printf "${GREEN}Cloning dotfiles...${NC}\n"
 git clone --bare git@github.com:valeyard1/dotfiles.git $HOME/.dotfiles.git >/dev/null 2>&1
+
 echo ".dotfiles.git" >> .gitignore
 mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
 dotfiles checkout
@@ -84,3 +96,4 @@ dotfiles config --local status.showUntrackedFiles no
 ansible-playbook --ask-become-pass -i usr/ansible/hosts usr/ansible/main.yml --extra-vars "branch=$autism"
 
 source $HOME/usr/.aliases
+printf "${YELLOW}Finished!${NC}\n"
