@@ -83,8 +83,6 @@ dotfiles() {
 #mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
 
 printf "${GREEN}Cloning dotfiles...${NC}\n"
-echo $autism
-exit
 git clone --bare git@github.com:valeyard1/dotfiles.git $HOME/.dotfiles.git >/dev/null 2>&1
 
 echo ".dotfiles.git" >> .gitignore
