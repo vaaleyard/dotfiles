@@ -83,3 +83,4 @@ dotfiles config --local status.showUntrackedFiles no
 
 ansible-playbook --ask-become-pass -i usr/ansible/hosts usr/ansible/main.yml --extra-vars "branch=$autism"
 
+source $HOME/usr/.aliases
