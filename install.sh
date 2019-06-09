@@ -90,7 +90,7 @@ mkdir -p .dotfiles-backup && dotfiles checkout $autism 2>&1 | egrep "\s+\." | aw
 dotfiles checkout $autism
 dotfiles config --local status.showUntrackedFiles no
 
-ansible-playbook --ask-become-pass -i usr/ansible/hosts usr/ansible/main.yml --extra-vars "autism=master"
+ansible-playbook --ask-become-pass -i usr/ansible/hosts usr/ansible/main.yml --extra-vars "autism=$autism"
 
 . $HOME/usr/.aliases
 printf "${YELLOW}Finished!${NC}\n"
