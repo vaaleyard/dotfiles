@@ -1,6 +1,12 @@
 ---
 - hosts: localhost
 
+  tasks:
+    - name: alksjd
+      debug: >
+        msg={{autism}}
+      when: autism == "low"
+
   roles:
     - packages
-    - { role: link, when: {{ autism }} == "master" }
+    - { role: link, when: autism == "master" }
