@@ -16,7 +16,8 @@ alias mkdir='mkdir -p -v'				# create if not exist, verbose
 alias con='ps -A --sort -rsz -o comm,pmem,pcpu|awk "NR<=15"'
 ed() { command ed -p "> " "$@" ;}
 alias which='command -v'
-
+alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1'
+alias bash='bash --init-file $XDG_CONFIG_HOME/bash/bashrc'
 # color for common commands
 # tutorial video: http://www.youtube.com/watch?v=RbVCzxnKJL4
 if [ -x /usr/bin/dircolors ]; then
@@ -32,8 +33,9 @@ fi
 # }}}
 # Useful programming aliases {{{
 
+alias e=$EDITOR
 alias g=git
-alias tmux="tmux"
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias t="tmux"
 alias ta="tmux a"
 alias h='function hdi(){ howdoi $* -c -n 3; }; hdi'
@@ -46,19 +48,22 @@ docx() { pandoc -f docx -t rst "$@" | vim - ; }
 # }}}
 # Useful general aliases {{{
 
+yt() { mpv --ytdl-format=136+251/136+171/136+250/136+140 "$@" ;}
 #alias mp3="youtube-dl --extract-audio --audio-format mp3 "
-alias kpcli='kpcli --kdb $HOME/syncthing/keepass/keepass.kdbx'
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias kpcli='kpcli --kdb $HOME/usr/syncthing/keepass/keepass.kdbx'
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 alias vimrc="$EDITOR ~/.vimrc"
 alias nvimrc="$EDITOR ~/.config/nvim/init.vim"
 alias mkshrc="$EDITOR ~/.mkshrc"
-#alias xmo='xmodmap ~/.Xmodmap'
+alias xmo='xmodmap $XDG_CONFIG_HOME/X11/Xmodmap'
 #alias bashrc='$EDITOR ~/.bashrc'
 alias zshrc='$EDITOR ~/.zshrc'
+alias torlinks='links -socks-proxy 127.0.0.1:9050'
 
 # }}}
 # Useless aliases {{{
 
+chaturbate(){ mpv --ytdl-format=slow-2 "$@" ;}
 alias weather='curl -s wttr.in/uberlandia | head -5'       # print weather
 alias weatherforecast='curl -s wttr.in/uberlandia | head -37 | tail -30'
 alias starwars="telnet towel.blinkenlights.nl"
@@ -209,9 +214,9 @@ compress() {
  #}}}
 # Opening configuration files ############{{{
 
-rld-zshrc() { source ~/.zshrc ;}
-rld-xres() { xrdb ~/.Xresources ;}
-rld-mksh() { source ~/.mkshrc ;}
+#rld-zshrc() { source ~/.zshrc ;}
+#rld-xres() { xrdb ~/.Xresources ;}
+#rld-mksh() { source ~/.mkshrc ;}
 #cfg-mailcap() { $EDITOR ~/.mutt/mailcap ;}
 #cfg-mpv() { $EDITOR ~/.config/mpv/mpv.conf ;}
 #cfg-mpv-input() { $EDITOR ~/.config/mpv/input.conf ;}
@@ -258,7 +263,7 @@ top10() { history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -
 # # => Lines of code for .js: 3354
 # # => Lines of code for .css: 2970
 # # => Total lines of code: 10105
-function loc() {
+loc() {
   local total
   local firstletter
   local ext
@@ -278,7 +283,7 @@ function loc() {
 }
 
 
-function _calcram() {
+_calcram() {
   local sum
   sum=0
   for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
@@ -291,7 +296,7 @@ function _calcram() {
 # Show how much RAM application uses.
 # $ ram safari
 # # => safari uses 154.69 MBs of RAM
-function ram() {
+ram() {
   local sum
   local app="$1"
   if [ -z "$app" ]; then
@@ -309,7 +314,7 @@ function ram() {
 
 # Same, but tracks RAM usage in realtime. Will run until you stop it.
 # $ rams safari
-function rams() {
+rams() {
   local sum
   local app="$1"
   if [ -z "$app" ]; then
@@ -328,6 +333,14 @@ function rams() {
   done
 }
 
+
+# list and grep with file permission
+lsg() {
+  keyword=$(echo "$@" |  sed 's/ /.*/g')
+  ls -hlA --color=yes \
+  | awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(" %0o ",k);print}' \
+  | grep -iE $keyword
+}
 
 # Ref: https://github.com/paulmillr/dotfiles/blob/master/home/.zshrc.sh#L282
 # Show how much RAM application uses.
@@ -356,8 +369,8 @@ function rams() {
 # }}}
 # FZF Functions ########################## {{{
 
-fzf-locate() { xdg-open "$(locate "*" | fzf -e)" ;}
-fzf-surfraw() { surfraw -browser=$BROWSER "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e)" ;}
+#fzf-locate() { xdg-open "$(locate "*" | fzf -e)" ;}
+#fzf-surfraw() { surfraw -browser=$BROWSER "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e)" ;}
 
 # fuzzy grep open via ag (Search for the word in every file)
 svim() {
@@ -500,6 +513,21 @@ dcip() {
     docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
 }
 
+dcbash() {
+    docker exec -it "$@" bash
+    if [ "$?" -ne 0 ]; then
+        docker exec -it "$@" sh
+    fi
+}
+
+dclogs() {
+    docker logs -f $(docker ps | grep "$1" | awk '{ print $1 }')
+}
+
+dktop() {
+  docker stats --format "table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}  {{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}"
+}
+
 # Redes
 digdns() {
     dig +short "$@"
@@ -508,6 +536,18 @@ digdns() {
 alias meuip="ip -f inet -o addr show wlp3s0 | grep -oP '(?<=inet )[0-9.]+'"
 
 # My GCP machines
+ssh_gcp() {
+    ssh -i $HOME/.ssh/google_compute_engine "$@"
+}
+
+gcpstop() {
+    gcloud compute instances stop "$@"
+}
+
+gcpstart() {
+    gcloud compute instances start "$@"
+}
+
 
 # }}}
 
