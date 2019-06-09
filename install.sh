@@ -25,7 +25,7 @@ help() {
 init
 while [ $# -gt 0 ]; do
     case $1 in
-        -x | --create-xdg-dirs)
+        -x | --xdg | --use-xdg)
             xdg_dir=true
             ;;
         --autism)
