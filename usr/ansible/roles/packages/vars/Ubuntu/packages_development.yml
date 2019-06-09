@@ -2,6 +2,6 @@ pkg:
   - vim
   - golang
   - python3
-  - docker-ce
+  - docker
   - docker.io
   - docker-compose
