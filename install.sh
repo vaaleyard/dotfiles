@@ -25,9 +25,6 @@ help() {
 init
 while [ $# -gt 0 ]; do
     case $1 in
-        -x | --xdg | --use-xdg)
-            xdg_dir=true
-            ;;
         --autism)
             autism=$2
             if [ "$autism" != "master" -a "$autism" != "low" ]; then
@@ -83,17 +80,19 @@ dotfiles() {
    /usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME $@
 }
 
-mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
+#mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
 
 printf "${GREEN}Cloning dotfiles...${NC}\n"
+echo $autism
+exit
 git clone --bare git@github.com:valeyard1/dotfiles.git $HOME/.dotfiles.git >/dev/null 2>&1
 
 echo ".dotfiles.git" >> .gitignore
-mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
-dotfiles checkout
+mkdir -p .dotfiles-backup && dotfiles checkout $autism 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
+dotfiles checkout $autism
 dotfiles config --local status.showUntrackedFiles no
 
-ansible-playbook --ask-become-pass -i usr/ansible/hosts usr/ansible/main.yml --extra-vars "branch=$autism"
+ansible-playbook --ask-become-pass -i usr/ansible/hosts usr/ansible/main.yml --extra-vars "autism=master"
 
 source $HOME/usr/.aliases
 printf "${YELLOW}Finished!${NC}\n"
