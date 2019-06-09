@@ -89,7 +89,7 @@ The following packages need to be installed:
 After installing them, paste the following line into the terminal:
 
 
-```
+```bash
 curl -fsSL bit.do/autism-sh | sh -s -- --autism master
 ```
 
