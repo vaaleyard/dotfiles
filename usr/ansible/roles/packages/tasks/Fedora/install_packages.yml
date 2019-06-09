@@ -1,4 +1,4 @@
-- name: Install VS Code repo on {{ ansible_distribution }}
+- name: Add Visual Studio Code to repo on {{ ansible_distribution }}
   become: yes
   yum_repository:
     name: code
@@ -6,7 +6,13 @@
     file: vscode
     baseurl: https://packages.microsoft.com/yumrepos/vscode
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-    gpgcheck: yes
+    gpgcheck: no
+
+- name: Install Visual Studio Code on {{ ansible_distribution }}
+  become: yes
+  yum:
+    name: code
+    state: present
 
 - name: Install DBeaver on {{ ansible_distribution }}
   become: yes
