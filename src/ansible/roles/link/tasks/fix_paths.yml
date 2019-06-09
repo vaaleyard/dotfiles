@@ -1,0 +1,26 @@
+---
+- name: Make symbolic link of SHELL configuration files
+  file:
+    src: $HOME/etc/{{ item }}/{{ item }}rc
+    dest: $HOME/.{{ item }}rc
+    state: link
+    force: yes
+  with_items:
+    - zsh
+    - bash
+    - mksh
+
+- name: Make symbolic link of urlview
+  file:
+    src: $HOME/etc/urlview/urlview
+    dest: $HOME/.urlview
+    state: link
+    force: yes
+
+- name: Make symbolic link of gitconfig file
+  file:
+    src: $HOME/etc/git/config
+    dest: $HOME/.gitconfig
+    state: link
+    force: yes
+

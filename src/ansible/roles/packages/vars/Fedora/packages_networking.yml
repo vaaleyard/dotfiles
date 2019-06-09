@@ -1,0 +1,6 @@
+pkg:
+  - arp-scan
+  - nmap
+  - rsync
+  - nmap
+  - strace
