@@ -3,4 +3,4 @@
 
   roles:
     - packages
-    - { role: link, when: autism == "master" }
+    - { role: link, when: {{ autism }} == "master" }
