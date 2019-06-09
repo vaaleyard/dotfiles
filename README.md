@@ -83,11 +83,11 @@ $HOME
 
 ### Requirements
 The following packages need to be installed:  
-    - ansible  
-    - git  
+- ansible  
+- git  
 
 After installing them, paste the following line into the terminal:  
-`curl -fsSL bit.do/autism-sh | sh -s -- --autism master`
+```curl -fsSL bit.do/autism-sh | sh -s -- --autism master```
 
 ## X11 files
 
