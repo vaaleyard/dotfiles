@@ -19,7 +19,7 @@
 
 - name: Make symbolic link of gitconfig file
   file:
-    src: $HOME/etc/git/bashrc
+    src: $HOME/etc/git/config
     dest: $HOME/.gitconfig
     state: link
     force: yes
