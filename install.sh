@@ -52,12 +52,22 @@ while [ $# -gt 0 ]; do
     shift
 done
 
+if ! [ -x "$(command -v git)" ]; then
+    printf "${RED}[ git ] not found, make sure it's installed${CN}\n"
+    exit
+fi
+
+if ! [ -x "$(command -v ansible)" ]; then
+    printf "${RED}[ ansible ] not found, make sure it's installed${CN}\n"
+    exit
+fi
+
 #
 # Set up SSH keys
 #
 if ! [ -f "$HOME/.ssh/id_rsa" ]; then
     printf "${RED}Place your SSH key in ~/.ssh/id_rsa${NC}\n"
-    return
+    exit
 fi
 #pkill ssh-agent && eval "$(ssh-agent -s)" >/dev/null 2>&1
 ssh-add -q $HOME/.ssh/id_rsa
@@ -67,7 +77,7 @@ dotfiles() {
 }
 
 mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
-git clone --bare git@github.com:valeyard1/dotfiles.git $HOME/.dotfiles.git
+git clone --bare git@github.com:valeyard1/dotfiles.git $HOME/.dotfiles.git >/dev/null 2>&1
 echo ".dotfiles.git" >> .gitignore
 mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
 dotfiles checkout
