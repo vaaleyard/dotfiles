@@ -1,0 +1,12 @@
+pkg:
+  - make
+  - mksh
+  - pandoc
+  - tmux
+  - transmission
+  - urlview
+  - weechat
+  - xclip
+  - youtube-dl
+  - ImageMagick
+  - redshift

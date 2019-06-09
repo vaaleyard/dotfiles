@@ -1,0 +1,14 @@
+- name: Install VS Code repo on {{ ansible_distribution }}
+  become: yes
+  yum_repository:
+    name: code
+    description: Visual Studio Code repo
+    file: vscode
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    gpgcheck: yes
+
+- name: Install DBeaver on {{ ansible_distribution }}
+  yum:
+    name: https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
+    state: present

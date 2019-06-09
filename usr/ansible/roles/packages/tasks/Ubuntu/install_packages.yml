@@ -1,0 +1,17 @@
+---
+- name: Install VSCode on {{ ansible_distribution }}
+  snap:
+    name: code
+    classic: yes
+    state: present
+
+- name: Install DBeaver on {{ ansible_distribution }}
+  snap:
+    name: dbeaver-ce
+    classic: edge
+    state: present
+
+- name: Install Brave Browser on {{ ansible_distribution }}
+  snap:
+    name: brave
+    state: present
