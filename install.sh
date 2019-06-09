@@ -69,8 +69,6 @@ if ! [ -f "$HOME/.ssh/id_rsa" ]; then
     printf "${RED}Place your SSH key in ~/.ssh/id_rsa${NC}\n"
     exit
 fi
-#pkill ssh-agent && eval "$(ssh-agent -s)" >/dev/null 2>&1
-ssh-add -q $HOME/.ssh/id_rsa
 
 dotfiles() {
    /usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME $@
