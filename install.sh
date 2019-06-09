@@ -40,7 +40,7 @@ check_dependences() {
 }
 
 dotfiles() {
-    /usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME $@
+    /usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME "$@"
 }
 clone_dotfiles() {
     printf "${GREEN}Cloning dotfiles...${NC}\n"
@@ -50,8 +50,8 @@ clone_dotfiles() {
     fi
 
     echo ".dotfiles.git" >> .gitignore
-    mkdir -p .dotfiles-backup && dotfiles checkout $autism 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
-    dotfiles checkout $autism
+    mkdir -p .dotfiles-backup && dotfiles checkout $1 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
+    dotfiles checkout $1
     dotfiles config --local status.showUntrackedFiles no
 }
 
@@ -98,7 +98,7 @@ fi
 
 check_dependences
 
-clone_dotfiles
+clone_dotfiles $autism
 
 ansible-playbook --ask-become-pass -i $HOME/src/ansible/hosts $HOME/src/ansible/main.yml --extra-vars "autism=$autism"
 
