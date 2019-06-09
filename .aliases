@@ -35,7 +35,7 @@ fi
 
 alias e=$EDITOR
 alias g=git
-alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
+test -e "$XDG_CONFIG_HOME/tmux/tmux.conf" && alias tmux='tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf'
 alias t="tmux"
 alias ta="tmux a"
 alias h='function hdi(){ howdoi $* -c -n 3; }; hdi'
