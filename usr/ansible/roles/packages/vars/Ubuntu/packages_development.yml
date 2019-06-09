@@ -1,5 +1,4 @@
 pkg:
-  - code
   - vim
   - golang
   - python3
