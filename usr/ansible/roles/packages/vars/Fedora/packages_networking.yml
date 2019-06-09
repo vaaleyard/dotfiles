@@ -1,9 +1,6 @@
 pkg:
   - arp-scan
-  - wget
-  - curl
   - nmap
   - rsync
-  - telnet
   - nmap
   - strace

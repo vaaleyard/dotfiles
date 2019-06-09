@@ -1,7 +1,6 @@
 pkg:
-  - code-oss
-  - sublime-text3
-  - vim-x11
+  - code
+  - vim-X11
   - golang
   - python3
   - docker

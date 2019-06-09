@@ -1,0 +1,15 @@
+pkg:
+  - snap
+  - make
+  - pandoc
+  - tmux
+  - transmission
+  - transmission-remote-cli
+  - urlview
+  - weechat
+  - xclip
+  - youtube-dl
+  - imagemagick
+  - redshift
+  - dbus
+  - ffmpeg

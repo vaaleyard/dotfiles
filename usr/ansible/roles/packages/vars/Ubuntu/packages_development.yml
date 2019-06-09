@@ -1,0 +1,8 @@
+pkg:
+  - code
+  - vim
+  - golang
+  - python3
+  - docker-ce
+  - docker.io
+  - docker-compose
