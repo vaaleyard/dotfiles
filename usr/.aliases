@@ -214,9 +214,9 @@ compress() {
  #}}}
 # Opening configuration files ############{{{
 
-rld-zshrc() { source ~/.zshrc ;}
-rld-xres() { xrdb ~/.Xresources ;}
-rld-mksh() { source ~/.mkshrc ;}
+#rld-zshrc() { source ~/.zshrc ;}
+#rld-xres() { xrdb ~/.Xresources ;}
+#rld-mksh() { source ~/.mkshrc ;}
 #cfg-mailcap() { $EDITOR ~/.mutt/mailcap ;}
 #cfg-mpv() { $EDITOR ~/.config/mpv/mpv.conf ;}
 #cfg-mpv-input() { $EDITOR ~/.config/mpv/input.conf ;}
@@ -263,7 +263,7 @@ top10() { history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -
 # # => Lines of code for .js: 3354
 # # => Lines of code for .css: 2970
 # # => Total lines of code: 10105
-function loc() {
+loc() {
   local total
   local firstletter
   local ext
@@ -283,7 +283,7 @@ function loc() {
 }
 
 
-function _calcram() {
+_calcram() {
   local sum
   sum=0
   for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
@@ -296,7 +296,7 @@ function _calcram() {
 # Show how much RAM application uses.
 # $ ram safari
 # # => safari uses 154.69 MBs of RAM
-function ram() {
+ram() {
   local sum
   local app="$1"
   if [ -z "$app" ]; then
@@ -314,7 +314,7 @@ function ram() {
 
 # Same, but tracks RAM usage in realtime. Will run until you stop it.
 # $ rams safari
-function rams() {
+rams() {
   local sum
   local app="$1"
   if [ -z "$app" ]; then
@@ -369,8 +369,8 @@ lsg() {
 # }}}
 # FZF Functions ########################## {{{
 
-fzf-locate() { xdg-open "$(locate "*" | fzf -e)" ;}
-fzf-surfraw() { surfraw -browser=$BROWSER "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e)" ;}
+#fzf-locate() { xdg-open "$(locate "*" | fzf -e)" ;}
+#fzf-surfraw() { surfraw -browser=$BROWSER "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e)" ;}
 
 # fuzzy grep open via ag (Search for the word in every file)
 svim() {
@@ -536,7 +536,7 @@ digdns() {
 alias meuip="ip -f inet -o addr show wlp3s0 | grep -oP '(?<=inet )[0-9.]+'"
 
 # My GCP machines
-ssh-gcp() {
+ssh_gcp() {
     ssh -i $HOME/.ssh/google_compute_engine "$@"
 }
 
