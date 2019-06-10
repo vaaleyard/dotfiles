@@ -6,7 +6,7 @@ export PATH
 SHELL=/bin/zsh
 PAGER=less
 EDITOR=nvim
-BROWSER=chromium-browser
+BROWSER=brave-browser
 BROWSERCLI=w3m
 READER=zathura
 IMAGEVIEWER=feh
