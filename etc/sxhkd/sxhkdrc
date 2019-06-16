@@ -119,11 +119,11 @@ super + {Left,Down,Up,Right}
 # Letter keybindings {{{
 # Open st with tmux
 super + shift + Return
-    st -e tmux new-session -s main
+    st -e tmux new-session -t $XDG_CONFIG_HOME/tmux/tmux.conf -s main
 
 # Reload bspwm
 super + F5
-    $HOME/.config/bspwm/bspwmrc
+    $XDG_CONFIG_HOME/bspwm/bspwmrc
 
 # cmus-status script
 super + c
@@ -150,7 +150,7 @@ super + shift + s
 
 # Screenshot (saving to some directory)
 super + {Print, shift + Print}
-    {maim -u, maim -us} ~/Pictures/scrot/$(date +%d-%m-%Y-%T).png && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'
+    {maim -u, maim -us} ~/usr/images/scrot/$(date +%d-%m-%Y-%T).png && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'
 
 # Open ranger/ranger with sudo
 super + {r, shift + r}
@@ -202,7 +202,7 @@ XF86AudioStop
 
 # Conflited binding
 super + m
-    tmux new-window -t main cmus
+    tmux new-window -t main -f $XDG_CONFIG_HOME/tmux/tmux.conf cmus
 
 # Deprecated (fucking scratchpad on bspwm)
 super + shift + m
