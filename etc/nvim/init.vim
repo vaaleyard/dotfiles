@@ -15,6 +15,7 @@ Plug 'ryanoasis/vim-devicons'
 "Plug 'gregsexton/MatchTag', { 'for': 'html' }
 "Plug 'kshenoy/vim-signature'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; ./generate.py' }
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -512,12 +513,12 @@ let g:deoplete#enable_at_startup = 1
 
 
 " all lists will be of type quickfix
-let g:deoplete#sources#go#gocode_binary = '$HOME/go/bin/gocode'
+let g:deoplete#sources#go#gocode_binary = '$HOME/.go/bin/gocode'
 let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
 let g:go_list_type = "quickfix"
 let g:go_test_timeout = '10s'
-let g:go_fmt_command = "$HOME/go/bin/goimports"
+let g:go_fmt_command = "$HOME/.go/bin/goimports"
 let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
