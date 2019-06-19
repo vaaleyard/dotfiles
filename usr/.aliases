@@ -9,7 +9,7 @@ alias ll='ls -laF'
 alias {sls,sl}=ls
 alias {lc,cls,cl,cc,cll,clear,clar,clea}="clear"
 alias l='ls -F'
-alias cdfac="cd ~/Documents/Faculdade"
+alias cdfac="cd $HOME/usr/docs/Faculdade"
 alias mv='mv -v'
 alias sxiv='sxiv -b -q -s f 2>/dev/null'
 alias mkdir='mkdir -p -v'				# create if not exist, verbose
@@ -91,8 +91,8 @@ io(){
 
 ### uguu - txt/images upload only for 24 hours
 uguu () {
-    for i in $*; do
-        curl -i -F file=@"$i" https://uguu.se/api.php?d=upload-tool | grep https
+    for i in "$@"; do
+        curl -isS -F file=@"$i" "https://uguu.se/api.php?d=upload-tool" | grep https
     done
 }
 
@@ -397,12 +397,6 @@ cdfile() {
    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
-# fh - repeat history, it finds and don't execute the line
-runcmd (){ perl -e 'ioctl STDOUT, 0x5412, $_ for split //, <>' ; }
-fh() {
-  ([ -n "$ZSH_NAME" ] && fc -l 1 || history 1) | fzf +s --tac | sed -re 's/^\s*[0-9]+\s*//' | runcmd
-}
-
 # Kill process by searching by the name
 fkill() {
   local pid
@@ -443,6 +437,23 @@ fcoc() {
   git checkout $(echo "$commit" | sed "s/ .*//")
 }
 
+
+# fgst - pick files from `git status -s` 
+is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
+fgst() {
+  # "Nothing to see here, move along"
+  is_in_git_repo || return
+
+  local cmd="${FZF_CTRL_T_COMMAND:-"command git status -s"}"
+
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -m "$@" | while read -r item; do
+    echo "$item" | awk '{print $2}'
+  done
+  echo
+}
 # Search by pdfs in your computer
 spdf () {
     local DIR open
@@ -551,6 +562,7 @@ gcpstart() {
 
 # }}}
 
+radio-q107(){ mpv "https://live.leanstream.co/CFGQFM?args=web_01" ;}
 # View markdown as manpages
 # http://blog.metamatt.com/blog/2013/01/09/previewing-markdown-files-from-the-terminal/
 mdless(){ pandoc -s -f markdown -t man "$*" | groff -T utf8 -man | less ;}
