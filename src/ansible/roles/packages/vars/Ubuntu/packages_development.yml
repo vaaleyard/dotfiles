@@ -1,5 +1,6 @@
 pkg:
   - vim
+  - neovim
   - golang
   - python3
   - docker
