@@ -3,11 +3,13 @@ export HISTCONTROL=ignoredups:erasedups
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
 
+GIT_PROMPT_THEME=TruncatedPwd_WindowTitle
+
 HISTSIZE=10000
 HISTFILESIZE=10000
 
 #PS1='\w \[\e[1;34m\]\$ \[\e[0m\]'
-PS1='\[\e[1;36m\]\w\[\e[0m\] $(__git_ps1 "\[\e[01;37m\]on\[\e[0m\] \[\e[1;35m\]\\ue0a0 %s\[\e[0m\]")\n\[\e[1;32m\]➜\[\e[0m\] '
+PS1='\[\e[1;36m\]\w\[\e[0m\]\n\[\e[1;32m\]➜\[\e[0m\] '
 
 # After each command, append to the history file and reread it
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
@@ -24,5 +26,9 @@ export PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii
 HISTFILE=~/.shell_history
 
 source ~/.aliases
-source ~/.git-prompt.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    source $HOME/.bash-git-prompt/gitprompt.sh
+fi
+
