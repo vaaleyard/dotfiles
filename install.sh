@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# requirements: curl, git, ansible
+# requirements: curl, git, ansible, python
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -33,8 +33,8 @@ check_dependences() {
         exit
     fi
 
-    if ! [ -x "$(command -v curl)" ]; then
-        printf "${RED}[ curl ] not found, make sure it's installed${CN}\n"
+    if ! [ -x "$(command -v python)" ]; then
+        printf "${RED}[ python ] not found, make sure it's installed${CN}\n"
         exit
     fi
 }
