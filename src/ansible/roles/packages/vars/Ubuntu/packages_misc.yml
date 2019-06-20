@@ -11,3 +11,5 @@ pkg:
   - redshift
   - dbus
   - ffmpeg
+  - telegram-desktop
+  - keepassxc
