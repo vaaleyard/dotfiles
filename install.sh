@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# requirements: git, ansible
+# requirements: curl, git, ansible
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -11,21 +11,54 @@ NC='\033[0m' # No Color
 init() {
     printf "%s\n" "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
     printf "%s\n" ":::::   about:: install autism command line stuff    :::::"
-    printf "%s\n" ":::::    code:: https://git.io/autism.sh             :::::"
+    printf "%s\n" ":::::    code:: https://bit.do/autism-sh             :::::"
     printf "%s\n" ":::::                ¯\_(ツ)_/¯                      :::::"
     printf "%s\n" "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
 }
 
 help() {
     printf "%s\n\n" "usage: $0 [options]"
-    printf "%s\n" "  --autism                     Which branch to clone"
+    printf "%s\n" "  -a, --autism                 Which branch to clone"
     printf "%s\n\n" "  -h, --help, help             Show this message"
+}
+
+check_dependences() {
+    if ! [ -x "$(command -v git)" ]; then
+        printf "${RED}[ git ] not found, make sure it's installed${CN}\n"
+        exit
+    fi
+
+    if ! [ -x "$(command -v ansible)" ]; then
+        printf "${RED}[ ansible ] not found, make sure it's installed${CN}\n"
+        exit
+    fi
+
+    if ! [ -x "$(command -v curl)" ]; then
+        printf "${RED}[ curl ] not found, make sure it's installed${CN}\n"
+        exit
+    fi
+}
+
+dotfiles() {
+    /usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME "$@"
+}
+clone_dotfiles() {
+    printf "${GREEN}Cloning dotfiles...${NC}\n"
+    git clone --bare git@github.com:valeyard1/dotfiles.git $HOME/.dotfiles.git >/dev/null 2>&1
+    if [ "$?" -ne 0 ]; then
+        printf "${RED}Erro ao clonar o repositório${CN}\n"
+    fi
+
+    echo ".dotfiles.git" >> .gitignore
+    mkdir -p .dotfiles-backup && dotfiles checkout $1 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
+    dotfiles checkout $1
+    dotfiles config --local status.showUntrackedFiles no
 }
 
 init
 while [ $# -gt 0 ]; do
     case $1 in
-        --autism)
+        -a | --autism)
             autism=$2
             if [ "$autism" != "master" -a "$autism" != "low" ]; then
                 printf "${LEVEL}$autism${NC}: ${RED}Provide a valid autism level${NC}\n"
@@ -56,19 +89,6 @@ if [ -z $autism ]; then
 fi
 
 #
-# Checking dependencies
-#
-if ! [ -x "$(command -v git)" ]; then
-    printf "${RED}[ git ] not found, make sure it's installed${CN}\n"
-    exit
-fi
-
-if ! [ -x "$(command -v ansible)" ]; then
-    printf "${RED}[ ansible ] not found, make sure it's installed${CN}\n"
-    exit
-fi
-
-#
 # Set up SSH keys
 #
 if ! [ -f "$HOME/.ssh/id_rsa" ]; then
@@ -76,19 +96,9 @@ if ! [ -f "$HOME/.ssh/id_rsa" ]; then
     exit
 fi
 
-dotfiles() {
-   /usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME $@
-}
+check_dependences
 
-#mkdir -p .dotfiles-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
-
-printf "${GREEN}Cloning dotfiles...${NC}\n"
-git clone --bare git@github.com:valeyard1/dotfiles.git $HOME/.dotfiles.git >/dev/null 2>&1
-
-echo ".dotfiles.git" >> .gitignore
-mkdir -p .dotfiles-backup && dotfiles checkout $autism 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
-dotfiles checkout $autism
-dotfiles config --local status.showUntrackedFiles no
+clone_dotfiles $autism
 
 ansible-playbook --ask-become-pass -i $HOME/src/ansible/hosts $HOME/src/ansible/main.yml --extra-vars "autism=$autism"
 
@@ -97,5 +107,8 @@ if [ "$autism" = "low" ]; then
     . $HOME/.aliases
 elif [ "$autism" = "master" ]; then
     . $HOME/usr/.aliases
+    xdg-dirs-update
+    printf "${GREEN}Log in again to work everything...${NC}\n"
 fi
+
 printf "${YELLOW}Finished!${NC}\n"
