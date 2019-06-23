@@ -72,6 +72,9 @@ while [ $# -gt 0 ]; do
             fi
             shift
             ;;
+        -d | --dbeaver)
+            dbeaver=true
+            ;;
         -h | --help | help)
             help
             exit
@@ -86,6 +89,8 @@ done
 
 if [ -z "$autism" ]; then
     autism=master
+elif [ -z "$dbeaver" ]; then
+    dbeaver=false
 fi
 
 #
@@ -100,7 +105,7 @@ check_dependences
 
 clone_dotfiles $autism
 
-ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" --extra-vars "autism=$autism"
+ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" --extra-vars "autism=$autism,dbeaver=$dbeaver"
 
 # source .aliases after installing everything
 if [ "$autism" = "low" ]; then

@@ -6,6 +6,7 @@
 - name: Install DBeaver on Ubuntu
   become: yes
   shell: snap install --edge dbeaver-ce
+  when: dbeaver == "true"
 
 - name: Install Vivaldi Browser on Ubuntu
   become: yes
