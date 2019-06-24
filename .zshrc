@@ -10,7 +10,7 @@ export PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii
 export ZSH=$HOME/.oh-my-zsh
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME='dracula'
+ZSH_THEME='robbyrussell'
 
 HISTTIMEFORMAT=" [%Y-%m-%d %H:%M:%S] "
 SPACESHIP_TIME_SHOW=true
@@ -34,4 +34,5 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source $ZSH/oh-my-zsh.sh
+source $HOME/.aliases
 
