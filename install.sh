@@ -75,6 +75,9 @@ while [ $# -gt 0 ]; do
         -d | --dbeaver)
             dbeaver=true
             ;;
+        -z | --zsh)
+            zsh=true
+            ;;
         -h | --help | help)
             help
             exit
@@ -91,6 +94,8 @@ if [ -z "$autism" ]; then
     autism=master
 elif [ -z "$dbeaver" ]; then
     dbeaver=false
+elif [ -z "$zsh" ]; then
+    zsh=false
 fi
 
 #

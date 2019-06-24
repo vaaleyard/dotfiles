@@ -1,17 +1,21 @@
 ---
 - name: Install networking packages
-  import_tasks: install_networking.yml
+  import_tasks: commons/install_networking.yml
 
 - name: Install all other packages
-  import_tasks: install_misc.yml
+  import_tasks: commons/install_misc.yml
 
 - name: Install VSCode & DBeaver
   import_tasks: Fedora/install_packages.yml
   when: ansible_distribution == "Fedora"
 
 - name: Install programming packages
-  import_tasks: install_development.yml
+  import_tasks: commons/install_development.yml
 
 - name: Install VSCode & DBeaver
   import_tasks: Ubuntu/install_packages.yml
   when: ansible_distribution == "Ubuntu"
+
+- name: Install zsh
+  import_tasks: zsh/install.yml
+  when: zsh == "true"
