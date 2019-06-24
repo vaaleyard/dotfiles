@@ -55,6 +55,9 @@ dotfiles() {
     /usr/bin/git --git-dir="$HOME/.dotfiles.git/" --work-tree="$HOME" "$@"
 }
 clone_dotfiles() {
+    if [ -d "$HOME/.dotfiles.git" ]; then
+        fail "There is already a dotfiles installed! Backup it first."
+    fi
     info "Cloning dotfiles..."
     git clone --bare git@github.com:valeyard1/dotfiles.git "$HOME/.dotfiles.git" >/dev/null 2>&1
     if [ "$?" -ne 0 ]; then
