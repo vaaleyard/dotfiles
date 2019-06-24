@@ -14,7 +14,7 @@ PS1='\[\e[1;36m\]\w\[\e[0m\]\n\[\e[1;32m\]➜\[\e[0m\] '
 # After each command, append to the history file and reread it
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
-export SHELL=/bin/zsh
+export SHELL=/bin/bash
 export PAGER=less
 export EDITOR=nvim
 export BROWSER=brave
