@@ -2,11 +2,26 @@
 
 # requirements: curl, git, ansible, python
 
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-LEVEL='\033[0;36m'
-NC='\033[0m' # No Color
+info() {
+    # shellcheck disable=SC2059
+    printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+}
+
+user() {
+    # shellcheck disable=SC2059
+    printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+}
+
+success() {
+    # shellcheck disable=SC2059
+    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+fail() {
+    # shellcheck disable=SC2059
+    printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+    exit
+}
 
 init() {
     printf "%s\\n" "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
@@ -24,18 +39,15 @@ help() {
 
 check_dependences() {
     if ! [ -x "$(command -v git)" ]; then
-        printf "${RED}%s${CN}\\n" "[ git ] not found, make sure it's installed"
-        exit
+        fail "[ git ] not found, make sure it's installed"
     fi
 
     if ! [ -x "$(command -v ansible)" ]; then
-        printf "${RED}%s${CN}\\n" "[ ansible ] not found, make sure it's installed"
-        exit
+        fail "[ ansible ] not found, make sure it's installed"
     fi
 
     if ! [ -x "$(command -v python)" ]; then
-        printf "${RED}%s${CN}\\n" "[ python ] not found, make sure it's installed"
-        exit
+        fail "[ python ] not found, make sure it's installed"
     fi
 }
 
@@ -43,10 +55,10 @@ dotfiles() {
     /usr/bin/git --git-dir="$HOME/.dotfiles.git/" --work-tree="$HOME" "$@"
 }
 clone_dotfiles() {
-    printf "${GREEN}%s${NC}\\n" "Cloning dotfiles..."
+    info "Cloning dotfiles..."
     git clone --bare git@github.com:valeyard1/dotfiles.git "$HOME/.dotfiles.git" >/dev/null 2>&1
     if [ "$?" -ne 0 ]; then
-        printf "${RED}%s${NC}\\n" "Erro ao clonar o repositório"
+        fail "Erro ao clonar o repositório"
     fi
 
     echo ".dotfiles.git" >> .gitignore
@@ -61,14 +73,13 @@ while [ $# -gt 0 ]; do
         -a | --autism)
             autism=$2
             if [ "$autism" != "master" ] && [ "$autism" != "low" ]; then
-                printf "${LEVEL}$autism${NC}: ${RED}%s${NC}\\n" "Provide a valid autism level"
-                exit
+                fail "Provide a valid autism level"
             fi
             if [ "$autism" = "master" ]; then
-                printf "${LEVEL}$autism${NC}: ${GREEN}%s${NC}\\n" "Great Level :D"
+                success "Great Level :D"
             fi
             if [ "$autism" = "low" ]; then
-                printf "${LEVEL}$autism${NC}: ${YELLOW}%s${NC}\\n" "It's not the ideal level but it happens :("
+                success "It's not the ideal level but it happens :("
             fi
             shift
             ;;
@@ -90,6 +101,7 @@ while [ $# -gt 0 ]; do
     shift
 done
 
+# Set defaults if not set
 if [ -z "$autism" ]; then
     autism=master
 elif [ -z "$dbeaver" ]; then
@@ -102,15 +114,14 @@ fi
 # Set up SSH keys
 #
 if ! [ -f "$HOME/.ssh/id_rsa" ]; then
-    printf "${RED}%s${NC}\\n" "Place your SSH key in ~/.ssh/id_rsa"
-    exit
+    fail "Place your SSH key in ~/.ssh/id_rsa"
 fi
 
 check_dependences
 
 clone_dotfiles $autism
 
-ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" --extra-vars "autism=$autism,dbeaver=$dbeaver"
+ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" --extra-vars "autism=$autism,dbeaver=$dbeaver,zsh=$zsh"
 
 # source .aliases after installing everything
 if [ "$autism" = "low" ]; then
@@ -118,7 +129,6 @@ if [ "$autism" = "low" ]; then
 elif [ "$autism" = "master" ]; then
     . "$HOME/usr/.aliases"
     xdg-dirs-update
-    printf "${GREEN}%s${NC}\\n" "Log in again to work everything..."
 fi
 
-printf "${YELLOW}%s${NC}\\n" "Finished!"
+success "Finished! Log in again to make sure everything is working..."
