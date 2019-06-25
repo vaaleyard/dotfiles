@@ -34,6 +34,8 @@ init() {
 help() {
     printf "%s\\n\\n" "usage: $0 [options]"
     printf "%s\\n" "  -a, --autism                 Which branch to clone"
+    printf "%s\\n" "  -z, --zsh                    If set, it will install zsh and make it the default shell"
+    printf "%s\\n" "  -d, --dbeaver                If set, it will install dbeaver"
     printf "%s\\n\\n" "  -h, --help, help             Show this message"
 }
 
