@@ -18,4 +18,4 @@
 
 - name: Install zsh
   import_tasks: zsh/install.yml
-  when: zsh == "true"
+  when: zsh is defined and zsh == "true"
