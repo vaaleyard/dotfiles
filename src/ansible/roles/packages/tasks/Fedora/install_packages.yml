@@ -1,4 +1,4 @@
-- name: Add Visual Studio Code to repo on {{ ansible_distribution }}
+- name: Add Visual Studio Code to repo on Fedora
   become: yes
   yum_repository:
     name: code
@@ -8,14 +8,16 @@
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
     gpgcheck: no
 
-- name: Install Visual Studio Code on {{ ansible_distribution }}
+- name: Install Visual Studio Code on Fedora
   become: yes
   yum:
     name: code
     state: present
 
-- name: Install DBeaver on {{ ansible_distribution }}
+- name: Install DBeaver on Fedora
   become: yes
   yum:
     name: https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
     state: present
+  when: dbeaver == "true"
+
