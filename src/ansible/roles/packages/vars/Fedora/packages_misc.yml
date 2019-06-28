@@ -10,3 +10,6 @@ pkg:
   - youtube-dl
   - ImageMagick
   - redshift
+  - keepassxc
+  - zsh
+  
