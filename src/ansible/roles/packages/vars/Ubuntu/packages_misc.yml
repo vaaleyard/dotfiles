@@ -3,8 +3,6 @@ pkg:
   - make
   - pandoc
   - tmux
-  - transmission
-  - transmission-remote-cli
   - urlview
   - weechat
   - xclip
@@ -13,3 +11,6 @@ pkg:
   - redshift
   - dbus
   - ffmpeg
+  - telegram-desktop
+  - keepassxc
+  - zsh

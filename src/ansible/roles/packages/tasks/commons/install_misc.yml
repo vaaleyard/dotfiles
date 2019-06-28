@@ -1,7 +1,7 @@
 ---
 - include_vars: " {{ item }}"
   with_first_found:
-    - "../vars/{{ ansible_distribution }}/packages_misc.yml"
+    - "../../vars/{{ ansible_distribution }}/packages_misc.yml"
 
 - name: Install all misc packages on {{ ansible_distribution }}
   become: yes
