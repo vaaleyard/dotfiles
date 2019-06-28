@@ -120,9 +120,9 @@ fi
 #
 # Set up SSH keys
 #
-if ! [ -f "$HOME/.ssh/id_rsa" ]; then
-    fail "Place your SSH key in ~/.ssh/id_rsa"
-fi
+#if ! [ -f "$HOME/.ssh/id_rsa" ]; then
+#    fail "Place your SSH key in ~/.ssh/id_rsa"
+#fi
 
 check_dependences
 
