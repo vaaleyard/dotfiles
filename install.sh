@@ -109,9 +109,11 @@ done
 # Set defaults if not set
 if [ -z "$autism" ]; then
     autism=master
-elif [ -z "$dbeaver" ]; then
+fi
+if [ -z "$dbeaver" ]; then
     dbeaver=false
-elif [ -z "$zsh" ]; then
+fi
+if [ -z "$zsh" ]; then
     zsh=false
 fi
 
