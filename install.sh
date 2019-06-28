@@ -128,7 +128,7 @@ check_dependences
 
 clone_dotfiles $autism
 
-ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" --extra-vars "autism=$autism,dbeaver=$dbeaver,zsh=$zsh"
+ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" --extra-vars "autism=$autism dbeaver=$dbeaver zsh=$zsh"
 
 # source .aliases after installing everything
 if [ "$autism" = "low" ]; then
