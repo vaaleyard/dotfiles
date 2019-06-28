@@ -61,7 +61,7 @@ clone_dotfiles() {
         fail "There is already a dotfiles installed! Backup it first."
     fi
     info "Cloning dotfiles..."
-    git clone --bare git@github.com:valeyard1/dotfiles.git "$HOME/.dotfiles.git" >/dev/null 2>&1
+    git clone --bare https://github.com/Valeyard1/dotfiles.git "$HOME/.dotfiles.git" >/dev/null 2>&1
     if [ "$?" -ne 0 ]; then
         fail "Erro ao clonar o repositório"
     fi
