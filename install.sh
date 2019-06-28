@@ -126,7 +126,7 @@ fi
 
 check_dependences
 
-#clone_dotfiles $autism
+clone_dotfiles $autism
 
 ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" -e autism="$autism" -e zsh="$zsh" -e dbeaver="$dbeaver"
 if [ "$?" -eq 0 ]; then
