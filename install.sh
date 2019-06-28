@@ -126,9 +126,14 @@ fi
 
 check_dependences
 
-clone_dotfiles $autism
+#clone_dotfiles $autism
 
-ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" -e autism=$autism -e zsh=$zsh -e dbeaver=$dbeaver
+ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" -e autism="$autism" -e zsh="$zsh" -e dbeaver="$dbeaver"
+if [ "$?" -eq 0 ]; then
+    success "Finished! Log in again to make sure everything is working..."
+else
+    fail "Fail"
+fi
 
 # source .aliases after installing everything
 if [ "$autism" = "low" ]; then
@@ -138,4 +143,3 @@ elif [ "$autism" = "master" ]; then
     xdg-dirs-update
 fi
 
-success "Finished! Log in again to make sure everything is working..."
