@@ -1,14 +1,13 @@
 ---
-- name: Install and set up zsh
-  tasks:
-    - name: Clone oh-my-zsh
-      git:
-        dest: ~/.oh-my-zsh # required. The path of where the repository should be checked out. This parameter is required, unless C(clone) is set to C(no).
-        repo: https://github.com/robbyrussell/oh-my-zsh.git # required. git, SSH, or HTTP(S) protocol address of the git repository.
-        depth: 1
 
-    - name: Set the default shell to zsh
-      become: yes
-      user:
-        name: "{{ ansible_user_id }}"
-        shell: /bin/zsh
+- name: Clone oh-my-zsh
+  git:
+    dest: ~/.oh-my-zsh # required. The path of where the repository should be checked out. This parameter is required, unless C(clone) is set to C(no).
+    repo: https://github.com/robbyrussell/oh-my-zsh.git # required. git, SSH, or HTTP(S) protocol address of the git repository.
+    depth: 1
+
+- name: Set the default shell to zsh
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh
