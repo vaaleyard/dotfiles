@@ -25,3 +25,12 @@
   become: yes
   yum:
     name: https://downloads.vivaldi.com/stable/vivaldi-stable-2.6.1566.44-1.x86_64.rpm
+
+- name: Enable RPM Fusion on Fedora
+  yum:
+    name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-30.noarch.rpm
+
+- name: Install Telegram on Fedora
+  yum:
+    name: telegram-desktop
+    state: present
