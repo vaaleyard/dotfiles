@@ -20,3 +20,8 @@
     name: https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
     state: present
   when: dbeaver is defined and dbeaver == "true"
+
+- name: Install Vivaldi on Fedora
+  become: yes
+  yum:
+    name: https://downloads.vivaldi.com/stable/vivaldi-stable-2.6.1566.44-1.x86_64.rpm
