@@ -61,7 +61,7 @@ clone_dotfiles() {
         fail "There is already a dotfiles installed! Backup it first."
     fi
     info "Cloning dotfiles..."
-    git clone --bare git@github.com:valeyard1/dotfiles.git "$HOME/.dotfiles.git" >/dev/null 2>&1
+    git clone --bare https://github.com/Valeyard1/dotfiles.git "$HOME/.dotfiles.git" >/dev/null 2>&1
     if [ "$?" -ne 0 ]; then
         fail "Erro ao clonar o repositório"
     fi
@@ -109,24 +109,31 @@ done
 # Set defaults if not set
 if [ -z "$autism" ]; then
     autism=master
-elif [ -z "$dbeaver" ]; then
+fi
+if [ -z "$dbeaver" ]; then
     dbeaver=false
-elif [ -z "$zsh" ]; then
+fi
+if [ -z "$zsh" ]; then
     zsh=false
 fi
 
 #
 # Set up SSH keys
 #
-if ! [ -f "$HOME/.ssh/id_rsa" ]; then
-    fail "Place your SSH key in ~/.ssh/id_rsa"
-fi
+#if ! [ -f "$HOME/.ssh/id_rsa" ]; then
+#    fail "Place your SSH key in ~/.ssh/id_rsa"
+#fi
 
 check_dependences
 
 clone_dotfiles $autism
 
-ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" --extra-vars "autism=$autism,dbeaver=$dbeaver,zsh=$zsh"
+ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" -e autism="$autism" -e zsh="$zsh" -e dbeaver="$dbeaver"
+if [ "$?" -eq 0 ]; then
+    success "Finished! Log in again to make sure everything is working..."
+else
+    fail "Fail"
+fi
 
 # source .aliases after installing everything
 if [ "$autism" = "low" ]; then
@@ -136,4 +143,3 @@ elif [ "$autism" = "master" ]; then
     xdg-dirs-update
 fi
 
-success "Finished! Log in again to make sure everything is working..."
