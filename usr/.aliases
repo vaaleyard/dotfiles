@@ -18,6 +18,7 @@ ed() { command ed -p "> " "$@" ;}
 alias which='command -v'
 alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1'
 alias bash='bash --init-file $XDG_CONFIG_HOME/bash/bashrc'
+alias sway-start='dbus-launch sway -d >/var/log/sway/Sway.log'
 # color for common commands
 # tutorial video: http://www.youtube.com/watch?v=RbVCzxnKJL4
 if [ -x /usr/bin/dircolors ]; then
