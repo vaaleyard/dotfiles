@@ -247,6 +247,12 @@ bindsym $mod+shift+t    exec Telegram
 bindsym $mod+shift+b    exec --no-startup-id $BROWSER
 
 
+
+for_window [class="TelegramDesktop"] move workspace 6
+for_window [class="Firefox"] move workspace 2
+for_window [class="Spotify"] move workspace 10
+
+
 input type:keyboard {
     xkb_layout br
     xkb_variant thinkpad
