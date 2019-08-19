@@ -1,18 +1,15 @@
 [user]
-    email = leonardof@tutanota.com
-    name = Leonardo F.
+    email = leonardofe@protonmail.com
+    name = Leonardo Ferreira
 [core]
     editor = nvim
     pager = less -#2 -N -S
-
 [merge]
     tool = vimdiff
 [mergetool]
     prompt = true
-
 [branch]
   autosetuprebase = always # 'git pull' irá dar rebase ao invés de merge
-
 [alias]
     s = status
     p = push
@@ -29,15 +26,19 @@
 
     diff = diff --ignore-space-at-eol -b -w --ignore-blank-lines
     update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
+    commend = commit --amend --no-edit
+    count = shortlog -sn
 
 [difftool]
     prompt = false
 [diff]
     tool = vimdiff
-
 [push]
     default = current # Push irá enviar o branch atual e cria no remote caso não exista
-
 [apply]
     whitespace = nowarn # Não notificar sobre espaço em branco faltando no EOF
-
+[commit]
+    gpgsign = true
+    template = ~/.gittemplate.txt
+[gpg]
+    program = gpg2
