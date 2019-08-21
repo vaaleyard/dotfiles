@@ -10,19 +10,10 @@ Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'ryanoasis/vim-devicons'
 
 " Languages
-"Plug 'elzr/vim-json', { 'for': 'json' }
-"Plug 'othree/html5.vim', { 'for': 'html' }
-"Plug 'gregsexton/MatchTag', { 'for': 'html' }
-"Plug 'kshenoy/vim-signature'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; ./generate.py' }
-
 " Go
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
 
-"Plug 'ervandew/supertab'
 Plug 'Chiel92/vim-autoformat'
 if executable('python')
     Plug 'davidhalter/jedi-vim'
@@ -52,25 +43,10 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
-Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
 "Plug 'sheerun/vim-polyglot'
 Plug 'yuttie/comfortable-motion.vim'
-
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-
-"Markdown
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 call plug#end()
 
