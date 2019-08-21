@@ -19,15 +19,15 @@ set $reboot sudo reboot
 # Exec on start ==================={{{
 
 exec_always xrdb ~/.Xresources
-exec xmodmap ~/.Xmodmap
-exec xset +fp $HOME/.fonts/
-exec --no-startup-id redshift &
+#exec xmodmap ~/.Xmodmap
+exec xset +fp $HOME/var/share/fonts
+#exec --no-startup-id redshift &
 #exec --no-startup-id $HOME/bin/polybar_launch
-exec --no-startup-id $HOME/.config/lemonbar/lemonbar.sh
+#exec --no-startup-id $HOME/bin/bar
 #exec $term -e tmux new -s main
 #exec xrate r rate 200 30
-exec_always hsetroot -fill ~/Pictures/Landscapes/river-forest.jpg
-exec_always $HOME/bin/todo-notify
+#exec_always hsetroot -fill ~/Pictures/Landscapes/river-forest.jpg
+#exec_always $HOME/bin/todo-notify
 
 # }}}
 # General settings ================{{{
@@ -41,7 +41,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:curie 7
+#font pango:curie 7
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -81,16 +81,16 @@ bindsym $mod+e mode "$mode_display"
 
 # }}}
 # Workspace settings =============={{{
-set $ws1  ""
-set $ws2  ""
-set $ws3  ""
-set $ws4  ""
-set $ws5  ""
-set $ws6  ""
-set $ws7  ""
-set $ws8  "VIII"
-set $ws9  "IX"
-set $ws10 "X"
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1  workspace $ws1
@@ -123,14 +123,14 @@ for_window [class="ranger" instance="ranger"] move workspace $ws4
 for_window [class="neomutt" instance="neomutt"] move workspace $ws5
 
 for_window [instance="math" class="math"] floating enable, resize set 800 300, move scratchpad
-exec --no-startup-id $term -n math -c math -f "Monaco:size=14" -e bc -q -l
+#exec --no-startup-id $term -n math -c math -f "Monaco:size=14" -e bc -q -l
 
 for_window [instance="dropdown" class="dropdown"] floating enable , resize set 625 400 , move scratchpad
 # Runs the tmuxinit script, which searches for an earlier tmux instance,
 # otherwise starts a new one (to prevent multiple dropdown sessions).
-exec --no-startup-id $term -n dropdown -c dropdown -e tmux new-session -s dropdown
+#exec --no-startup-id $term -n dropdown -c dropdown -e tmux new-session -s dropdown
 
-for_window [class="Pale moon"] move workspace $ws2
+for_window [class="Firefox"] move workspace $ws2
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 50 px or 50ppt
@@ -159,27 +159,20 @@ client.urgent           $bg-color		    $urgent-bg-color   $urgent-text-color   #
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#		status_command i3status
-#		colors {
-#		background $bg-color
-#	    	separator #757575
-#		#                  border             background         text
-#		focused_workspace  $bg-color          $bg-color          $text-color
-#		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-#		urgent_workspace   $urgent-bg-color   #d65d03   $text-color
-#	}
-#	position top
-#}
+bar {
+    status_command i3status
+	position bottom
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+}
 
 # }}}
 # Keybindings ====================={{{
 
 # Ref: https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?answer=3759#post-id-3759
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+ #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%- #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -252,8 +245,8 @@ bindsym $mod+F10	exec --no-startup-id sudo dmenuumount
 bindsym $mod+Print					exec scrot -e 'mv $f ~/Pictures/scrot' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'
 bindsym --release $mod+Shift+Print  exec scrot -se 'mv $f ~/Pictures/scrot/' && sleep 1 && exec notify-send 'screenshot has been saved in ~/Pictures/scrot'
 
-bindsym --release $mod+s			exec scrot -e 'xclip -selection clipboard -t image/png $f && rm -f $f'
-bindsym --release $mod+shift+s		exec scrot -se 'xclip -selection clipboard -t image/png $f && rm -f $f'
+bindsym --release $mod+s			exec maim | xclip -selection clipboard -t image/png
+bindsym --release $mod+shift+s		exec maim -us | xclip -selection clipboard -t image/png
 
 # Scratchpad windows
 bindsym $mod+a						[instance="math" class="math"] scratchpad show, [instance="math" class="math"] move position center
@@ -294,7 +287,7 @@ bindsym Mod1+Shift+r                exec killall ffmpeg && exec notify-send "FFm
 
 # Set the default gaps / Open Telegram
 bindsym $mod+t						split toggle
-bindsym $mod+shift+t				exec telegram-desktop
+bindsym $mod+shift+t				exec Telegram
 
 bindsym $mod+u						[instance="dropdown" class="dropdown"] scratchpad show, [instance="dropdown" class="dropdown"] move position center
 #bindsym $mod+shift+u				gaps inner all set 10; gaps outer all set 10
