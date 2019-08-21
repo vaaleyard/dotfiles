@@ -1,4 +1,4 @@
-source "gpg -dq $HOME/pass.gpg | sed -n '2,4p' |"
+source "gpg2 -dq $HOME/pass.gpg | sed -n '2,4p' |"
 unmailboxes *
 
 # The variables $my_user, $my_pass and $my_name are stored in pass.gpg, neomutt decrypt that file and source them
