@@ -1,4 +1,4 @@
-PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii
+PATH=$PATH:$HOME/.bin:$HOME/.bin/ascii:$GOPATH/bin
 
 export PATH
 
