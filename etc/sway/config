@@ -280,8 +280,10 @@ bindsym XF86AudioPlay exec $pause
 bindsym XF86AudioNext exec $next
 bindsym XF86AudioPrev exec $prev
 
+bindsym $mod+c exec wget --quiet -O /tmp/bg.jpg "https://source.unsplash.com/collection/358840/1920x1080" && swaymsg "output * bg /tmp/bg.jpg fill"
 
 bindsym $mod+shift+v exec wl-paste
 
 bindsym $mod+x  exec $truemute ;exec $HOME/bin/locki3.sh
 exec mako
+
