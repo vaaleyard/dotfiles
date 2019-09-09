@@ -11,7 +11,7 @@
 
 # Variables ======================={{{
 
-set $term st
+set $term alacritty
 set $shutdown sudo shutdown -h now
 set $reboot sudo reboot
 
