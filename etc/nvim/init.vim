@@ -14,6 +14,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Mips
+Plug 'harenome/vim-mipssyntax', { 'for': 'asm' }
+
 Plug 'Chiel92/vim-autoformat'
 if executable('python')
     Plug 'davidhalter/jedi-vim'
@@ -255,6 +258,11 @@ if has('autocmd')
                     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
                     \   exe "normal g`\"" |
                     \ endif
+    augroup END
+
+    augroup Programming_Files
+        autocmd!
+        autocmd BufNewFile,BufWrite,BufRead *.asm set filetype=mips shiftwidth=4 tabstop=4 expandtab
     augroup END
 
 endif
