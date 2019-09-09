@@ -14,6 +14,7 @@ SPACESHIP_PROMP_ORDER=(
     char
 )
 
+export ZSH=$HOME/.oh-my-zsh
 export UPDATE_ZSH_DAYS=13
 export FZF_DEFAULT_OPTS='--no-height --no-reverse'
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
