@@ -33,5 +33,5 @@ case $2 in
             #dwm >/dev/null 2>&1
         done
         ;;
-    *) exec $dbus bspwm ;;
+    *) exec $dbus i3 ;;
 esac
