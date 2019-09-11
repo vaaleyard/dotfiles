@@ -5,24 +5,17 @@ call plug#begin('~/var/share/nvim/plugged')
 " Themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tyrannicaltoucan/vim-quantum'
-"Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 Plug 'ryanoasis/vim-devicons'
 
 " Languages
-" Go
+" LSP
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
 " Mips
 Plug 'harenome/vim-mipssyntax', { 'for': 'asm' }
-
-Plug 'Chiel92/vim-autoformat'
-if executable('python')
-    Plug 'davidhalter/jedi-vim'
-    Plug 'w0rp/ale'
-endif
-
+" Terraform
 if executable('terraform')
     Plug 'Shougo/deoplete.nvim'
     Plug 'hashivim/vim-terraform'
@@ -32,35 +25,32 @@ endif
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
-"Plug 'tpope/vim-fugitive'
+" Helpers
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 endif
-
-" Others
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
-"Plug 'scrooloose/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
-"Plug 'sheerun/vim-polyglot'
 Plug 'yuttie/comfortable-motion.vim'
+
+" Others (usually bloat)
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 call plug#end()
 
 " }}}
 " Global stuff ============================={{{
 set runtimepath+=~/.fzf
-let g:quantum_italics=1
 set mouse=a
 set termguicolors
-colorscheme quantum                     " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
-set background=dark                     " Use a dark background
+colorscheme nord                     " Use the gruvbox colorscheme: https://github.com/morhetz/gruvbox
+"set background=light                     " Use a dark background
 set scrolloff=5                         " Keep at least 3 lines above/below when scrolling
 set lazyredraw                          " Don't update the display while executing macros
 set tabstop=4                           " Tab indentation levels every four columns
