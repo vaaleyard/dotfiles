@@ -36,6 +36,7 @@ help() {
     printf "%s\\n" "  -a, --autism                 Which branch to clone"
     printf "%s\\n" "  -z, --zsh                    If set, it will install zsh and make it the default shell"
     printf "%s\\n" "  -d, --dbeaver                If set, it will install dbeaver"
+    printf "%s\\n" "  -D, --devops                 If set, it will install devops tools and clients"
     printf "%s\\n\\n" "  -h, --help, help             Show this message"
 }
 
@@ -94,6 +95,9 @@ while [ $# -gt 0 ]; do
         -z | --zsh)
             zsh=true
             ;;
+        -D | --devops)
+            devops=true
+            ;;
         -h | --help | help)
             help
             exit
@@ -116,6 +120,9 @@ fi
 if [ -z "$zsh" ]; then
     zsh=false
 fi
+if [ -z "$devops" ]; then
+    devops=false
+fi
 
 #
 # Set up SSH keys
@@ -128,7 +135,7 @@ check_dependences
 
 clone_dotfiles $autism
 
-ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" -e autism="$autism" -e zsh="$zsh" -e dbeaver="$dbeaver"
+ansible-playbook --ask-become-pass -i "$HOME/src/ansible/hosts" "$HOME/src/ansible/main.yml" -e autism="$autism" -e zsh="$zsh" -e dbeaver="$dbeaver" -e devops="$devops"
 if [ "$?" -eq 0 ]; then
     success "Finished! Log in again to make sure everything is working..."
 else
