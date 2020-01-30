@@ -26,12 +26,13 @@
 - name: Add Google Cloud SDK repo
   become: yes
   yum_repository:
-    name: Google Cloud SDK
+    name: google-cloud-sdk
     description: Google Cloud SDK
     file: gcloud
     baseurl: https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
     gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg
     gpgcheck: yes
+    repo_gpgcheck: yes
 
 - name: Install gcloud client
   become: yes
