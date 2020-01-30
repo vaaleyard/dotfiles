@@ -49,7 +49,7 @@ check_dependences() {
         fail "[ ansible ] not found, make sure it's installed"
     fi
 
-    if ! [ -x "$(command -v python)" ]; then
+    if ! [ -x "$(command -v python3)" ]; then
         fail "[ python ] not found, make sure it's installed"
     fi
 }
