@@ -6,7 +6,6 @@
 - name: Install all misc packages on {{ ansible_distribution }}
   become: yes
   package:
-    name="{{ pkg }}"
-    state=present
-    use=auto
+    name: "{{ pkg }}"
+    state: present
 
