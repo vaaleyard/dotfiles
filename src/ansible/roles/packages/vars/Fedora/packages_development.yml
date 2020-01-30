@@ -1,7 +1,5 @@
 pkg:
-  - code
   - vim-X11
   - golang
   - python3
-  - docker
-  - docker-compose
+  - python3-pip

@@ -1,4 +1,5 @@
 ---
+
 - name: Clone oh-my-zsh
   git:
     dest: ~/.oh-my-zsh # required. The path of where the repository should be checked out. This parameter is required, unless C(clone) is set to C(no).

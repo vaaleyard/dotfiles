@@ -1,0 +1,7 @@
+# related devops packages
+pkg:
+  - docker
+  - docker-compose
+  - kompose
+  - kubernetes-client
+  - openvpn
