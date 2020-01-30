@@ -548,6 +548,26 @@ gcpstart() {
     gcloud compute instances start "$@"
 }
 
+# kubernetes
+
+alias kdcm="kubectl describe configmap"
+alias kdd="kubectl describe deployment"
+alias kdelp="kubectl delete pod --wait=false"
+alias kdi="kubectl describe ing"
+alias kdp="kubectl describe pod"
+alias kds="kubectl describe svc"
+alias kdsec="kubectl describe secret"
+alias keit="kubectl exec -it"
+alias kgcm="kubectl get configmap"
+alias kgd="kubectl get deploy"
+alias kgi="kubectl get ing"
+alias kgp="kubectl get pods"
+alias kgpl="kubectl get pods --show-labels"
+alias kgpw="kubectl get pods -w"
+alias kgpwnt="kubectl get pods -w | grep -v Terminating"
+alias kgs="kubectl get svc"
+alias kgsa="kubectl get sa"
+alias kgsec="kubectl get secret"
 
 # }}}
 
