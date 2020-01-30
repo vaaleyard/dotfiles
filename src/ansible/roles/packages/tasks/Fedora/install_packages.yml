@@ -36,5 +36,5 @@
 - name: Install gcloud client
   become: yes
   yum:
-    name: gcloud
+    name: google-cloud-sdk
     state: present
