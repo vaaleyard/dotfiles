@@ -1,3 +1,5 @@
+# Specif Fedora packages to install (yum)
+
 - name: Add Visual Studio Code to repo on Fedora
   become: yes
   yum_repository:
@@ -21,18 +23,24 @@
     state: present
   when: dbeaver is defined and dbeaver == "true"
 
-- name: Install Vivaldi on Fedora
-  become: yes
-  yum:
-    name: https://downloads.vivaldi.com/stable/vivaldi-stable-2.6.1566.44-1.x86_64.rpm
-
-- name: Enable RPM Fusion on Fedora
-  become: yes
-  yum:
-    name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-30.noarch.rpm
-
 - name: Install Telegram on Fedora
   become: yes
   yum:
     name: telegram-desktop
+    state: present
+
+- name: Add Google Cloud SDK repo
+  become: yes
+  yum_repository:
+    name: Google Cloud SDK
+    description: Google Cloud SDK
+    file: gcloud
+    baseurl: https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
+    gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg
+    gpgcheck: yes
+
+- name: Install gcloud client
+  become: yes
+  yum:
+    name: gcloud
     state: present
