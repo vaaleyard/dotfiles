@@ -5,7 +5,7 @@
 - name: Install all other packages
   import_tasks: commons/install_misc.yml
 
-- name: Install VSCode & DBeaver
+- name: Install VSCode, Dbeaver, Telegram and gcloud
   import_tasks: Fedora/install_packages.yml
   when: ansible_distribution == "Fedora"
 
@@ -19,3 +19,7 @@
 - name: Install zsh
   import_tasks: zsh/install.yml
   when: zsh is defined and zsh == "true"
+
+- name: Install devops packages
+  import_tasks: commons/install_devops.yml
+  when: devops is defined and devops == "true"
