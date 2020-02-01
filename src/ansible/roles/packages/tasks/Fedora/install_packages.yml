@@ -32,6 +32,7 @@
     baseurl: https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
     gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg
     gpgcheck: yes
+    repo_gpgcheck: yes
 
 - name: Install gcloud client
   become: yes
