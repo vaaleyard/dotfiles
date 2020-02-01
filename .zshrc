@@ -17,7 +17,10 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 HISTTIMEFORMAT=" [%Y-%m-%d %H:%M:%S] "
 SPACESHIP_TIME_SHOW=true
+SPACESHIP_KUBECTL_SHOW=true
 SPACESHIP_KUBECONTEXT_SHOW=true
+SPACESHIP_KUBECTL_VERSION_SHOW=false
+SPACESHIP_TERRAFORM_SHOW=true
 SPACESHIP_PROMP_ORDER=(
     time
     dir
@@ -27,6 +30,7 @@ SPACESHIP_PROMP_ORDER=(
     jobs
     char
     kubernetes
+    terraform
 )
 
 export UPDATE_ZSH_DAYS=13
@@ -39,6 +43,5 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
 source $HOME/.fubectl.source
-source $HOME/.istioctl
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
