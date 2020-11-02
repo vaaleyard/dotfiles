@@ -4,3 +4,8 @@ pkg:
   - rsync
   - nmap
   - strace
+  - traceroute
+  - bind-utils
+  - telnet
+  - nc
+  - iputils

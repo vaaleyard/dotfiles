@@ -7,21 +7,3 @@
   become: yes
   shell: snap install --edge dbeaver-ce
   when: dbeaver == "true"
-
-- name: Get the APT key for Vivaldi Browser on Ubuntu
-  become: yes
-  apt_key:
-    url: http://repo.vivaldi.com/stable/linux_signing_key.pub
-    state: present
-
-- name: Add Vivaldi to repository
-  become: yes
-  apt_repository:
-      repo: deb http://repo.vivaldi.com/stable/deb/ stable main
-      state: present
-    
-- name: Install Vivaldi
-  become: yes
-  apt:
-    name: vivaldi-stable
-    state: present

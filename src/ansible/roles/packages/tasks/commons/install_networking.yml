@@ -6,7 +6,6 @@
 - name: Install networking related packages on {{ ansible_distribution }}
   become: yes
   package:
-    name="{{ pkg }}"
-    state=present
-    use=auto
+    name: "{{ pkg }}"
+    state: present
 
