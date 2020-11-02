@@ -64,28 +64,20 @@ scrolling:
   # should scroll when the alternate screen buffer is active. This is used
   # to allow mouse scrolling for applications like `man`.
   # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 3
+  #faux_multiplier: 3
 
-  # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
-
-# This setting defines the width of a tab in cells.
-# Some applications, like Emacs, rely on knowing about the width of a tab.
-# To prevent unexpected behavior in these applications, it's also required to
-# change the `it` value in terminfo when altering this setting.
-tabspaces: 4
 
 font:
   normal:
-    family: FuraCode Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Regular
 
   bold:
-    family: FuraCode Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Bold
 
   italic:
-    family: FuraCode Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Italic
 
   # Point size
@@ -122,12 +114,6 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
-
-# Colors (Tomorrow Night Bright)
-visual_bell:
-  animation: EaseOutExpo
-  duration: 0
-  color: '0xffffff'
 
 # Background opacity
 #
@@ -193,8 +179,6 @@ selection:
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: false
 
-# Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
 
 cursor:
   # Cursor style
