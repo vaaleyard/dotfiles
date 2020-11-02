@@ -287,3 +287,8 @@ bindsym $mod+shift+v exec wl-paste
 bindsym $mod+x  exec $truemute ;exec $HOME/bin/locki3.sh
 exec mako
 
+# Disable laptop screen when the lid is closed (on void: remove zzz in the acipd script)
+bindswitch --reload --locked lid:on output LVDS-1 disable
+bindswitch --reload --locked lid:off output LVDS-1 enable
+
+
