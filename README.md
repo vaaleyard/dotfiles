@@ -31,7 +31,7 @@ $HOME
   │   └── zathura
   ├── src
   │   ├── build
-  │   ├── code
+  │   ├── github.com
   ├── usr
   │   ├── desktop
   │   ├── docs
@@ -73,11 +73,11 @@ $HOME
 ## Info
 
 - Distro: `Void Linux`
-- Window Manager: `dwm`
-- Bar: `dwm custom bar`
-- Terminal Emulator: `st`
-- Editor: `vim`
-- Font: `Hack`
+- Window Manager: `sway`
+- Bar: `waybar`
+- Terminal Emulator: `alacritty`
+- Editor: `nvim`
+- Font: `JetBrains Mono and SF Pro Display`
 
 ## Install
 
