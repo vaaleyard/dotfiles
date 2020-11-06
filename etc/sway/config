@@ -243,7 +243,7 @@ bindsym Ctrl+Print exec sh -c "slurp | grim -t png -g - $HOME/usr/images/$(date 
 bindsym Ctrl+Shift+Print exec sh -c "grim -t png $HOME/usr/image/$(date +'screenshot-%d-%m-%Y-%H-%M-%S.png')"
 
 
-bindsym $mod+shift+t    exec Telegram
+bindsym $mod+shift+t    exec telegram-desktop
 bindsym $mod+shift+b    exec --no-startup-id $BROWSER
 
 
