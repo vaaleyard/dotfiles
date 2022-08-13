@@ -1,0 +1,83 @@
+
+# aliases I use everytime
+alias dotfiles="/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME""
+alias t=tmux
+alias g=git
+alias e=$EDITOR
+alias ls="exa --icons"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias {sls,sl}=ls
+
+# ----
+# configuration files
+alias zshrc='$EDITOR $HOME/.zshrc'
+alias lvimrc="$EDITOR $HOME/etc/lvim/config.lua"
+
+# ----
+# upload files
+ix() {
+    curl -sF f:1='<-' ix.io < "$*"
+}
+
+# iotek - txt file upload
+io(){
+    curl -sT- https://p.iotek.org < "$*"
+}
+
+### uguu - txt/images upload only for 24 hours
+uguu () {
+    for i in "$@"; do
+        curl -isS -F file=@"$i" "https://uguu.se/api.php?d=upload-tool" | grep https
+    done
+}
+
+fuwa() {
+    for i in "$@"; do
+        curl -s -F file=@${i} https://fuwa.se/api/upload
+    done
+}
+
+# mixtape - txt/image upload up to 100MB
+mix() {
+    for i in "$@"; do
+        curl -sf -F files[]=$i https://mixtape.moe/upload.php
+    done
+}
+
+# anonfile - any file upload up to 10gb (this site is like transfer.sh) - the link is a download link
+anon() {
+    for i in "$@"; do
+        curl -F document=@$i https://anonfiles.cc/api/upload
+    done
+}
+
+
+# ----
+# useful stuff
+
+# Color manpages
+# LINK: https://wiki.archlinux.org/index.php/Man_page#Colored_man_pages
+man() {
+	env LESS_TERMCAP_mb=$'\E[01;31m' \
+		LESS_TERMCAP_md=$'\E[01;31m' \
+		LESS_TERMCAP_me=$'\E[0m' \
+		LESS_TERMCAP_se=$'\E[0m' \
+		LESS_TERMCAP_so=$'\E[01;44;33m' \
+		LESS_TERMCAP_ue=$'\E[0m' \
+		LESS_TERMCAP_us=$'\E[01;32m' \
+		man "$@"
+}
+
+# Download random wallpapers from unsplash website
+unsplash() {
+	rm -rf /tmp/unsplash
+	mkdir /tmp/unsplash/
+	for i in $(seq 50); do
+		wget --quiet -O /tmp/unsplash/$i.jpg "https://unsplash.it/1920/1080/?random"
+	done
+}
+
+# Show the most used commands
+top10() { history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head; }
