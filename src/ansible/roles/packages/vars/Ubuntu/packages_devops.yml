@@ -1,6 +1,0 @@
-# related devops packages
-pkg:
-  - openvpn
-  - docker
-  - docker.io
-  - docker-compose

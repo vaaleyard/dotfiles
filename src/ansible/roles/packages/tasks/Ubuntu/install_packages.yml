@@ -1,9 +1,0 @@
----
-- name: Install VSCode on Ubuntu
-  become: yes
-  shell: snap install --classic code
-
-- name: Install DBeaver on Ubuntu
-  become: yes
-  shell: snap install --edge dbeaver-ce
-  when: dbeaver == "true"

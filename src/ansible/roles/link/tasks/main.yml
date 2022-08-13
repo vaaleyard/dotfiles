@@ -1,3 +1,0 @@
----
-- name: Link files to $HOME
-  import_tasks: fix_paths.yml
