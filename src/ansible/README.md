@@ -1,2 +1,0 @@
-- `roles/packages/install_*.yml`: install packages existent on distros
-- `roles/packages/{Fedora,ubuntu}`: install packages adding them to the repository manually

@@ -1,6 +1,0 @@
-pkg:
-  - vim-X11
-  - golang
-  - python3
-  - python3-pip
-  - python3-devel

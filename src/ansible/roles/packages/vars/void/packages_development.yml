@@ -1,8 +1,0 @@
-pkg:
-  - code-oss
-  - sublime-text3
-  - vim-x11
-  - golang
-  - python3
-  - docker
-  - docker-compose
