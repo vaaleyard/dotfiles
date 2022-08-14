@@ -3,7 +3,9 @@
     <p align="center"> my custom config for terminals, editors, git, etc. </p>
 </p>
 
-![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/scrot.png "scrot") <br />
+---
+
+![Alt text](scrot.png "scrot") <br />
 
 ## Tree
 ```
@@ -75,14 +77,15 @@ curl -fsSL bit.do/autism-sh | sh -s -- --autism master
 
 ---
 
-My dotfiles are managed with a bare repository. I used to store my dots with gnu stow, but it causes some things I don't want to, so I'm trying to give it a try. Here are some links explaining a bare repo:
+My dotfiles are managed with a bare repository. I also "install" them with GNU stow. Here are some links explaining a bare repo:
 * [The best way to store your dotfiles: A bare Git repository](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)
 * [Manage Dotfiles With a Bare Git Repository](https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html)
 
-Posts about managing with GNU stow:
-* [Managing dotfiles with GNU stow](http://blog.xero.nu/managing_dotfiles_with_gnu_stow)
+And more links about managing it with GNU stow:
 * [Using GNU stow to manage your dotfiles](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html)
 * [Dotfile management with GNU stow](https://jonleopard.com/dotfile-management-with-gnu-stow/)
 * [Using GNU stow with your dotfiles](https://protesilaos.com/codelog/gnu-stow-dotfiles/)
 
-Interesting read: [Why share your dotfiles](https://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/)
+Interesting read:
+* [Why share your dotfiles](https://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/)
+* [Rob Pike: “Dotfiles” being hidden is a UNIXv2 mistake (2012)](https://web.archive.org/web/20180827160401/https://plus.google.com/+RobPikeTheHuman/posts/R58WgWwN9jp)
