@@ -1,5 +1,6 @@
 <p align="center">
     <img src="https://i.imgur.com/YHr1OMl.png" align="center">
+    <p align="center"> my custom config for terminals, editors, git, etc. </p>
 </p>
 
 ![Alt text](https://github.com/Valeyard1/dotfiles/blob/master/scrot.png "scrot") <br />
@@ -9,75 +10,53 @@
 $HOME
   ├── bin
   ├── etc
-  │   ├── X11
-  │   ├── bash
-  │   ├── bspwm
-  │   ├── cmus
-  │   ├── dconf
-  │   ├── dunst
-  │   ├── feh
   │   ├── git
-  │   ├── i3
-  │   ├── mpv
-  │   ├── neomutt
-  │   ├── newsboat
-  │   ├── nvim
-  │   ├── polybar
-  │   ├── ranger
-  │   ├── sxhkd
-  │   ├── sxiv
+  │   ├── lvim
   │   ├── tmux
-  │   ├── weechat
-  │   └── zathura
+  │   └── weechat
   ├── src
-  │   ├── build
-  │   ├── github.com
-  ├── usr
-  │   ├── desktop
-  │   ├── docs
-  │   ├── images
-  │   ├── lib
-  │   ├── music
-  │   ├── suckless
-  │   └── videos
-  └── var
-      └── share
+  │   └── github.com
+  └── usr
+      ├── home
+      ├── docs
+      ├── images
+      ├── lib
+      ├── music
+      ├── suckless
+      └── videos
 ```
+Explanation:
+- bin: place to put custom scripts that must be in my PATH
+- etc: configuration for programs (same use of `~/.config`)
+- src: contains all my git clones, my git repositories and the ones I'm contributing
+- usr: don't know how to explain but home dir contains files that must be in $HOME folder
 
 ## Setup
 
 ### CLI
 
-- **newsboat**: RSS feed reader for text terminals.
-- **mutt**: Fast and secure text-based mail client.
 - **weechat**: IRC client.
-- **ranger**: A vim-like & lightweight file manager.
-- **mksh**: An alternative shell to bash, MirBSD Korn Shell.
+- **zsh**: The Z shell.
+- **starship**: The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 - **tmux**: A terminal multiplexer.
-- **vim**: Highly configurable text editor, I'm using with no plugins, only vanilla vim.
-- **transmission-remote-cli**: Curses interface for the daemon of the BitTorrent client Transmission.
-- **scrot**: Minimalist screen capture.
-- **youtube-dl**: Open source program to download videos from YouTube.
-- **surfraw**: Fast search engine from CLI.
-- **kpcli**: Command Line password manager for KeePass.
-- **cmus**: Music player.
+- **lunarvim**: LunarVim is an opinionated, extensible, and fast IDE layer for Neovim.
+- **brew**: The Missing Package Manager for macOS.
+- **karabiner**: A powerful and stable keyboard customizer for macOS.
+- **fig**: Fig adds IDE-style autocomplete to your existing terminal.
+- **iTerm2**: Terminal emulator.
 
 ### GUI
 
-- **Pale Moon**: The only browser that's fast and doesn't consume so much memory.
-- **dunst**: Lightweight notification-daemon.
-- **zathura**: Minimalistic and highly customizable document viewer.
-- **sxiv**: Lightweight and powerful image viewer.
-- **mpv**: A free software command line video player highly customizable.
+- **raycast**: Raycast is a blazingly fast, totally extendable launcher.
+- **iina**: The modern media player for macOS.
+- **neovide**: GUI for Neovim.
 
 ## Info
 
-- Distro: `Void Linux`
-- Window Manager: `sway`
-- Bar: `waybar`
-- Terminal Emulator: `alacritty`
-- Editor: `nvim`
-- Font: `JetBrains Mono and SF Pro Display`
+- Distro: `macOS`
+- Terminal Emulator: `iTerm2`
+- Editor: `lunarvim (neovim)`
+- Font: `JetBrains Mono Nerd Font`
 
 ## Install
 
@@ -92,54 +71,6 @@ After installing them, paste the following line into the terminal:
 ```bash
 curl -fsSL bit.do/autism-sh | sh -s -- --autism master
 ```
-
-## X11 files
-
-To get touchpad working after a minimal install, copy the code below to the file `/etc/X11/xorg.conf.d/30-touchpad.conf`:
-
-```
-Section "InputClass"
-        Identifier "touchpad"
-        Driver "libinput"
-        MatchIsTouchpad "on"
-        Option "Tapping" "on"
-        Option "XkbModel" "thinkpad60"
-        Option "TappingButtonMap" "lmr"
-        Option "TappingDrag" "on"
-EndSection
-```
-
-Set keyboard to br-abnt2, but with thinkpad keyboard `/etc/X11/xorg.conf.d/00-keyboard.conf`
-```
- Section "InputClass"
-        Identifier "keyboard-all"
-        MatchIsKeyboard "on"
-        MatchDevicePath "/dev/input/event*"
-        Driver "evdev"
-        Option "XkbLayout" "br"
-        Option "XkbModel" "thinkpad60"
-        Option "XkbOptions" "terminate:ctrl_alt_bksp"
-EndSection
-```
-
-Get audio working in thinkpads: `/etc/modprobe.d/alsa-base.conf` (don't ask me why it works)
-```
-options snd-hda-intel position_fix=1 model=lenovo
-```
-
-## Mutt config
-
-I've configured my neomutt to work with gpg, so my passwords and emails are not stored in plain text files like it was before (that's why I hadn't pushed to the repo). They are encrypted with gpg, so only me can decrypt it.
-
-To use my config just create a `$HOME/pass.gpg` with your information like this:
-
-```
-set my_user="<email-user>"       # Don't write what there's after @. Example: in email@potato.com, write only "email"
-set my_pass="<your-password>"
-set my_name="<your-name>"
-```
-
-Pay attention to the sed commands mixed with gpg in each email file I have.
 
 
 ---
