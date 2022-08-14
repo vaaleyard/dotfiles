@@ -1,6 +1,7 @@
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.builtin.terminal.active = true
 lvim.builtin.dap.active = true
+lvim.builtin.bufferline.options.separator_style = "padded_slant"
 lvim.colorscheme = "catppuccin"
 vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 
@@ -52,124 +53,124 @@ vim.api.nvim_set_keymap('n', 'zl', '@z=@"<cr>x$p:let @"=@z<cr>', { noremap = tru
 
 -- statusline
 lvim.builtin.lualine = {
-  active = true,
-  options = {
-    theme = "catppuccin",
-    component_separators = '|',
-    section_separators = { left = '', right = '' },
-  },
-  sections = {
-    lualine_a = {
-      { 'mode', separator = { left = '' }, right_padding = 2, icon = "" },
+    active = true,
+    options = {
+        theme = "catppuccin",
+        component_separators = '|',
+        section_separators = { left = '', right = '' },
     },
-    lualine_b = { 'filename', { 'branch', icon = '' } },
-    lualine_c = { { 'diff', symbols = { added = ' ', modified = '柳', removed = ' ' }, } },
+    sections = {
+        lualine_a = {
+            { 'mode', separator = { left = '' }, right_padding = 2, icon = "" },
+        },
+        lualine_b = { 'filename', { 'branch', icon = '' } },
+        lualine_c = { { 'diff', symbols = { added = ' ', modified = '柳', removed = ' ' }, } },
 
-    lualine_x = { 'diagnostics' },
-    lualine_y = { 'filetype' },
-    lualine_z = {
-      { 'progress', icon = "", separator = { right = '' } },
+        lualine_x = { 'diagnostics' },
+        lualine_y = { 'filetype' },
+        lualine_z = {
+            { 'progress', icon = "", separator = { right = '' } },
+        },
     },
-  },
-  inactive_sections = {
-    lualine_a = { 'filename' },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = { 'location' },
-  },
-  tabline = {},
-  extensions = {},
-  style = "lvim"
+    inactive_sections = {
+        lualine_a = { 'filename' },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { 'location' },
+    },
+    tabline = {},
+    extensions = {},
+    style = "lvim"
 }
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
-  pattern = { "*.ts" },
-  command = "setlocal tabstop=2 shiftwidth=2",
+    pattern = { "*.ts" },
+    command = "setlocal tabstop=2 shiftwidth=2",
 })
 
 lvim.plugins = {
-  { "arcticicestudio/nord-vim" },
-  {
-    "catppuccin/nvim",
-    as = "catppuccin"
-  },
-  {
-    "folke/trouble.nvim",
-  },
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "BufRead",
-    config = function()
-      require "lsp_signature".on_attach()
-    end
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    setup = function()
-      vim.opt.termguicolors = true
-      vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
-      vim.g.indent_blankline_buftype_exclude = { "terminal" }
-    end
-  },
-  {
-    "tpope/vim-surround",
-    keys = { "c", "d", "y" }
-    -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
-    -- setup = function()
-    --  vim.o.timeoutlen = 500
-    -- end
-  },
+    { "arcticicestudio/nord-vim" },
+    {
+        "catppuccin/nvim",
+        as = "catppuccin"
+    },
+    {
+        "folke/trouble.nvim",
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "BufRead",
+        config = function()
+            require "lsp_signature".on_attach()
+        end
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        event = "BufRead",
+        setup = function()
+            vim.opt.termguicolors = true
+            vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
+            vim.g.indent_blankline_buftype_exclude = { "terminal" }
+        end
+    },
+    {
+        "tpope/vim-surround",
+        keys = { "c", "d", "y" }
+        -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
+        -- setup = function()
+        --  vim.o.timeoutlen = 500
+        -- end
+    },
 
-  {
-    "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    ft = "markdown",
-    config = function()
-      vim.g.mkdp_auto_start = 1
-    end,
-  },
+    {
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        ft = "markdown",
+        config = function()
+            vim.g.mkdp_auto_start = 1
+        end,
+    },
 }
 
 
 lvim.builtin.which_key.mappings["t"] = {
-  name = "Diagnostics",
-  t = { "<cmd>TroubleToggle<cr>", "trouble" },
-  w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace" },
-  d = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document" },
-  q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-  l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
-  r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
+    name = "Diagnostics",
+    t = { "<cmd>TroubleToggle<cr>", "trouble" },
+    w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace" },
+    d = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document" },
+    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+    l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+    r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 }
 
 lvim.builtin.which_key.mappings["T"] = {
-  name = "ToggleTerm",
-  t = { "<cmd>ToggleTerm<cr>", "Terminal" },
+    name = "ToggleTerm",
+    t = { "<cmd>ToggleTerm<cr>", "Terminal" },
 }
 
 
 local TelescopePrompt = {
-  TelescopePromptNormal = {
-    bg = '#2d3149',
-  },
-  TelescopePromptBorder = {
-    bg = '#2d3149',
-  },
-  TelescopePromptTitle = {
-    fg = '#2d3149',
-    bg = '#2d3149',
-  },
-  TelescopePreviewTitle = {
-    fg = '#1F2335',
-    bg = '#1F2335',
-  },
-  TelescopeResultsTitle = {
-    fg = '#1F2335',
-    bg = '#1F2335',
-  },
+    TelescopePromptNormal = {
+        bg = '#2d3149',
+    },
+    TelescopePromptBorder = {
+        bg = '#2d3149',
+    },
+    TelescopePromptTitle = {
+        fg = '#2d3149',
+        bg = '#2d3149',
+    },
+    TelescopePreviewTitle = {
+        fg = '#1F2335',
+        bg = '#1F2335',
+    },
+    TelescopeResultsTitle = {
+        fg = '#1F2335',
+        bg = '#1F2335',
+    },
 }
 for hl, col in pairs(TelescopePrompt) do
-  vim.api.nvim_set_hl(0, hl, col)
+    vim.api.nvim_set_hl(0, hl, col)
 end
