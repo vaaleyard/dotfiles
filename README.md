@@ -64,16 +64,19 @@ Explanation:
 
 ### Requirements
 The following packages need to be installed:  
-- ansible  
+- stow
 - git  
 
-After installing them, paste the following line into the terminal:
-
+After installing them as a bare repo (see links below), paste the following line into the terminal:
 
 ```bash
-curl -fsSL bit.do/autism-sh | sh -s -- --autism master
-```
+cd $HOME
+stow etc --target=$HOME/.config
+cd $HOME && stow home --target=$HOME
 
+# unstow:
+stow -D etc --target=$HOME/.config
+```
 
 ---
 
