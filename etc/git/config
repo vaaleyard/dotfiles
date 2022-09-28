@@ -20,3 +20,5 @@
     date-log = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
 [format]
 	signOff = true
+[init]
+	defaultBranch = main
