@@ -1,9 +1,12 @@
+[alias]
+    s = status
 [user]
     email = leonardo@essia.dev
     name = Leonardo Essia
 [core]
-    editor = lvim
-    pager = delta
+    editor = nvim
+    pager = delta --dark
+    bare = true
 [delta]
     side-by-side = true
     navigate = true    # use n and N to move between diff sections
