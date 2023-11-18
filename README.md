@@ -12,53 +12,47 @@
 $HOME
   ├── bin
   ├── etc
+  │   ├── fish
   │   ├── git
-  │   ├── lvim
   │   ├── tmux
   │   └── weechat
   ├── src
   │   └── github.com
   └── usr
       ├── home
-      ├── docs
       ├── images
-      ├── lib
-      ├── music
-      ├── suckless
       └── videos
 ```
 Explanation:
 - bin: place to put custom scripts that must be in my PATH
 - etc: configuration for programs (same use of `~/.config`)
 - src: contains all my git clones, my git repositories and the ones I'm contributing
-- usr: don't know how to explain but home dir contains files that must be in $HOME folder
+- usr: files that must be in $HOME folder
 
 ## Setup
 
 ### CLI
 
 - **weechat**: IRC client.
-- **zsh**: The Z shell.
-- **starship**: The minimal, blazing-fast, and infinitely customizable prompt for any shell!
+- **fish**: a shell.
+- **tide**: fish prompt.
 - **tmux**: A terminal multiplexer.
-- **lunarvim**: LunarVim is an opinionated, extensible, and fast IDE layer for Neovim.
+- **lazyvim**: neovim distro.
 - **brew**: The Missing Package Manager for macOS.
 - **karabiner**: A powerful and stable keyboard customizer for macOS.
-- **fig**: Fig adds IDE-style autocomplete to your existing terminal.
-- **iTerm2**: Terminal emulator.
+- **alacritty**: Terminal emulator.
 
 ### GUI
 
 - **raycast**: Raycast is a blazingly fast, totally extendable launcher.
 - **iina**: The modern media player for macOS.
-- **neovide**: GUI for Neovim.
 
 ## Info
 
 - Distro: `macOS`
-- Terminal Emulator: `iTerm2`
-- Editor: `lunarvim (neovim)`
-- Font: `JetBrains Mono Nerd Font`
+- Terminal Emulator: `Alacritty`
+- Editor: `NeoVim`
+- Font: `Monaco Nerd Font`
 
 ## Install
 
