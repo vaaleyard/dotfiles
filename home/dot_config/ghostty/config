@@ -1,0 +1,6 @@
+font-style = JetBrainsMono Nerd Font Mono
+macos-option-as-alt = true
+theme = ayu
+macos-option-as-alt = true
+keybind = cmd+r=reload_config
+
