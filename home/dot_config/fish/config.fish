@@ -1,6 +1,7 @@
 # Commands to run in interactive sessions can go here
 alias ls 'eza --icons'
 alias g git
+alias vim nvim
 
 set -gx EDITOR nvim
 

@@ -26,6 +26,7 @@ keybinds {
     tmux {
         bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
         bind "Esc" { SwitchToMode "Normal"; }
+        bind "Tab" { ToggleTab; }
         bind "g" { SwitchToMode "Locked"; }
         bind "p" { SwitchToMode "Pane"; }
         bind "t" { SwitchToMode "Tab"; }
