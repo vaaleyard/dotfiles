@@ -12,6 +12,7 @@ gpgconf --launch gpg-agent
 
 set -g fish_greeting
 atuin init fish | source
+zoxide init fish | source
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
