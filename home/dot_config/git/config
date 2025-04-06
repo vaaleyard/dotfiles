@@ -2,6 +2,10 @@
   editor = nvim
   pager = delta --dark
   bare = true
+  whitespace = trailing-space,space-before-tab
+[pager]
+  branch = false
+  grep = false
 [column]
   ui = auto
 [branch]
@@ -40,6 +44,16 @@
   rebase = true
 [url "git@github.com:"]
   insteadOf = "https://github.com/"
+
+[alias]
+  a = add
+  c = commit
+  d = diff
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  p = push
+  s = status
+  ca = commit --amend
+  ca = commit --message
 
 [ghq]
   root = ~/src/
