@@ -53,7 +53,7 @@
   p = push
   s = status
   ca = commit --amend
-  ca = commit --message
+  cm = commit --message
 
 [ghq]
   root = ~/src/
