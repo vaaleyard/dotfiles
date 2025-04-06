@@ -1,0 +1,54 @@
+keybinds {
+    normal clear-defaults=true {
+        // tmux
+        bind "Ctrl b" { SwitchToMode "Tmux"; }
+        // unbind "Ctrl b"
+        // general stuff
+        bind "Alt Left" { NewPane "Left"; }
+        bind "Alt Right" { NewPane "Right"; }
+        bind "Alt Up" { NewPane "Up"; }
+        bind "Alt Down" { NewPane "Up"; }
+        bind "Alt x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "Alt w" { ToggleFloatingPanes;}
+        bind "Alt t" { NewTab;}
+        bind "Alt h" { MoveFocusOrTab "Left"; }
+        bind "Alt l" { MoveFocusOrTab "Right"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt =" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
+        bind "Alt i" { MoveTab "Left"; }
+        bind "Alt o" { MoveTab "Right"; }
+    }
+
+    tmux {
+        bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
+        bind "Esc" { SwitchToMode "Normal"; }
+        bind "g" { SwitchToMode "Locked"; }
+        bind "p" { SwitchToMode "Pane"; }
+        bind "t" { SwitchToMode "Tab"; }
+        bind "n" { SwitchToMode "Resize"; }
+        bind "h" { SwitchToMode "Move"; }
+        bind "s" { SwitchToMode "Scroll"; }
+        bind "o" { SwitchToMode "Session"; }
+        bind "q" { Quit; }
+    }
+}
+
+plugins {
+    tab-bar { path "tab-bar"; }
+    status-bar { path "status-bar"; }
+    strider { path "strider"; }
+    compact-bar { path "compact-bar"; }
+    session-manager { path "session-manager"; }
+}
+
+simplified_ui true
+theme "ayu-dark"
+pane_frames false
+session_name "main"
+attach_to_session true
+
+// show_startup_tips false
