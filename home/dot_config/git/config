@@ -42,8 +42,6 @@
   updateRefs = true
 [pull]
   rebase = true
-[url "git@github.com:"]
-  insteadOf = "https://github.com/"
 
 [alias]
   a = add
