@@ -1,0 +1,30 @@
+# theme
+set -U fish_greeting
+function fish_right_prompt
+    set_color brblack
+    date '+%H:%M %p'
+    set_color normal
+end
+set fzf_preview_dir_cmd eza --all --color=always
+set fzf_diff_highlighter delta --paging=never --width=20
+
+alias ls 'eza --icons'
+alias g git
+alias vim nvim
+
+set -gx EDITOR nvim
+set -gx GPG_TTY "$(tty)" # gpg
+
+# yubikey
+{{- if not .work }}
+set -gx SSH_AUTH_SOCK "$(gpgconf --list-dirs agent-ssh-socket)"
+gpgconf --launch gpg-agent
+
+atuin init fish | source
+{{ end -}}
+zoxide init fish | source
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+

@@ -1,3 +1,8 @@
+[user]
+  name = Leonardo Essia
+  email = {{ .email }}
+  signingkey = {{ .sshkey }}
+
 [core]
   editor = nvim
   pager = delta --dark
@@ -42,7 +47,6 @@
   updateRefs = true
 [pull]
   rebase = true
-
 [alias]
   a = add
   c = commit
@@ -55,10 +59,4 @@
 
 [ghq]
   root = ~/src/
-
-[user]
-  name = Leonardo Essia
-  email = leonardo@essia.dev
-  signingkey = "~/.ssh/id_rsa_yubikey.pub"
-
 
