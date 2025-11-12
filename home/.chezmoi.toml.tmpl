@@ -1,0 +1,22 @@
+{{- $email := "" -}}
+{{- $sshkey := "" -}}
+{{- $work := "" -}}
+
+{{- if eq .chezmoi.hostname "arrakis" -}}
+  {{- $work = false -}}
+{{- else -}}
+  {{- $work = true -}}
+{{- end -}}
+
+{{- if not $work -}}
+  {{- $email = "leonardo@essia.dev" -}}
+  {{- $sshkey = "~/.ssh/id_rsa_yubikey.pub" -}}
+{{- else -}}
+  {{- $email = "leonardo.essia@ezlo.com" -}}
+  {{- $sshkey = "~/.ssh/ezlo.pub" -}}
+{{- end -}}
+
+[data]
+  email = {{ $email | quote }}
+  sshkey = {{ $sshkey | quote }}
+  work = {{ $work }}
