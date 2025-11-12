@@ -15,8 +15,8 @@ alias vim nvim
 set -gx EDITOR nvim
 set -gx GPG_TTY "$(tty)" # gpg
 
-# yubikey
 {{- if not .work }}
+# yubikey
 set -gx SSH_AUTH_SOCK "$(gpgconf --list-dirs agent-ssh-socket)"
 gpgconf --launch gpg-agent
 
