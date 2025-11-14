@@ -1,0 +1,59 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ $brews := list
+     "bat"
+     "btop"
+     "curl"
+     "eza"
+     "fd"
+     "fzf"
+     "gh"
+     "git"
+     "fish"
+     "mise"
+     "hugo"
+     "gnupg"
+     "ripgrep"
+     "tmux"
+     "neovim"
+     "gemini-cli"
+     "zoxide"
+     "ghq"
+     "delta"
+     "atuin"
+     "pinentry-mac"
+     "wget" -}}
+{{ $casks := list
+     "karabiner-elements"
+     "orbstack"
+     "ghostty@tip" -}}
+
+{{ if .work -}}
+{{   $brews = concat $brews (list
+       "k9s"
+       "yq"
+       "kubectl"
+       "kubectx"
+       "helm"
+       "terraform"
+       "telnet"
+       "mise") -}}
+{{   $casks = concat $casks (list
+       "bitwarden"
+       "tableplus"
+       "gcloud-cli"
+       "kubectl"
+       "brave-browser"
+       "whatsapp") -}}
+{{ end -}}
+
+brew bundle --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
