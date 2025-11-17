@@ -19,7 +19,6 @@ defaults write -g WebAutomaticSpellingCorrectionEnabled -int 0
 
 defaults write -g InitialKeyRepeat -int 15
 defaults write -g KeyRepeat -int 2
-defaults write -g com.apple.keyboard.fnState -int 1
 
 defaults write -g com.apple.swipescrolldirection -int 0 # disable "natural" scrolling
 defaults write -g com.apple.trackpad.forceClick -int 0
