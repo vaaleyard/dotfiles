@@ -1,20 +1,12 @@
-theme = light:Gruvbox Light, dark:Gruvbox Dark
+theme = light:Rose Pine Dawn, dark:Rose Pine Moon
 font-family = BlexMono Nerd Font
 window-padding-x = 16
 window-padding-y = 16
 keybind = shift+enter=text:\x1b\r
 cursor-style = block
 
+macos-titlebar-style = hidden
 macos-option-as-alt = true
 macos-titlebar-proxy-icon = hidden
 macos-icon = retro
-
-keybind = global:cmd+backquote=toggle_quick_terminal
-keybind = ctrl+b>shift+'=new_split:right
-keybind = ctrl+b>shift+5=new_split:down
-keybind = alt+k=goto_split:top
-keybind = alt+j=goto_split:bottom
-keybind = alt+h=goto_split:left
-keybind = alt+l=goto_split:right
-keybind = ctrl+b>z=toggle_split_zoom
 
