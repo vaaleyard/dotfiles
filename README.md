@@ -19,7 +19,7 @@ chezmoi init vaaleyard
 - Distro: `macOS`
 - Terminal Emulator: `Ghostty`
 - Editor: `NeoVim`
-- Font: `JetBrains Mono`
+- Font: `BlexMono Nerd Font`
 
 ---
 
