@@ -4,6 +4,8 @@
 
 {{- if eq .chezmoi.hostname "arrakis" -}}
   {{- $work = false -}}
+{{- else if eq .chezmoi.hostname "caladan" -}}
+  {{- $work = false -}}
 {{- else -}}
   {{- $work = true -}}
 {{- end -}}
