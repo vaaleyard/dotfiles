@@ -44,15 +44,11 @@ set -eufo pipefail
        "kubectl"
        "kubectx"
        "helm"
-       "terraform"
        "telnet"
        "mise") -}}
 {{   $casks = concat $casks (list
        "bitwarden"
-       "tableplus"
-       "gcloud-cli"
-       "brave-browser"
-       "whatsapp@beta") -}}
+       "tableplus") -}}
 {{ end -}}
 
 brew bundle --file=/dev/stdin <<EOF
