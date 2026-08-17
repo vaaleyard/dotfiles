@@ -17,6 +17,9 @@ defaults write -g NSUserDictionaryReplacementItems -array
 defaults write -g WebAutomaticSpellingCorrectionEnabled -bool false
 
 # Keyboard
+## Repeat keys instead of showing the accent/special-character popup
+defaults write -g ApplePressAndHoldEnabled -bool false
+
 ## Faster key repeat
 defaults write -g InitialKeyRepeat -int 15
 defaults write -g KeyRepeat -int 2
