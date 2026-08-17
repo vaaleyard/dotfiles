@@ -10,9 +10,7 @@ default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 
 automatically-unhide-macos-hidden-apps = false
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C",
-                         "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-                         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
 after-startup-command = [
   'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
@@ -21,11 +19,13 @@ after-startup-command = [
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
+[workspace-to-monitor-force-assignment]
+    10 = 'secondary' # Non-main monitor in case when there are only two monitors
+
 [mode.main.binding]
 
     alt-enter = 'exec-and-forget open -a ghostty'
-    alt-b = 'exec-and-forget open -a "Brave Browser"'
-    alt-c = 'exec-and-forget open -a "Google Chrome"'
+    alt-b = 'exec-and-forget open -a "Dia"'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-slash = 'layout tiles horizontal vertical'
@@ -59,6 +59,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
+    alt-0 = 'workspace 10'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
@@ -70,6 +71,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     alt-shift-7 = 'move-node-to-workspace 7'
     alt-shift-8 = 'move-node-to-workspace 8'
     alt-shift-9 = 'move-node-to-workspace 9'
+    alt-shift-0 = 'move-node-to-workspace 10'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
