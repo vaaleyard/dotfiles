@@ -1,32 +1,78 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# This script enables a set of "sane" defaults
-set -eufo pipefail
+# Enable a set of "sane" macOS defaults.
+set -euo pipefail
 
-# Disable all text "smart features"
-defaults write -g NSAutomaticCapitalizationEnabled -int 0
-defaults write -g NSAutomaticDashSubstitutionEnabled -int 0
-defaults write -g NSAutomaticInlinePredictionEnabled -int 0
-defaults write -g NSAutomaticPeriodSubstitutionEnabled -int 0
-defaults write -g NSAutomaticQuoteSubstitutionEnabled -int 0
-defaults write -g NSAutomaticSpellingCorrectionEnabled -int 0
-defaults write -g NSAutomaticTextCorrectionEnabled -int 0
-defaults write -g NSAutomaticWindowAnimationsEnabled -int 0
+# Text input
+## Disable automatic text "smart features"
+defaults write -g NSAutomaticCapitalizationEnabled -bool false
+defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
+defaults write -g NSAutomaticInlinePredictionEnabled -bool false
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write -g NSAutomaticTextCorrectionEnabled -bool false
 
-defaults write -g NSDocumentSaveNewDocumentsToCloud -int 0
-defaults write -g NSUserDictionaryReplacementItems '()'
-defaults write -g WebAutomaticSpellingCorrectionEnabled -int 0
+defaults write -g NSUserDictionaryReplacementItems -array
+defaults write -g WebAutomaticSpellingCorrectionEnabled -bool false
 
+# Keyboard
+## Faster key repeat
 defaults write -g InitialKeyRepeat -int 15
 defaults write -g KeyRepeat -int 2
 
-defaults write -g com.apple.swipescrolldirection -bool NO # disable "natural" scrolling
-defaults write -g com.apple.trackpad.forceClick -int 0
+# Trackpad
+## Disable "natural" scrolling
+defaults write -g com.apple.swipescrolldirection -bool false
 
-defaults write com.apple.dock autohide -int 1
-defaults write com.apple.dock show-recents -int 0
+## Disable Force Click
+defaults write -g com.apple.trackpad.forceClick -bool false
 
-defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
-defaults write com.apple.finder _FXSortFoldersFirst -int 1
-defaults write com.apple.finder FXRemoveOldTrashItems -int 1
-defaults write com.apple.finder FXEnableExtensionChangeWarning -int 0
+## Enable tap-to-click
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write -g com.apple.mouse.tapBehavior -int 1
+
+## Enable three-finger drag
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+
+# Windows / animations
+## Disable window animations
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+
+# Documents
+## Save new documents locally instead of iCloud by default
+defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Dock
+## Automatically hide the Dock
+defaults write com.apple.dock autohide -bool true
+
+## Don't show recent applications
+defaults write com.apple.dock show-recents -bool false
+
+## Remove all applications from the Dock
+## Finder and Trash remain because they are special Dock items.
+defaults write com.apple.dock persistent-apps -array
+
+# Finder
+## Use list view by default
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+## Keep folders at the top when sorting
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+## Remove items from Trash after 30 days
+defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+
+## Disable warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Restart affected applications
+killall Dock 2>/dev/null || true
+killall Finder 2>/dev/null || true
+
+echo "macOS defaults applied."
+echo "Some trackpad settings may require logging out and back in to take effect."
+
