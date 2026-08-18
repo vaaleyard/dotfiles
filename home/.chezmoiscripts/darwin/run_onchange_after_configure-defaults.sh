@@ -75,6 +75,18 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 ## Hide Tags section in Finder sidebar
 defaults write com.apple.finder SidebarTagsSctionDisclosedState -bool false
 
+# Show all file extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Keep folders at the top when sorting
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+# Show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
 # Restart affected applications
 killall Dock 2>/dev/null || true
 killall Finder 2>/dev/null || true
