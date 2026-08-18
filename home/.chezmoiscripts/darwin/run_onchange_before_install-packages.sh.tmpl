@@ -23,12 +23,10 @@ set -eufo pipefail
      "delta"
      "atuin"
      "pinentry-mac"
-     "cormacrelf/tap/dark-notify"
      "wget" -}}
 {{ $casks := list
      "karabiner-elements"
      "tidal"
-     "nikitabobko/tap/aerospace"
      "alt-tab"
      "stats"
      "iina"
@@ -56,7 +54,11 @@ brew bundle --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
+
 {{ range ($casks | sortAlpha | uniq) -}}
 cask "{{ . }}"
 {{ end -}}
+
+brew "cormacrelf/tap/dark-notify", trusted: true
+cask "nikitabobko/tap/aerospace", trusted: true
 EOF
