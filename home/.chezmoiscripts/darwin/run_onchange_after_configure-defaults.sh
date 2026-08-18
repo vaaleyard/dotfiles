@@ -72,10 +72,12 @@ defaults write com.apple.finder FXRemoveOldTrashItems -bool true
 ## Disable warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
+## Hide Tags section in Finder sidebar
+defaults write com.apple.finder SidebarTagsSctionDisclosedState -bool false
+
 # Restart affected applications
 killall Dock 2>/dev/null || true
 killall Finder 2>/dev/null || true
 
 echo "macOS defaults applied."
 echo "Some trackpad settings may require logging out and back in to take effect."
-
